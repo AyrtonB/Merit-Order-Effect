@@ -1,0 +1,32 @@
+name: MOE
+
+channels:
+  - conda-forge
+  - fastai
+  
+dependencies:
+  - python>=3.7
+  - pandas
+  - matplotlib
+  - jupyterlab
+  - lxml
+  - seaborn
+  - twine
+  - mkdocs
+  - mkdocs-material
+  - nbdev
+  - python-dotenv
+  - dagster
+  - dagit
+  - statsmodels
+  - scikit-learn
+  - pip
+  
+  - pip:
+      - -e .
+      - ipypb
+      - feautils
+      - mkdocs-material-extensions
+      - mkdocstrings
+      - configparser
+      - junix
