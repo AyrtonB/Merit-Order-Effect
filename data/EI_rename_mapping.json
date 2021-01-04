@@ -1,0 +1,1 @@
+{"pumpedStorage": "pumped_storage", "northernIreland": "northern_ireland", "windOnshore": "wind_onshore", "windOffshore": "wind_offshore", "prices_ahead": "day_ahead_price", "prices": "imbalance_price", "temperatures": "temperature", "totalInGperkWh": "gCO2_per_kWh", "totalInTperh": "TCO2_per_h"}
