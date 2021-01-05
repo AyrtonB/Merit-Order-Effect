@@ -5,7 +5,7 @@ __all__ = ['vector_2_dist_matrix', 'get_frac_idx', 'get_dist_thresholds', 'dist_
            'get_weights_matrix', 'calc_lin_reg_betas', 'fit_regressions', 'check_array', 'lowess_fit_and_predict',
            'calc_robust_weights', 'robust_lowess_fit_and_predict', 'Lowess', 'get_bootstrap_idxs',
            'get_bootstrap_resid_std_devs', 'run_model', 'bootstrap_model', 'get_confidence_interval',
-           'pred_to_quantile_loss', 'calc_quant_reg_loss', 'calc_quant_reg_betas']
+           'pred_to_quantile_loss', 'calc_quant_reg_loss', 'calc_quant_reg_betas', 'quantile_model']
 
 # Cell
 import pandas as pd
@@ -335,3 +335,23 @@ def calc_quant_reg_loss(x0, x, y, q, weights=None):
     return loss
 
 calc_quant_reg_betas = lambda x, y, q=0.5, x0=np.zeros(2), weights=None, method='nelder-mead': minimize(calc_quant_reg_loss, x0, method=method, args=(x, y, q, weights)).x
+
+# Cell
+def quantile_model(x, y, model=Lowess(calc_quant_reg_betas),
+                   x_pred=None, qs=np.linspace(0.1, 0.9, 9), **model_kwargs):
+
+    if x_pred is None:
+        x_pred = np.sort(np.unique(x))
+
+    q_to_preds = dict()
+
+    for q in track(qs):
+        model.fit(x, y, q=q, **model_kwargs)
+        q_to_preds[q] = model.predict(x_pred)
+
+    df_quantiles = pd.DataFrame(q_to_preds, index=x_pred)
+
+    df_quantiles.index.name = 'x'
+    df_quantiles.columns.name = 'quantiles'
+
+    return df_quantiles

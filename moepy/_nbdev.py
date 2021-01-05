@@ -39,7 +39,8 @@ index = {"query_API": "01-retrieval.ipynb",
          "get_confidence_interval": "03-lowess.ipynb",
          "pred_to_quantile_loss": "03-lowess.ipynb",
          "calc_quant_reg_loss": "03-lowess.ipynb",
-         "calc_quant_reg_betas": "03-lowess.ipynb"}
+         "calc_quant_reg_betas": "03-lowess.ipynb",
+         "quantile_model": "03-lowess.ipynb"}
 
 modules = ["retrieval.py",
            "eda.py",
