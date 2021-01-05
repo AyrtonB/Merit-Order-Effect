@@ -2,8 +2,7 @@
 
 __all__ = ['vector_2_dist_matrix', 'get_frac_idx', 'get_dist_thresholds', 'dist_2_weights_matrix',
            'get_full_dataset_weights_matrix', 'get_weighting_locs', 'create_dist_matrix', 'num_fits_2_reg_anchors',
-           'dist_2_weights_matrix', 'get_weights_matrix', 'get_dist_thresholds', 'calc_lin_reg_betas',
-           'fit_regressions', 'check_array', 'lowess_fit_and_predict']
+           'get_weights_matrix', 'calc_lin_reg_betas', 'fit_regressions', 'check_array', 'lowess_fit_and_predict']
 
 # Cell
 import pandas as pd
@@ -32,7 +31,9 @@ get_dist_thresholds = lambda x, frac_idx, dist_matrix: np.sort(dist_matrix)[:, f
 def dist_2_weights_matrix(dist_matrix, dist_thresholds):
     inv_linear_weights = np.clip(dist_matrix/dist_thresholds.reshape(-1, 1), 0, 1)
     weights = (1 - (inv_linear_weights ** 3)) ** 3
+
     weights = weights/weights.sum(axis=0) # We'll then normalise the weights so that for each model they sum to 1 for a single data point
+    weights = np.where(~np.isfinite(weights), 0, weights) # And remove any non-finite values
 
     return weights
 
@@ -70,15 +71,6 @@ def create_dist_matrix(x, reg_anchors=None, num_fits=None):
     return dist_matrix
 
 # Cell
-get_dist_thresholds= lambda x, frac_idx, dist_matrix: np.sort(dist_matrix)[:, frac_idx]
-
-def dist_2_weights_matrix(dist_matrix, dist_thresholds):
-    inv_linear_weights = np.clip(dist_matrix/dist_thresholds.reshape(-1, 1), 0, 1)
-    weights = (1 - (inv_linear_weights ** 3)) ** 3
-    weights = weights/weights.sum(axis=0) # We'll then normalise the weights so that for each model they sum to 1 for a single data point
-
-    return weights
-
 def get_weights_matrix(x, frac=0.4, weighting_locs=None, reg_anchors=None, num_fits=None):
     frac_idx = get_frac_idx(x, frac)
 
