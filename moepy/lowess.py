@@ -2,7 +2,10 @@
 
 __all__ = ['vector_2_dist_matrix', 'get_frac_idx', 'get_dist_thresholds', 'dist_2_weights_matrix',
            'get_full_dataset_weights_matrix', 'get_weighting_locs', 'create_dist_matrix', 'num_fits_2_reg_anchors',
-           'get_weights_matrix', 'calc_lin_reg_betas', 'fit_regressions', 'check_array', 'lowess_fit_and_predict']
+           'get_weights_matrix', 'calc_lin_reg_betas', 'fit_regressions', 'check_array', 'lowess_fit_and_predict',
+           'calc_robust_weights', 'robust_lowess_fit_and_predict', 'Lowess', 'get_bootstrap_idxs',
+           'get_bootstrap_resid_std_devs', 'run_model', 'bootstrap_model', 'get_confidence_interval',
+           'pred_to_quantile_loss', 'calc_quant_reg_loss', 'calc_quant_reg_betas']
 
 # Cell
 import pandas as pd
@@ -11,6 +14,8 @@ import numpy as np
 import seaborn as sns
 import matplotlib.pyplot as plt
 
+from sklearn.base import BaseEstimator, RegressorMixin
+from scipy.optimize import minimize
 from scipy import linalg
 
 from timeit import timeit
@@ -85,13 +90,13 @@ def get_weights_matrix(x, frac=0.4, weighting_locs=None, reg_anchors=None, num_f
     return weights
 
 # Cell
-def calc_lin_reg_betas(x, y, x_weights=None):
-    if x_weights is None:
-        x_weights = np.ones(len(x))
+def calc_lin_reg_betas(x, y, weights=None):
+    if weights is None:
+        weights = np.ones(len(x))
 
-    b = np.array([np.sum(x_weights * y), np.sum(x_weights * y * x)])
-    A = np.array([[np.sum(x_weights), np.sum(x_weights * x)],
-                  [np.sum(x_weights * x), np.sum(x_weights * x * x)]])
+    b = np.array([np.sum(weights * y), np.sum(weights * y * x)])
+    A = np.array([[np.sum(weights), np.sum(weights * x)],
+                  [np.sum(weights * x), np.sum(weights * x * x)]])
 
     betas = linalg.solve(A, b)
 
@@ -100,16 +105,17 @@ def calc_lin_reg_betas(x, y, x_weights=None):
 # Cell
 check_array = lambda array, x: np.ones(len(x)) if array is None else array
 
-def fit_regressions(x, y, weights, delta=None, reg_func=calc_lin_reg_betas, num_coef=2, **reg_params):
-    delta = check_array(delta, x)
+def fit_regressions(x, y, weights=None, reg_func=calc_lin_reg_betas, num_coef=2, **reg_params):
+    if weights is None:
+        weights = np.ones(len(x))
+
     n = weights.shape[0]
 
     y_pred = np.zeros(n)
     design_matrix = np.zeros((n, num_coef))
 
     for i in range(n):
-        adj_weights = delta * weights[i, :]
-        design_matrix[i, :] = reg_func(x, y, adj_weights, **reg_params)
+        design_matrix[i, :] = reg_func(x, y, weights=weights[i, :], **reg_params)
 
     return design_matrix
 
@@ -128,3 +134,204 @@ def lowess_fit_and_predict(x, y, frac=0.4, reg_anchors=None, num_fits=None, x_pr
     y_pred = np.multiply(pred_weights, point_evals.T).sum(axis=0)
 
     return y_pred
+
+# Cell
+def calc_robust_weights(y, y_pred, max_std_dev=6):
+    residuals = y - y_pred
+    std_dev = np.quantile(np.abs(residuals), 0.682)
+
+    cleaned_residuals = np.clip(residuals / (max_std_dev * std_dev), -1, 1)
+    robust_weights = (1 - cleaned_residuals ** 2) ** 2
+
+    return robust_weights
+
+# Cell
+def robust_lowess_fit_and_predict(x, y, frac=0.4, reg_anchors=None, num_fits=None, x_pred=None, robust_weights=None, robust_iters=3):
+    # Identifying the initial loading weights
+    weighting_locs = get_weighting_locs(x, reg_anchors=reg_anchors, num_fits=num_fits)
+    loading_weights = get_weights_matrix(x, frac=frac, weighting_locs=weighting_locs)
+
+    # Robustifying the weights (to reduce outlier influence)
+    if robust_weights is None:
+        robust_loading_weights = loading_weights
+    else:
+        robust_loading_weights = np.multiply(robust_weights, loading_weights)
+        robust_loading_weights = robust_loading_weights/robust_loading_weights.sum(axis=0)
+        robust_loading_weights = np.where(~np.isfinite(robust_loading_weights), 0, robust_loading_weights)
+
+    # Fitting the model and making predictions
+    design_matrix = fit_regressions(x, y, robust_loading_weights)
+
+    if x_pred is None:
+        x_pred = x
+
+    point_evals = design_matrix[:, 0] + np.dot(x_pred.reshape(-1, 1), design_matrix[:, 1].reshape(1, -1))
+    pred_weights = get_weights_matrix(x_pred, frac=frac, reg_anchors=weighting_locs)
+
+    y_pred = np.multiply(pred_weights, point_evals.T).sum(axis=0)
+
+    # Recursive robust regression
+    robust_weights = calc_robust_weights(y, y_pred)
+
+    if robust_iters > 1:
+        robust_iters -= 1
+        y_pred = robust_lowess_fit_and_predict(x, y, frac=frac, reg_anchors=reg_anchors, num_fits=num_fits, x_pred=x_pred, robust_weights=robust_weights, robust_iters=robust_iters)
+
+    return y_pred
+
+# Cell
+class Lowess(BaseEstimator, RegressorMixin):
+    def __init__(self, reg_func=calc_lin_reg_betas):
+        self.reg_func = reg_func
+        return
+
+    def calculate_loading_weights(self, x, reg_anchors=None, num_fits=None, robust_weights=None):
+        # Calculating the initial loading weights
+        weighting_locs = get_weighting_locs(x, reg_anchors=reg_anchors, num_fits=num_fits)
+        loading_weights = get_weights_matrix(x, frac=self.frac, weighting_locs=weighting_locs)
+
+        # Robustifying the weights (to reduce outlier influence)
+        if robust_weights is None:
+            robust_loading_weights = loading_weights
+        else:
+            robust_loading_weights = np.multiply(robust_weights, loading_weights)
+            robust_loading_weights = robust_loading_weights/robust_loading_weights.sum(axis=0)
+            robust_loading_weights = np.where(~np.isfinite(robust_loading_weights), 0, robust_loading_weights)
+
+        self.weighting_locs = weighting_locs
+        self.loading_weights = robust_loading_weights
+
+        return
+
+    def fit(self, x, y, frac=0.4, reg_anchors=None, num_fits=None, robust_weights=None, robust_iters=3, **reg_params):
+        self.frac = frac
+
+        # Solving for the design matrix
+        self.calculate_loading_weights(x, reg_anchors=reg_anchors, num_fits=num_fits, robust_weights=robust_weights)
+        self.design_matrix = fit_regressions(x, y, weights=self.loading_weights, reg_func=self.reg_func, **reg_params)
+
+        # Recursive robust regression
+        if robust_iters > 1:
+            y_pred = self.predict(x)
+            robust_weights = calc_robust_weights(y, y_pred)
+
+            robust_iters -= 1
+            y_pred = self.fit(x, y, frac=self.frac, reg_anchors=reg_anchors, num_fits=num_fits, robust_weights=robust_weights, robust_iters=robust_iters, **reg_params)
+
+            return y_pred
+
+        return
+
+    def predict(self, x_pred):
+        point_evals = self.design_matrix[:, 0] + np.dot(x_pred.reshape(-1, 1), self.design_matrix[:, 1].reshape(1, -1))
+        pred_weights = get_weights_matrix(x_pred, frac=self.frac, reg_anchors=self.weighting_locs)
+
+        y_pred = np.multiply(pred_weights, point_evals.T).sum(axis=0)
+
+        return y_pred
+
+# Cell
+def get_bootstrap_idxs(x, bootstrap_bag_size=0.5):
+    ## Bag size handling
+    assert bootstrap_bag_size>0, 'Bootstrap bag size must be greater than 0'
+
+    if bootstrap_bag_size > 1:
+        assert int(bootstrap_bag_size) == bootstrap_bag_size, 'If the bootstrab bag size is not provided as a fraction then it must be an integer'
+
+    else:
+        bootstrap_bag_size = int(np.ceil(bootstrap_bag_size*len(x)))
+
+    ## Splitting in-bag and out-of-bag samlpes
+    idxs = np.array(range(len(x)))
+
+    ib_idxs = np.sort(np.random.choice(idxs, bootstrap_bag_size, replace=True))
+    oob_idxs = np.setdiff1d(idxs, ib_idxs)
+
+    return ib_idxs, oob_idxs
+
+# Cell
+def get_bootstrap_resid_std_devs(x, y, bag_size, model=Lowess(), **model_kwargs):
+    # Splitting the in- and out-of-bag samples
+    ib_idxs, oob_idxs = get_bootstrap_idxs(x, bag_size)
+
+    x_ib, x_oob = x[ib_idxs], x[oob_idxs]
+    y_ib, y_oob = y[ib_idxs], y[oob_idxs]
+
+    # Fitting and predicting with the model
+    model.fit(x_ib, y_ib, **model_kwargs)
+
+    y_pred = model.predict(x)
+    y_ib_pred = model.predict(x_ib)
+    y_oob_pred = model.predict(x_oob)
+
+    # Calculating the error
+    y_ib_resids = y_ib - y_ib_pred
+    ib_resid_std_dev = np.std(np.abs(y_ib_resids))
+
+    y_oob_resids = y_oob - y_oob_pred
+    oob_resid_std_dev = np.std(np.abs(y_oob_resids))
+
+    return ib_resid_std_dev, oob_resid_std_dev
+
+# Cell
+def run_model(x, y, bag_size, model=Lowess(), x_pred=None, **model_kwargs):
+    if x_pred is None:
+        x_pred = x
+
+    # Splitting the in- and out-of-bag samples
+    ib_idxs, oob_idxs = get_bootstrap_idxs(x, bag_size)
+    x_ib, y_ib = x[ib_idxs], y[ib_idxs]
+
+    # Fitting and predicting the model
+    model.fit(x_ib, y_ib, **model_kwargs)
+    y_pred = model.predict(x_pred)
+
+    return y_pred
+
+def bootstrap_model(x, y, bag_size=0.5, model=Lowess(), x_pred=None, num_runs=1000, **model_kwargs):
+    # Creating the ensemble predictions
+    preds = []
+
+    for bootstrap_run in track(range(num_runs)):
+        y_pred = run_model(x, y, bag_size, model=model, x_pred=x_pred, **model_kwargs)
+        preds += [y_pred]
+
+    # Wrangling into a dataframe
+    df_bootstrap = pd.DataFrame(preds, columns=x).T
+
+    df_bootstrap.index.name = 'x'
+    df_bootstrap.columns.name = 'bootstrap_run'
+
+    return df_bootstrap
+
+# Cell
+def get_confidence_interval(df_bootstrap, conf_pct=0.95):
+    conf_margin = (1 - conf_pct)/2
+    df_conf_intvl = pd.DataFrame(columns=['min', 'max'], index=df_bootstrap.index)
+
+    df_conf_intvl['min'] = df_bootstrap.quantile(conf_margin, axis=1)
+    df_conf_intvl['max'] = df_bootstrap.quantile(1-conf_margin, axis=1)
+
+    return df_conf_intvl
+
+# Cell
+def pred_to_quantile_loss(y, y_pred, q=0.5, weights=None):
+    residuals = y - y_pred
+
+    if weights is not None:
+        residuals = weights*residuals
+
+    loss = np.array([q*residuals, (q-1)*residuals]).max(axis=0).mean()
+
+    return loss
+
+def calc_quant_reg_loss(x0, x, y, q, weights=None):
+    if weights is None:
+        weights = np.ones(len(x))
+
+    quantile_pred = x0[0] + x0[1]*x
+    loss = pred_to_quantile_loss(y, quantile_pred, q, weights)
+
+    return loss
+
+calc_quant_reg_betas = lambda x, y, q=0.5, x0=np.zeros(2), weights=None, method='nelder-mead': minimize(calc_quant_reg_loss, x0, method=method, args=(x, y, q, weights)).x
