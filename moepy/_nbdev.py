@@ -46,11 +46,16 @@ index = {"query_API": "01-retrieval.ipynb",
          "calc_quant_reg_loss": "03-lowess.ipynb",
          "calc_quant_reg_betas": "03-lowess.ipynb",
          "quantile_model": "03-lowess.ipynb",
-         "calc_timedelta_dists": "03-lowess.ipynb"}
+         "calc_timedelta_dists": "03-lowess.ipynb",
+         "construct_dt_weights": "03-lowess.ipynb",
+         "fit_external_weighted_ensemble": "03-lowess.ipynb",
+         "get_ensemble_preds": "03-lowess.ipynb",
+         "SmoothDates": "03-lowess.ipynb"}
 
 modules = ["retrieval.py",
            "eda.py",
-           "lowess.py"]
+           "lowess.py",
+           "moe.py"]
 
 doc_url = "https://AyrtonB.github.io/Merit-Order-Effect/"
 

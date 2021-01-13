@@ -7,7 +7,8 @@ __all__ = ['get_dist', 'get_dist_threshold', 'dist_to_weights', 'get_all_weights
            'calc_robust_weights', 'robust_lowess_fit_and_predict', 'Lowess', 'get_bootstrap_idxs',
            'get_bootstrap_resid_std_devs', 'run_model', 'bootstrap_model', 'get_confidence_interval',
            'pred_to_quantile_loss', 'calc_quant_reg_loss', 'calc_quant_reg_betas', 'quantile_model',
-           'calc_timedelta_dists']
+           'calc_timedelta_dists', 'construct_dt_weights', 'fit_external_weighted_ensemble', 'get_ensemble_preds',
+           'SmoothDates']
 
 # Cell
 import pandas as pd
@@ -15,6 +16,8 @@ import numpy as np
 
 import seaborn as sns
 import matplotlib.pyplot as plt
+from collections.abc import Iterable
+from sklearn import linear_model
 
 from sklearn.base import BaseEstimator, RegressorMixin
 from scipy.optimize import minimize
@@ -22,6 +25,7 @@ from scipy import linalg
 
 from timeit import timeit
 import FEAutils as hlp
+from ipypb import track
 
 from moepy import eda
 
@@ -213,6 +217,7 @@ def robust_lowess_fit_and_predict(x, y, frac=0.4, reg_anchors=None, num_fits=Non
 class Lowess(BaseEstimator, RegressorMixin):
     def __init__(self, reg_func=calc_lin_reg_betas):
         self.reg_func = reg_func
+        self.fitted = False
         return
 
     def calculate_loading_weights(self, x, reg_anchors=None, num_fits=None, external_weights=None, robust_weights=None):
@@ -255,6 +260,8 @@ class Lowess(BaseEstimator, RegressorMixin):
             y_pred = self.fit(x, y, frac=self.frac, reg_anchors=reg_anchors, num_fits=num_fits, external_weights=external_weights, robust_weights=robust_weights, robust_iters=robust_iters, **reg_params)
 
             return y_pred
+
+        self.fitted = True
 
         return
 
@@ -393,8 +400,70 @@ def quantile_model(x, y, model=Lowess(calc_quant_reg_betas),
     return df_quantiles
 
 # Cell
-def calc_timedelta_dists(dates, central_date, threshold_value=12, threshold_units='W'):
+def calc_timedelta_dists(dates, central_date, threshold_value=24, threshold_units='W'):
     timedeltas = pd.to_datetime(dates, utc=True) - pd.to_datetime(central_date, utc=True)
     timedelta_dists = timedeltas/pd.Timedelta(value=threshold_value, unit=threshold_units)
 
     return timedelta_dists
+
+# Cell
+def construct_dt_weights(dt_idx, reg_dates, threshold_value=52, threshold_units='W'):
+    dt_to_weights = dict()
+
+    for reg_date in reg_dates:
+        dt_to_weights[reg_date] = pd.Series(calc_timedelta_dists(dt_idx, reg_date, threshold_value=threshold_value, threshold_units=threshold_units)).pipe(dist_to_weights).values
+
+    return dt_to_weights
+
+# Cell
+def fit_external_weighted_ensemble(x, y, ensemble_member_to_weights, **fit_kwargs):
+    ensemble_member_to_models = dict()
+
+    for ensemble_member, ensemble_weights in track(ensemble_member_to_weights.items()):
+        ensemble_member_to_models[ensemble_member] = Lowess()
+        ensemble_member_to_models[ensemble_member].fit(x, y, external_weights=ensemble_weights, **fit_kwargs)
+
+    return ensemble_member_to_models
+
+def get_ensemble_preds(ensemble_member_to_model, x_pred=np.linspace(8, 60, 53)):
+    ensemble_member_to_preds = dict()
+
+    for ensemble_member in ensemble_member_to_model.keys():
+        ensemble_member_to_preds[ensemble_member] = ensemble_member_to_model[ensemble_member].predict(x_pred)
+
+    return ensemble_member_to_preds
+
+# Cell
+class SmoothDates(BaseEstimator, RegressorMixin):
+    def __init__(self):
+        self.fitted = False
+        pass
+
+    def fit(self, x, y, dt_idx, reg_dates, threshold_value=52, threshold_units='W', **fit_kwargs):
+        self.ensemble_member_to_weights = construct_dt_weights(dt_idx, reg_dates,
+                                                               threshold_value=threshold_value,
+                                                               threshold_units=threshold_units)
+
+        self.ensemble_member_to_models = fit_external_weighted_ensemble(x, y, self.ensemble_member_to_weights, **fit_kwargs)
+
+        self.reg_dates = reg_dates
+        self.fitted = True
+
+        return
+
+    def predict(self, x_pred=np.linspace(8, 60, 53), dt_pred=None, return_df=True):
+        if dt_pred is None:
+            dt_pred = self.reg_dates
+
+        self.ensemble_member_to_preds = get_ensemble_preds(self.ensemble_member_to_models, x_pred=x_pred)
+
+        self.pred_weights = np.array(list(construct_dt_weights(dt_pred, self.reg_dates).values()))
+        self.pred_values = np.array(list(self.ensemble_member_to_preds.values()))
+
+        y_pred = np.dot(self.pred_weights.T, self.pred_values)
+
+        if return_df == True:
+            df_pred = pd.DataFrame(y_pred, index=dt_pred, columns=x_pred)
+            return df_pred
+        else:
+            return y_pred
