@@ -458,6 +458,7 @@ class SmoothDates(BaseEstimator, RegressorMixin):
         self.ensemble_member_to_preds = get_ensemble_preds(self.ensemble_member_to_models, x_pred=x_pred)
 
         self.pred_weights = np.array(list(construct_dt_weights(dt_pred, self.reg_dates).values()))
+        self.pred_weights = self.pred_weights/self.pred_weights.sum(axis=0)
         self.pred_values = np.array(list(self.ensemble_member_to_preds.values()))
 
         y_pred = np.dot(self.pred_weights.T, self.pred_values)
