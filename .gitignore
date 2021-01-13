@@ -1,3 +1,6 @@
+# Project specific
+data/models/**
+
 *.bak
 .gitattributes
 .last_checked

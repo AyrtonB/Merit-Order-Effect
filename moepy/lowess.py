@@ -463,7 +463,7 @@ class SmoothDates(BaseEstimator, RegressorMixin):
         y_pred = np.dot(self.pred_weights.T, self.pred_values)
 
         if return_df == True:
-            df_pred = pd.DataFrame(y_pred, index=dt_pred, columns=x_pred)
+            df_pred = pd.DataFrame(y_pred, index=dt_pred, columns=x_pred).T
             return df_pred
         else:
             return y_pred
