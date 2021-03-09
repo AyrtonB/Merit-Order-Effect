@@ -50,11 +50,19 @@ index = {"query_API": "01-retrieval.ipynb",
          "construct_dt_weights": "03-lowess.ipynb",
          "fit_external_weighted_ensemble": "03-lowess.ipynb",
          "get_ensemble_preds": "03-lowess.ipynb",
-         "SmoothDates": "03-lowess.ipynb"}
+         "SmoothDates": "03-lowess.ipynb",
+         "PicklableFunction": "04-surface-estimation.ipynb",
+         "get_fit_kwarg_sets": "04-surface-estimation.ipynb",
+         "fit_models": "04-surface-estimation.ipynb",
+         "construct_df_pred": "05-merit-order-effect.ipynb",
+         "construct_pred_ts": "05-merit-order-effect.ipynb",
+         "calc_error_metrics": "05-merit-order-effect.ipynb",
+         "get_model_pred_ts": "05-merit-order-effect.ipynb"}
 
 modules = ["retrieval.py",
            "eda.py",
            "lowess.py",
+           "surface.py",
            "moe.py"]
 
 doc_url = "https://AyrtonB.github.io/Merit-Order-Effect/"

@@ -416,11 +416,11 @@ def construct_dt_weights(dt_idx, reg_dates, threshold_value=52, threshold_units=
     return dt_to_weights
 
 # Cell
-def fit_external_weighted_ensemble(x, y, ensemble_member_to_weights, **fit_kwargs):
+def fit_external_weighted_ensemble(x, y, ensemble_member_to_weights, lowess_kwargs={}, **fit_kwargs):
     ensemble_member_to_models = dict()
 
     for ensemble_member, ensemble_weights in track(ensemble_member_to_weights.items()):
-        ensemble_member_to_models[ensemble_member] = Lowess()
+        ensemble_member_to_models[ensemble_member] = Lowess(**lowess_kwargs)
         ensemble_member_to_models[ensemble_member].fit(x, y, external_weights=ensemble_weights, **fit_kwargs)
 
     return ensemble_member_to_models
@@ -439,12 +439,12 @@ class SmoothDates(BaseEstimator, RegressorMixin):
         self.fitted = False
         pass
 
-    def fit(self, x, y, dt_idx, reg_dates, threshold_value=52, threshold_units='W', **fit_kwargs):
+    def fit(self, x, y, dt_idx, reg_dates, threshold_value=52, threshold_units='W', lowess_kwargs={}, **fit_kwargs):
         self.ensemble_member_to_weights = construct_dt_weights(dt_idx, reg_dates,
                                                                threshold_value=threshold_value,
                                                                threshold_units=threshold_units)
 
-        self.ensemble_member_to_models = fit_external_weighted_ensemble(x, y, self.ensemble_member_to_weights, **fit_kwargs)
+        self.ensemble_member_to_models = fit_external_weighted_ensemble(x, y, self.ensemble_member_to_weights, lowess_kwargs=lowess_kwargs, **fit_kwargs)
 
         self.reg_dates = reg_dates
         self.fitted = True
