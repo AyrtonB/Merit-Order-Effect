@@ -21,23 +21,6 @@
 
 <br>
 
-### Proposed paragraph breakdown
-
-* Outline how the idealised way to calculate MOE precisely, then explain why this can't be done. (could put this at the end of the intro to introduce the literature review?)
-* Introduce the three main modelling approaches: simulation, reduced-form, structural
-* Table showing collated results with information on the modelling approach and market
-* Discussion around what simulation models have been used and their advantages/drawbacks. Emphasise that these are mainly used for more qualitative studies.
-* Discussion around what reduced-form models have been used and their advantages/drawbacks. Emphasise that this is the most popular approach, in part due to its simplicity.
-* Discuss variants to the standard reduced-form appproach: marginal MOE calculation, regressing against % RES penetration instead of power output, etc.
-* Discussion around what structural models have been used and their advantages/drawbacks. Emphasise that this forms a sort of best-of-both worlds between the simulation and reduced-form models. Should include mention to the Blundell paper here around how structural models enable counterfactuals to be quantified.
-* Focus in on the issues around the constantly evolving market and the need to retrain models/update their coefficients over time. This paragraph should be a primer for the more general idea of splitting up the state-space and fitting local models.
-* Highlight that there's a need to train more localised models not just for different time-ranges but also different load-ranges. Discuss the regime-switching models that have been used in this area, should also emphasise the importance of calculating the MOE at the top and bottom of the supply curve.
-* Introduce LOWESS, explain the benefits and provides specific examples of scenarios where it would lead to improved modelling of the MOE.
-* Summarise the limitations to existing approaches, could use a bullet point list again.
-* Clarify the high-level modelling approach that has been identified as optimal based on the literature, then introduce the methodology section.
-
-<br>
-
 ### General Comments
 
 * Currently I don't provide any £/MWh or EUR/MWh values from the literature
@@ -50,6 +33,9 @@
 * Should highlight the non-linear nature of the price/load curve as found by Karakstani and Bunn (2008).
 * Whilst the MOE manifests itself as a form of price cannibilisation for the RES generators, to the other generators it creates a 'missing-money problem'. In the long-term the saving should be equal to the displaced OPEX (from fuel), in the short-term it should be the displaced OPEX & CAPEX.
 * Behind-the-meter generation, which makes up a large share of the solar generation considered in this research, should ideally be considered as a left-ward shift of the demand curve. However, under the standard assumption of demand being perfectly inelastic !!!REF!!! it is equivalent to account for all generation as a right-ward shift of the supply curve.
+* In the discussion need to talk about the short term MOE likely being an over-estimate
+* Can view the temporal smoothing as a variant of Conditional expectation sampling
+* Why doesn't anyone using tne RPR approach use load-RES as a regressor instead of just load
 
 <br>
 
@@ -64,6 +50,7 @@
 <b>Literature reviews that have been used to seed this:</b>
 * 10.1016/j.eneco.2017.08.003
 * !!!Should use!!! 10.1016/j.enpol.2017.04.034
+* !!!Should use!!! table 1 - https://www.sciencedirect.com/science/article/pii/S1364032115013866
 
 ##### Sensfuss et al. (2008)
 - MOE: 7.83 €/MWh
@@ -147,8 +134,6 @@
 - DOI: 10.1016/j.enpol.2016.11.014
 - Journal: Energy Policy
 
-* Above this line there are 10 paper entries
-
 ##### Bublitz et al. (2017)
 - MOE: 1.00 €/MWh in 2014 to 3.30 €/MWh in 2015 (wind ABM), 4.40 €/MWh (wind regression), 2.10 €/MWh (solar ABM), 2.40 €/MWh (solar regression)
 - Year(s): 2011-2015
@@ -229,10 +214,10 @@
 - MOE: 5.29 ct/kWh
 - Year(s): 2011-2013
 - Location: Germany
-- Method: They fit a non-linear (dual-exponential) marginal cost curve for dispatchable generation (gradient of my curve) 
+- Method: They fit a non-linear (dual-exponential) marginal cost curve for dispatchable generation, essentially a parametric version of my approach. They fit a different curve for each year.
 - DOI: 10.1016/j.rser.2015.12.003
 - Journal: Renewable and Sustainable Energy Reviews
-- Notes: States that without RES Germany would have had power shortages
+- Notes: States that without RES Germany would have had power shortages. "linear regression models ... do not account for scarcity effects", "prices rise exponentially and linear approximation is responsible for a strong under-estimation of price increases.".
 
 ##### McConnell et al. (2013) 
 - MOE: 8.6% price reduction, savings of A$1.8 billion (for 5 GW solar)
@@ -300,23 +285,24 @@
 - Method: Perfect Model! They have access to the underlying bids and offers so they recreate the exact curves for EPEX and simulate wind and solar with MC=0
 - DOI: 10.1109/TPWRS.2015.2412376
 - Journal: IEEE Transactions on Power Systems
-- Notes: They do a sensitivity analysis for different MC costs
+- Notes: They do a sensitivity analysis for different MC costs. "15-min resolution data is averaged to hourly granularity. The loss of the additional information of 15-min data does not affect the quality of the analysis. "
 
-##### 
-- MOE: 
-- Year(s): 
-- Location: 
-- Method: 
-- DOI: 
-- Journal: 
+##### Gil et al. (2012)
+- MOE: 9.72 EUR/MWh
+- Year(s): 2007-2010
+- Location: Spain
+- Method: LOWESS fit between wind output and price
+- DOI: 10.1016/j.enpol.2011.11.067
+- Journal: Energy Policy
 
-##### 
-- MOE: 
-- Year(s): 
-- Location: 
-- Method: 
-- DOI: 
-- Journal: 
+##### Weber and Woll (2007)
+- MOE: 4 EUR/MWh
+- Year(s): 2006
+- Location: Germany
+- Method: ***Need to translate***
+- DOI: NA
+- URL: https://econpapers.repec.org/paper/duiwpaper/0701.htm
+- Journal: NA
 
 ##### 
 - MOE: 
@@ -344,12 +330,118 @@ Papers that use the same Simulation and Econometric model groupings:
 
 Two main families of model, simulation and econometric, are used in the quantification of MOE. Of these the econometric models are used most frequently and can be broken down further into two main types: reduced form regression with RES as an exogenous variable, reduced form regression of dispatchable load with a structural model to incorporate the influence of RES 
 
-* Maybe have three types: simulation, reduced-form econometric, and structural econometric
+PERFECT
+* McConnell et al. (2013) 
+* Hildmann et al. (2015)
+* Ederer (2015)
 
-<b>Simulation</b>
+ESS
+* Sensfuss et al. (2008)
+* Weigt (2009)
+* Bublitz et al. (2017)
+* de Miera et al. (2008) 
+* Ciarreta et al. (2014)
+* Bode and Groscurth (2006) !!! NEED TO ADD IN !!!
+
+RPR
+* Keles et al. (2013)
+* Mulder and Scholtens (2013)
+* Tveten et al. (2013)
+* Wurzburg et al. (2013)
+* Cludius et al. (2014)
+* Ketterer (2014)
+* Kyritsis et al. (2017)
+* Bublitz et al. (2017)
+* Gelabert et al. (2011) 
+* Clo et al. (2015)
+* Munksgaard and Morthorst (2008)
+* Denny et al. (2017) 
+* Lunackova et al. (2017)
+* Moreno et al. (2012)
+* Woo et al. (2011)
+* Kaufmann and Vaid (2016)
+* Woo et al. (2016)
+* Paraschiv et al. (2014)
+* O'Mahoney and Denny (2011)
+* Jonsson et al. (2010) - 3D LOWESS fit including price and RES %
+* Halttunen et al. (2021) !!! NEED TO ADD IN !!!
+
+MSS
+* Dillig et al. (2016) - estimates the marginal supply cost curve (same curve as me under our assumptions)
+* Weber and Woll (2007) !!! NEED TO ADD IN !!!
+
+!!! Need to specifically address the Staffell paper !!!
+
+<br>
+
+### Proposed paragraph breakdown
+
+* Outline how the idealised way to calculate MOE precisely, then explain why this can't be done. (could put this at the end of the intro to introduce the literature review?)
+* Introduce the three main modelling approaches: simulation, reduced-form, structural
+* Table showing collated results with information on the modelling approach and market
+* Discussion around what simulation models have been used and their advantages/drawbacks. Emphasise that these are mainly used for more qualitative studies.
+* Discussion around what reduced-form models have been used and their advantages/drawbacks. Emphasise that this is the most popular approach, in part due to its simplicity.
+* Discuss variants to the standard reduced-form appproach: marginal MOE calculation, regressing against % RES penetration instead of power output, etc.
+* Discussion around what structural models have been used and their advantages/drawbacks. Emphasise that this forms a sort of best-of-both worlds between the simulation and reduced-form models. Should include mention to the Blundell paper here around how structural models enable counterfactuals to be quantified.
+* Focus in on the issues around the constantly evolving market and the need to retrain models/update their coefficients over time. This paragraph should be a primer for the more general idea of splitting up the state-space and fitting local models.
+* Highlight that there's a need to train more localised models not just for different time-ranges but also different load-ranges. Discuss the regime-switching models that have been used in this area, should also emphasise the importance of calculating the MOE at the top and bottom of the supply curve.
+* Introduce LOWESS, explain the benefits and provides specific examples of scenarios where it would lead to improved modelling of the MOE.
+* Summarise the limitations to existing approaches, could use a bullet point list again.
+* Clarify the high-level modelling approach that has been identified as optimal based on the literature, then introduce the methodology section.
 
 
-<b>Reduced Form Regression with RES</b>
-* Can also be used for calculating the marginal MOE (based on the SP-SP delta)
+> Furthermore, as Würzburg et al. (2013) point out, it must be kept in mind that the comparability of studies regarding the merit-order effect is limited due to the heterogeneous approaches, e.g. different sets of included fundamental variables (e.g. fuel prices, market scarcity), alternate scope (inclusion of neighboring countries or emission trading systems) and varying scenarios (no changes or alternative capacity expansion paths).
 
-<b>Structural Model with RES that uses a Reduced Form Regression without RES</b>
+* ^ Might be worth trying to get some of this in, perhaps before the table of MOE results
+
+Traber et al 2011 -> "In the absence of expanded deployment of renewable energy, a higher price increase of 20% can be expected" this is for 2020 Germany
+
+<br>
+
+### Methodology Outline
+
+##### Current Para Structure
+
+4.1. Data Selection & Processing (Should be quick things to change)
+* Where each time-series is sourced from
+* Where carbon intensity is sourced from
+
+4.2. LOWESS Model Formulation, Optimisation & Evaluation
+* 
+* 
+
+4.3. Assumptions & Limitations
+* 
+* 
+
+##### Bits I want to Change
+
+* Should specifically address the time-of-day aspect
+* `Clearly` the next step is to create a multi-variate regression model that includes the traditional variables used in RPR models
+
+
+* Need to calc the 95% conf and 68% pred intvls
+
+To Do 
+- [ ] Add the big literature review table
+- [ ] Go over the intro and abstract comments from Paolo
+- [ ] Final run over Aidans comments
+- [ ] Finish discussion around the MOE estimate (do the lit rev table first)
+- [ ] Run the skopt model using the 2 hyper-params
+- [ ] Re-run the pred and conf intvl models (!!!not a priority!!!)
+- [ ] Talk about how using RES % penetration exaggerates the MOE during periods of low demand
+- [ ] Add the simple results tables
+	- [ ] System overview
+	- [ ] Carbon intensity estimates
+	- [ ] EPF accuracy metrics
+	- [ ] MOE and CO2 results
+- [ ] Add the graphs
+	- [ ] heatmaps for price and carbon
+	- [ ] MOE time-series for price and carbon
+	- [ ] % MOE reduction v % RES
+	- [ ] Example day with counter-factual price
+- [ ] Add all of the citations into the bib
+- [ ] Check for all XXX, REF, \*\*\*, and !!!
+- [ ] Check numbering and capitalise tables and figures
+
+* Need to work out how to add in the time complexity element best

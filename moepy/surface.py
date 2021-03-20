@@ -43,7 +43,7 @@ class PicklableFunction:
 
         return
 
-def get_fit_kwarg_sets():
+def get_fit_kwarg_sets(qs=np.linspace(0.1, 0.9, 9)):
     fit_kwarg_sets = [
         # quantile lowess
         {
@@ -51,7 +51,7 @@ def get_fit_kwarg_sets():
             'lowess_kwargs': {'reg_func': PicklableFunction(lowess.calc_quant_reg_betas)},
             'q': q,
         }
-        for q in np.linspace(0.1, 0.9, 9)
+        for q in qs
 
         # standard lowess
     ] + [{'name': 'average'}]

@@ -30,3 +30,5 @@ dependencies:
       - mkdocstrings
       - configparser
       - junix
+      - entsoe-py
+      - xmltodict
