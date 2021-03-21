@@ -423,25 +423,27 @@ Traber et al 2011 -> "In the absence of expanded deployment of renewable energy,
 * Need to calc the 95% conf and 68% pred intvls
 
 To Do 
-- [ ] Add the big literature review table
-- [ ] Go over the intro and abstract comments from Paolo
-- [ ] Final run over Aidans comments
+- [ ] Add the big literature review table (at the same time check each one has been downloaded with the DOI as the filename)
+- [ ] Go over the intro and abstract comments from Paolo (monday morning)
+- [ ] Final run over Aidans comments (sunday night)
 - [ ] Finish discussion around the MOE estimate (do the lit rev table first)
-- [ ] Run the skopt model using the 2 hyper-params
-- [ ] Re-run the pred and conf intvl models (!!!not a priority!!!)
-- [ ] Talk about how using RES % penetration exaggerates the MOE during periods of low demand
+- [ ] Run the skopt model using the 2 hyper-params (saturday night/sunday morning)
+- [ ] Re-run the pred and conf intvl models (!!!not a priority - though pred is higher, could show one pred intvl as heatmap too!!!)
+- [ ] Talk about how using RES % penetration exaggerates the MOE during periods of low demand (sunday/monday)
 - [ ] Add the simple results tables
-	- [ ] System overview
-	- [ ] Carbon intensity estimates
-	- [ ] EPF accuracy metrics
+	- [x] System overview
+	- [x] Carbon intensity estimates
+	- [x] EPF accuracy metrics
 	- [ ] MOE and CO2 results
 - [ ] Add the graphs
 	- [ ] heatmaps for price and carbon
 	- [ ] MOE time-series for price and carbon
 	- [ ] % MOE reduction v % RES
 	- [ ] Example day with counter-factual price
-- [ ] Add all of the citations into the bib
-- [ ] Check for all XXX, REF, \*\*\*, and !!!
-- [ ] Check numbering and capitalise tables and figures
+- [ ] Add all of the citations into the bib (lit rev tables one then, other ones after monday call)
+- [ ] Check for all XXX, REF, \*\*\*, and !!! (before monday call)
+- [ ] Check numbering and capitalise tables and figures (before monday call)
 
 * Need to work out how to add in the time complexity element best
+
+Tonight: do the tables and add the graphs, then get skopt running
