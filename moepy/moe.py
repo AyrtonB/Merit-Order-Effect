@@ -9,6 +9,7 @@ import pandas as pd
 import numpy as np
 
 import pickle
+import scipy
 from sklearn import linear_model
 from sklearn.metrics import r2_score
 from collections.abc import Iterable

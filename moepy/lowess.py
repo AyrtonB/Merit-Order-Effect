@@ -8,7 +8,7 @@ __all__ = ['get_dist', 'get_dist_threshold', 'dist_to_weights', 'get_all_weights
            'get_bootstrap_resid_std_devs', 'run_model', 'bootstrap_model', 'get_confidence_interval',
            'pred_to_quantile_loss', 'calc_quant_reg_loss', 'calc_quant_reg_betas', 'quantile_model',
            'calc_timedelta_dists', 'construct_dt_weights', 'fit_external_weighted_ensemble', 'get_ensemble_preds',
-           'SmoothDates']
+           'process_smooth_dates_fit_inputs', 'SmoothDates']
 
 # Cell
 import pandas as pd
@@ -434,17 +434,36 @@ def get_ensemble_preds(ensemble_member_to_model, x_pred=np.linspace(8, 60, 53)):
     return ensemble_member_to_preds
 
 # Cell
+def process_smooth_dates_fit_inputs(x, y, dt_idx, reg_dates):
+    if hasattr(x, 'index') and hasattr(y, 'index'):
+        assert x.index.equals(y.index), 'If `x` and `y` have indexes then they must be the same'
+        if dt_idx is None:
+            dt_idx = x.index
+
+        x = x.values
+        y = y.values
+
+    assert dt_idx is not None, '`dt_idx` must either be passed directly or `x` and `y` must include indexes'
+
+    if reg_dates is None:
+        reg_dates = dt_idx
+
+    return x, y, dt_idx, reg_dates
+
 class SmoothDates(BaseEstimator, RegressorMixin):
-    def __init__(self):
+    def __init__(self, frac=0.3, threshold_value=52, threshold_units='W'):
         self.fitted = False
-        pass
+        self.frac = frac
+        self.threshold_value = threshold_value
+        self.threshold_units = threshold_units
 
-    def fit(self, x, y, dt_idx, reg_dates, threshold_value=52, threshold_units='W', lowess_kwargs={}, **fit_kwargs):
+    def fit(self, x, y, dt_idx=None, reg_dates=None, lowess_kwargs={}, **fit_kwargs):
+        x, y, dt_idx, reg_dates = process_smooth_dates_fit_inputs(x, y, dt_idx, reg_dates)
         self.ensemble_member_to_weights = construct_dt_weights(dt_idx, reg_dates,
-                                                               threshold_value=threshold_value,
-                                                               threshold_units=threshold_units)
+                                                               threshold_value=self.threshold_value,
+                                                               threshold_units=self.threshold_units)
 
-        self.ensemble_member_to_models = fit_external_weighted_ensemble(x, y, self.ensemble_member_to_weights, lowess_kwargs=lowess_kwargs, **fit_kwargs)
+        self.ensemble_member_to_models = fit_external_weighted_ensemble(x, y, self.ensemble_member_to_weights, lowess_kwargs=lowess_kwargs, frac=self.frac, **fit_kwargs)
 
         self.reg_dates = reg_dates
         self.fitted = True
@@ -454,6 +473,9 @@ class SmoothDates(BaseEstimator, RegressorMixin):
     def predict(self, x_pred=np.linspace(8, 60, 53), dt_pred=None, return_df=True):
         if dt_pred is None:
             dt_pred = self.reg_dates
+
+        if isinstance(x_pred, pd.Series):
+            x_pred = x_pred.values
 
         self.ensemble_member_to_preds = get_ensemble_preds(self.ensemble_member_to_models, x_pred=x_pred)
 

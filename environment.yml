@@ -20,6 +20,7 @@ dependencies:
   - dagit
   - statsmodels
   - scikit-learn
+  - scikit-optimize
   - pip
   
   - pip:

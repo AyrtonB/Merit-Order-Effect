@@ -430,16 +430,16 @@ To Do
 - [ ] Run the skopt model using the 2 hyper-params (saturday night/sunday morning)
 - [ ] Re-run the pred and conf intvl models (!!!not a priority - though pred is higher, could show one pred intvl as heatmap too!!!)
 - [ ] Talk about how using RES % penetration exaggerates the MOE during periods of low demand (sunday/monday)
-- [ ] Add the simple results tables
+- [x] Add the simple results tables
 	- [x] System overview
 	- [x] Carbon intensity estimates
 	- [x] EPF accuracy metrics
-	- [ ] MOE and CO2 results
-- [ ] Add the graphs
-	- [ ] heatmaps for price and carbon
-	- [ ] MOE time-series for price and carbon
-	- [ ] % MOE reduction v % RES
-	- [ ] Example day with counter-factual price
+	- [x] MOE and CO2 results
+- [x] Add the graphs
+	- [x] heatmaps for price and carbon
+	- [x] MOE time-series for price and carbon
+	- [x] % MOE reduction v % RES
+	- [x] Example day with counter-factual price (no longer going to add - could have in the discussion)
 - [ ] Add all of the citations into the bib (lit rev tables one then, other ones after monday call)
 - [ ] Check for all XXX, REF, \*\*\*, and !!! (before monday call)
 - [ ] Check numbering and capitalise tables and figures (before monday call)
