@@ -1,3 +1,5 @@
+[![DOI](https://zenodo.org/badge/326810654.svg)](https://zenodo.org/badge/latestdoi/326810654) [![PyPI version](https://badge.fury.io/py/moepy.svg)](https://badge.fury.io/py/moepy)
+
 # Merit-Order-Effect
 
 Code and analysis used for calculating the merit order effect of renewables on price and carbon intensity of electricity markets
@@ -35,7 +37,7 @@ New Code:
 - [ ] Get the models saved on S3 or figshare and pulled into binder via a postBuild script
 
 External/ReadMe
-- [ ] Add the GH action for version assignment triggering pypi push and zenodo update
+- [x] Add the GH action for version assignment triggering pypi push and zenodo update
 - [ ] Just before the paper is published set the version to 1.0.0 and have a specific Binder link that builds from that version as stored in the Zenodo archive
 - [ ] Could link the zotero collection
 - [ ] Add citations for both the external data I use and the resulting time-series I generate
