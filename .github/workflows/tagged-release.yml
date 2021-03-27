@@ -30,7 +30,7 @@ jobs:
         run: echo ::set-output name=VERSION::${GITHUB_REF/refs\/tags\//} 
         
       - name: Set PyPi version as tag
-        run: python -m moepy.utils set-current-package-version ${{ steps.get_version.outputs.VERSION }}
+        run: python -m moepy.cicd set-current-package-version ${{ steps.get_version.outputs.VERSION }}
 
       - name: Create latest distribution
         run: |
