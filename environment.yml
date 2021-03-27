@@ -26,7 +26,6 @@ dependencies:
   - pip:
       - -e .
       - ipypb
-      - feautils
       - mkdocs-material-extensions
       - mkdocstrings
       - configparser

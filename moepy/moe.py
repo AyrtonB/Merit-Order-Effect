@@ -19,7 +19,6 @@ import matplotlib as mpl
 import matplotlib.pyplot as plt
 import matplotlib.dates as mdates
 
-import FEAutils as hlp
 from ipypb import track
 from IPython.display import JSON
 
@@ -28,6 +27,7 @@ from .surface import PicklableFunction
 
 # Cell
 def construct_dispatchable_lims_df(s_dispatchable, rolling_w=3, daily_quantiles=[0.001, 0.999]):
+    """Identifies the rolling limits to be used in masking"""
     df_dispatchable_lims = (s_dispatchable
                             .resample('1d')
                             .quantile(daily_quantiles)
@@ -44,6 +44,7 @@ def construct_dispatchable_lims_df(s_dispatchable, rolling_w=3, daily_quantiles=
     return df_dispatchable_lims
 
 def construct_pred_mask_df(df_pred, df_dispatchable_lims):
+    """Constructs a DataFrame mask for the prediction"""
     df_pred = df_pred[df_dispatchable_lims.index]
     df_pred_mask = pd.DataFrame(dict(zip(df_pred.columns, [df_pred.index]*df_pred.shape[1])), index=df_pred.index)
     df_pred_mask = (df_pred_mask > df_dispatchable_lims.iloc[:, 0].values) & (df_pred_mask < df_dispatchable_lims.iloc[:, 1].values)
@@ -55,6 +56,7 @@ def construct_pred_mask_df(df_pred, df_dispatchable_lims):
 
 # Cell
 class AxTransformer:
+    """Helper class for cleaning axis tick locations and labels"""
     def __init__(self, datetime_vals=False):
         self.datetime_vals = datetime_vals
         self.lr = linear_model.LinearRegression()
@@ -89,6 +91,7 @@ class AxTransformer:
         return tick_locs
 
 def set_ticks(ax, tick_locs, tick_labels=None, axis='y'):
+    """Sets ticks at standard numerical locations"""
     if tick_labels is None:
         tick_labels = tick_locs
     ax_transformer = AxTransformer()
@@ -102,6 +105,7 @@ def set_ticks(ax, tick_locs, tick_labels=None, axis='y'):
     return ax
 
 def set_date_ticks(ax, start_date, end_date, axis='y', date_format='%Y-%m-%d', **date_range_kwargs):
+    """Sets ticks at datetime locations"""
     dt_rng = pd.date_range(start_date, end_date, **date_range_kwargs)
 
     ax_transformer = AxTransformer(datetime_vals=True)
@@ -116,6 +120,7 @@ def set_date_ticks(ax, start_date, end_date, axis='y', date_format='%Y-%m-%d', *
 
 # Cell
 def construct_df_pred(model_fp, x_pred=np.linspace(-2, 61, 631), dt_pred=pd.date_range('2009-01-01', '2020-12-31', freq='1D')):
+    """Constructs the prediction surface for the specified pre-fitted model"""
     smooth_dates = pickle.load(open(model_fp, 'rb'))
     df_pred = smooth_dates.predict(x_pred=x_pred, dt_pred=dt_pred)
     df_pred.index = np.round(df_pred.index, 1)
@@ -124,6 +129,7 @@ def construct_df_pred(model_fp, x_pred=np.linspace(-2, 61, 631), dt_pred=pd.date
 
 # Cell
 def construct_pred_ts(s, df_pred):
+    """Uses the time-adaptive LOWESS surface to generate time-series prediction"""
     s_pred_ts = pd.Series(index=s.index, dtype='float64')
 
     for dt_idx, val in track(s.iteritems(), total=s.size):
@@ -133,6 +139,7 @@ def construct_pred_ts(s, df_pred):
 
 # Cell
 def calc_error_metrics(s_err, max_err_quantile=1):
+    """Calculates several error metrics using the passed error series"""
     if s_err.isnull().sum() > 0:
         s_err = s_err.dropna()
 
@@ -149,6 +156,7 @@ def calc_error_metrics(s_err, max_err_quantile=1):
 
 # Cell
 def get_model_pred_ts(s, model_fp, s_demand=None, x_pred=np.linspace(-2, 61, 631), dt_pred=pd.date_range('2009-01-01', '2020-12-31', freq='1D')):
+    """Constructs the time-series prediction for the specified pre-fitted model"""
     df_pred = construct_df_pred(model_fp, x_pred=x_pred, dt_pred=dt_pred)
     s_cleaned = s.dropna().loc[df_pred.columns.min():df_pred.columns.max()+pd.Timedelta(hours=23, minutes=30)]
     s_pred_ts = construct_pred_ts(s_cleaned, df_pred)
@@ -162,6 +170,7 @@ def get_model_pred_ts(s, model_fp, s_demand=None, x_pred=np.linspace(-2, 61, 631
 
 # Cell
 def weighted_mean_s(s, s_weight=None, dt_rng=pd.date_range('2009-12-01', '2021-01-01', freq='W'), end_dt_delta_days=7):
+    """Calculates the weighted average of a series"""
     capture_prices = dict()
 
     for start_dt in dt_rng:

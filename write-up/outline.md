@@ -304,11 +304,11 @@
 - URL: https://econpapers.repec.org/paper/duiwpaper/0701.htm
 - Journal: NA
 
-##### 
-- MOE: 
-- Year(s): 
-- Location: 
-- Method: 
+##### Halttunen et al. (2021)
+- MOE: 0.68, 0.631, and 0.482 €/MWh per p.p. increase in RES penetration
+- Year(s): -, 2012-2019, and 2010-2019
+- Location: Global, Germany, and Great Britain
+- Method: RPR
 - DOI: 
 - Journal: 
 
@@ -423,13 +423,12 @@ Traber et al 2011 -> "In the absence of expanded deployment of renewable energy,
 * Need to calc the 95% conf and 68% pred intvls
 
 To Do 
-- [ ] Add the big literature review table (at the same time check each one has been downloaded with the DOI as the filename)
-- [ ] Go over the intro and abstract comments from Paolo (monday morning)
+- [x] Add the big literature review table (at the same time check each one has been downloaded with the DOI as the filename)
+- [x] Go over the intro and abstract comments from Paolo (monday morning)
 - [ ] Final run over Aidans comments (sunday night)
-- [ ] Finish discussion around the MOE estimate (do the lit rev table first)
-- [ ] Run the skopt model using the 2 hyper-params (saturday night/sunday morning)
-- [ ] Re-run the pred and conf intvl models (!!!not a priority - though pred is higher, could show one pred intvl as heatmap too!!!)
-- [ ] Talk about how using RES % penetration exaggerates the MOE during periods of low demand (sunday/monday)
+- [x] Finish discussion around the MOE estimate (do the lit rev table first)
+<!-- - [ ] Run the skopt model using the 2 hyper-params (saturday night/sunday morning)
+- [ ] Re-run the pred and conf intvl models (!!!not a priority - though pred is higher, could show one pred intvl as heatmap too!!!) -->
 - [x] Add the simple results tables
 	- [x] System overview
 	- [x] Carbon intensity estimates
@@ -441,9 +440,36 @@ To Do
 	- [x] % MOE reduction v % RES
 	- [x] Example day with counter-factual price (no longer going to add - could have in the discussion)
 - [ ] Add all of the citations into the bib (lit rev tables one then, other ones after monday call)
-- [ ] Check for all XXX, REF, \*\*\*, and !!! (before monday call)
-- [ ] Check numbering and capitalise tables and figures (before monday call)
+- [ ] Check for all XXX, REF, \*\*\*, !!!, (before monday call)
+- [ ] Check numbering and capitalise tables and figures (before monday call) - also check for figures with historic hard-coded values
 
 * Need to work out how to add in the time complexity element best
 
 Tonight: do the tables and add the graphs, then get skopt running
+
+### Aidan meeting 22nd March
+* sense-checked values, corrected issue with the carbon emissions (was net negative for DE)
+* lots of issues with the hyper-param optimisation implementation, finally got working late last night
+* 
+
+To Do:
+- [x] intro/abstract
+- [x] couple paras on the optimisation 
+- [x] Add in the confidence and prediction intervals
+- [ ] Make an improved MOE diagram
+- [x] Sort out my bibliography
+- [ ] Fix table formatting (partially achieved)
+- [x] remove dupes for the time-series and suface fits
+- [x] Run the intro through Grammarly
+- [x] remove the MOE by time-of-day from external paper
+- [x] swap for correct kernel (for now remove comment and fix language around the kernel)
+- [x] reset track changes
+- [ ] Energy stylesheet
+- [ ] Standardise FX units/symbols 
+- [ ] Add the papers from the literature review table into the bibliography
+- [x] Check for all XXX, REF, \*\*\*, and !!!
+- [x] Check numbering and capitalise tables and figures
+- [x] also check for figures with historic hard-coded values
+- [ ] Need more references in the intro
+- [ ] Shorten the abstract further still
+- [ ] Need to clean up the bibliography, for sources like ENTSOE/BMRS look at what other papers have done

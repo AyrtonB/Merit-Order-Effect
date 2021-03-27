@@ -2,7 +2,7 @@
 
 __all__ = ['query_API', 'dict_col_2_cols', 'clean_nested_dict_cols', 'set_dt_idx', 'create_df_dt_rng', 'clean_df_dts',
            'retrieve_stream_df', 'check_streams', 'retrieve_streams_df', 'parse_A44_response', 'retreive_DAM_prices',
-           'parse_A75_response', 'retreive_production']
+           'parse_A75_response', 'retrieve_production']
 
 # Cell
 import json
@@ -23,11 +23,11 @@ def query_API(start_date:str, end_date:str, stream:str, time_group='30m'):
     """
     'Query API' makes the call to Electric Insights and returns the JSON response
 
-    Arguments:
-        * start_date - Start date for data given as a string in the form '%Y-%m-%d'
-        * end_date - End date for data given as a string in the form '%Y-%m-%d'
-        * stream - One of 'prices_ahead', 'prices_ahead', 'prices', 'temperatures' or 'emissions'
-        * time_group - One of '30m', '1h', '1d' or '7d'. The default is '30m'
+    Parameters:
+        start_date: Start date for data given as a string in the form '%Y-%m-%d'
+        end_date: End date for data given as a string in the form '%Y-%m-%d'
+        stream: One of 'prices_ahead', 'prices_ahead', 'prices', 'temperatures' or 'emissions'
+        time_group: One of '30m', '1h', '1d' or '7d'. The default is '30m'
     """
 
     # Checking stream is an EI endpoint
@@ -68,6 +68,7 @@ def dict_col_2_cols(df:pd.DataFrame, value_col='value'):
 
 # Cell
 def clean_nested_dict_cols(df):
+    """Unpacks columns contining nested dictionaries"""
     # Calculating columns that are still dictionaries
     s_types = df.iloc[0].apply(lambda val: type(val))
     cols_with_dicts = s_types[s_types == dict].index
@@ -122,6 +123,7 @@ def create_df_dt_rng(start_date, end_date, freq='30T', tz='Europe/London', dt_st
     return df_dt_rng
 
 def clean_df_dts(df):
+    """Cleans the datetime index of the passed DataFrame"""
     df = set_dt_idx(df)
     df = df[~df.index.duplicated()]
 
@@ -135,14 +137,14 @@ def clean_df_dts(df):
 # Cell
 def retrieve_stream_df(start_date:str, end_date:str, stream:str, time_group='30m', renaming_dict={}):
     """
-    `retrieve_stream_df` makes the call to Electric Insights and parses the response into a dataframe which is returned
+    Makes the call to Electric Insights and parses the response into a dataframe which is returned
 
-    Arguments:
-        * start_date - Start date for data given as a string in the form '%Y-%m-%d'
-        * end_date - End date for data given as a string in the form '%Y-%m-%d'
-        * stream - One of 'prices_ahead', 'prices_ahead', 'prices', 'temperatures' or 'emissions'
-        * time_group - One of '30m', '1h', '1d' or '7d'. The default is '30m'
-        * renaming_dict - Mapping from old to new column names
+    Parameters:
+        start_date: Start date for data given as a string in the form '%Y-%m-%d'
+        end_date: End date for data given as a string in the form '%Y-%m-%d'
+        stream: One of 'prices_ahead', 'prices_ahead', 'prices', 'temperatures' or 'emissions'
+        time_group: One of '30m', '1h', '1d' or '7d'. The default is '30m'
+        renaming_dict: Mapping from old to new column names
     """
 
     # Calling data and parsing into dataframe
@@ -192,13 +194,13 @@ def check_streams(streams='*'):
 # Cell
 def retrieve_streams_df(start_date:str, end_date:str, streams='*', time_group='30m', renaming_dict={}):
     """
-    'Call Streams' makes the calls to Electric Insights for the given streams and parses the responses into a dataframe which is returned
+    Makes the calls to Electric Insights for the given streams and parses the responses into a dataframe which is returned
 
-    Arguments:
-        * start_date - Start date for data given as a string in the form '%Y-%m-%d'
-        * end_date - End date for data given as a string in the form '%Y-%m-%d'
-        * streams - Contains 'prices_ahead', 'prices_ahead', 'prices', 'temperatures' or 'emissions', or is given as all, '*'
-        * time_group - One of '30m', '1h', '1d' or '7d'. The default is '30m'
+    Parameters:
+        start_date: Start date for data given as a string in the form '%Y-%m-%d'
+        end_date: End date for data given as a string in the form '%Y-%m-%d'
+        streams: Contains 'prices_ahead', 'prices_ahead', 'prices', 'temperatures' or 'emissions', or is given as all, '*'
+        time_group: One of '30m', '1h', '1d' or '7d'. The default is '30m'
     """
 
     df = pd.DataFrame()
@@ -212,6 +214,7 @@ def retrieve_streams_df(start_date:str, end_date:str, streams='*', time_group='3
 
 # Cell
 def parse_A44_response(r, freq='H', tz='UTC'):
+    """Extracts the price time-series"""
     s_price = pd.Series(dtype=float)
     parsed_r = xmltodict.parse(r.text)
 
@@ -227,6 +230,7 @@ def parse_A44_response(r, freq='H', tz='UTC'):
 
 # Cell
 def retreive_DAM_prices(dt_pairs, domain='10Y1001A1001A63L'):
+    """Retrieves and collates the day-ahead prices for the specified date ranges"""
     params = {
         'documentType': 'A44',
         'in_Domain': domain,
@@ -250,7 +254,8 @@ def retreive_DAM_prices(dt_pairs, domain='10Y1001A1001A63L'):
     return s_price
 
 # Cell
-def parse_A75_response(r, freq='15T', tz='UTC'):
+def parse_A75_response(r, freq='15T', tz='UTC', warn_on_failure=False):
+    """Extracts the production data by fuel-type from the JSON response"""
     psr_code_to_type = {
         'A03': 'Mixed',
         'A04': 'Generation',
@@ -291,7 +296,7 @@ def parse_A75_response(r, freq='15T', tz='UTC'):
 
     df_production = pd.DataFrame(dtype=float, columns=columns, index=index)
 
-    for timeseries in track(parsed_r['GL_MarketDocument']['TimeSeries']):
+    for timeseries in parsed_r['GL_MarketDocument']['TimeSeries']:
         try:
             psr_type = timeseries['MktPSRType']['psrType']
             dt_rng = pd.date_range(timeseries['Period']['timeInterval']['start'], timeseries['Period']['timeInterval']['end'], freq=freq, tz=tz)[:-1]
@@ -302,7 +307,8 @@ def parse_A75_response(r, freq='15T', tz='UTC'):
             df_production[psr_type] = s_psr_type
 
         except:
-            warn(f"{timeseries['Period']['timeInterval']['start']}-{timeseries['Period']['timeInterval']['start']} failed for {psr_type}")
+            if warn_on_failure == True:
+                warn(f"{timeseries['Period']['timeInterval']['start']}-{timeseries['Period']['timeInterval']['start']} failed for {psr_type}")
 
     assert df_production.index.duplicated().sum() == 0, 'There are duplicate date indexes'
 
@@ -311,7 +317,8 @@ def parse_A75_response(r, freq='15T', tz='UTC'):
 
     return df_production
 
-def retreive_production(dt_pairs, domain='10Y1001A1001A63L'):
+def retrieve_production(dt_pairs, domain='10Y1001A1001A63L', warn_on_failure=False):
+    """Retrieves and collates the production data for the specified date ranges"""
     params = {
         'documentType': 'A75',
         'processType': 'A16',
@@ -327,9 +334,10 @@ def retreive_production(dt_pairs, domain='10Y1001A1001A63L'):
         try:
             r = client._base_request(params=params, start=start, end=end)
 
-            df_production_dt_rng = parse_A75_response(r)
+            df_production_dt_rng = parse_A75_response(r, warn_on_failure=warn_on_failure)
             df_production = df_production.append(df_production_dt_rng)
         except:
-            warn(f"{start.strftime('%Y-%m-%d')} - {end.strftime('%Y-%m-%d')} failed")
+            if warn_on_failure == True:
+                warn(f"{start.strftime('%Y-%m-%d')} - {end.strftime('%Y-%m-%d')} failed")
 
     return df_production
