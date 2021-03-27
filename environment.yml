@@ -21,6 +21,7 @@ dependencies:
   - statsmodels
   - scikit-learn
   - scikit-optimize
+  - typer
   - pip
   
   - pip:

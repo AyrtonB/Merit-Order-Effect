@@ -71,13 +71,18 @@ index = {"query_API": "01-retrieval.ipynb",
          "construct_df_pred": "05-price-moe.ipynb",
          "calc_error_metrics": "05-price-moe.ipynb",
          "get_model_pred_ts": "05-price-moe.ipynb",
-         "weighted_mean_s": "05-price-moe.ipynb"}
+         "weighted_mean_s": "05-price-moe.ipynb",
+         "app": "10-ci-cd.ipynb",
+         "get_current_package_version": "10-ci-cd.ipynb",
+         "increment_package_version": "10-ci-cd.ipynb",
+         "set_current_package_version": "10-ci-cd.ipynb"}
 
 modules = ["retrieval.py",
            "eda.py",
            "lowess.py",
            "surface.py",
-           "moe.py"]
+           "moe.py",
+           "cicd.py"]
 
 doc_url = "https://AyrtonB.github.io/Merit-Order-Effect/"
 
