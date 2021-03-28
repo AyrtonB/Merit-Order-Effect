@@ -34,4 +34,4 @@ The `moepy` library was developed to enable new research into the Merit-Order-Ef
 
 We identified a strong relationship between increasing renewable penetration and the Merit-Order-Effect:
 
-![](../img/GB_MOE_RES_relationship_95_CI.png)
+![](img/GB_MOE_RES_relationship_95_CI.png)
