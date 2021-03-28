@@ -1,0 +1,18 @@
+# YAML 1.2
+---
+abstract: "This repository outlines the development and usage of code and analysis used in calculating the Merit-Order-Effect (MOE) of renewables on price and carbon intensity of electricity markets. Beyond MOE analysis the `moepy` library can be used more generally for standard, quantile, and bootstrapped LOWESS estimation. The particular implementation of LOWESS in this software has been extended to significantly reduce the computational resource required."
+authors: 
+cff-version: "1.1.0"
+date-released: 2021-03-29
+doi: "10.5281/zenodo.4642896"
+keywords: 
+  - LOWESS
+  - "Merit Order Effect"
+  - "Marginal Cost Curve"
+  - "Power Markets"
+license: "MIT License"
+message: "If you use this software, please cite it using these metadata."
+repository-code: "https://github.com/AyrtonB/Merit-Order-Effect"
+title: "Merit-Order-Effect"
+version: "v1.0.0"
+...
