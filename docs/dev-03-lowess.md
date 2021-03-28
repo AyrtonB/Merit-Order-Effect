@@ -2,6 +2,8 @@
 
 
 
+[![Binder](https://notebooks.gesis.org/binder/badge_logo.svg)](https://notebooks.gesis.org/binder/v2/gh/AyrtonB/Merit-Order-Effect/main?filepath=nbs%2Fdev-03-lowess.ipynb)
+
 Outlines the development of the Scikit-Learn compatible `Lowess` model, as well as its extension `LowessDates` used for time-adaptive LOWESS regression. Included are functions for extending both models to generate prediction and confidence intervals. 
 
 <br>
@@ -30,7 +32,7 @@ from moepy import eda
 
 <br>
 
-### LOESS Development
+### LOWESS Development
 
 Before we go ahead any further we'll create some sample data for fitting and also define the fraction of the data over which we'll do the localised regression.
 
@@ -52,7 +54,7 @@ plt.plot(x, y)
 
 
 
-    [<matplotlib.lines.Line2D at 0x1a4b2c4ae80>]
+    [<matplotlib.lines.Line2D at 0x1fd650f86d0>]
 
 
 
@@ -202,7 +204,7 @@ timeit(lambda: get_weights(x, x[5]), number=10000)
 
 
 
-    0.39384629999999987
+    0.6126709999999989
 
 
 
@@ -244,7 +246,7 @@ all_weights[:5, :5]
 
 <br>
 
-Not too bad at all, we could now use this to weight the fitting of the polynomials in the LOESS. However, we've carried out most of these operations as part of for loops over vectors, what if we could store our data in matrices and do single operations over them?
+Not too bad at all, we could now use this to weight the fitting of the polynomials in the LOWESS. However, we've carried out most of these operations as part of for loops over vectors, what if we could store our data in matrices and do single operations over them?
 
 Thankfully Numpy has lots of helpful functions to aid us in this. We'll start by creating a matrix with the distances, to do this we can reshape the vectors into matrices of shape (25, 1) and (1, 25), then deduct the matrix with only one row from the matrix with only one column.
 
@@ -286,7 +288,7 @@ This approach brings an order of magnitude speed-up to the operation
 timeit(lambda: [get_dist(x, x[x_idx]) for x_idx in range(len(x))], number=10000)
 ```
 
-    672 ms ± 10.4 ms per loop (mean ± std. dev. of 7 runs, 1 loop each)
+    825 ms ± 163 ms per loop (mean ± std. dev. of 7 runs, 1 loop each)
     
 
 ```python
@@ -295,7 +297,7 @@ timeit(lambda: [get_dist(x, x[x_idx]) for x_idx in range(len(x))], number=10000)
 timeit(lambda: vector_to_dist_matrix(x), number=10000)
 ```
 
-    43.4 ms ± 2.63 ms per loop (mean ± std. dev. of 7 runs, 10 loops each)
+    55.5 ms ± 3.06 ms per loop (mean ± std. dev. of 7 runs, 10 loops each)
     
 
 <br>
@@ -320,7 +322,7 @@ timeit(lambda: gramfort_get_dist_thresholds(x, frac_idx), number=10000)
 
 
 
-    1.3339513000000007
+    1.7785535999999986
 
 
 
@@ -346,7 +348,7 @@ timeit(lambda: get_dist_thresholds(x, frac_idx, dist_matrix), number=10000)
 
 
 
-    0.06741010000000003
+    0.10906620000000089
 
 
 
@@ -382,7 +384,7 @@ timeit(lambda: (1 - inv_linear_weights ** 3) ** 3, number=10000)
 
 
 
-    0.2501098000000006
+    0.4310475999999994
 
 
 
@@ -393,7 +395,7 @@ timeit(lambda: np.power(1 - np.power(inv_linear_weights, 3), 3), number=10000)
 
 
 
-    0.24560150000000114
+    0.44873660000000015
 
 
 
@@ -408,7 +410,7 @@ timeit(lambda: (1 - inv_linear_weights ** 50000) ** 50000, number=10000)
 
 
 
-    0.28330940000000027
+    0.5387637000000005
 
 
 
@@ -419,7 +421,7 @@ timeit(lambda: np.power(1 - np.power(inv_linear_weights, 50000), 50000), number=
 
 
 
-    0.2943747000000023
+    0.526861499999999
 
 
 
@@ -515,7 +517,7 @@ timeit(lambda: get_full_dataset_weights_matrix(x, frac=frac), number=10000)
 
 
 
-    1.0831957999999986
+    1.4529582999999988
 
 
 
@@ -700,7 +702,7 @@ ax.set_ylabel('Regression Nodes')
 
 <br>
 
-We'll check this still works when we want to carry out a LOESS fit over all points
+We'll check this still works when we want to carry out a LOWESS fit over all points
 
 ```python
 weights = get_weights_matrix(x, frac=frac)
@@ -826,7 +828,7 @@ for i in range(n):
     y_pred[i] = betas[0] + betas[1] * x[i]
 
 plt.plot(x, y, label='Original')
-plt.plot(x, y_pred, label='LOESS')
+plt.plot(x, y_pred, label='LOWESS')
 plt.legend(frameon=False)
 ```
 
@@ -860,7 +862,7 @@ for i in range(len(x_pred)):
     y_pred[i] = betas[0] + betas[1] * x_pred[i]
 
 plt.plot(x, y, label='Original')
-plt.plot(x_pred, y_pred, label='LOESS')
+plt.plot(x_pred, y_pred, label='LOWESS')
 plt.legend(frameon=False)
 ```
 
@@ -954,7 +956,7 @@ y = np.sin(x)
 y_pred = lowess_fit_and_predict(x, y)
 
 plt.plot(x, y, label='Original')
-plt.plot(x, y_pred, '--', label='LOESS')
+plt.plot(x, y_pred, '--', label='LOWESS')
 plt.legend(frameon=False)
 ```
 
@@ -1048,7 +1050,7 @@ print(f'MAPE: {round(100*np.abs((y_true-y_pred)/y_true).mean(), 3)}%')
 
 <br>
 
-### LOWESS on Real-World Data
+#### LOWESS on Real-World Data
 
 We'll now evaluate the LOWESS fit on some real data, we'll start by loading the electric insights dataset
 
@@ -1206,7 +1208,7 @@ We can use our `lowess_fit_and_predict` function to make a lowess model of this 
 y_pred = lowess_fit_and_predict(x, y_noisy, frac=0.2, num_fits=25) 
 
 plt.plot(x, y, label='Original', zorder=2)
-plt.plot(x, y_pred, '--', label='LOESS', color='k', zorder=3)
+plt.plot(x, y_pred, '--', label='LOWESS', color='k', zorder=3)
 plt.scatter(x, y_noisy, label='With Noise', color='C1', s=5, zorder=1)
 plt.legend(frameon=False)
 ```
@@ -1358,7 +1360,7 @@ def robust_lowess_fit_and_predict(x, y, frac=0.4, reg_anchors=None, num_fits=Non
 y_pred = robust_lowess_fit_and_predict(x, y_noisy, frac=0.2, num_fits=25) 
 
 plt.plot(x, y, label='Original', zorder=2)
-plt.plot(x, y_pred, '--', label='Robust LOESS', color='k', zorder=3)
+plt.plot(x, y_pred, '--', label='Robust LOWESS', color='k', zorder=3)
 plt.scatter(x, y_noisy, label='With Noise', color='C1', s=5, zorder=1)
 plt.legend(frameon=False)
 ```
@@ -1531,7 +1533,7 @@ y_pred = lowess.predict(x_pred)
 
 # Plotting
 plt.plot(x, y, label='Original', zorder=2)
-plt.plot(x_pred, y_pred, '--', label='Robust LOESS', color='k', zorder=3)
+plt.plot(x_pred, y_pred, '--', label='Robust LOWESS', color='k', zorder=3)
 plt.scatter(x, y_noisy, label='With Noise', color='C1', s=5, zorder=1)
 plt.legend(frameon=False)
 ```

@@ -1,4 +1,4 @@
-[![DOI](https://zenodo.org/badge/326810654.svg)](https://zenodo.org/badge/latestdoi/326810654) [![PyPI version](https://badge.fury.io/py/moepy.svg)](https://badge.fury.io/py/moepy)
+[![DOI](https://zenodo.org/badge/326810654.svg)](https://zenodo.org/badge/latestdoi/326810654) [![PyPI version](https://badge.fury.io/py/moepy.svg)](https://badge.fury.io/py/moepy) [![Binder](https://notebooks.gesis.org/binder/badge_logo.svg)](https://notebooks.gesis.org/binder/v2/gh/AyrtonB/Merit-Order-Effect/main?urlpath=lab)
 
 # Merit-Order-Effect
 
@@ -9,6 +9,10 @@ You can install the library using:
 ```bash
 pip install moepy
 ```
+
+The library also includes the option to ensemble LOWESS models together and smooth them over time, an example is shown below for the marginal cost curve of dispatchable generation in Great Britain.
+
+![](../img/UK_price_MOE_heatmap.png)
 
 <br>
 
@@ -23,3 +27,7 @@ The `moepy` library was developed to enable new research into the Merit-Order-Ef
 > Existing research focuses on linear methods for modelling the merit order stack, masking the larger MOE seen in the steeper top/bottom regions. In this work a blended LOWESS model is used to capture the non-linear relationship between electricity price and dispatchable generation, with historical renewable output data then used to simulate the MOE. The stationary nature of many existing methodologies means they struggle to adapt to changes in the system such as the effect of the Covid-19 pandemic, we use a time-adaptive model to effectively address this limitation. Alongside an extension to the standard LOWESS implementation the use of a time-adaptive model significantly reduces the computational resource required. 
 > 
 > Our results indicate that renewables delivered reductions equal to 318M tonnes of CO$_{2}$ between 2010 and 2020, and 56B EUR between 2015 and 2020 in Germany. In GB the reductions amounted to a 442M tonnes of CO$_{2}$and £17B saving between 2010 and 2020.
+
+We identified a strong relationship between increasing renewable penetration and the Merit-Order-Effect:
+
+![](../img/GB_MOE_RES_relationship_95_CI.png)

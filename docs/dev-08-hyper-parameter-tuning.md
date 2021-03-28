@@ -2,6 +2,8 @@
 
 
 
+[![Binder](https://notebooks.gesis.org/binder/badge_logo.svg)](https://notebooks.gesis.org/binder/v2/gh/AyrtonB/Merit-Order-Effect/main?filepath=nbs%2Fdev-08-hyper-parameter-tuning.ipynb)
+
 This notebook outlines the hyper-parameter optimisation procedure used to tune the models
 
 <br>

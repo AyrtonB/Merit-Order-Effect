@@ -2,6 +2,14 @@
 
 
 
+[![Binder](https://notebooks.gesis.org/binder/badge_logo.svg)](https://notebooks.gesis.org/binder/v2/gh/AyrtonB/Merit-Order-Effect/main?filepath=nbs%2Fdev-10-ci-cd.ipynb)
+
+This notebook includes helper functions and processes used in the continuous integration and deployment of the `moepy` library.
+
+<br>
+
+### Imports
+
 ```python
 #exports
 import os

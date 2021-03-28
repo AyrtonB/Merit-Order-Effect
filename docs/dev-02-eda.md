@@ -2,6 +2,8 @@
 
 
 
+[![Binder](https://notebooks.gesis.org/binder/badge_logo.svg)](https://notebooks.gesis.org/binder/v2/gh/AyrtonB/Merit-Order-Effect/main?filepath=nbs%2Fdev-02-eda.ipynb)
+
 This notebook includes some visualisation and exploration of the price and fuel data for Germany and Great Britain
 
 <br>

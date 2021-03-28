@@ -2,6 +2,8 @@
 
 
 
+[![Binder](https://notebooks.gesis.org/binder/badge_logo.svg)](https://notebooks.gesis.org/binder/v2/gh/AyrtonB/Merit-Order-Effect/main?filepath=nbs%2Fdev-07-prediction-confidence-and-intervals.ipynb)
+
 This notebook outlines the calculation of the prediction and confidence intervals for the GB and DE price MOE models
 
 <br>

@@ -2,6 +2,8 @@
 
 
 
+[![Binder](https://notebooks.gesis.org/binder/badge_logo.svg)](https://notebooks.gesis.org/binder/v2/gh/AyrtonB/Merit-Order-Effect/main?filepath=nbs%2Fug-03-power-curve.ipynb)
+
 In this notebook we'll look at how we can use our LOWESS methods to process wind turbine SCADA data and fit a clean power curve that doesn't include under-powered periods.
 
 <br>

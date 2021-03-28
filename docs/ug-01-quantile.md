@@ -2,6 +2,8 @@
 
 
 
+[![Binder](https://notebooks.gesis.org/binder/badge_logo.svg)](https://notebooks.gesis.org/binder/v2/gh/AyrtonB/Merit-Order-Effect/main?filepath=nbs%2Fug-01-quantile.ipynb)
+
 In this example we'll use power output data from Portugese hydro-plants to demonstrate how the quantile LOWESS model can be used.
 
 <br>

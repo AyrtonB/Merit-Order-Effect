@@ -2,6 +2,8 @@
 
 
 
+[![Binder](https://notebooks.gesis.org/binder/badge_logo.svg)](https://notebooks.gesis.org/binder/v2/gh/AyrtonB/Merit-Order-Effect/main?filepath=nbs%2Fdev-04-price-surface-estimation.ipynb)
+
 This notebook outlines how to specify different variants the model, then proceeds to fit them.
 
 <br>
