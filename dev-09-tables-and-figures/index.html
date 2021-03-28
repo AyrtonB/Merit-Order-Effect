@@ -1,0 +1,1882 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+      <link rel="shortcut icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-6.2.2">
+    
+    
+      
+        <title>Tables & Figures - Outage Watch</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.73f7c429.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.39b8e14a.min.css">
+        
+          
+          
+          <meta name="theme-color" content="#000000">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono",SFMono-Regular,Consolas,Menlo,monospace}</style>
+      
+    
+    
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="black" data-md-color-accent="">
+      
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#tables-figures-generation" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid" aria-label="Header">
+    <a href=".." title="Outage Watch" class="md-header-nav__button md-logo" aria-label="Outage Watch">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header-nav__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header-nav__title" data-md-component="header-title">
+      <div class="md-header-nav__ellipsis">
+        <div class="md-header-nav__topic">
+          <span class="md-ellipsis">
+            Outage Watch
+          </span>
+        </div>
+        <div class="md-header-nav__topic">
+          <span class="md-ellipsis">
+            
+              Tables & Figures
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      <label class="md-header-nav__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" data-md-component="search-reset" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header-nav__source">
+        
+<a href="https://github.com/OSUKED/Outage-Watch/" title="Go to repository" class="md-source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    OSUKED/Outage-Watch
+  </div>
+</a>
+      </div>
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href=".." class="md-tabs__link">
+      Home
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../ug-01-quantile/" class="md-tabs__link">
+        User Guide
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+    
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../dev-01-retrieval/" class="md-tabs__link md-tabs__link--active">
+        Development
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Outage Watch" class="md-nav__button md-logo" aria-label="Outage Watch">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    Outage Watch
+  </label>
+  
+    <div class="md-nav__source">
+      
+<a href="https://github.com/OSUKED/Outage-Watch/" title="Go to repository" class="md-source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    OSUKED/Outage-Watch
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+
+  <li class="md-nav__item">
+    <a href=".." class="md-nav__link">
+      Home
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+
+  
+  <li class="md-nav__item md-nav__item--nested">
+    
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2" >
+    
+    <label class="md-nav__link" for="nav-2">
+      User Guide
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="User Guide" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        <span class="md-nav__icon md-icon"></span>
+        User Guide
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="../ug-01-quantile/" class="md-nav__link">
+      Quantile Predictions
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="../ug-02-confidence/" class="md-nav__link">
+      Confidence Intervals
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="../ug-03-power-curve/" class="md-nav__link">
+      Power Curve Cleaning
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="../ug-04-gb-mcc/" class="md-nav__link">
+      Marginal Cost Curve
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  
+
+
+  
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3" checked>
+    
+    <label class="md-nav__link" for="nav-3">
+      Development
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Development" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        <span class="md-nav__icon md-icon"></span>
+        Development
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="../dev-01-retrieval/" class="md-nav__link">
+      Data Retrieval
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="../dev-02-eda/" class="md-nav__link">
+      Exploratory Data Analysis
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="../dev-03-lowess/" class="md-nav__link">
+      LOWESS
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="../dev-04-price-surface-estimation/" class="md-nav__link">
+      Price Curve Estimation
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="../dev-05-price-moe/" class="md-nav__link">
+      Price MOE Calculation
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="../dev-06-carbon-surface-estimation-and-moe/" class="md-nav__link">
+      Carbon Curve Estimation & MOE
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="../dev-07-prediction-confidence-and-intervals/" class="md-nav__link">
+      Prediction & Confidence Intervals
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="../dev-08-hyper-parameter-tuning/" class="md-nav__link">
+      Hyper-Parameter Tuning
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Tables & Figures
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+    
+    <a href="./" class="md-nav__link md-nav__link--active">
+      Tables & Figures
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#imports" class="md-nav__link">
+    Imports
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tables" class="md-nav__link">
+    Tables
+  </a>
+  
+    <nav class="md-nav" aria-label="Tables">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#power-systems-overview" class="md-nav__link">
+    Power Systems Overview
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#carbon-intensity-estimates" class="md-nav__link">
+    Carbon Intensity Estimates
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#electricity-price-forecasting-metrics" class="md-nav__link">
+    Electricity Price Forecasting Metrics
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#price-and-co2-moe-results" class="md-nav__link">
+    Price and CO2 MOE Results
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#literature-review" class="md-nav__link">
+    Literature Review
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#figures" class="md-nav__link">
+    Figures
+  </a>
+  
+    <nav class="md-nav" aria-label="Figures">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#time-dimension-hyper-parameters" class="md-nav__link">
+    Time Dimension Hyper-Parameters
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="../dev-10-ci-cd/" class="md-nav__link">
+      CI-CD
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#imports" class="md-nav__link">
+    Imports
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tables" class="md-nav__link">
+    Tables
+  </a>
+  
+    <nav class="md-nav" aria-label="Tables">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#power-systems-overview" class="md-nav__link">
+    Power Systems Overview
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#carbon-intensity-estimates" class="md-nav__link">
+    Carbon Intensity Estimates
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#electricity-price-forecasting-metrics" class="md-nav__link">
+    Electricity Price Forecasting Metrics
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#price-and-co2-moe-results" class="md-nav__link">
+    Price and CO2 MOE Results
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#literature-review" class="md-nav__link">
+    Literature Review
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#figures" class="md-nav__link">
+    Figures
+  </a>
+  
+    <nav class="md-nav" aria-label="Figures">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#time-dimension-hyper-parameters" class="md-nav__link">
+    Time Dimension Hyper-Parameters
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/OSUKED/Outage-Watch/edit/main/docs/dev-09-tables-and-figures.md" title="Edit this page" class="md-content__button md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+                  </a>
+                
+                
+                <h1 id="tables-figures-generation">Tables &amp; Figures Generation<a class="headerlink" href="#tables-figures-generation" title="Permanent link">&para;</a></h1>
+<p>This notebook provides a programmatic workflow for generating the tables used in the MOE paper, as well as the diagram to show the time-adaptive smoothing weights.</p>
+<p><br></p>
+<h3 id="imports">Imports<a class="headerlink" href="#imports" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">Latex</span><span class="p">,</span> <span class="n">JSON</span>
+
+<span class="kn">from</span> <span class="nn">moepy</span> <span class="kn">import</span> <span class="n">eda</span><span class="p">,</span> <span class="n">lowess</span>
+</code></pre></div>
+<p><br></p>
+<h3 id="tables">Tables<a class="headerlink" href="#tables" title="Permanent link">&para;</a></h3>
+<h5 id="power-systems-overview">Power Systems Overview<a class="headerlink" href="#power-systems-overview" title="Permanent link">&para;</a></h5>
+<p>We'll first load in the DE data</p>
+<div class="highlight"><pre><span></span><code><span class="n">df_DE</span> <span class="o">=</span> <span class="n">eda</span><span class="o">.</span><span class="n">load_DE_df</span><span class="p">(</span><span class="s1">&#39;../data/energy_charts.csv&#39;</span><span class="p">,</span> <span class="s1">&#39;../data/ENTSOE_DE_price.csv&#39;</span><span class="p">)</span>
+
+<span class="n">df_DE</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</code></pre></div>
+<table>
+<thead>
+<tr>
+<th align="left">local_datetime</th>
+<th align="right">Biomass</th>
+<th align="right">Brown Coal</th>
+<th align="right">Gas</th>
+<th align="right">Hard Coal</th>
+<th align="right">Hydro Power</th>
+<th align="right">Oil</th>
+<th align="right">Others</th>
+<th align="right">Pumped Storage</th>
+<th align="right">Seasonal Storage</th>
+<th align="right">Solar</th>
+<th align="right">Uranium</th>
+<th align="right">Wind</th>
+<th align="right">net_balance</th>
+<th align="right">demand</th>
+<th align="right">price</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">2010-01-03 23:00:00+00:00</td>
+<td align="right">3.637</td>
+<td align="right">16.533</td>
+<td align="right">4.726</td>
+<td align="right">10.078</td>
+<td align="right">2.331</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0.052</td>
+<td align="right">0.068</td>
+<td align="right">0</td>
+<td align="right">16.826</td>
+<td align="right">0.635</td>
+<td align="right">-1.229</td>
+<td align="right">53.657</td>
+<td align="right">nan</td>
+</tr>
+<tr>
+<td align="left">2010-01-04 00:00:00+00:00</td>
+<td align="right">3.637</td>
+<td align="right">16.544</td>
+<td align="right">4.856</td>
+<td align="right">8.816</td>
+<td align="right">2.293</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0.038</td>
+<td align="right">0.003</td>
+<td align="right">0</td>
+<td align="right">16.841</td>
+<td align="right">0.528</td>
+<td align="right">-1.593</td>
+<td align="right">51.963</td>
+<td align="right">nan</td>
+</tr>
+<tr>
+<td align="left">2010-01-04 01:00:00+00:00</td>
+<td align="right">3.637</td>
+<td align="right">16.368</td>
+<td align="right">5.275</td>
+<td align="right">7.954</td>
+<td align="right">2.299</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0.032</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">16.846</td>
+<td align="right">0.616</td>
+<td align="right">-1.378</td>
+<td align="right">51.649</td>
+<td align="right">nan</td>
+</tr>
+<tr>
+<td align="left">2010-01-04 02:00:00+00:00</td>
+<td align="right">3.637</td>
+<td align="right">15.837</td>
+<td align="right">5.354</td>
+<td align="right">7.681</td>
+<td align="right">2.299</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0.027</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">16.699</td>
+<td align="right">0.63</td>
+<td align="right">-1.624</td>
+<td align="right">50.54</td>
+<td align="right">nan</td>
+</tr>
+<tr>
+<td align="left">2010-01-04 03:00:00+00:00</td>
+<td align="right">3.637</td>
+<td align="right">15.452</td>
+<td align="right">5.918</td>
+<td align="right">7.498</td>
+<td align="right">2.301</td>
+<td align="right">0.003</td>
+<td align="right">0</td>
+<td align="right">0.02</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">16.635</td>
+<td align="right">0.713</td>
+<td align="right">-0.731</td>
+<td align="right">51.446</td>
+<td align="right">nan</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p>Clean it up then calculate the relevant summary statistics</p>
+<div class="highlight"><pre><span></span><code><span class="n">s_DE_RES_output</span> <span class="o">=</span> <span class="n">df_DE</span><span class="p">[[</span><span class="s1">&#39;Wind&#39;</span><span class="p">,</span> <span class="s1">&#39;Solar&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">s_DE_demand</span> <span class="o">=</span> <span class="n">df_DE</span><span class="p">[</span><span class="s1">&#39;demand&#39;</span><span class="p">]</span>
+<span class="n">s_DE_price</span> <span class="o">=</span> <span class="n">df_DE</span><span class="p">[</span><span class="s1">&#39;price&#39;</span><span class="p">]</span>
+
+<span class="n">s_DE_RES_pct</span> <span class="o">=</span> <span class="n">s_DE_RES_output</span><span class="o">/</span><span class="n">s_DE_demand</span>
+
+<span class="n">DE_2020_RES_pct</span> <span class="o">=</span> <span class="n">s_DE_RES_pct</span><span class="p">[</span><span class="s1">&#39;2020&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+<span class="n">DE_2020_demand_avg</span> <span class="o">=</span> <span class="n">s_DE_demand</span><span class="p">[</span><span class="s1">&#39;2020&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+<span class="n">DE_2020_price_avg</span> <span class="o">=</span> <span class="n">s_DE_price</span><span class="p">[</span><span class="s1">&#39;2020&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+
+<span class="n">DE_2020_RES_pct</span><span class="p">,</span> <span class="n">DE_2020_demand_avg</span><span class="p">,</span> <span class="n">DE_2020_price_avg</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>(0.3593124152992342, 55.956133452868855, 30.469415917112606)
+</code></pre></div>
+<p><br></p>
+<p>We'll also estimate the carbon intensity</p>
+<div class="highlight"><pre><span></span><code><span class="n">DE_fuel_to_co2_intensity</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;Biomass&#39;</span><span class="p">:</span> <span class="mf">0.39</span><span class="p">,</span> 
+    <span class="s1">&#39;Brown Coal&#39;</span><span class="p">:</span> <span class="mf">0.36</span><span class="p">,</span> 
+    <span class="s1">&#39;Gas&#39;</span><span class="p">:</span> <span class="mf">0.23</span><span class="p">,</span> 
+    <span class="s1">&#39;Hard Coal&#39;</span><span class="p">:</span> <span class="mf">0.34</span><span class="p">,</span> 
+    <span class="s1">&#39;Hydro Power&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> 
+    <span class="s1">&#39;Oil&#39;</span><span class="p">:</span> <span class="mf">0.28</span><span class="p">,</span>
+    <span class="s1">&#39;Others&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> 
+    <span class="s1">&#39;Pumped Storage&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> 
+    <span class="s1">&#39;Seasonal Storage&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> 
+    <span class="s1">&#39;Solar&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> 
+    <span class="s1">&#39;Uranium&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="s1">&#39;Wind&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> 
+    <span class="s1">&#39;net_balance&#39;</span><span class="p">:</span> <span class="mi">0</span> 
+<span class="p">}</span>
+
+<span class="n">s_DE_emissions_tonnes</span> <span class="o">=</span> <span class="p">(</span><span class="n">df_DE</span>
+                         <span class="p">[</span><span class="n">DE_fuel_to_co2_intensity</span><span class="o">.</span><span class="n">keys</span><span class="p">()]</span>
+                         <span class="o">.</span><span class="n">multiply</span><span class="p">(</span><span class="mf">1e3</span><span class="p">)</span> <span class="c1"># converting to MWh</span>
+                         <span class="o">.</span><span class="n">multiply</span><span class="p">(</span><span class="n">DE_fuel_to_co2_intensity</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
+                         <span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+                        <span class="p">)</span>
+
+<span class="n">s_DE_emissions_tonnes</span> <span class="o">=</span> <span class="n">s_DE_emissions_tonnes</span><span class="p">[</span><span class="n">s_DE_emissions_tonnes</span><span class="o">&gt;</span><span class="mi">2000</span><span class="p">]</span>
+<span class="n">s_DE_carbon_intensity</span> <span class="o">=</span> <span class="n">s_DE_emissions_tonnes</span><span class="o">/</span><span class="n">s_DE_demand</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">s_DE_emissions_tonnes</span><span class="o">.</span><span class="n">index</span><span class="p">]</span>
+
+<span class="n">DE_2020_emissions_tonnes</span> <span class="o">=</span> <span class="n">s_DE_emissions_tonnes</span><span class="p">[</span><span class="s1">&#39;2020&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+<span class="n">DE_2020_ci_avg</span> <span class="o">=</span> <span class="n">s_DE_carbon_intensity</span><span class="p">[</span><span class="s1">&#39;2020&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+
+<span class="n">DE_2020_emissions_tonnes</span><span class="p">,</span> <span class="n">DE_2020_ci_avg</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>(8448.292069623136, 153.80385402105972)
+</code></pre></div>
+<p><br></p>
+<p>We'll do the same for GB</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Loading in</span>
+<span class="n">df_EI</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;../data/electric_insights.csv&#39;</span><span class="p">)</span>
+
+<span class="n">df_EI</span> <span class="o">=</span> <span class="n">df_EI</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;local_datetime&#39;</span><span class="p">)</span>
+<span class="n">df_EI</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">df_EI</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">utc</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># Extracting RES, demand, and price series</span>
+<span class="n">s_GB_RES</span> <span class="o">=</span> <span class="n">df_EI</span><span class="p">[[</span><span class="s1">&#39;wind&#39;</span><span class="p">,</span> <span class="s1">&#39;solar&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">s_GB_demand</span> <span class="o">=</span> <span class="n">df_EI</span><span class="p">[</span><span class="s1">&#39;demand&#39;</span><span class="p">]</span>
+<span class="n">s_GB_price</span> <span class="o">=</span> <span class="n">df_EI</span><span class="p">[</span><span class="s1">&#39;day_ahead_price&#39;</span><span class="p">]</span>
+
+<span class="c1"># Generating carbon intensity series</span>
+<span class="n">GB_fuel_to_co2_intensity</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;nuclear&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> 
+    <span class="s1">&#39;biomass&#39;</span><span class="p">:</span> <span class="mf">0.121</span><span class="p">,</span> <span class="c1"># from EI </span>
+    <span class="s1">&#39;coal&#39;</span><span class="p">:</span> <span class="mf">0.921</span><span class="p">,</span> <span class="c1"># DUKES 2018 value</span>
+    <span class="s1">&#39;gas&#39;</span><span class="p">:</span> <span class="mf">0.377</span><span class="p">,</span> <span class="c1"># DUKES 2018 value (lower than many CCGT estimates, let alone OCGT)</span>
+    <span class="s1">&#39;hydro&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> 
+    <span class="s1">&#39;pumped_storage&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> 
+    <span class="s1">&#39;solar&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="s1">&#39;wind&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="s1">&#39;belgian&#39;</span><span class="p">:</span> <span class="mf">0.4</span><span class="p">,</span>  
+    <span class="s1">&#39;dutch&#39;</span><span class="p">:</span> <span class="mf">0.474</span><span class="p">,</span> <span class="c1"># from EI </span>
+    <span class="s1">&#39;french&#39;</span><span class="p">:</span> <span class="mf">0.053</span><span class="p">,</span> <span class="c1"># from EI </span>
+    <span class="s1">&#39;ireland&#39;</span><span class="p">:</span> <span class="mf">0.458</span><span class="p">,</span> <span class="c1"># from EI </span>
+    <span class="s1">&#39;northern_ireland&#39;</span><span class="p">:</span> <span class="mf">0.458</span> <span class="c1"># from EI </span>
+<span class="p">}</span>
+
+<span class="n">s_GB_emissions_tonnes</span> <span class="o">=</span> <span class="p">(</span><span class="n">df_EI</span>
+                         <span class="p">[</span><span class="n">GB_fuel_to_co2_intensity</span><span class="o">.</span><span class="n">keys</span><span class="p">()]</span>
+                         <span class="o">.</span><span class="n">multiply</span><span class="p">(</span><span class="mf">1e3</span><span class="o">*</span><span class="mf">0.5</span><span class="p">)</span> <span class="c1"># converting to MWh</span>
+                         <span class="o">.</span><span class="n">multiply</span><span class="p">(</span><span class="n">GB_fuel_to_co2_intensity</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
+                         <span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+                        <span class="p">)</span>
+
+<span class="n">s_GB_emissions_tonnes</span> <span class="o">=</span> <span class="n">s_GB_emissions_tonnes</span><span class="p">[</span><span class="n">s_GB_emissions_tonnes</span><span class="o">&gt;</span><span class="mi">2000</span><span class="p">]</span>
+<span class="n">s_GB_carbon_intensity</span> <span class="o">=</span> <span class="n">s_GB_emissions_tonnes</span><span class="o">/</span><span class="n">s_GB_demand</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">s_GB_emissions_tonnes</span><span class="o">.</span><span class="n">index</span><span class="p">]</span>
+
+<span class="c1"># Calculating 2020 averages</span>
+<span class="n">GB_2020_emissions_tonnes</span> <span class="o">=</span> <span class="n">s_GB_emissions_tonnes</span><span class="p">[</span><span class="s1">&#39;2020&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+<span class="n">GB_2020_ci_avg</span> <span class="o">=</span> <span class="n">s_GB_carbon_intensity</span><span class="p">[</span><span class="s1">&#39;2020&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+<span class="n">GB_2020_RES_pct</span> <span class="o">=</span> <span class="p">(</span><span class="n">s_GB_RES</span><span class="p">[</span><span class="s1">&#39;2020&#39;</span><span class="p">]</span><span class="o">/</span><span class="n">s_GB_demand</span><span class="p">[</span><span class="s1">&#39;2020&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+<span class="n">GB_2020_demand_avg</span> <span class="o">=</span> <span class="n">s_GB_demand</span><span class="p">[</span><span class="s1">&#39;2020&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+<span class="n">GB_2020_price_avg</span> <span class="o">=</span> <span class="n">s_GB_price</span><span class="p">[</span><span class="s1">&#39;2020&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+</code></pre></div>
+<p><br></p>
+<p>Then combine the results in a single table</p>
+<div class="highlight"><pre><span></span><code><span class="n">system_overview_data</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;Germany&#39;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s1">&#39;Average Solar/Wind Generation (%)&#39;</span><span class="p">:</span> <span class="nb">round</span><span class="p">(</span><span class="mi">100</span><span class="o">*</span><span class="n">DE_2020_RES_pct</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span>
+        <span class="s1">&#39;Average Demand (GW)&#39;</span><span class="p">:</span> <span class="nb">round</span><span class="p">(</span><span class="n">DE_2020_demand_avg</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span>
+        <span class="s1">&#39;Average Price ([EUR,GBP]/MWh)&#39;</span><span class="p">:</span> <span class="nb">round</span><span class="p">(</span><span class="n">DE_2020_price_avg</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span>
+        <span class="s1">&#39;Average Carbon Intensity  (gCO2/kWh)&#39;</span><span class="p">:</span> <span class="nb">round</span><span class="p">(</span><span class="n">DE_2020_ci_avg</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span>
+    <span class="p">},</span>
+    <span class="s1">&#39;Great Britain&#39;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s1">&#39;Average Solar/Wind Generation (%)&#39;</span><span class="p">:</span> <span class="nb">round</span><span class="p">(</span><span class="mi">100</span><span class="o">*</span><span class="n">GB_2020_RES_pct</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span>
+        <span class="s1">&#39;Average Demand (GW)&#39;</span><span class="p">:</span> <span class="nb">round</span><span class="p">(</span><span class="n">GB_2020_demand_avg</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span>
+        <span class="s1">&#39;Average Price ([EUR,GBP]/MWh)&#39;</span><span class="p">:</span> <span class="nb">round</span><span class="p">(</span><span class="n">GB_2020_price_avg</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span>
+        <span class="s1">&#39;Average Carbon Intensity  (gCO2/kWh)&#39;</span><span class="p">:</span> <span class="nb">round</span><span class="p">(</span><span class="n">GB_2020_ci_avg</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="n">df_system_overview</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">system_overview_data</span><span class="p">)</span><span class="o">.</span><span class="n">T</span>
+
+<span class="n">df_system_overview</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</code></pre></div>
+<table>
+<thead>
+<tr>
+<th align="left">Unnamed: 0</th>
+<th align="right">Average Solar/Wind Generation (%)</th>
+<th align="right">Average Demand (GW)</th>
+<th align="right">Average Price ([EUR,GBP]/MWh)</th>
+<th align="right">Average Carbon Intensity (gCO2/kWh)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">Germany</td>
+<td align="right">35.93</td>
+<td align="right">55.96</td>
+<td align="right">30.47</td>
+<td align="right">153.8</td>
+</tr>
+<tr>
+<td align="left">Great Britain</td>
+<td align="right">29.83</td>
+<td align="right">30.61</td>
+<td align="right">33.77</td>
+<td align="right">101.17</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p>Which we'll then output as a LaTeX table</p>
+<div class="highlight"><pre><span></span><code><span class="n">get_lined_column_format</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">n_cols</span><span class="p">:</span><span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">n_cols</span><span class="o">*</span><span class="p">[</span><span class="s1">&#39;|l&#39;</span><span class="p">])</span> <span class="o">+</span> <span class="s1">&#39;|&#39;</span>
+
+<span class="n">caption</span> <span class="o">=</span> <span class="s1">&#39;Systems overview for 2020&#39;</span>
+<span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;overview_table&#39;</span>
+<span class="n">column_format</span> <span class="o">=</span> <span class="n">get_lined_column_format</span><span class="p">(</span><span class="n">df_system_overview</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="n">latex_str</span> <span class="o">=</span> <span class="n">df_system_overview</span><span class="o">.</span><span class="n">to_latex</span><span class="p">(</span><span class="n">column_format</span><span class="o">=</span><span class="n">column_format</span><span class="p">,</span> <span class="n">caption</span><span class="o">=</span><span class="n">caption</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">label</span><span class="p">)</span>
+
+<span class="n">latex_replacements</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;CO2&#39;</span><span class="p">:</span> <span class="s1">&#39;CO</span><span class="se">\\</span><span class="s1">textsubscript</span><span class="si">{2}</span><span class="s1">&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;</span><span class="se">\\\\\n</span><span class="s1">&#39;</span><span class="p">:</span> <span class="s1">&#39;</span><span class="se">\\\\</span><span class="s1"> </span><span class="se">\\</span><span class="s1">midrule</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;midrule&#39;</span><span class="p">:</span> <span class="s1">&#39;hline&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;toprule&#39;</span><span class="p">:</span> <span class="s1">&#39;hline&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;bottomrule&#39;</span><span class="p">:</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;</span><span class="se">\n\\\n</span><span class="s1">&#39;</span><span class="p">:</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;</span><span class="se">\\</span><span class="s1">hline</span><span class="se">\n\\</span><span class="s1">hline&#39;</span><span class="p">:</span> <span class="s1">&#39;</span><span class="se">\\</span><span class="s1">hline&#39;</span>
+<span class="p">}</span>
+
+<span class="k">for</span> <span class="n">old</span><span class="p">,</span> <span class="n">new</span> <span class="ow">in</span> <span class="n">latex_replacements</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="n">latex_str</span> <span class="o">=</span> <span class="n">latex_str</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">old</span><span class="p">,</span> <span class="n">new</span><span class="p">)</span>
+
+<span class="n">Latex</span><span class="p">(</span><span class="n">latex_str</span><span class="p">)</span>
+</code></pre></div>
+<div class="arithmatex">\[\begin{table}
+\centering
+\caption{Systems overview for 2020}
+\label{overview_table}
+\begin{tabular}{|l|l|l|l|l|}
+\hline
+{} &amp;  Average Solar/Wind Generation (\%) &amp;  Average Demand (GW) &amp;  Average Price ([EUR,GBP]/MWh) &amp;  Average Carbon Intensity  (gCO\textsubscript{2}/kWh) \\ \hline
+Germany       &amp;                              35.93 &amp;                55.96 &amp;                          30.47 &amp;                                153.80 \\ \hline
+Great Britain &amp;                              29.83 &amp;                30.61 &amp;                          33.77 &amp;                                101.17 \\ \hline
+\end{tabular}
+\end{table}\]</div>
+<p><br></p>
+<h5 id="carbon-intensity-estimates">Carbon Intensity Estimates<a class="headerlink" href="#carbon-intensity-estimates" title="Permanent link">&para;</a></h5>
+<p>We'll clean up our GB carbon intensity estimates</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">clean_idxs</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
+    <span class="n">s</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;_&#39;</span><span class="p">,</span> <span class="s1">&#39; &#39;</span><span class="p">)</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">title</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">s</span>
+
+<span class="n">df_GB_non0_co2_intensity</span> <span class="o">=</span> <span class="p">(</span><span class="n">pd</span>
+                            <span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">GB_fuel_to_co2_intensity</span><span class="p">)</span>
+                            <span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">)</span>
+                            <span class="o">.</span><span class="n">dropna</span><span class="p">()</span>
+                            <span class="o">.</span><span class="n">drop</span><span class="p">([</span><span class="s1">&#39;belgian&#39;</span><span class="p">,</span> <span class="s1">&#39;northern_ireland&#39;</span><span class="p">])</span>
+                            <span class="o">.</span><span class="n">pipe</span><span class="p">(</span><span class="n">clean_idxs</span><span class="p">)</span>
+                            <span class="o">.</span><span class="n">multiply</span><span class="p">(</span><span class="mf">1e3</span><span class="p">)</span>
+                            <span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+                            <span class="o">.</span><span class="n">to_frame</span><span class="p">()</span>
+                            <span class="o">.</span><span class="n">T</span>
+                            <span class="o">.</span><span class="n">rename</span><span class="p">({</span><span class="mi">0</span><span class="p">:</span> <span class="s1">&#39;gCO2/kWh&#39;</span><span class="p">})</span>
+                           <span class="p">)</span>
+
+<span class="n">df_GB_non0_co2_intensity</span>
+</code></pre></div>
+<table>
+<thead>
+<tr>
+<th align="left">Unnamed: 0</th>
+<th align="right">Biomass</th>
+<th align="right">Coal</th>
+<th align="right">Gas</th>
+<th align="right">Dutch</th>
+<th align="right">French</th>
+<th align="right">Ireland</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">gCO2/kWh</td>
+<td align="right">121</td>
+<td align="right">921</td>
+<td align="right">377</td>
+<td align="right">474</td>
+<td align="right">53</td>
+<td align="right">458</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p>And output them as a LaTeX table</p>
+<div class="highlight"><pre><span></span><code><span class="n">caption</span> <span class="o">=</span> <span class="s1">&#39;Carbon intensity factors for fuel-types and interconnection on the GB power system&#39;</span>
+<span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;GB_co2_intensity_table&#39;</span>
+<span class="n">column_format</span> <span class="o">=</span> <span class="n">get_lined_column_format</span><span class="p">(</span><span class="n">df_GB_non0_co2_intensity</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="n">latex_str</span> <span class="o">=</span> <span class="n">df_GB_non0_co2_intensity</span><span class="o">.</span><span class="n">to_latex</span><span class="p">(</span><span class="n">column_format</span><span class="o">=</span><span class="n">column_format</span><span class="p">,</span> <span class="n">caption</span><span class="o">=</span><span class="n">caption</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">label</span><span class="p">)</span>
+
+<span class="n">latex_replacements</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;CO2&#39;</span><span class="p">:</span> <span class="s1">&#39;CO</span><span class="se">\\</span><span class="s1">textsubscript</span><span class="si">{2}</span><span class="s1">&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;</span><span class="se">\\\\\n</span><span class="s1">&#39;</span><span class="p">:</span> <span class="s1">&#39;</span><span class="se">\\\\</span><span class="s1"> </span><span class="se">\\</span><span class="s1">midrule</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;midrule&#39;</span><span class="p">:</span> <span class="s1">&#39;hline&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;toprule&#39;</span><span class="p">:</span> <span class="s1">&#39;hline&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;bottomrule&#39;</span><span class="p">:</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;</span><span class="se">\n\\\n</span><span class="s1">&#39;</span><span class="p">:</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;</span><span class="se">\\</span><span class="s1">hline</span><span class="se">\n\\</span><span class="s1">hline&#39;</span><span class="p">:</span> <span class="s1">&#39;</span><span class="se">\\</span><span class="s1">hline&#39;</span>
+<span class="p">}</span>
+
+<span class="k">for</span> <span class="n">old</span><span class="p">,</span> <span class="n">new</span> <span class="ow">in</span> <span class="n">latex_replacements</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="n">latex_str</span> <span class="o">=</span> <span class="n">latex_str</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">old</span><span class="p">,</span> <span class="n">new</span><span class="p">)</span>
+
+<span class="n">Latex</span><span class="p">(</span><span class="n">latex_str</span><span class="p">)</span>
+</code></pre></div>
+<div class="arithmatex">\[\begin{table}
+\centering
+\caption{Carbon intensity factors for fuel-types and interconnection on the GB power system}
+\label{GB_co2_intensity_table}
+\begin{tabular}{|l|l|l|l|l|l|l|}
+\hline
+{} &amp;  Biomass &amp;  Coal &amp;  Gas &amp;  Dutch &amp;  French &amp;  Ireland \\ \hline
+gCO\textsubscript{2}/kWh &amp;      121 &amp;   921 &amp;  377 &amp;    474 &amp;      53 &amp;      458 \\ \hline
+\end{tabular}
+\end{table}\]</div>
+<p><br></p>
+<p>We'll then do the same for DE</p>
+<div class="highlight"><pre><span></span><code><span class="n">df_DE_non0_co2_intensity</span> <span class="o">=</span> <span class="p">(</span><span class="n">pd</span>
+                            <span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">DE_fuel_to_co2_intensity</span><span class="p">)</span>
+                            <span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">)</span>
+                            <span class="o">.</span><span class="n">dropna</span><span class="p">()</span>
+                            <span class="p">[[</span><span class="s1">&#39;Biomass&#39;</span><span class="p">,</span> <span class="s1">&#39;Brown Coal&#39;</span><span class="p">,</span> <span class="s1">&#39;Hard Coal&#39;</span><span class="p">,</span> <span class="s1">&#39;Gas&#39;</span><span class="p">,</span> <span class="s1">&#39;Oil&#39;</span><span class="p">]]</span>
+                            <span class="o">.</span><span class="n">pipe</span><span class="p">(</span><span class="n">clean_idxs</span><span class="p">)</span>
+                            <span class="o">.</span><span class="n">multiply</span><span class="p">(</span><span class="mf">1e3</span><span class="p">)</span>
+                            <span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+                            <span class="o">.</span><span class="n">to_frame</span><span class="p">()</span>
+                            <span class="o">.</span><span class="n">T</span>
+                            <span class="o">.</span><span class="n">rename</span><span class="p">({</span><span class="mi">0</span><span class="p">:</span> <span class="s1">&#39;gCO2/kWh&#39;</span><span class="p">})</span>
+                           <span class="p">)</span>
+
+<span class="n">df_DE_non0_co2_intensity</span>
+</code></pre></div>
+<table>
+<thead>
+<tr>
+<th align="left">Unnamed: 0</th>
+<th align="right">Biomass</th>
+<th align="right">Brown Coal</th>
+<th align="right">Hard Coal</th>
+<th align="right">Gas</th>
+<th align="right">Oil</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">gCO2/kWh</td>
+<td align="right">390</td>
+<td align="right">360</td>
+<td align="right">340</td>
+<td align="right">230</td>
+<td align="right">280</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight"><pre><span></span><code><span class="n">caption</span> <span class="o">=</span> <span class="s1">&#39;Carbon intensity factors for fuel-types and interconnection on the DE power system&#39;</span>
+<span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;DE_co2_intensity_table&#39;</span>
+<span class="n">column_format</span> <span class="o">=</span> <span class="n">get_lined_column_format</span><span class="p">(</span><span class="n">df_DE_non0_co2_intensity</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="n">latex_str</span> <span class="o">=</span> <span class="n">df_DE_non0_co2_intensity</span><span class="o">.</span><span class="n">to_latex</span><span class="p">(</span><span class="n">column_format</span><span class="o">=</span><span class="n">column_format</span><span class="p">,</span> <span class="n">caption</span><span class="o">=</span><span class="n">caption</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">label</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">old</span><span class="p">,</span> <span class="n">new</span> <span class="ow">in</span> <span class="n">latex_replacements</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="n">latex_str</span> <span class="o">=</span> <span class="n">latex_str</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">old</span><span class="p">,</span> <span class="n">new</span><span class="p">)</span>
+
+<span class="n">Latex</span><span class="p">(</span><span class="n">latex_str</span><span class="p">)</span>
+</code></pre></div>
+<div class="arithmatex">\[\begin{table}
+\centering
+\caption{Carbon intensity factors for fuel-types and interconnection on the DE power system}
+\label{DE_co2_intensity_table}
+\begin{tabular}{|l|l|l|l|l|l|}
+\hline
+{} &amp;  Biomass &amp;  Brown Coal &amp;  Hard Coal &amp;  Gas &amp;  Oil \\ \hline
+gCO\textsubscript{2}/kWh &amp;      390 &amp;         360 &amp;        340 &amp;  230 &amp;  280 \\ \hline
+\end{tabular}
+\end{table}\]</div>
+<p><br></p>
+<h5 id="electricity-price-forecasting-metrics">Electricity Price Forecasting Metrics<a class="headerlink" href="#electricity-price-forecasting-metrics" title="Permanent link">&para;</a></h5>
+<p>We'll start by loading in our previously saved model metrics</p>
+<div class="highlight"><pre><span></span><code><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;../data/results/price_model_accuracy_metrics.json&#39;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">fp</span><span class="p">:</span>
+    <span class="n">model_accuracy_metrics</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">fp</span><span class="p">)</span>
+
+<span class="n">JSON</span><span class="p">(</span><span class="n">model_accuracy_metrics</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>&lt;IPython.core.display.JSON object&gt;
+</code></pre></div>
+<p><br></p>
+<p>We'll parse the MAE results into a new table</p>
+<div class="highlight"><pre><span></span><code><span class="n">model_accuracy_data</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;Germany&#39;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s1">&#39;Dispatchable Load&#39;</span><span class="p">:</span> <span class="nb">round</span><span class="p">(</span><span class="n">model_accuracy_metrics</span><span class="p">[</span><span class="s1">&#39;DE_dispatch&#39;</span><span class="p">][</span><span class="s1">&#39;mean_abs_err&#39;</span><span class="p">],</span> <span class="mi">2</span><span class="p">),</span>
+        <span class="s1">&#39;Total Load&#39;</span><span class="p">:</span> <span class="nb">round</span><span class="p">(</span><span class="n">model_accuracy_metrics</span><span class="p">[</span><span class="s1">&#39;DE_demand&#39;</span><span class="p">][</span><span class="s1">&#39;mean_abs_err&#39;</span><span class="p">],</span> <span class="mi">2</span><span class="p">),</span>
+    <span class="p">},</span>
+    <span class="s1">&#39;Great Britain&#39;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s1">&#39;Dispatchable Load&#39;</span><span class="p">:</span> <span class="nb">round</span><span class="p">(</span><span class="n">model_accuracy_metrics</span><span class="p">[</span><span class="s1">&#39;GB_dispatch&#39;</span><span class="p">][</span><span class="s1">&#39;mean_abs_err&#39;</span><span class="p">],</span> <span class="mi">2</span><span class="p">),</span>
+        <span class="s1">&#39;Total Load&#39;</span><span class="p">:</span> <span class="nb">round</span><span class="p">(</span><span class="n">model_accuracy_metrics</span><span class="p">[</span><span class="s1">&#39;GB_demand&#39;</span><span class="p">][</span><span class="s1">&#39;mean_abs_err&#39;</span><span class="p">],</span> <span class="mi">2</span><span class="p">),</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="n">df_model_accuracy</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">model_accuracy_data</span><span class="p">)</span><span class="o">.</span><span class="n">T</span>
+
+<span class="n">df_model_accuracy</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</code></pre></div>
+<table>
+<thead>
+<tr>
+<th align="left">Unnamed: 0</th>
+<th align="right">Dispatchable Load</th>
+<th align="right">Total Load</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">Germany</td>
+<td align="right">5.85</td>
+<td align="right">18.28</td>
+</tr>
+<tr>
+<td align="left">Great Britain</td>
+<td align="right">6.56</td>
+<td align="right">8.42</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p>Which we'll output as a LaTeX table</p>
+<div class="highlight"><pre><span></span><code><span class="n">caption</span> <span class="o">=</span> <span class="s1">&#39;Price forecasting model accuracy when regressing against dispatchable and total load for GB and DE.&#39;</span>
+<span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;model_accuracy_table&#39;</span>
+<span class="n">column_format</span> <span class="o">=</span> <span class="n">get_lined_column_format</span><span class="p">(</span><span class="n">df_model_accuracy</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="n">latex_str</span> <span class="o">=</span> <span class="n">df_model_accuracy</span><span class="o">.</span><span class="n">to_latex</span><span class="p">(</span><span class="n">column_format</span><span class="o">=</span><span class="n">column_format</span><span class="p">,</span> <span class="n">caption</span><span class="o">=</span><span class="n">caption</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">label</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">old</span><span class="p">,</span> <span class="n">new</span> <span class="ow">in</span> <span class="n">latex_replacements</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="n">latex_str</span> <span class="o">=</span> <span class="n">latex_str</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">old</span><span class="p">,</span> <span class="n">new</span><span class="p">)</span>
+
+<span class="n">Latex</span><span class="p">(</span><span class="n">latex_str</span><span class="p">)</span>
+</code></pre></div>
+<div class="arithmatex">\[\begin{table}
+\centering
+\caption{Price forecasting model accuracy when regressing against dispatchable and total load for GB and DE.}
+\label{model_accuracy_table}
+\begin{tabular}{|l|l|l|}
+\hline
+{} &amp;  Dispatchable Load &amp;  Total Load \\ \hline
+Germany       &amp;               5.85 &amp;       18.28 \\ \hline
+Great Britain &amp;               6.56 &amp;        8.42 \\ \hline
+\end{tabular}
+\end{table}\]</div>
+<p><br></p>
+<h5 id="price-and-co2-moe-results">Price and CO2 MOE Results<a class="headerlink" href="#price-and-co2-moe-results" title="Permanent link">&para;</a></h5>
+<p>We'll first load in all of the price and carbon MOE time-series</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">set_dt_idx</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">dt_idx_col</span><span class="o">=</span><span class="s1">&#39;local_datetime&#39;</span><span class="p">):</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="n">dt_idx_col</span><span class="p">)</span>
+    <span class="n">df</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">utc</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">df</span>
+
+<span class="n">df_GB_price_results_ts</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;../data/results/GB_price.csv&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">pipe</span><span class="p">(</span><span class="n">set_dt_idx</span><span class="p">)</span>
+<span class="n">df_DE_price_results_ts</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;../data/results/DE_price.csv&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">pipe</span><span class="p">(</span><span class="n">set_dt_idx</span><span class="p">)</span>
+<span class="n">df_GB_carbon_results_ts</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;../data/results/GB_carbon.csv&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">pipe</span><span class="p">(</span><span class="n">set_dt_idx</span><span class="p">)</span>
+<span class="n">df_DE_carbon_results_ts</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;../data/results/DE_carbon.csv&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">pipe</span><span class="p">(</span><span class="n">set_dt_idx</span><span class="p">)</span>
+
+<span class="n">df_GB_price_results_ts</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</code></pre></div>
+<table>
+<thead>
+<tr>
+<th align="left">local_datetime</th>
+<th align="right">prediction</th>
+<th align="right">counterfactual</th>
+<th align="right">observed</th>
+<th align="right">moe</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">2009-01-01 00:00:00+00:00</td>
+<td align="right">37.2034</td>
+<td align="right">37.3134</td>
+<td align="right">58.05</td>
+<td align="right">0.109938</td>
+</tr>
+<tr>
+<td align="left">2009-01-01 00:30:00+00:00</td>
+<td align="right">37.3134</td>
+<td align="right">37.5351</td>
+<td align="right">56.33</td>
+<td align="right">0.221756</td>
+</tr>
+<tr>
+<td align="left">2009-01-01 01:00:00+00:00</td>
+<td align="right">36.7685</td>
+<td align="right">36.9851</td>
+<td align="right">52.98</td>
+<td align="right">0.216574</td>
+</tr>
+<tr>
+<td align="left">2009-01-01 01:30:00+00:00</td>
+<td align="right">35.5952</td>
+<td align="right">35.8076</td>
+<td align="right">50.39</td>
+<td align="right">0.212469</td>
+</tr>
+<tr>
+<td align="left">2009-01-01 02:00:00+00:00</td>
+<td align="right">34.8494</td>
+<td align="right">35.0631</td>
+<td align="right">48.7</td>
+<td align="right">0.213697</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p>We'll then calculate their summary statistics</p>
+<div class="highlight"><pre><span></span><code><span class="n">MOE_results_data</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;Germany&#39;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s1">&#39;Price ([EUR,GBP]/MWh)&#39;</span><span class="p">:</span> <span class="nb">round</span><span class="p">(</span><span class="n">df_DE_price_results_ts</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">&#39;2020&#39;</span><span class="p">,</span> <span class="s1">&#39;moe&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span> <span class="mi">2</span><span class="p">),</span>
+        <span class="s1">&#39;Price (%)&#39;</span><span class="p">:</span> <span class="nb">round</span><span class="p">(</span><span class="mi">100</span><span class="o">*</span><span class="p">(</span><span class="n">df_DE_price_results_ts</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">&#39;2020&#39;</span><span class="p">,</span> <span class="s1">&#39;moe&#39;</span><span class="p">]</span><span class="o">*</span><span class="n">df_DE</span><span class="p">[</span><span class="s1">&#39;demand&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">/</span><span class="p">((</span><span class="n">df_DE_price_results_ts</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">&#39;2020&#39;</span><span class="p">,</span> <span class="s1">&#39;observed&#39;</span><span class="p">]</span><span class="o">+</span><span class="n">df_DE_price_results_ts</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">&#39;2020&#39;</span><span class="p">,</span> <span class="s1">&#39;moe&#39;</span><span class="p">])</span><span class="o">*</span><span class="n">df_DE</span><span class="p">[</span><span class="s1">&#39;demand&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">sum</span><span class="p">(),</span> <span class="mi">2</span><span class="p">),</span>
+        <span class="s1">&#39;Carbon (Tonnes/h)&#39;</span><span class="p">:</span> <span class="nb">round</span><span class="p">(</span><span class="n">df_DE_carbon_results_ts</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">&#39;2020&#39;</span><span class="p">,</span> <span class="s1">&#39;moe&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span> <span class="mi">2</span><span class="p">),</span>
+        <span class="s1">&#39;Carbon (%)&#39;</span><span class="p">:</span> <span class="nb">round</span><span class="p">(</span><span class="mi">100</span><span class="o">*</span><span class="p">(</span><span class="n">df_DE_carbon_results_ts</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">&#39;2020&#39;</span><span class="p">,</span> <span class="s1">&#39;moe&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">/</span><span class="p">(</span><span class="n">df_DE_carbon_results_ts</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">&#39;2020&#39;</span><span class="p">,</span> <span class="s1">&#39;observed&#39;</span><span class="p">]</span><span class="o">+</span><span class="n">df_DE_carbon_results_ts</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">&#39;2020&#39;</span><span class="p">,</span> <span class="s1">&#39;moe&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span> <span class="mi">2</span><span class="p">)</span>
+    <span class="p">},</span>
+    <span class="s1">&#39;Great Britain&#39;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s1">&#39;Price ([EUR,GBP]/MWh)&#39;</span><span class="p">:</span> <span class="nb">round</span><span class="p">(</span><span class="n">df_GB_price_results_ts</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">&#39;2020&#39;</span><span class="p">,</span> <span class="s1">&#39;moe&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span> <span class="mi">2</span><span class="p">),</span>
+        <span class="s1">&#39;Price (%)&#39;</span><span class="p">:</span> <span class="nb">round</span><span class="p">(</span><span class="mi">100</span><span class="o">*</span><span class="p">(</span><span class="n">df_GB_price_results_ts</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">&#39;2020&#39;</span><span class="p">,</span> <span class="s1">&#39;moe&#39;</span><span class="p">]</span><span class="o">*</span><span class="n">df_EI</span><span class="p">[</span><span class="s1">&#39;demand&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">/</span><span class="p">((</span><span class="n">df_GB_price_results_ts</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">&#39;2020&#39;</span><span class="p">,</span> <span class="s1">&#39;observed&#39;</span><span class="p">]</span><span class="o">+</span><span class="n">df_GB_price_results_ts</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">&#39;2020&#39;</span><span class="p">,</span> <span class="s1">&#39;moe&#39;</span><span class="p">])</span><span class="o">*</span><span class="n">df_EI</span><span class="p">[</span><span class="s1">&#39;demand&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">sum</span><span class="p">(),</span> <span class="mi">2</span><span class="p">),</span>
+        <span class="s1">&#39;Carbon (Tonnes/h)&#39;</span><span class="p">:</span> <span class="nb">round</span><span class="p">(</span><span class="n">df_GB_carbon_results_ts</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">&#39;2020&#39;</span><span class="p">,</span> <span class="s1">&#39;moe&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span> <span class="mi">2</span><span class="p">),</span> <span class="c1"># doubled to make it the same hourly rate as DE</span>
+        <span class="s1">&#39;Carbon (%)&#39;</span><span class="p">:</span> <span class="nb">round</span><span class="p">(</span><span class="mi">100</span><span class="o">*</span><span class="p">(</span><span class="n">df_GB_carbon_results_ts</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">&#39;2020&#39;</span><span class="p">,</span> <span class="s1">&#39;moe&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">/</span><span class="p">(</span><span class="n">df_GB_carbon_results_ts</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">&#39;2020&#39;</span><span class="p">,</span> <span class="s1">&#39;observed&#39;</span><span class="p">]</span><span class="o">+</span><span class="n">df_GB_carbon_results_ts</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">&#39;2020&#39;</span><span class="p">,</span> <span class="s1">&#39;moe&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span> <span class="mi">2</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="n">df_MOE_results</span> <span class="o">=</span> <span class="p">(</span><span class="n">pd</span>
+                  <span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">MOE_results_data</span><span class="p">)</span>
+                 <span class="p">)</span>
+
+<span class="n">df_MOE_results</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</code></pre></div>
+<table>
+<thead>
+<tr>
+<th align="left">Unnamed: 0</th>
+<th align="right">Germany</th>
+<th align="right">Great Britain</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">Price ([EUR,GBP]/MWh)</td>
+<td align="right">22.17</td>
+<td align="right">13.89</td>
+</tr>
+<tr>
+<td align="left">Price (%)</td>
+<td align="right">43.43</td>
+<td align="right">29.66</td>
+</tr>
+<tr>
+<td align="left">Carbon (Tonnes/h)</td>
+<td align="right">5563.22</td>
+<td align="right">1657.88</td>
+</tr>
+<tr>
+<td align="left">Carbon (%)</td>
+<td align="right">39.7</td>
+<td align="right">37.89</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p>And export the output as a LaTeX table</p>
+<div class="highlight"><pre><span></span><code><span class="n">caption</span> <span class="o">=</span> <span class="s1">&#39;2020 Merit Order Effect results overview (weighted by volume).&#39;</span>
+<span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;moe_results_table&#39;</span>
+<span class="n">column_format</span> <span class="o">=</span> <span class="n">get_lined_column_format</span><span class="p">(</span><span class="n">df_MOE_results</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="n">latex_str</span> <span class="o">=</span> <span class="n">df_MOE_results</span><span class="o">.</span><span class="n">to_latex</span><span class="p">(</span><span class="n">column_format</span><span class="o">=</span><span class="n">column_format</span><span class="p">,</span> <span class="n">caption</span><span class="o">=</span><span class="n">caption</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">label</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">old</span><span class="p">,</span> <span class="n">new</span> <span class="ow">in</span> <span class="n">latex_replacements</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="n">latex_str</span> <span class="o">=</span> <span class="n">latex_str</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">old</span><span class="p">,</span> <span class="n">new</span><span class="p">)</span>
+
+<span class="n">Latex</span><span class="p">(</span><span class="n">latex_str</span><span class="p">)</span>
+</code></pre></div>
+<div class="arithmatex">\[\begin{table}
+\centering
+\caption{2020 Merit Order Effect results overview (weighted by volume).}
+\label{moe_results_table}
+\begin{tabular}{|l|l|l|}
+\hline
+{} &amp;  Germany &amp;  Great Britain \\ \hline
+Price ([EUR,GBP]/MWh) &amp;    22.17 &amp;          13.89 \\ \hline
+Price (\%)             &amp;    43.43 &amp;          29.66 \\ \hline
+Carbon (Tonnes/h)     &amp;  5563.22 &amp;        1657.88 \\ \hline
+Carbon (\%)            &amp;    39.70 &amp;          37.89 \\ \hline
+\end{tabular}
+\end{table}\]</div>
+<p><br></p>
+<h5 id="literature-review">Literature Review<a class="headerlink" href="#literature-review" title="Permanent link">&para;</a></h5>
+<p>Lastly we'll create our largest table, containing results from across the literature</p>
+<div class="highlight"><pre><span></span><code><span class="n">lit_results_data</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">{</span>
+        <span class="s1">&#39;Study&#39;</span><span class="p">:</span> <span class="s1">&#39;Sensfuss et al. (2008)&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;MOE&#39;</span><span class="p">:</span> <span class="s1">&#39;7.83 €/MWh&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;Period&#39;</span><span class="p">:</span> <span class="s1">&#39;2006&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;Region&#39;</span><span class="p">:</span> <span class="s1">&#39;Germany&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;Method&#39;</span><span class="p">:</span> <span class="s1">&#39;ESS&#39;</span><span class="p">,</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+        <span class="s1">&#39;Study&#39;</span><span class="p">:</span> <span class="s1">&#39;Weigt (2009)&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;MOE&#39;</span><span class="p">:</span> <span class="s1">&#39;10 €/MWh&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;Period&#39;</span><span class="p">:</span> <span class="s1">&#39;2006-2008&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;Region&#39;</span><span class="p">:</span> <span class="s1">&#39;Germany&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;Method&#39;</span><span class="p">:</span> <span class="s1">&#39;ESS&#39;</span><span class="p">,</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+        <span class="s1">&#39;Study&#39;</span><span class="p">:</span> <span class="s1">&#39;Keles et al. (2013)&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;MOE&#39;</span><span class="p">:</span> <span class="s1">&#39;5.90 €/MWh&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;Period&#39;</span><span class="p">:</span> <span class="s1">&#39;2006–2009&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;Region&#39;</span><span class="p">:</span> <span class="s1">&#39;Germany&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;Method&#39;</span><span class="p">:</span> <span class="s1">&#39;RPR&#39;</span><span class="p">,</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+        <span class="s1">&#39;Study&#39;</span><span class="p">:</span> <span class="s1">&#39;Mulder and Scholtens (2013)&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;MOE&#39;</span><span class="p">:</span> <span class="s1">&#39;0.03% price decrease per p.p increase in wind speeds&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;Period&#39;</span><span class="p">:</span> <span class="s1">&#39;2006–2011&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;Region&#39;</span><span class="p">:</span> <span class="s1">&#39;Germany&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;Method&#39;</span><span class="p">:</span> <span class="s1">&#39;RPR&#39;</span><span class="p">,</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+        <span class="s1">&#39;Study&#39;</span><span class="p">:</span> <span class="s1">&#39;Tveten et al. (2013)&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;MOE&#39;</span><span class="p">:</span> <span class="s1">&#39;5.25 €/MWh (solar)&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;Period&#39;</span><span class="p">:</span> <span class="s1">&#39;2006-2011&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;Region&#39;</span><span class="p">:</span> <span class="s1">&#39;Germany&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;Method&#39;</span><span class="p">:</span> <span class="s1">&#39;RPR&#39;</span><span class="p">,</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+        <span class="s1">&#39;Study&#39;</span><span class="p">:</span> <span class="s1">&#39;Wurzburg et al. (2013)&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;MOE&#39;</span><span class="p">:</span> <span class="s1">&#39;2% price decrease&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;Period&#39;</span><span class="p">:</span> <span class="s1">&#39;2010-2012&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;Region&#39;</span><span class="p">:</span> <span class="s1">&#39;Germany &amp; Austria&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;Method&#39;</span><span class="p">:</span> <span class="s1">&#39;RPR&#39;</span><span class="p">,</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+        <span class="s1">&#39;Study&#39;</span><span class="p">:</span> <span class="s1">&#39;Cludius et al. (2014)&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;MOE&#39;</span><span class="p">:</span> <span class="s1">&#39;8 €/MWh&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;Period&#39;</span><span class="p">:</span> <span class="s1">&#39;2010-2012&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;Region&#39;</span><span class="p">:</span> <span class="s1">&#39;Germany&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;Method&#39;</span><span class="p">:</span> <span class="s1">&#39;RPR&#39;</span><span class="p">,</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+        <span class="s1">&#39;Study&#39;</span><span class="p">:</span> <span class="s1">&#39;Ketterer (2014)&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;MOE&#39;</span><span class="p">:</span> <span class="s1">&#39;0.1-1.46% price decrease per p.p increase in wind generation&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;Period&#39;</span><span class="p">:</span> <span class="s1">&#39;2006-2012&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;Region&#39;</span><span class="p">:</span> <span class="s1">&#39;Germany&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;Method&#39;</span><span class="p">:</span> <span class="s1">&#39;RPR&#39;</span><span class="p">,</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+        <span class="s1">&#39;Study&#39;</span><span class="p">:</span> <span class="s1">&#39;Ederer (2015)&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;MOE&#39;</span><span class="p">:</span> <span class="s1">&#39;1.3% price decrease per annual TWh of wind&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;Period&#39;</span><span class="p">:</span> <span class="s1">&#39;2006-2014&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;Region&#39;</span><span class="p">:</span> <span class="s1">&#39;Germany&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;Method&#39;</span><span class="p">:</span> <span class="s1">&#39;MSS&#39;</span><span class="p">,</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+        <span class="s1">&#39;Study&#39;</span><span class="p">:</span> <span class="s1">&#39;Kyritsis et al. (2017)&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;MOE&#39;</span><span class="p">:</span> <span class="s1">&#39;-&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;Period&#39;</span><span class="p">:</span> <span class="s1">&#39;2010-2015&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;Region&#39;</span><span class="p">:</span> <span class="s1">&#39;Germany&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;Method&#39;</span><span class="p">:</span> <span class="s1">&#39;RPR&#39;</span><span class="p">,</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+        <span class="s1">&#39;Study&#39;</span><span class="p">:</span> <span class="s1">&#39;Bublitz et al. (2017)&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;MOE&#39;</span><span class="p">:</span> <span class="s1">&#39;5.40 €/MWh&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;Period&#39;</span><span class="p">:</span> <span class="s1">&#39;2011-2015&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;Region&#39;</span><span class="p">:</span> <span class="s1">&#39;Germany&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;Method&#39;</span><span class="p">:</span> <span class="s1">&#39;ESS&#39;</span><span class="p">,</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+        <span class="s1">&#39;Study&#39;</span><span class="p">:</span> <span class="s1">&#39;Bublitz et al. (2017)&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;MOE&#39;</span><span class="p">:</span> <span class="s1">&#39;6.80 €/MWh&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;Period&#39;</span><span class="p">:</span> <span class="s1">&#39;2011-2015&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;Region&#39;</span><span class="p">:</span> <span class="s1">&#39;Germany&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;Method&#39;</span><span class="p">:</span> <span class="s1">&#39;RPR&#39;</span><span class="p">,</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+        <span class="s1">&#39;Study&#39;</span><span class="p">:</span> <span class="s1">&#39;de Miera et al. (2008)&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;MOE&#39;</span><span class="p">:</span> <span class="s1">&#39;8.6-25.1% price decrease&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;Period&#39;</span><span class="p">:</span> <span class="s1">&#39;2005-2007&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;Region&#39;</span><span class="p">:</span> <span class="s1">&#39;Spain&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;Method&#39;</span><span class="p">:</span> <span class="s1">&#39;ESS&#39;</span><span class="p">,</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+        <span class="s1">&#39;Study&#39;</span><span class="p">:</span> <span class="s1">&#39;Gelabert et al. (2011)&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;MOE&#39;</span><span class="p">:</span> <span class="s1">&#39;3.7% price decrease&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;Period&#39;</span><span class="p">:</span> <span class="s1">&#39;2005-2012&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;Region&#39;</span><span class="p">:</span> <span class="s1">&#39;Spain&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;Method&#39;</span><span class="p">:</span> <span class="s1">&#39;RPR&#39;</span><span class="p">,</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+        <span class="s1">&#39;Study&#39;</span><span class="p">:</span> <span class="s1">&#39;Ciarreta et al. (2014)&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;MOE&#39;</span><span class="p">:</span> <span class="s1">&#39;25-45 €/MWh&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;Period&#39;</span><span class="p">:</span> <span class="s1">&#39;2008–2012&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;Region&#39;</span><span class="p">:</span> <span class="s1">&#39;Spain&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;Method&#39;</span><span class="p">:</span> <span class="s1">&#39;ESS&#39;</span><span class="p">,</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+        <span class="s1">&#39;Study&#39;</span><span class="p">:</span> <span class="s1">&#39;Clo et al. (2015)&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;MOE&#39;</span><span class="p">:</span> <span class="s1">&#39;2.3 €/MWh (solar), 4.2 €/MWh (wind)&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;Period&#39;</span><span class="p">:</span> <span class="s1">&#39;2005–2013&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;Region&#39;</span><span class="p">:</span> <span class="s1">&#39;Italy&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;Method&#39;</span><span class="p">:</span> <span class="s1">&#39;RPR&#39;</span><span class="p">,</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+        <span class="s1">&#39;Study&#39;</span><span class="p">:</span> <span class="s1">&#39;Munksgaard and Morthorst (2008)&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;MOE&#39;</span><span class="p">:</span> <span class="s1">&#39;1-4 €/MWh&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;Period&#39;</span><span class="p">:</span> <span class="s1">&#39;2004-2006&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;Region&#39;</span><span class="p">:</span> <span class="s1">&#39;Denmark&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;Method&#39;</span><span class="p">:</span> <span class="s1">&#39;RPR&#39;</span><span class="p">,</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+        <span class="s1">&#39;Study&#39;</span><span class="p">:</span> <span class="s1">&#39;Jonsson et al. (2010)&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;MOE&#39;</span><span class="p">:</span> <span class="s1">&#39;-&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;Period&#39;</span><span class="p">:</span> <span class="s1">&#39;2006-2007&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;Region&#39;</span><span class="p">:</span> <span class="s1">&#39;Denmark&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;Method&#39;</span><span class="p">:</span> <span class="s1">&#39;RPR&#39;</span><span class="p">,</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+        <span class="s1">&#39;Study&#39;</span><span class="p">:</span> <span class="s1">&#39;Denny et al. (2017)&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;MOE&#39;</span><span class="p">:</span> <span class="s1">&#39;3.40 €/MWh per GWh (wind)&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;Period&#39;</span><span class="p">:</span> <span class="s1">&#39;2009&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;Region&#39;</span><span class="p">:</span> <span class="s1">&#39;Ireland&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;Method&#39;</span><span class="p">:</span> <span class="s1">&#39;RPR&#39;</span><span class="p">,</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+        <span class="s1">&#39;Study&#39;</span><span class="p">:</span> <span class="s1">&#39;Lunackova et al. (2017)&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;MOE&#39;</span><span class="p">:</span> <span class="s1">&#39;1.2% price decrease per 10</span><span class="si">% i</span><span class="s1">ncrease in RES&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;Period&#39;</span><span class="p">:</span> <span class="s1">&#39;2010-2015&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;Region&#39;</span><span class="p">:</span> <span class="s1">&#39;Czech Republic&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;Method&#39;</span><span class="p">:</span> <span class="s1">&#39;RPR&#39;</span><span class="p">,</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+        <span class="s1">&#39;Study&#39;</span><span class="p">:</span> <span class="s1">&#39;Dillig et al. (2016)&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;MOE&#39;</span><span class="p">:</span> <span class="s1">&#39;50.29 €/MWh&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;Period&#39;</span><span class="p">:</span> <span class="s1">&#39;2011-2013&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;Region&#39;</span><span class="p">:</span> <span class="s1">&#39;Germany&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;Method&#39;</span><span class="p">:</span> <span class="s1">&#39;MSS&#39;</span><span class="p">,</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+        <span class="s1">&#39;Study&#39;</span><span class="p">:</span> <span class="s1">&#39;McConnell et al. (2013)&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;MOE&#39;</span><span class="p">:</span> <span class="s1">&#39;8.6% price decrease&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;Period&#39;</span><span class="p">:</span> <span class="s1">&#39;2009-2010&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;Region&#39;</span><span class="p">:</span> <span class="s1">&#39;Australia&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;Method&#39;</span><span class="p">:</span> <span class="s1">&#39;MSS&#39;</span><span class="p">,</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+        <span class="s1">&#39;Study&#39;</span><span class="p">:</span> <span class="s1">&#39;Moreno et al. (2012)&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;MOE&#39;</span><span class="p">:</span> <span class="s1">&#39;0.018% price increase per p.p. increase in RES penetration&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;Period&#39;</span><span class="p">:</span> <span class="s1">&#39;1998–2009&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;Region&#39;</span><span class="p">:</span> <span class="s1">&#39;EU-27&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;Method&#39;</span><span class="p">:</span> <span class="s1">&#39;RPR&#39;</span><span class="p">,</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+        <span class="s1">&#39;Study&#39;</span><span class="p">:</span> <span class="s1">&#39;Woo et al. (2011)&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;MOE&#39;</span><span class="p">:</span> <span class="s1">&#39;0.32-1.53 $/MWh&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;Period&#39;</span><span class="p">:</span> <span class="s1">&#39;2007-2010&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;Region&#39;</span><span class="p">:</span> <span class="s1">&#39;Texas&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;Method&#39;</span><span class="p">:</span> <span class="s1">&#39;RPR&#39;</span><span class="p">,</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+        <span class="s1">&#39;Study&#39;</span><span class="p">:</span> <span class="s1">&#39;Kaufmann and Vaid (2016)&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;MOE&#39;</span><span class="p">:</span> <span class="s1">&#39;0.26-1.86 $/MWh (solar)&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;Period&#39;</span><span class="p">:</span> <span class="s1">&#39;2010-2012&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;Region&#39;</span><span class="p">:</span> <span class="s1">&#39;Massachusetts&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;Method&#39;</span><span class="p">:</span> <span class="s1">&#39;RPR&#39;</span><span class="p">,</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+        <span class="s1">&#39;Study&#39;</span><span class="p">:</span> <span class="s1">&#39;Woo et al. (2016)&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;MOE&#39;</span><span class="p">:</span> <span class="s1">&#39;5.3 \$/MWh (solar) and 3.3 \$/MWh (wind) per GWh of RES&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;Period&#39;</span><span class="p">:</span> <span class="s1">&#39;2012-2015&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;Region&#39;</span><span class="p">:</span> <span class="s1">&#39;California&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;Method&#39;</span><span class="p">:</span> <span class="s1">&#39;RPR&#39;</span><span class="p">,</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+        <span class="s1">&#39;Study&#39;</span><span class="p">:</span> <span class="s1">&#39;Paraschiv et al. (2014)&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;MOE&#39;</span><span class="p">:</span> <span class="s1">&#39;0.15% price decrease per MWh of RES&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;Period&#39;</span><span class="p">:</span> <span class="s1">&#39;2010-2013&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;Region&#39;</span><span class="p">:</span> <span class="s1">&#39;Germany&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;Method&#39;</span><span class="p">:</span> <span class="s1">&#39;RPR&#39;</span><span class="p">,</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+        <span class="s1">&#39;Study&#39;</span><span class="p">:</span> <span class="s1">&#39;O</span><span class="se">\&#39;</span><span class="s1">Mahoney and Denny (2011)&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;MOE&#39;</span><span class="p">:</span> <span class="s1">&#39;12% price decrease&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;Period&#39;</span><span class="p">:</span> <span class="s1">&#39;2009&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;Region&#39;</span><span class="p">:</span> <span class="s1">&#39;Ireland&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;Method&#39;</span><span class="p">:</span> <span class="s1">&#39;RPR&#39;</span><span class="p">,</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+        <span class="s1">&#39;Study&#39;</span><span class="p">:</span> <span class="s1">&#39;Hildmann et al. (2015)&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;MOE&#39;</span><span class="p">:</span> <span class="s1">&#39;13.4-18.6 €/MWh&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;Period&#39;</span><span class="p">:</span> <span class="s1">&#39;2011-2013&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;Region&#39;</span><span class="p">:</span> <span class="s1">&#39;Germany and Austria&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;Method&#39;</span><span class="p">:</span> <span class="s1">&#39;MSS&#39;</span><span class="p">,</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+        <span class="s1">&#39;Study&#39;</span><span class="p">:</span> <span class="s1">&#39;Gil et al. (2012)&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;MOE&#39;</span><span class="p">:</span> <span class="s1">&#39;9.72 €/MWh&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;Period&#39;</span><span class="p">:</span> <span class="s1">&#39;2007-2010&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;Region&#39;</span><span class="p">:</span> <span class="s1">&#39;Spain&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;Method&#39;</span><span class="p">:</span> <span class="s1">&#39;RPR&#39;</span><span class="p">,</span>
+    <span class="p">},</span>
+<span class="c1">#     { # Removed due to language barrier preventing method from being discerned</span>
+<span class="c1">#         &#39;Study&#39;: &#39;Weber and Woll (2007)&#39;,</span>
+<span class="c1">#         &#39;MOE&#39;: &#39;4 €/MWh&#39;,</span>
+<span class="c1">#         &#39;Period&#39;: &#39;2006&#39;,</span>
+<span class="c1">#         &#39;Region&#39;: &#39;Germany&#39;,</span>
+<span class="c1">#         &#39;Method&#39;: &#39;-&#39;,</span>
+<span class="c1">#     },</span>
+    <span class="p">{</span>
+        <span class="s1">&#39;Study&#39;</span><span class="p">:</span> <span class="s1">&#39;Halttunen et al. (2021)&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;MOE&#39;</span><span class="p">:</span> <span class="s1">&#39;0.631 €/MWh per p.p. increase in RES penetration&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;Period&#39;</span><span class="p">:</span> <span class="s1">&#39;2012-2019&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;Region&#39;</span><span class="p">:</span> <span class="s1">&#39;Germany&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;Method&#39;</span><span class="p">:</span> <span class="s1">&#39;RPR&#39;</span><span class="p">,</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+        <span class="s1">&#39;Study&#39;</span><span class="p">:</span> <span class="s1">&#39;Halttunen et al. (2021)&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;MOE&#39;</span><span class="p">:</span> <span class="s1">&#39;0.482 €/MWh per p.p. increase in RES penetration&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;Period&#39;</span><span class="p">:</span> <span class="s1">&#39;2010-2019&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;Region&#39;</span><span class="p">:</span> <span class="s1">&#39;Germany&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;Method&#39;</span><span class="p">:</span> <span class="s1">&#39;RPR&#39;</span><span class="p">,</span>
+    <span class="p">}</span>
+<span class="p">]</span>
+
+<span class="n">df_lit_results</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">lit_results_data</span><span class="p">)</span>
+
+<span class="n">df_lit_results</span><span class="p">[</span><span class="s1">&#39;Study Year&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_lit_results</span><span class="p">[</span><span class="s1">&#39;Study&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;(&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">str</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;)&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+<span class="n">df_lit_results</span> <span class="o">=</span> <span class="n">df_lit_results</span><span class="o">.</span><span class="n">sort_values</span><span class="p">([</span><span class="s1">&#39;Method&#39;</span><span class="p">,</span> <span class="s1">&#39;Study Year&#39;</span><span class="p">,</span> <span class="s1">&#39;Study&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Study Year&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">df_lit_results</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>&lt;ipython-input-18-9abcc44159e6&gt;:237: FutureWarning: The default value of regex will change from True to False in a future version. In addition, single character regular expressions will*not* be treated as literal strings when regex=True.
+  df_lit_results[&#39;Study Year&#39;] = df_lit_results[&#39;Study&#39;].str.split(&#39;(&#39;).str[1].str.replace(&#39;)&#39;, &#39;&#39;).astype(int)
+</code></pre></div>
+<table>
+<thead>
+<tr>
+<th align="right">Unnamed: 0</th>
+<th align="left">Study</th>
+<th align="left">MOE</th>
+<th align="left">Period</th>
+<th align="left">Region</th>
+<th align="left">Method</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="right">0</td>
+<td align="left">Sensfuss et al. (2008)</td>
+<td align="left">7.83 €/MWh</td>
+<td align="left">2006</td>
+<td align="left">Germany</td>
+<td align="left">ESS</td>
+</tr>
+<tr>
+<td align="right">1</td>
+<td align="left">de Miera et al. (2008)</td>
+<td align="left">8.6-25.1% price decrease</td>
+<td align="left">2005-2007</td>
+<td align="left">Spain</td>
+<td align="left">ESS</td>
+</tr>
+<tr>
+<td align="right">2</td>
+<td align="left">Weigt (2009)</td>
+<td align="left">10 €/MWh</td>
+<td align="left">2006-2008</td>
+<td align="left">Germany</td>
+<td align="left">ESS</td>
+</tr>
+<tr>
+<td align="right">3</td>
+<td align="left">Ciarreta et al. (2014)</td>
+<td align="left">25-45 €/MWh</td>
+<td align="left">2008–2012</td>
+<td align="left">Spain</td>
+<td align="left">ESS</td>
+</tr>
+<tr>
+<td align="right">4</td>
+<td align="left">Bublitz et al. (2017)</td>
+<td align="left">5.40 €/MWh</td>
+<td align="left">2011-2015</td>
+<td align="left">Germany</td>
+<td align="left">ESS</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p>We'll also export this as a LaTeX table</p>
+<div class="highlight"><pre><span></span><code><span class="n">caption</span> <span class="o">=</span> <span class="s1">&#39;Results overview from the MOE literature&#39;</span>
+<span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;lit_results_table&#39;</span>
+<span class="n">column_format</span> <span class="o">=</span> <span class="n">get_lined_column_format</span><span class="p">(</span><span class="n">df_lit_results</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="n">latex_str</span> <span class="o">=</span> <span class="n">df_lit_results</span><span class="o">.</span><span class="n">to_latex</span><span class="p">(</span><span class="n">column_format</span><span class="o">=</span><span class="n">column_format</span><span class="p">,</span> <span class="n">caption</span><span class="o">=</span><span class="n">caption</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">label</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">old</span><span class="p">,</span> <span class="n">new</span> <span class="ow">in</span> <span class="n">latex_replacements</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="n">latex_str</span> <span class="o">=</span> <span class="n">latex_str</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">old</span><span class="p">,</span> <span class="n">new</span><span class="p">)</span>
+
+<span class="n">Latex</span><span class="p">(</span><span class="n">latex_str</span><span class="p">)</span>
+</code></pre></div>
+<div class="arithmatex">\[\begin{table}
+\centering
+\caption{Results overview from the MOE literature}
+\label{lit_results_table}
+\begin{tabular}{|l|l|l|l|l|l|}
+\hline
+                          Study &amp;                                                MOE &amp;    Period &amp;              Region &amp; Method \\ \hline
+         Sensfuss et al. (2008) &amp;                                         7.83 €/MWh &amp;      2006 &amp;             Germany &amp;    ESS \\ \hline
+         de Miera et al. (2008) &amp;                           8.6-25.1\% price decrease &amp; 2005-2007 &amp;               Spain &amp;    ESS \\ \hline
+                   Weigt (2009) &amp;                                           10 €/MWh &amp; 2006-2008 &amp;             Germany &amp;    ESS \\ \hline
+         Ciarreta et al. (2014) &amp;                                        25-45 €/MWh &amp; 2008–2012 &amp;               Spain &amp;    ESS \\ \hline
+          Bublitz et al. (2017) &amp;                                         5.40 €/MWh &amp; 2011-2015 &amp;             Germany &amp;    ESS \\ \hline
+        McConnell et al. (2013) &amp;                                8.6\% price decrease &amp; 2009-2010 &amp;           Australia &amp;    MSS \\ \hline
+                  Ederer (2015) &amp;         1.3\% price decrease per annual TWh of wind &amp; 2006-2014 &amp;             Germany &amp;    MSS \\ \hline
+         Hildmann et al. (2015) &amp;                                    13.4-18.6 €/MWh &amp; 2011-2013 &amp; Germany and Austria &amp;    MSS \\ \hline
+           Dillig et al. (2016) &amp;                                        50.29 €/MWh &amp; 2011-2013 &amp;             Germany &amp;    MSS \\ \hline
+Munksgaard and Morthorst (2008) &amp;                                          1-4 €/MWh &amp; 2004-2006 &amp;             Denmark &amp;    RPR \\ \hline
+          Jonsson et al. (2010) &amp;                                                  - &amp; 2006-2007 &amp;             Denmark &amp;    RPR \\ \hline
+         Gelabert et al. (2011) &amp;                                3.7\% price decrease &amp; 2005-2012 &amp;               Spain &amp;    RPR \\ \hline
+     O'Mahoney and Denny (2011) &amp;                                 12\% price decrease &amp;      2009 &amp;             Ireland &amp;    RPR \\ \hline
+              Woo et al. (2011) &amp;                                    0.32-1.53 \$/MWh &amp; 2007-2010 &amp;               Texas &amp;    RPR \\ \hline
+              Gil et al. (2012) &amp;                                         9.72 €/MWh &amp; 2007-2010 &amp;               Spain &amp;    RPR \\ \hline
+           Moreno et al. (2012) &amp; 0.018\% price increase per p.p. increase in RES ... &amp; 1998–2009 &amp;               EU-27 &amp;    RPR \\ \hline
+            Keles et al. (2013) &amp;                                         5.90 €/MWh &amp; 2006–2009 &amp;             Germany &amp;    RPR \\ \hline
+    Mulder and Scholtens (2013) &amp; 0.03\% price decrease per p.p increase in wind s... &amp; 2006–2011 &amp;             Germany &amp;    RPR \\ \hline
+           Tveten et al. (2013) &amp;                                 5.25 €/MWh (solar) &amp; 2006-2011 &amp;             Germany &amp;    RPR \\ \hline
+         Wurzburg et al. (2013) &amp;                                  2\% price decrease &amp; 2010-2012 &amp;   Germany \&amp; Austria &amp;    RPR \\ \hline
+          Cludius et al. (2014) &amp;                                            8 €/MWh &amp; 2010-2012 &amp;             Germany &amp;    RPR \\ \hline
+                Ketterer (2014) &amp; 0.1-1.46\% price decrease per p.p increase in wi... &amp; 2006-2012 &amp;             Germany &amp;    RPR \\ \hline
+        Paraschiv et al. (2014) &amp;                0.15\% price decrease per MWh of RES &amp; 2010-2013 &amp;             Germany &amp;    RPR \\ \hline
+              Clo et al. (2015) &amp;                2.3 €/MWh (solar), 4.2 €/MWh (wind) &amp; 2005–2013 &amp;               Italy &amp;    RPR \\ \hline
+       Kaufmann and Vaid (2016) &amp;                            0.26-1.86 \$/MWh (solar) &amp; 2010-2012 &amp;       Massachusetts &amp;    RPR \\ \hline
+              Woo et al. (2016) &amp; 5.3 \textbackslash \$/MWh (solar) and 3.3 \textbackslash \$/MWh (wind) per GW... &amp; 2012-2015 &amp;          California &amp;    RPR \\ \hline
+          Bublitz et al. (2017) &amp;                                         6.80 €/MWh &amp; 2011-2015 &amp;             Germany &amp;    RPR \\ \hline
+            Denny et al. (2017) &amp;                          3.40 €/MWh per GWh (wind) &amp;      2009 &amp;             Ireland &amp;    RPR \\ \hline
+         Kyritsis et al. (2017) &amp;                                                  - &amp; 2010-2015 &amp;             Germany &amp;    RPR \\ \hline
+        Lunackova et al. (2017) &amp;        1.2\% price decrease per 10\% increase in RES &amp; 2010-2015 &amp;      Czech Republic &amp;    RPR \\ \hline
+        Halttunen et al. (2021) &amp;   0.631 €/MWh per p.p. increase in RES penetration &amp; 2012-2019 &amp;             Germany &amp;    RPR \\ \hline
+        Halttunen et al. (2021) &amp;   0.482 €/MWh per p.p. increase in RES penetration &amp; 2010-2019 &amp;             Germany &amp;    RPR \\ \hline
+\end{tabular}
+\end{table}\]</div>
+<p><br></p>
+<h3 id="figures">Figures<a class="headerlink" href="#figures" title="Permanent link">&para;</a></h3>
+<h5 id="time-dimension-hyper-parameters">Time Dimension Hyper-Parameters<a class="headerlink" href="#time-dimension-hyper-parameters" title="Permanent link">&para;</a></h5>
+<p>We'll create a plot showing an example of how regression dates are converted into weightings for the time-series</p>
+<div class="highlight"><pre><span></span><code><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">150</span><span class="p">)</span>
+<span class="n">centers</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.7</span><span class="p">]</span>
+
+<span class="c1"># Plotting</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">dpi</span><span class="o">=</span><span class="mi">250</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+
+<span class="k">for</span> <span class="n">center</span> <span class="ow">in</span> <span class="n">centers</span><span class="p">:</span>
+    <span class="n">dist</span> <span class="o">=</span> <span class="n">lowess</span><span class="o">.</span><span class="n">get_dist</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">center</span><span class="p">)</span>
+    <span class="n">dist_threshold</span> <span class="o">=</span> <span class="n">lowess</span><span class="o">.</span><span class="n">get_dist_threshold</span><span class="p">(</span><span class="n">dist</span><span class="p">,</span> <span class="n">frac</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
+    <span class="n">weights</span> <span class="o">=</span> <span class="n">lowess</span><span class="o">.</span><span class="n">dist_to_weights</span><span class="p">(</span><span class="n">dist</span><span class="p">,</span> <span class="n">dist_threshold</span><span class="p">)</span>
+
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">weights</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">)</span>
+
+<span class="n">x_pos</span> <span class="o">=</span> <span class="mf">0.4</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="s1">&#39;Interval&#39;</span><span class="p">,</span> <span class="n">xy</span><span class="o">=</span><span class="p">(</span><span class="n">x_pos</span><span class="p">,</span> <span class="mf">0.95</span><span class="p">),</span> <span class="n">xytext</span><span class="o">=</span><span class="p">(</span><span class="n">x_pos</span><span class="p">,</span> <span class="mf">1.00</span><span class="p">),</span> <span class="n">xycoords</span><span class="o">=</span><span class="s1">&#39;axes fraction&#39;</span><span class="p">,</span> 
+            <span class="n">fontsize</span><span class="o">=</span><span class="mf">6.5</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s1">&#39;bottom&#39;</span><span class="p">,</span>
+            <span class="n">bbox</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">boxstyle</span><span class="o">=</span><span class="s1">&#39;square&#39;</span><span class="p">,</span> <span class="n">fc</span><span class="o">=</span><span class="s1">&#39;white&#39;</span><span class="p">),</span>
+            <span class="n">arrowprops</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">arrowstyle</span><span class="o">=</span><span class="s1">&#39;-[, widthB=7.0, lengthB=1.5&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">1.0</span><span class="p">))</span>
+
+<span class="n">x_pos</span> <span class="o">=</span> <span class="mf">0.5</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="s1">&#39;Bandwidth&#39;</span><span class="p">,</span> <span class="n">xy</span><span class="o">=</span><span class="p">(</span><span class="n">x_pos</span><span class="p">,</span> <span class="mf">0.06</span><span class="p">),</span> <span class="n">xytext</span><span class="o">=</span><span class="p">(</span><span class="n">x_pos</span><span class="p">,</span> <span class="mf">0.11</span><span class="p">),</span> <span class="n">xycoords</span><span class="o">=</span><span class="s1">&#39;axes fraction&#39;</span><span class="p">,</span> 
+            <span class="n">fontsize</span><span class="o">=</span><span class="mf">9.5</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s1">&#39;bottom&#39;</span><span class="p">,</span>
+            <span class="n">bbox</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">boxstyle</span><span class="o">=</span><span class="s1">&#39;square&#39;</span><span class="p">,</span> <span class="n">fc</span><span class="o">=</span><span class="s1">&#39;white&#39;</span><span class="p">),</span>
+            <span class="n">arrowprops</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">arrowstyle</span><span class="o">=</span><span class="s1">&#39;-[, widthB=7.0, lengthB=1.5&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">1.0</span><span class="p">))</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">1.1</span><span class="p">)</span>
+<span class="n">eda</span><span class="o">.</span><span class="n">hide_spines</span><span class="p">(</span><span class="n">ax</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Data Fraction&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Relative Weighting&#39;</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>Text(0, 0.5, &#39;Relative Weighting&#39;)
+</code></pre></div>
+<p><img alt="png" src="../img/nbs/output_38_1.png" /></p>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
+        
+          <a href="../dev-08-hyper-parameter-tuning/" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+            </div>
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Hyper-Parameter Tuning
+              </div>
+            </div>
+          </a>
+        
+        
+          <a href="../dev-10-ci-cd/" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                CI-CD
+              </div>
+            </div>
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../assets/javascripts/vendor.08c56446.min.js"></script>
+      <script src="../assets/javascripts/bundle.6ced434e.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}</script>
+      
+      <script>
+        app = initialize({
+          base: "..",
+          features: ['header.autohide', 'navigation.tabs', 'navigation.instant', 'search.suggest'],
+          search: Object.assign({
+            worker: "../assets/javascripts/worker/search.8c7e0a7e.min.js"
+          }, typeof search !== "undefined" && search)
+        })
+      </script>
+      
+        <script src="../javascripts/config.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

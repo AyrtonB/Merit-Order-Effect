@@ -1,0 +1,2769 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+      <link rel="shortcut icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-6.2.2">
+    
+    
+      
+        <title>Data Retrieval - Outage Watch</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.73f7c429.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.39b8e14a.min.css">
+        
+          
+          
+          <meta name="theme-color" content="#000000">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono",SFMono-Regular,Consolas,Menlo,monospace}</style>
+      
+    
+    
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="black" data-md-color-accent="">
+      
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#data-retrieval" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid" aria-label="Header">
+    <a href=".." title="Outage Watch" class="md-header-nav__button md-logo" aria-label="Outage Watch">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header-nav__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header-nav__title" data-md-component="header-title">
+      <div class="md-header-nav__ellipsis">
+        <div class="md-header-nav__topic">
+          <span class="md-ellipsis">
+            Outage Watch
+          </span>
+        </div>
+        <div class="md-header-nav__topic">
+          <span class="md-ellipsis">
+            
+              Data Retrieval
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      <label class="md-header-nav__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" data-md-component="search-reset" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header-nav__source">
+        
+<a href="https://github.com/OSUKED/Outage-Watch/" title="Go to repository" class="md-source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    OSUKED/Outage-Watch
+  </div>
+</a>
+      </div>
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href=".." class="md-tabs__link">
+      Home
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../ug-01-quantile/" class="md-tabs__link">
+        User Guide
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+    
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="./" class="md-tabs__link md-tabs__link--active">
+        Development
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Outage Watch" class="md-nav__button md-logo" aria-label="Outage Watch">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    Outage Watch
+  </label>
+  
+    <div class="md-nav__source">
+      
+<a href="https://github.com/OSUKED/Outage-Watch/" title="Go to repository" class="md-source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    OSUKED/Outage-Watch
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+
+  <li class="md-nav__item">
+    <a href=".." class="md-nav__link">
+      Home
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+
+  
+  <li class="md-nav__item md-nav__item--nested">
+    
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2" >
+    
+    <label class="md-nav__link" for="nav-2">
+      User Guide
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="User Guide" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        <span class="md-nav__icon md-icon"></span>
+        User Guide
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="../ug-01-quantile/" class="md-nav__link">
+      Quantile Predictions
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="../ug-02-confidence/" class="md-nav__link">
+      Confidence Intervals
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="../ug-03-power-curve/" class="md-nav__link">
+      Power Curve Cleaning
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="../ug-04-gb-mcc/" class="md-nav__link">
+      Marginal Cost Curve
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  
+
+
+  
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3" checked>
+    
+    <label class="md-nav__link" for="nav-3">
+      Development
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Development" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        <span class="md-nav__icon md-icon"></span>
+        Development
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Data Retrieval
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+    
+    <a href="./" class="md-nav__link md-nav__link--active">
+      Data Retrieval
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#imports" class="md-nav__link">
+    Imports
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#electric-insights" class="md-nav__link">
+    Electric Insights
+  </a>
+  
+    <nav class="md-nav" aria-label="Electric Insights">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#single-stream" class="md-nav__link">
+    Single Stream
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#multiple-streams" class="md-nav__link">
+    Multiple Streams
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#energy-charts" class="md-nav__link">
+    Energy-Charts
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#entsoe" class="md-nav__link">
+    ENTSOE
+  </a>
+  
+    <nav class="md-nav" aria-label="ENTSOE">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#prices" class="md-nav__link">
+    Prices
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#generation-by-fuel-type" class="md-nav__link">
+    Generation by Fuel-Type
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="../dev-02-eda/" class="md-nav__link">
+      Exploratory Data Analysis
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="../dev-03-lowess/" class="md-nav__link">
+      LOWESS
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="../dev-04-price-surface-estimation/" class="md-nav__link">
+      Price Curve Estimation
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="../dev-05-price-moe/" class="md-nav__link">
+      Price MOE Calculation
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="../dev-06-carbon-surface-estimation-and-moe/" class="md-nav__link">
+      Carbon Curve Estimation & MOE
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="../dev-07-prediction-confidence-and-intervals/" class="md-nav__link">
+      Prediction & Confidence Intervals
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="../dev-08-hyper-parameter-tuning/" class="md-nav__link">
+      Hyper-Parameter Tuning
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="../dev-09-tables-and-figures/" class="md-nav__link">
+      Tables & Figures
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="../dev-10-ci-cd/" class="md-nav__link">
+      CI-CD
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#imports" class="md-nav__link">
+    Imports
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#electric-insights" class="md-nav__link">
+    Electric Insights
+  </a>
+  
+    <nav class="md-nav" aria-label="Electric Insights">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#single-stream" class="md-nav__link">
+    Single Stream
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#multiple-streams" class="md-nav__link">
+    Multiple Streams
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#energy-charts" class="md-nav__link">
+    Energy-Charts
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#entsoe" class="md-nav__link">
+    ENTSOE
+  </a>
+  
+    <nav class="md-nav" aria-label="ENTSOE">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#prices" class="md-nav__link">
+    Prices
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#generation-by-fuel-type" class="md-nav__link">
+    Generation by Fuel-Type
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/OSUKED/Outage-Watch/edit/main/docs/dev-01-retrieval.md" title="Edit this page" class="md-content__button md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+                  </a>
+                
+                
+                <h1 id="data-retrieval">Data Retrieval<a class="headerlink" href="#data-retrieval" title="Permanent link">&para;</a></h1>
+<p>This notebook outlines the retrieval of the fuel generation and price data required for the merit-order-effect analyses.</p>
+<p><br></p>
+<h3 id="imports">Imports<a class="headerlink" href="#imports" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="c1">#exports</span>
+<span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="kn">import</span> <span class="nn">requests</span>
+<span class="kn">import</span> <span class="nn">xmltodict</span>
+<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">date</span>
+<span class="kn">from</span> <span class="nn">warnings</span> <span class="kn">import</span> <span class="n">warn</span>
+<span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">product</span>
+
+<span class="kn">from</span> <span class="nn">dotenv</span> <span class="kn">import</span> <span class="n">load_dotenv</span>
+<span class="kn">from</span> <span class="nn">entsoe</span> <span class="kn">import</span> <span class="n">EntsoePandasClient</span><span class="p">,</span> <span class="n">EntsoeRawClient</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">ipypb</span> <span class="kn">import</span> <span class="n">track</span>
+<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">JSON</span>
+</code></pre></div>
+<p><br></p>
+<h3 id="electric-insights">Electric Insights<a class="headerlink" href="#electric-insights" title="Permanent link">&para;</a></h3>
+<p>Electric Insights provides a site to "Take a closer look at the supply, demand, price and environmental impact of Britain’s electricity", it also exposes an API that contains the data we require for this analysis</p>
+<p><br></p>
+<h4 id="single-stream">Single Stream<a class="headerlink" href="#single-stream" title="Permanent link">&para;</a></h4>
+<p>We'll being by retrieving data for a single stream only, starting with just the raw JSON response</p>
+<div class="highlight"><pre><span></span><code><span class="c1">#exports</span>
+<span class="k">def</span> <span class="nf">query_API</span><span class="p">(</span><span class="n">start_date</span><span class="p">:</span><span class="nb">str</span><span class="p">,</span> <span class="n">end_date</span><span class="p">:</span><span class="nb">str</span><span class="p">,</span> <span class="n">stream</span><span class="p">:</span><span class="nb">str</span><span class="p">,</span> <span class="n">time_group</span><span class="o">=</span><span class="s1">&#39;30m&#39;</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    &#39;Query API&#39; makes the call to Electric Insights and returns the JSON response</span>
+
+<span class="sd">    Parameters:</span>
+<span class="sd">        start_date: Start date for data given as a string in the form &#39;%Y-%m-%d&#39;</span>
+<span class="sd">        end_date: End date for data given as a string in the form &#39;%Y-%m-%d&#39;</span>
+<span class="sd">        stream: One of &#39;prices_ahead&#39;, &#39;prices_ahead&#39;, &#39;prices&#39;, &#39;temperatures&#39; or &#39;emissions&#39;</span>
+<span class="sd">        time_group: One of &#39;30m&#39;, &#39;1h&#39;, &#39;1d&#39; or &#39;7d&#39;. The default is &#39;30m&#39;</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># Checking stream is an EI endpoint</span>
+    <span class="n">possible_streams</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;prices_ahead&#39;</span><span class="p">,</span> <span class="s1">&#39;prices&#39;</span><span class="p">,</span> <span class="s1">&#39;temperatures&#39;</span><span class="p">,</span> <span class="s1">&#39;emissions&#39;</span><span class="p">,</span> <span class="s1">&#39;generation-mix&#39;</span><span class="p">]</span>
+    <span class="k">assert</span> <span class="n">stream</span> <span class="ow">in</span> <span class="n">possible_streams</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;Stream must be one of </span><span class="si">{</span><span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="n">stream</span><span class="o">+</span><span class="s1">&#39;, &#39;</span> <span class="k">for</span> <span class="n">stream</span> <span class="ow">in</span> <span class="n">possible_streams</span><span class="p">])[:</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span>
+
+    <span class="c1"># Checking time_group will be accepted by API</span>
+    <span class="n">possible_time_groups</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;30m&#39;</span><span class="p">,</span> <span class="s1">&#39;1h&#39;</span><span class="p">,</span> <span class="s1">&#39;1d&#39;</span><span class="p">,</span> <span class="s1">&#39;7d&#39;</span><span class="p">]</span>
+    <span class="k">assert</span> <span class="n">time_group</span> <span class="ow">in</span> <span class="n">possible_time_groups</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;Time group must be one of </span><span class="si">{</span><span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="n">time_group</span><span class="o">+</span><span class="s1">&#39;, &#39;</span> <span class="k">for</span> <span class="n">time_group</span> <span class="ow">in</span> <span class="n">possible_time_groups</span><span class="p">])[:</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span>
+
+    <span class="c1"># Formatting dates</span>
+    <span class="n">format_dt</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">dt</span><span class="p">:</span> <span class="n">date</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="n">dt</span><span class="p">,</span> <span class="s1">&#39;%Y-%m-</span><span class="si">%d</span><span class="s1">&#39;</span><span class="p">)</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">dt</span><span class="p">,</span> <span class="n">date</span><span class="p">)</span> <span class="k">else</span> <span class="n">dt</span>
+    <span class="n">start_date</span> <span class="o">=</span> <span class="n">format_dt</span><span class="p">(</span><span class="n">start_date</span><span class="p">)</span>
+    <span class="n">end_date</span> <span class="o">=</span> <span class="n">format_dt</span><span class="p">(</span><span class="n">end_date</span><span class="p">)</span>
+
+    <span class="c1"># Running query and parsing response</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;http://drax-production.herokuapp.com/api/1/</span><span class="si">{</span><span class="n">stream</span><span class="si">}</span><span class="s1">?date_from=</span><span class="si">{</span><span class="n">start_date</span><span class="si">}</span><span class="s1">&amp;date_to=</span><span class="si">{</span><span class="n">end_date</span><span class="si">}</span><span class="s1">&amp;group_by=</span><span class="si">{</span><span class="n">time_group</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="n">r_json</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+
+    <span class="k">return</span> <span class="n">r_json</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="n">start_date</span> <span class="o">=</span> <span class="s1">&#39;2019-01-01&#39;</span>
+<span class="n">end_date</span> <span class="o">=</span> <span class="s1">&#39;2019-01-31&#39;</span>
+<span class="n">stream</span> <span class="o">=</span> <span class="s1">&#39;generation-mix&#39;</span>
+
+<span class="n">r_json</span> <span class="o">=</span> <span class="n">query_API</span><span class="p">(</span><span class="n">start_date</span><span class="p">,</span> <span class="n">end_date</span><span class="p">,</span> <span class="n">stream</span><span class="p">)</span>
+
+<span class="n">JSON</span><span class="p">([</span><span class="n">r_json</span><span class="p">])</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>&lt;IPython.core.display.JSON object&gt;
+</code></pre></div>
+<p><br></p>
+<p>We can convert this response to a dataframe, however this doesn't handle the nested columns well</p>
+<div class="highlight"><pre><span></span><code><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="o">.</span><span class="n">from_dict</span><span class="p">(</span><span class="n">r_json</span><span class="p">)</span>
+
+<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</code></pre></div>
+<table>
+<thead>
+<tr>
+<th align="right">Unnamed: 0</th>
+<th align="left">start</th>
+<th align="left">end</th>
+<th align="left">value</th>
+<th align="left">valueSum</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="right">0</td>
+<td align="left">2019-01-01T00:00:00Z</td>
+<td align="left">2019-01-01T00:30:00Z</td>
+<td align="left">{'nuclear': 6.924, 'biomass': 1.116, 'coal': 0...</td>
+<td align="left">{'nuclear': 6.924, 'biomass': 1.116, 'coal': 0...</td>
+</tr>
+<tr>
+<td align="right">1</td>
+<td align="left">2019-01-01T00:30:00Z</td>
+<td align="left">2019-01-01T01:00:00Z</td>
+<td align="left">{'nuclear': 6.838, 'biomass': 1.103, 'coal': 0...</td>
+<td align="left">{'nuclear': 6.838, 'biomass': 1.103, 'coal': 0...</td>
+</tr>
+<tr>
+<td align="right">2</td>
+<td align="left">2019-01-01T01:00:00Z</td>
+<td align="left">2019-01-01T01:30:00Z</td>
+<td align="left">{'nuclear': 6.834, 'biomass': 1.09, 'coal': 0,...</td>
+<td align="left">{'nuclear': 6.834, 'biomass': 1.09, 'coal': 0,...</td>
+</tr>
+<tr>
+<td align="right">3</td>
+<td align="left">2019-01-01T01:30:00Z</td>
+<td align="left">2019-01-01T02:00:00Z</td>
+<td align="left">{'nuclear': 6.83, 'biomass': 1.085, 'coal': 0,...</td>
+<td align="left">{'nuclear': 6.83, 'biomass': 1.085, 'coal': 0,...</td>
+</tr>
+<tr>
+<td align="right">4</td>
+<td align="left">2019-01-01T02:00:00Z</td>
+<td align="left">2019-01-01T02:30:00Z</td>
+<td align="left">{'nuclear': 6.827, 'biomass': 1.081, 'coal': 0...</td>
+<td align="left">{'nuclear': 6.827, 'biomass': 1.081, 'coal': 0...</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p>We can create a function that will take a specified column and extract the nested dataframe</p>
+<div class="highlight"><pre><span></span><code><span class="c1">#exports</span>
+<span class="k">def</span> <span class="nf">dict_col_2_cols</span><span class="p">(</span><span class="n">df</span><span class="p">:</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span> <span class="n">value_col</span><span class="o">=</span><span class="s1">&#39;value&#39;</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Checks the `value_col`, if it contains dictionaries these are transformed into new columns which then replace it&quot;&quot;&quot;</span>
+
+    <span class="c1">## Checks the value col is found in the dataframe</span>
+    <span class="k">if</span> <span class="n">value_col</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">df</span>
+
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">value_col</span><span class="p">],</span> <span class="nb">dict</span><span class="p">):</span>
+        <span class="n">df_values</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">value_col</span><span class="p">]</span><span class="o">.</span><span class="n">to_dict</span><span class="p">())</span><span class="o">.</span><span class="n">T</span>
+        <span class="n">df</span><span class="p">[</span><span class="n">df_values</span><span class="o">.</span><span class="n">columns</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_values</span>
+        <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="n">value_col</span><span class="p">])</span>
+
+    <span class="k">return</span> <span class="n">df</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="n">df</span> <span class="o">=</span> <span class="n">dict_col_2_cols</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+
+<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+</code></pre></div>
+<table>
+<thead>
+<tr>
+<th align="right">Unnamed: 0</th>
+<th align="left">start</th>
+<th align="left">end</th>
+<th align="left">valueSum</th>
+<th align="right">nuclear</th>
+<th align="right">biomass</th>
+<th align="right">coal</th>
+<th align="right">gas</th>
+<th align="right">hydro</th>
+<th align="right">wind</th>
+<th align="left">windTotal</th>
+<th align="right">solar</th>
+<th align="right">demand</th>
+<th align="right">pumpedStorage</th>
+<th align="left">imports</th>
+<th align="left">exports</th>
+<th align="left">balance</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="right">0</td>
+<td align="left">2019-01-01T00:00:00Z</td>
+<td align="left">2019-01-01T00:30:00Z</td>
+<td align="left">{'nuclear': 6.924, 'biomass': 1.116, 'coal': 0...</td>
+<td align="right">6.924</td>
+<td align="right">1.116</td>
+<td align="right">0</td>
+<td align="right">5.853</td>
+<td align="right">0.405</td>
+<td align="right">11.304</td>
+<td align="left">{'windOnshore': 8.054581, 'windOffshore': 3.14...</td>
+<td align="right">0</td>
+<td align="right">27.336</td>
+<td align="right">0</td>
+<td align="left">{'belgian': 0, 'dutch': 0.182, 'french': 1.552...</td>
+<td align="left">{'french': 0, 'dutch': 0, 'irish': 0, 'pumpedS...</td>
+<td align="left">{'french': 1.552, 'dutch': 0.182, 'irish': -0....</td>
+</tr>
+<tr>
+<td align="right">1</td>
+<td align="left">2019-01-01T00:30:00Z</td>
+<td align="left">2019-01-01T01:00:00Z</td>
+<td align="left">{'nuclear': 6.838, 'biomass': 1.103, 'coal': 0...</td>
+<td align="right">6.838</td>
+<td align="right">1.103</td>
+<td align="right">0</td>
+<td align="right">6.292</td>
+<td align="right">0.388</td>
+<td align="right">11.327</td>
+<td align="left">{'windOnshore': 7.860487, 'windOffshore': 3.25...</td>
+<td align="right">0</td>
+<td align="right">27.722</td>
+<td align="right">0.024</td>
+<td align="left">{'belgian': 0, 'dutch': 0.196, 'french': 1.554...</td>
+<td align="left">{'french': 0, 'dutch': 0, 'irish': 0, 'pumpedS...</td>
+<td align="left">{'french': 1.554, 'dutch': 0.196, 'irish': -0....</td>
+</tr>
+<tr>
+<td align="right">2</td>
+<td align="left">2019-01-01T01:00:00Z</td>
+<td align="left">2019-01-01T01:30:00Z</td>
+<td align="left">{'nuclear': 6.834, 'biomass': 1.09, 'coal': 0,...</td>
+<td align="right">6.834</td>
+<td align="right">1.09</td>
+<td align="right">0</td>
+<td align="right">5.719</td>
+<td align="right">0.372</td>
+<td align="right">11.335</td>
+<td align="left">{'windOnshore': 7.879198000000001, 'windOffsho...</td>
+<td align="right">0</td>
+<td align="right">27.442</td>
+<td align="right">0</td>
+<td align="left">{'belgian': 0, 'dutch': 0.588, 'french': 1.504...</td>
+<td align="left">{'french': 0, 'dutch': 0, 'irish': 0, 'pumpedS...</td>
+<td align="left">{'french': 1.504, 'dutch': 0.588, 'irish': -0....</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p>Unfortunately however this doesn't handle repeated nesting of dictionaries, we'll create a wrapper that does</p>
+<div class="highlight"><pre><span></span><code><span class="c1">#exports</span>
+<span class="k">def</span> <span class="nf">clean_nested_dict_cols</span><span class="p">(</span><span class="n">df</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Unpacks columns contining nested dictionaries&quot;&quot;&quot;</span>
+    <span class="c1"># Calculating columns that are still dictionaries</span>
+    <span class="n">s_types</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">val</span><span class="p">:</span> <span class="nb">type</span><span class="p">(</span><span class="n">val</span><span class="p">))</span>
+    <span class="n">cols_with_dicts</span> <span class="o">=</span> <span class="n">s_types</span><span class="p">[</span><span class="n">s_types</span> <span class="o">==</span> <span class="nb">dict</span><span class="p">]</span><span class="o">.</span><span class="n">index</span>
+
+    <span class="k">while</span> <span class="nb">len</span><span class="p">(</span><span class="n">cols_with_dicts</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">col_with_dicts</span> <span class="ow">in</span> <span class="n">cols_with_dicts</span><span class="p">:</span>
+            <span class="c1"># Extracting dataframes from dictionary columns</span>
+            <span class="n">df</span> <span class="o">=</span> <span class="n">dict_col_2_cols</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">col_with_dicts</span><span class="p">)</span>
+
+            <span class="c1"># Recalculating columns that are still dictionaries</span>
+            <span class="n">s_types</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">val</span><span class="p">:</span> <span class="nb">type</span><span class="p">(</span><span class="n">val</span><span class="p">))</span>
+            <span class="n">cols_with_dicts</span> <span class="o">=</span> <span class="n">s_types</span><span class="p">[</span><span class="n">s_types</span> <span class="o">==</span> <span class="nb">dict</span><span class="p">]</span><span class="o">.</span><span class="n">index</span>
+
+    <span class="k">return</span> <span class="n">df</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="n">df</span> <span class="o">=</span> <span class="n">clean_nested_dict_cols</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+
+<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</code></pre></div>
+<table>
+<thead>
+<tr>
+<th align="right">Unnamed: 0</th>
+<th align="left">start</th>
+<th align="left">end</th>
+<th align="right">nuclear</th>
+<th align="right">biomass</th>
+<th align="right">coal</th>
+<th align="right">gas</th>
+<th align="right">hydro</th>
+<th align="right">wind</th>
+<th align="right">solar</th>
+<th align="right">demand</th>
+<th align="right">pumpedStorage</th>
+<th align="right">windOnshore</th>
+<th align="right">windOffshore</th>
+<th align="right">belgian</th>
+<th align="right">dutch</th>
+<th align="right">french</th>
+<th align="right">ireland</th>
+<th align="right">northernIreland</th>
+<th align="right">irish</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="right">0</td>
+<td align="left">2019-01-01T00:00:00Z</td>
+<td align="left">2019-01-01T00:30:00Z</td>
+<td align="right">6.924</td>
+<td align="right">1.116</td>
+<td align="right">0</td>
+<td align="right">5.853</td>
+<td align="right">0.405</td>
+<td align="right">11.304</td>
+<td align="right">0</td>
+<td align="right">27.336</td>
+<td align="right">0</td>
+<td align="right">8.05458</td>
+<td align="right">3.14171</td>
+<td align="right">0</td>
+<td align="right">0.182</td>
+<td align="right">1.552</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">-0.702</td>
+</tr>
+<tr>
+<td align="right">1</td>
+<td align="left">2019-01-01T00:30:00Z</td>
+<td align="left">2019-01-01T01:00:00Z</td>
+<td align="right">6.838</td>
+<td align="right">1.103</td>
+<td align="right">0</td>
+<td align="right">6.292</td>
+<td align="right">0.388</td>
+<td align="right">11.327</td>
+<td align="right">0</td>
+<td align="right">27.722</td>
+<td align="right">0.024</td>
+<td align="right">7.86049</td>
+<td align="right">3.25389</td>
+<td align="right">0</td>
+<td align="right">0.196</td>
+<td align="right">1.554</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">-0.696</td>
+</tr>
+<tr>
+<td align="right">2</td>
+<td align="left">2019-01-01T01:00:00Z</td>
+<td align="left">2019-01-01T01:30:00Z</td>
+<td align="right">6.834</td>
+<td align="right">1.09</td>
+<td align="right">0</td>
+<td align="right">5.719</td>
+<td align="right">0.372</td>
+<td align="right">11.335</td>
+<td align="right">0</td>
+<td align="right">27.442</td>
+<td align="right">0</td>
+<td align="right">7.8792</td>
+<td align="right">3.34085</td>
+<td align="right">0</td>
+<td align="right">0.588</td>
+<td align="right">1.504</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">-0.722</td>
+</tr>
+<tr>
+<td align="right">3</td>
+<td align="left">2019-01-01T01:30:00Z</td>
+<td align="left">2019-01-01T02:00:00Z</td>
+<td align="right">6.83</td>
+<td align="right">1.085</td>
+<td align="right">0</td>
+<td align="right">5.02</td>
+<td align="right">0.368</td>
+<td align="right">11.063</td>
+<td align="right">0</td>
+<td align="right">26.47</td>
+<td align="right">0</td>
+<td align="right">7.70887</td>
+<td align="right">3.2137</td>
+<td align="right">0</td>
+<td align="right">0.6</td>
+<td align="right">1.504</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">-0.77</td>
+</tr>
+<tr>
+<td align="right">4</td>
+<td align="left">2019-01-01T02:00:00Z</td>
+<td align="left">2019-01-01T02:30:00Z</td>
+<td align="right">6.827</td>
+<td align="right">1.081</td>
+<td align="right">0</td>
+<td align="right">4.964</td>
+<td align="right">0.355</td>
+<td align="right">10.786</td>
+<td align="right">0</td>
+<td align="right">26.195</td>
+<td align="right">0</td>
+<td align="right">7.47943</td>
+<td align="right">3.12271</td>
+<td align="right">0</td>
+<td align="right">0.678</td>
+<td align="right">1.504</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">-0.91</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p>Next we'll process the datetime index</p>
+<div class="highlight"><pre><span></span><code><span class="c1">#exports</span>
+<span class="k">def</span> <span class="nf">set_dt_idx</span><span class="p">(</span><span class="n">df</span><span class="p">:</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span> <span class="n">idx_name</span><span class="o">=</span><span class="s1">&#39;local_datetime&#39;</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Converts the start datetime to UK local time, then sets it as the index and removes the original datetime columns</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">idx_dt</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DatetimeIndex</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;start&#39;</span><span class="p">],</span> <span class="n">utc</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span><span class="o">.</span><span class="n">tz_convert</span><span class="p">(</span><span class="s1">&#39;Europe/London&#39;</span><span class="p">)</span>
+    <span class="n">idx_dt</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">idx_name</span>
+
+    <span class="n">df</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="n">idx_dt</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;start&#39;</span><span class="p">,</span> <span class="s1">&#39;end&#39;</span><span class="p">])</span>
+
+    <span class="k">return</span> <span class="n">df</span>
+
+<span class="k">def</span> <span class="nf">create_df_dt_rng</span><span class="p">(</span><span class="n">start_date</span><span class="p">,</span> <span class="n">end_date</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="s1">&#39;30T&#39;</span><span class="p">,</span> <span class="n">tz</span><span class="o">=</span><span class="s1">&#39;Europe/London&#39;</span><span class="p">,</span> <span class="n">dt_str_template</span><span class="o">=</span><span class="s1">&#39;%Y-%m-</span><span class="si">%d</span><span class="s1">&#39;</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Creates a dataframe mapping between local datetimes and electricity market dates/settlement periods</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># Creating localised datetime index</span>
+    <span class="n">s_dt_rng</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="n">start_date</span><span class="p">,</span> <span class="n">end_date</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="n">freq</span><span class="p">,</span> <span class="n">tz</span><span class="o">=</span><span class="n">tz</span><span class="p">)</span>
+    <span class="n">s_dt_SP_count</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">s_dt_rng</span><span class="p">)</span><span class="o">.</span><span class="n">resample</span><span class="p">(</span><span class="s1">&#39;D&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
+
+    <span class="c1"># Creating SP column</span>
+    <span class="n">SPs</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">num_SPs</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="n">s_dt_SP_count</span><span class="p">):</span>
+        <span class="n">SPs</span> <span class="o">+=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">num_SPs</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span>
+
+    <span class="c1"># Creating datetime dataframe</span>
+    <span class="n">df_dt_rng</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="n">s_dt_rng</span><span class="p">)</span>
+    <span class="n">df_dt_rng</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;local_datetime&#39;</span>
+
+    <span class="c1"># Adding query call cols</span>
+    <span class="n">df_dt_rng</span><span class="p">[</span><span class="s1">&#39;SP&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">SPs</span>
+    <span class="n">df_dt_rng</span><span class="p">[</span><span class="s1">&#39;date&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_dt_rng</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="n">dt_str_template</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">df_dt_rng</span>
+
+<span class="k">def</span> <span class="nf">clean_df_dts</span><span class="p">(</span><span class="n">df</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Cleans the datetime index of the passed DataFrame&quot;&quot;&quot;</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">set_dt_idx</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="o">~</span><span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">duplicated</span><span class="p">()]</span> 
+
+    <span class="n">df_dt_rng</span> <span class="o">=</span> <span class="n">create_df_dt_rng</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">max</span><span class="p">())</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">reindex</span><span class="p">(</span><span class="n">df_dt_rng</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
+
+    <span class="n">df</span><span class="p">[</span><span class="s1">&#39;SP&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_dt_rng</span><span class="p">[</span><span class="s1">&#39;SP&#39;</span><span class="p">]</span> <span class="c1"># Adding settlement period designation</span>
+
+    <span class="k">return</span> <span class="n">df</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="n">df</span> <span class="o">=</span> <span class="n">clean_df_dts</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+
+<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</code></pre></div>
+<table>
+<thead>
+<tr>
+<th align="left">local_datetime</th>
+<th align="right">nuclear</th>
+<th align="right">biomass</th>
+<th align="right">coal</th>
+<th align="right">gas</th>
+<th align="right">hydro</th>
+<th align="right">wind</th>
+<th align="right">solar</th>
+<th align="right">demand</th>
+<th align="right">pumpedStorage</th>
+<th align="right">windOnshore</th>
+<th align="right">windOffshore</th>
+<th align="right">belgian</th>
+<th align="right">dutch</th>
+<th align="right">french</th>
+<th align="right">ireland</th>
+<th align="right">northernIreland</th>
+<th align="right">irish</th>
+<th align="right">SP</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">2019-01-01 00:00:00+00:00</td>
+<td align="right">6.924</td>
+<td align="right">1.116</td>
+<td align="right">0</td>
+<td align="right">5.853</td>
+<td align="right">0.405</td>
+<td align="right">11.304</td>
+<td align="right">0</td>
+<td align="right">27.336</td>
+<td align="right">0</td>
+<td align="right">8.05458</td>
+<td align="right">3.14171</td>
+<td align="right">0</td>
+<td align="right">0.182</td>
+<td align="right">1.552</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">-0.702</td>
+<td align="right">1</td>
+</tr>
+<tr>
+<td align="left">2019-01-01 00:30:00+00:00</td>
+<td align="right">6.838</td>
+<td align="right">1.103</td>
+<td align="right">0</td>
+<td align="right">6.292</td>
+<td align="right">0.388</td>
+<td align="right">11.327</td>
+<td align="right">0</td>
+<td align="right">27.722</td>
+<td align="right">0.024</td>
+<td align="right">7.86049</td>
+<td align="right">3.25389</td>
+<td align="right">0</td>
+<td align="right">0.196</td>
+<td align="right">1.554</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">-0.696</td>
+<td align="right">2</td>
+</tr>
+<tr>
+<td align="left">2019-01-01 01:00:00+00:00</td>
+<td align="right">6.834</td>
+<td align="right">1.09</td>
+<td align="right">0</td>
+<td align="right">5.719</td>
+<td align="right">0.372</td>
+<td align="right">11.335</td>
+<td align="right">0</td>
+<td align="right">27.442</td>
+<td align="right">0</td>
+<td align="right">7.8792</td>
+<td align="right">3.34085</td>
+<td align="right">0</td>
+<td align="right">0.588</td>
+<td align="right">1.504</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">-0.722</td>
+<td align="right">3</td>
+</tr>
+<tr>
+<td align="left">2019-01-01 01:30:00+00:00</td>
+<td align="right">6.83</td>
+<td align="right">1.085</td>
+<td align="right">0</td>
+<td align="right">5.02</td>
+<td align="right">0.368</td>
+<td align="right">11.063</td>
+<td align="right">0</td>
+<td align="right">26.47</td>
+<td align="right">0</td>
+<td align="right">7.70887</td>
+<td align="right">3.2137</td>
+<td align="right">0</td>
+<td align="right">0.6</td>
+<td align="right">1.504</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">-0.77</td>
+<td align="right">4</td>
+</tr>
+<tr>
+<td align="left">2019-01-01 02:00:00+00:00</td>
+<td align="right">6.827</td>
+<td align="right">1.081</td>
+<td align="right">0</td>
+<td align="right">4.964</td>
+<td align="right">0.355</td>
+<td align="right">10.786</td>
+<td align="right">0</td>
+<td align="right">26.195</td>
+<td align="right">0</td>
+<td align="right">7.47943</td>
+<td align="right">3.12271</td>
+<td align="right">0</td>
+<td align="right">0.678</td>
+<td align="right">1.504</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">-0.91</td>
+<td align="right">5</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p>We'll now combine all of the previous steps and add some column renaming where we want to tidy them up a bit</p>
+<div class="highlight"><pre><span></span><code><span class="c1">#exports</span>
+<span class="k">def</span> <span class="nf">retrieve_stream_df</span><span class="p">(</span><span class="n">start_date</span><span class="p">:</span><span class="nb">str</span><span class="p">,</span> <span class="n">end_date</span><span class="p">:</span><span class="nb">str</span><span class="p">,</span> <span class="n">stream</span><span class="p">:</span><span class="nb">str</span><span class="p">,</span> <span class="n">time_group</span><span class="o">=</span><span class="s1">&#39;30m&#39;</span><span class="p">,</span> <span class="n">renaming_dict</span><span class="o">=</span><span class="p">{}):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Makes the call to Electric Insights and parses the response into a dataframe which is returned</span>
+
+<span class="sd">    Parameters:</span>
+<span class="sd">        start_date: Start date for data given as a string in the form &#39;%Y-%m-%d&#39;</span>
+<span class="sd">        end_date: End date for data given as a string in the form &#39;%Y-%m-%d&#39;</span>
+<span class="sd">        stream: One of &#39;prices_ahead&#39;, &#39;prices_ahead&#39;, &#39;prices&#39;, &#39;temperatures&#39; or &#39;emissions&#39;</span>
+<span class="sd">        time_group: One of &#39;30m&#39;, &#39;1h&#39;, &#39;1d&#39; or &#39;7d&#39;. The default is &#39;30m&#39;</span>
+<span class="sd">        renaming_dict: Mapping from old to new column names</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># Calling data and parsing into dataframe</span>
+    <span class="n">r_json</span> <span class="o">=</span> <span class="n">query_API</span><span class="p">(</span><span class="n">start_date</span><span class="p">,</span> <span class="n">end_date</span><span class="p">,</span> <span class="n">stream</span><span class="p">,</span> <span class="n">time_group</span><span class="p">)</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="o">.</span><span class="n">from_dict</span><span class="p">(</span><span class="n">r_json</span><span class="p">)</span>
+
+    <span class="c1"># Handling entrys which are dictionarys</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">clean_nested_dict_cols</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+
+    <span class="c1"># Setting index as localised datetime, reindexing with all intervals and adding SP</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">clean_df_dts</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+
+    <span class="c1"># Renaming value col</span>
+    <span class="k">if</span> <span class="s1">&#39;value&#39;</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
+        <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;value&#39;</span><span class="p">:</span><span class="n">stream</span><span class="p">})</span>
+
+    <span class="k">if</span> <span class="s1">&#39;referenceOnly&#39;</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
+        <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;referenceOnly&#39;</span><span class="p">])</span>
+
+    <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="n">renaming_dict</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">df</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="n">start_date</span> <span class="o">=</span> <span class="s1">&#39;2019-01-01&#39;</span>
+<span class="n">end_date</span> <span class="o">=</span> <span class="s1">&#39;2019-01-31&#39;</span>
+<span class="n">stream</span> <span class="o">=</span> <span class="s1">&#39;generation-mix&#39;</span>
+
+<span class="n">renaming_dict</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;pumpedStorage&#39;</span> <span class="p">:</span> <span class="s1">&#39;pumped_storage&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;northernIreland&#39;</span> <span class="p">:</span> <span class="s1">&#39;northern_ireland&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;windOnshore&#39;</span><span class="p">:</span> <span class="s1">&#39;wind_onshore&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;windOffshore&#39;</span><span class="p">:</span> <span class="s1">&#39;wind_offshore&#39;</span>
+<span class="p">}</span>
+
+<span class="n">df</span> <span class="o">=</span> <span class="n">retrieve_stream_df</span><span class="p">(</span><span class="n">start_date</span><span class="p">,</span> <span class="n">end_date</span><span class="p">,</span> <span class="n">stream</span><span class="p">,</span> <span class="n">renaming_dict</span><span class="o">=</span><span class="n">renaming_dict</span><span class="p">)</span>
+
+<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</code></pre></div>
+<table>
+<thead>
+<tr>
+<th align="left">local_datetime</th>
+<th align="right">nuclear</th>
+<th align="right">biomass</th>
+<th align="right">coal</th>
+<th align="right">gas</th>
+<th align="right">hydro</th>
+<th align="right">wind</th>
+<th align="right">solar</th>
+<th align="right">demand</th>
+<th align="right">pumped_storage</th>
+<th align="right">wind_onshore</th>
+<th align="right">wind_offshore</th>
+<th align="right">belgian</th>
+<th align="right">dutch</th>
+<th align="right">french</th>
+<th align="right">ireland</th>
+<th align="right">northern_ireland</th>
+<th align="right">irish</th>
+<th align="right">SP</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">2019-01-01 00:00:00+00:00</td>
+<td align="right">6.924</td>
+<td align="right">1.116</td>
+<td align="right">0</td>
+<td align="right">5.853</td>
+<td align="right">0.405</td>
+<td align="right">11.304</td>
+<td align="right">0</td>
+<td align="right">27.336</td>
+<td align="right">0</td>
+<td align="right">8.05458</td>
+<td align="right">3.14171</td>
+<td align="right">0</td>
+<td align="right">0.182</td>
+<td align="right">1.552</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">-0.702</td>
+<td align="right">1</td>
+</tr>
+<tr>
+<td align="left">2019-01-01 00:30:00+00:00</td>
+<td align="right">6.838</td>
+<td align="right">1.103</td>
+<td align="right">0</td>
+<td align="right">6.292</td>
+<td align="right">0.388</td>
+<td align="right">11.327</td>
+<td align="right">0</td>
+<td align="right">27.722</td>
+<td align="right">0.024</td>
+<td align="right">7.86049</td>
+<td align="right">3.25389</td>
+<td align="right">0</td>
+<td align="right">0.196</td>
+<td align="right">1.554</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">-0.696</td>
+<td align="right">2</td>
+</tr>
+<tr>
+<td align="left">2019-01-01 01:00:00+00:00</td>
+<td align="right">6.834</td>
+<td align="right">1.09</td>
+<td align="right">0</td>
+<td align="right">5.719</td>
+<td align="right">0.372</td>
+<td align="right">11.335</td>
+<td align="right">0</td>
+<td align="right">27.442</td>
+<td align="right">0</td>
+<td align="right">7.8792</td>
+<td align="right">3.34085</td>
+<td align="right">0</td>
+<td align="right">0.588</td>
+<td align="right">1.504</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">-0.722</td>
+<td align="right">3</td>
+</tr>
+<tr>
+<td align="left">2019-01-01 01:30:00+00:00</td>
+<td align="right">6.83</td>
+<td align="right">1.085</td>
+<td align="right">0</td>
+<td align="right">5.02</td>
+<td align="right">0.368</td>
+<td align="right">11.063</td>
+<td align="right">0</td>
+<td align="right">26.47</td>
+<td align="right">0</td>
+<td align="right">7.70887</td>
+<td align="right">3.2137</td>
+<td align="right">0</td>
+<td align="right">0.6</td>
+<td align="right">1.504</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">-0.77</td>
+<td align="right">4</td>
+</tr>
+<tr>
+<td align="left">2019-01-01 02:00:00+00:00</td>
+<td align="right">6.827</td>
+<td align="right">1.081</td>
+<td align="right">0</td>
+<td align="right">4.964</td>
+<td align="right">0.355</td>
+<td align="right">10.786</td>
+<td align="right">0</td>
+<td align="right">26.195</td>
+<td align="right">0</td>
+<td align="right">7.47943</td>
+<td align="right">3.12271</td>
+<td align="right">0</td>
+<td align="right">0.678</td>
+<td align="right">1.504</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">-0.91</td>
+<td align="right">5</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<h4 id="multiple-streams">Multiple Streams<a class="headerlink" href="#multiple-streams" title="Permanent link">&para;</a></h4>
+<p>We'll now create further functionality for retrieving all of the streams and combining them, before doing so we'll create a helper function for checking the streams are allowed</p>
+<div class="highlight"><pre><span></span><code><span class="c1">#exports</span>
+<span class="k">def</span> <span class="nf">check_streams</span><span class="p">(</span><span class="n">streams</span><span class="o">=</span><span class="s1">&#39;*&#39;</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Checks that the streams given are a list containing only possible streams, or is all streams - &#39;*&#39;.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">possible_streams</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;prices_ahead&#39;</span><span class="p">,</span> <span class="s1">&#39;prices&#39;</span><span class="p">,</span> <span class="s1">&#39;temperatures&#39;</span><span class="p">,</span> <span class="s1">&#39;emissions&#39;</span><span class="p">,</span> <span class="s1">&#39;generation-mix&#39;</span><span class="p">]</span>
+
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">streams</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
+        <span class="n">unrecognised_streams</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">streams</span><span class="p">)</span> <span class="o">-</span> <span class="nb">set</span><span class="p">(</span><span class="n">possible_streams</span><span class="p">))</span>
+
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">unrecognised_streams</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">streams</span> 
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">unrecognised_streams_2_print</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="s2">&quot;&#39;&quot;</span><span class="o">+</span><span class="n">stream</span><span class="o">+</span><span class="s2">&quot;&#39;, &quot;</span> <span class="k">for</span> <span class="n">stream</span> <span class="ow">in</span> <span class="n">unrecognised_streams</span><span class="p">])[:</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Streams </span><span class="si">{</span><span class="n">unrecognised_streams_2_print</span><span class="si">}</span><span class="s2"> could not be recognised, must be one of: </span><span class="si">{</span><span class="s1">&#39;, &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">possible_streams</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="k">elif</span> <span class="n">streams</span><span class="o">==</span><span class="s1">&#39;*&#39;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">possible_streams</span> 
+
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Streams could not be recognised, must be one of: </span><span class="si">{</span><span class="s1">&#39;, &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">possible_streams</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="n">streams</span> <span class="o">=</span> <span class="n">check_streams</span><span class="p">()</span>
+
+<span class="n">streams</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>[&#39;prices_ahead&#39;, &#39;prices&#39;, &#39;temperatures&#39;, &#39;emissions&#39;, &#39;generation-mix&#39;]
+</code></pre></div>
+<p><br></p>
+<p>By default all streams are returned but if we provide a list it will be checked</p>
+<div class="highlight"><pre><span></span><code><span class="n">streams</span> <span class="o">=</span> <span class="n">check_streams</span><span class="p">([</span><span class="s1">&#39;prices&#39;</span><span class="p">,</span> <span class="s1">&#39;emissions&#39;</span><span class="p">])</span>
+
+<span class="n">streams</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>[&#39;prices&#39;, &#39;emissions&#39;]
+</code></pre></div>
+<p><br></p>
+<p>However, if we try to check a list containing a stream that doesn't exist we should receive an error</p>
+<div class="highlight"><pre><span></span><code><span class="k">try</span><span class="p">:</span>
+    <span class="n">_</span> <span class="o">=</span> <span class="n">check_streams</span><span class="p">([</span><span class="s1">&#39;not_a_stream&#39;</span><span class="p">])</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Success!&#39;</span><span class="p">)</span>
+<span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Error!</span><span class="se">\n\n</span><span class="s1">&#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">))</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>Error!
+
+Streams &#39;not_a_stream&#39; could not be recognised, must be one of: prices_ahead, prices, temperatures, emissions, generation-mix
+</code></pre></div>
+<p><br></p>
+<p>Next we'll create a wrapper for downloading and combining all of the streams together</p>
+<div class="highlight"><pre><span></span><code><span class="c1">#exports</span>
+<span class="k">def</span> <span class="nf">retrieve_streams_df</span><span class="p">(</span><span class="n">start_date</span><span class="p">:</span><span class="nb">str</span><span class="p">,</span> <span class="n">end_date</span><span class="p">:</span><span class="nb">str</span><span class="p">,</span> <span class="n">streams</span><span class="o">=</span><span class="s1">&#39;*&#39;</span><span class="p">,</span> <span class="n">time_group</span><span class="o">=</span><span class="s1">&#39;30m&#39;</span><span class="p">,</span> <span class="n">renaming_dict</span><span class="o">=</span><span class="p">{}):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Makes the calls to Electric Insights for the given streams and parses the responses into a dataframe which is returned</span>
+
+<span class="sd">    Parameters:</span>
+<span class="sd">        start_date: Start date for data given as a string in the form &#39;%Y-%m-%d&#39;</span>
+<span class="sd">        end_date: End date for data given as a string in the form &#39;%Y-%m-%d&#39;</span>
+<span class="sd">        streams: Contains &#39;prices_ahead&#39;, &#39;prices_ahead&#39;, &#39;prices&#39;, &#39;temperatures&#39; or &#39;emissions&#39;, or is given as all, &#39;*&#39;</span>
+<span class="sd">        time_group: One of &#39;30m&#39;, &#39;1h&#39;, &#39;1d&#39; or &#39;7d&#39;. The default is &#39;30m&#39;</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
+    <span class="n">streams</span> <span class="o">=</span> <span class="n">check_streams</span><span class="p">(</span><span class="n">streams</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">stream</span> <span class="ow">in</span> <span class="n">streams</span><span class="p">:</span>
+        <span class="n">df_stream</span> <span class="o">=</span> <span class="n">retrieve_stream_df</span><span class="p">(</span><span class="n">start_date</span><span class="p">,</span> <span class="n">end_date</span><span class="p">,</span> <span class="n">stream</span><span class="p">,</span> <span class="n">renaming_dict</span><span class="o">=</span><span class="n">renaming_dict</span><span class="p">)</span>           
+        <span class="n">df</span><span class="p">[</span><span class="n">df_stream</span><span class="o">.</span><span class="n">columns</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_stream</span>
+
+    <span class="k">return</span> <span class="n">df</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="n">streams</span> <span class="o">=</span> <span class="s1">&#39;*&#39;</span>
+<span class="n">renaming_dict</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;pumpedStorage&#39;</span> <span class="p">:</span> <span class="s1">&#39;pumped_storage&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;northernIreland&#39;</span> <span class="p">:</span> <span class="s1">&#39;northern_ireland&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;windOnshore&#39;</span><span class="p">:</span> <span class="s1">&#39;wind_onshore&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;windOffshore&#39;</span><span class="p">:</span> <span class="s1">&#39;wind_offshore&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;prices_ahead&#39;</span> <span class="p">:</span> <span class="s1">&#39;day_ahead_price&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;prices&#39;</span> <span class="p">:</span> <span class="s1">&#39;imbalance_price&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;temperatures&#39;</span> <span class="p">:</span> <span class="s1">&#39;temperature&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;totalInGperkWh&#39;</span> <span class="p">:</span> <span class="s1">&#39;gCO2_per_kWh&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;totalInTperh&#39;</span> <span class="p">:</span> <span class="s1">&#39;TCO2_per_h&#39;</span>
+<span class="p">}</span>
+
+<span class="n">df</span> <span class="o">=</span> <span class="n">retrieve_streams_df</span><span class="p">(</span><span class="n">start_date</span><span class="p">,</span> <span class="n">end_date</span><span class="p">,</span> <span class="n">streams</span><span class="p">,</span> <span class="n">renaming_dict</span><span class="o">=</span><span class="n">renaming_dict</span><span class="p">)</span>
+
+<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</code></pre></div>
+<table>
+<thead>
+<tr>
+<th align="left">local_datetime</th>
+<th align="right">day_ahead_price</th>
+<th align="right">SP</th>
+<th align="right">imbalance_price</th>
+<th align="right">valueSum</th>
+<th align="right">temperature</th>
+<th align="right">TCO2_per_h</th>
+<th align="right">gCO2_per_kWh</th>
+<th align="right">nuclear</th>
+<th align="right">biomass</th>
+<th align="right">coal</th>
+<th align="left">...</th>
+<th align="right">demand</th>
+<th align="right">pumped_storage</th>
+<th align="right">wind_onshore</th>
+<th align="right">wind_offshore</th>
+<th align="right">belgian</th>
+<th align="right">dutch</th>
+<th align="right">french</th>
+<th align="right">ireland</th>
+<th align="right">northern_ireland</th>
+<th align="right">irish</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">2019-01-01 00:00:00+00:00</td>
+<td align="right">48.81</td>
+<td align="right">1</td>
+<td align="right">15</td>
+<td align="right">15</td>
+<td align="right">9.1</td>
+<td align="right">2287.01</td>
+<td align="right">83.6629</td>
+<td align="right">6.924</td>
+<td align="right">1.116</td>
+<td align="right">0</td>
+<td align="left">...</td>
+<td align="right">27.336</td>
+<td align="right">0</td>
+<td align="right">8.05458</td>
+<td align="right">3.14171</td>
+<td align="right">0</td>
+<td align="right">0.182</td>
+<td align="right">1.552</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">-0.702</td>
+</tr>
+<tr>
+<td align="left">2019-01-01 00:30:00+00:00</td>
+<td align="right">50.24</td>
+<td align="right">2</td>
+<td align="right">15</td>
+<td align="right">15</td>
+<td align="right">9.1</td>
+<td align="right">2467.91</td>
+<td align="right">89.0234</td>
+<td align="right">6.838</td>
+<td align="right">1.103</td>
+<td align="right">0</td>
+<td align="left">...</td>
+<td align="right">27.722</td>
+<td align="right">0.024</td>
+<td align="right">7.86049</td>
+<td align="right">3.25389</td>
+<td align="right">0</td>
+<td align="right">0.196</td>
+<td align="right">1.554</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">-0.696</td>
+</tr>
+<tr>
+<td align="left">2019-01-01 01:00:00+00:00</td>
+<td align="right">41.9</td>
+<td align="right">3</td>
+<td align="right">16</td>
+<td align="right">16</td>
+<td align="right">9.1</td>
+<td align="right">2411.83</td>
+<td align="right">87.8884</td>
+<td align="right">6.834</td>
+<td align="right">1.09</td>
+<td align="right">0</td>
+<td align="left">...</td>
+<td align="right">27.442</td>
+<td align="right">0</td>
+<td align="right">7.8792</td>
+<td align="right">3.34085</td>
+<td align="right">0</td>
+<td align="right">0.588</td>
+<td align="right">1.504</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">-0.722</td>
+</tr>
+<tr>
+<td align="left">2019-01-01 01:30:00+00:00</td>
+<td align="right">39.32</td>
+<td align="right">4</td>
+<td align="right">16</td>
+<td align="right">16</td>
+<td align="right">9.1</td>
+<td align="right">2119.53</td>
+<td align="right">80.073</td>
+<td align="right">6.83</td>
+<td align="right">1.085</td>
+<td align="right">0</td>
+<td align="left">...</td>
+<td align="right">26.47</td>
+<td align="right">0</td>
+<td align="right">7.70887</td>
+<td align="right">3.2137</td>
+<td align="right">0</td>
+<td align="right">0.6</td>
+<td align="right">1.504</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">-0.77</td>
+</tr>
+<tr>
+<td align="left">2019-01-01 02:00:00+00:00</td>
+<td align="right">34.09</td>
+<td align="right">5</td>
+<td align="right">16</td>
+<td align="right">16</td>
+<td align="right">9.1</td>
+<td align="right">2069.84</td>
+<td align="right">79.0166</td>
+<td align="right">6.827</td>
+<td align="right">1.081</td>
+<td align="right">0</td>
+<td align="left">...</td>
+<td align="right">26.195</td>
+<td align="right">0</td>
+<td align="right">7.47943</td>
+<td align="right">3.12271</td>
+<td align="right">0</td>
+<td align="right">0.678</td>
+<td align="right">1.504</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">-0.91</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p>Now we're ready to retrieve all of the streams in one, which we'll do for all years that data is available, then we'll save the resulting DataFrame.</p>
+<div class="highlight"><pre><span></span><code><span class="o">%%</span><span class="n">time</span>
+
+<span class="n">streams</span> <span class="o">=</span> <span class="s1">&#39;*&#39;</span>
+<span class="n">renaming_dict</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;pumpedStorage&#39;</span> <span class="p">:</span> <span class="s1">&#39;pumped_storage&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;northernIreland&#39;</span> <span class="p">:</span> <span class="s1">&#39;northern_ireland&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;windOnshore&#39;</span><span class="p">:</span> <span class="s1">&#39;wind_onshore&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;windOffshore&#39;</span><span class="p">:</span> <span class="s1">&#39;wind_offshore&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;prices_ahead&#39;</span> <span class="p">:</span> <span class="s1">&#39;day_ahead_price&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;prices&#39;</span> <span class="p">:</span> <span class="s1">&#39;imbalance_price&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;temperatures&#39;</span> <span class="p">:</span> <span class="s1">&#39;temperature&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;totalInGperkWh&#39;</span> <span class="p">:</span> <span class="s1">&#39;gCO2_per_kWh&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;totalInTperh&#39;</span> <span class="p">:</span> <span class="s1">&#39;TCO2_per_h&#39;</span>
+<span class="p">}</span>
+
+<span class="n">retrieve_save_EI_data</span> <span class="o">=</span> <span class="kc">False</span>
+
+<span class="k">if</span> <span class="n">retrieve_save_EI_data</span> <span class="o">==</span> <span class="kc">True</span><span class="p">:</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
+
+    <span class="k">for</span> <span class="n">year</span> <span class="ow">in</span> <span class="n">track</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">2010</span><span class="p">,</span> <span class="mi">2021</span><span class="p">)):</span>
+        <span class="n">start_date</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">year</span><span class="si">}</span><span class="s1">-01-01&#39;</span>
+        <span class="n">end_date</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">year</span><span class="si">}</span><span class="s1">-12-31&#39;</span>
+
+        <span class="n">df_year</span> <span class="o">=</span> <span class="n">retrieve_streams_df</span><span class="p">(</span><span class="n">start_date</span><span class="p">,</span> <span class="n">end_date</span><span class="p">,</span> <span class="n">streams</span><span class="p">,</span> <span class="n">renaming_dict</span><span class="o">=</span><span class="n">renaming_dict</span><span class="p">)</span>
+        <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">df_year</span><span class="p">)</span>
+
+    <span class="n">df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;../data/raw/electric_insights.csv&#39;</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>Wall time: 0 ns
+</code></pre></div>
+<p><br></p>
+<h3 id="energy-charts">Energy-Charts<a class="headerlink" href="#energy-charts" title="Permanent link">&para;</a></h3>
+<p>We'll start by requesting the JSON that is used to populate the fuel-type output chart on the <a href="https://energy-charts.info/">website</a></p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">year_week_2_prod_url</span><span class="p">(</span><span class="n">year</span><span class="p">,</span> <span class="n">week</span><span class="p">,</span> <span class="n">data_prefix</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">):</span> 
+    <span class="sd">&quot;&quot;&quot;Given a specified year and week the relevant `production_url` for energy-charts is returned&quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">year</span> <span class="o">&lt;</span> <span class="mi">2019</span><span class="p">:</span>
+        <span class="n">data_prefix</span> <span class="o">=</span> <span class="s1">&#39;raw_&#39;</span>
+
+    <span class="n">production_url</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;https://energy-charts.info/charts/power/</span><span class="si">{</span><span class="n">data_prefix</span><span class="si">}</span><span class="s1">data/de/week_</span><span class="si">{</span><span class="n">year</span><span class="si">}</span><span class="s1">_</span><span class="si">{</span><span class="nb">str</span><span class="p">(</span><span class="n">week</span><span class="p">)</span><span class="o">.</span><span class="n">zfill</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="si">}</span><span class="s1">.json&#39;</span>
+
+    <span class="k">return</span> <span class="n">production_url</span>
+
+<span class="n">year</span> <span class="o">=</span> <span class="mi">2018</span>
+<span class="n">week</span> <span class="o">=</span> <span class="mi">12</span>
+
+<span class="n">production_url</span> <span class="o">=</span> <span class="n">year_week_2_prod_url</span><span class="p">(</span><span class="n">year</span><span class="p">,</span> <span class="n">week</span><span class="p">)</span>
+
+<span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">production_url</span><span class="p">)</span>
+
+<span class="n">r</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>&lt;Response [200]&gt;
+</code></pre></div>
+<p><br></p>
+<p>Next we focus on parsing the only non-uniform column which relates to the balancing required on the system</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">fuel_json_2_net_balance</span><span class="p">(</span><span class="n">r_json</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Extracts the balance time-series&quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="s1">&#39;values&#39;</span> <span class="ow">in</span> <span class="n">r_json</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span> <span class="c1"># pre-2019 format</span>
+        <span class="n">df_balance</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">r_json</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;values&#39;</span><span class="p">])</span>
+
+        <span class="n">s_balance</span> <span class="o">=</span> <span class="p">(</span><span class="n">df_balance</span>
+                     <span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">datetime</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">df_balance</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="mi">1000000</span><span class="p">,</span> <span class="n">utc</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
+                     <span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+                     <span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;datetime&#39;</span><span class="p">)</span>
+                     <span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span>
+                         <span class="mi">1</span> <span class="p">:</span> <span class="s1">&#39;value&#39;</span><span class="p">,</span>
+                     <span class="p">})</span>
+                     <span class="p">[</span><span class="s1">&#39;value&#39;</span><span class="p">]</span>
+                    <span class="p">)</span>
+
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">s_balance</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">r_json</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;data&#39;</span><span class="p">],</span> <span class="n">index</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">r_json</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;xAxisValues&#39;</span><span class="p">])</span><span class="o">*</span><span class="mi">1000000</span><span class="p">,</span> <span class="n">utc</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
+
+    <span class="n">s_balance</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="n">s_balance</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">tz_convert</span><span class="p">(</span><span class="s1">&#39;Europe/Berlin&#39;</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">s_balance</span>
+
+<span class="c1"># Retrieving net balance data</span>
+<span class="n">r_json</span> <span class="o">=</span> <span class="n">r</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+<span class="n">s_balance</span> <span class="o">=</span> <span class="n">fuel_json_2_net_balance</span><span class="p">(</span><span class="n">r_json</span><span class="p">)</span>
+
+<span class="c1"># Getting comments</span>
+<span class="n">data_src</span> <span class="o">=</span> <span class="n">r_json</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;datasource&#39;</span><span class="p">]</span>
+<span class="n">comment</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="n">item</span><span class="p">[</span><span class="s1">&#39;en&#39;</span><span class="p">]</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">r_json</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;comment&#39;</span><span class="p">]])</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">data_src</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">comment</span><span class="p">)</span>
+
+<span class="n">s_balance</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>50 Hertz, Amprion, Tennet, TransnetBW, EEX
+Net generation of power plants for public power supply.
+
+
+
+
+
+datetime
+2018-03-19 00:00:00+01:00   -9.044
+2018-03-19 01:00:00+01:00   -9.522
+2018-03-19 02:00:00+01:00   -9.576
+2018-03-19 03:00:00+01:00   -9.978
+2018-03-19 04:00:00+01:00   -9.787
+                             ...  
+2018-03-25 19:00:00+02:00   -6.319
+2018-03-25 20:00:00+02:00   -5.968
+2018-03-25 21:00:00+02:00   -6.329
+2018-03-25 22:00:00+02:00   -6.134
+2018-03-25 23:00:00+02:00   -6.839
+Name: value, Length: 167, dtype: float64
+</code></pre></div>
+<p><br></p>
+<p>We combine this with a parser for the main columns</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">response_2_df</span><span class="p">(</span><span class="n">r</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Parses the json response to a DataFrame&quot;&quot;&quot;</span>
+    <span class="n">r_json</span> <span class="o">=</span> <span class="n">r</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+    <span class="n">s_balance</span> <span class="o">=</span> <span class="n">fuel_json_2_net_balance</span><span class="p">(</span><span class="n">r_json</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="s1">&#39;key&#39;</span> <span class="ow">in</span> <span class="n">r_json</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span> <span class="c1"># pre-2019</span>
+        <span class="n">keys</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span><span class="p">[</span><span class="s1">&#39;key&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;en&#39;</span><span class="p">]</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">r_json</span><span class="p">[</span><span class="mi">1</span><span class="p">:]]</span>
+        <span class="n">values</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span><span class="p">[</span><span class="s1">&#39;values&#39;</span><span class="p">]</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">r_json</span><span class="p">[</span><span class="mi">1</span><span class="p">:]]</span>
+
+        <span class="n">df_fuels</span> <span class="o">=</span> <span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">keys</span><span class="p">,</span> <span class="n">values</span><span class="p">)),</span> <span class="n">index</span><span class="o">=</span><span class="n">s_balance</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
+                    <span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">s</span><span class="p">:</span> <span class="n">s</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]))</span>
+                    <span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">net_balance</span><span class="o">=</span><span class="n">s_balance</span><span class="p">)</span>
+                   <span class="p">)</span>
+
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">cols</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;en&#39;</span><span class="p">]</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">r_json</span><span class="p">[</span><span class="mi">1</span><span class="p">:]]</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">]</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">r_json</span><span class="p">[</span><span class="mi">1</span><span class="p">:]]</span>
+
+        <span class="n">df_fuels</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">data</span><span class="p">)</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">cols</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">s_balance</span><span class="o">.</span><span class="n">index</span><span class="p">)</span><span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">net_balance</span><span class="o">=</span><span class="n">s_balance</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">df_fuels</span>
+
+<span class="n">df_fuels</span> <span class="o">=</span> <span class="n">response_2_df</span><span class="p">(</span><span class="n">r</span><span class="p">)</span>
+
+<span class="n">df_fuels</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</code></pre></div>
+<table>
+<thead>
+<tr>
+<th align="left">datetime</th>
+<th align="right">Hydro Power</th>
+<th align="right">Biomass</th>
+<th align="right">Uranium</th>
+<th align="right">Brown Coal</th>
+<th align="right">Hard Coal</th>
+<th align="right">Oil</th>
+<th align="right">Gas</th>
+<th align="right">Others</th>
+<th align="right">Pumped Storage</th>
+<th align="right">Seasonal Storage</th>
+<th align="right">Wind</th>
+<th align="right">Solar</th>
+<th align="right">net_balance</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">2018-03-19 00:00:00+01:00</td>
+<td align="right">2.292</td>
+<td align="right">5.82</td>
+<td align="right">7.721</td>
+<td align="right">14.499</td>
+<td align="right">8.508</td>
+<td align="right">0.18</td>
+<td align="right">3.207</td>
+<td align="right">0.068</td>
+<td align="right">0.42</td>
+<td align="right">0.078</td>
+<td align="right">20.754</td>
+<td align="right">0</td>
+<td align="right">-9.044</td>
+</tr>
+<tr>
+<td align="left">2018-03-19 01:00:00+01:00</td>
+<td align="right">2.291</td>
+<td align="right">5.82</td>
+<td align="right">7.829</td>
+<td align="right">14.49</td>
+<td align="right">8.941</td>
+<td align="right">0.179</td>
+<td align="right">3.287</td>
+<td align="right">0.068</td>
+<td align="right">0.245</td>
+<td align="right">0.064</td>
+<td align="right">19.012</td>
+<td align="right">0</td>
+<td align="right">-9.522</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p>And wrap them in a single function which can accept a year and week before returning the parsed dataframe</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">year_week_2_fuel_df</span><span class="p">(</span><span class="n">year</span><span class="p">,</span> <span class="n">week</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Given a specified year and week the relevant `df_fuels` dataset for energy-charts is returned&quot;&quot;&quot;</span>
+    <span class="n">production_url</span> <span class="o">=</span> <span class="n">year_week_2_prod_url</span><span class="p">(</span><span class="n">year</span><span class="p">,</span> <span class="n">week</span><span class="p">)</span>
+
+    <span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">production_url</span><span class="p">)</span>
+
+    <span class="c1"># This is a general catch-all but mainly added to account </span>
+    <span class="c1"># for years with 53 weeks rather than 52</span>
+    <span class="k">if</span> <span class="n">r</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">404</span><span class="p">:</span>
+        <span class="n">df_fuels</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">df_fuels</span> <span class="o">=</span> <span class="n">response_2_df</span><span class="p">(</span><span class="n">r</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">df_fuels</span>
+
+<span class="n">year</span> <span class="o">=</span> <span class="mi">2015</span>
+<span class="n">week</span> <span class="o">=</span> <span class="mi">53</span>
+
+<span class="n">df_fuels</span> <span class="o">=</span> <span class="n">year_week_2_fuel_df</span><span class="p">(</span><span class="n">year</span><span class="p">,</span> <span class="n">week</span><span class="p">)</span>
+
+<span class="n">df_fuels</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</code></pre></div>
+<table>
+<thead>
+<tr>
+<th align="left">datetime</th>
+<th align="right">Hydro Power</th>
+<th align="right">Biomass</th>
+<th align="right">Uranium</th>
+<th align="right">Brown Coal</th>
+<th align="right">Hard Coal</th>
+<th align="right">Oil</th>
+<th align="right">Gas</th>
+<th align="right">Others</th>
+<th align="right">Pumped Storage</th>
+<th align="right">Seasonal Storage</th>
+<th align="right">Wind</th>
+<th align="right">Solar</th>
+<th align="right">net_balance</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">2015-12-28 00:00:00+01:00</td>
+<td align="right">1.356</td>
+<td align="right">6</td>
+<td align="right">10.567</td>
+<td align="right">13.247</td>
+<td align="right">3.437</td>
+<td align="right">0.19</td>
+<td align="right">2.338</td>
+<td align="right">0.15</td>
+<td align="right">0.154</td>
+<td align="right">0.013</td>
+<td align="right">8.156</td>
+<td align="right">0</td>
+<td align="right">-3.923</td>
+</tr>
+<tr>
+<td align="left">2015-12-28 01:00:00+01:00</td>
+<td align="right">1.348</td>
+<td align="right">6</td>
+<td align="right">10.611</td>
+<td align="right">13.744</td>
+<td align="right">3.109</td>
+<td align="right">0.191</td>
+<td align="right">2.533</td>
+<td align="right">0.124</td>
+<td align="right">0.157</td>
+<td align="right">0.012</td>
+<td align="right">7.059</td>
+<td align="right">0</td>
+<td align="right">-4.139</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p>Now we can iterate over all year and week pairs to retrieve the full dataset</p>
+<div class="highlight"><pre><span></span><code><span class="n">years</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">2010</span><span class="p">,</span> <span class="mi">2021</span><span class="p">))</span>
+<span class="n">weeks</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">54</span><span class="p">))</span>
+
+<span class="n">df_fuels</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
+
+<span class="k">for</span> <span class="n">year</span><span class="p">,</span> <span class="n">week</span> <span class="ow">in</span> <span class="n">track</span><span class="p">(</span><span class="n">product</span><span class="p">(</span><span class="n">years</span><span class="p">,</span> <span class="n">weeks</span><span class="p">),</span> <span class="n">total</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">years</span><span class="p">)</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="n">weeks</span><span class="p">)):</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">df_fuels_yr_wk</span> <span class="o">=</span> <span class="n">year_week_2_fuel_df</span><span class="p">(</span><span class="n">year</span><span class="p">,</span> <span class="n">week</span><span class="p">)</span>
+        <span class="n">df_fuels</span> <span class="o">=</span> <span class="n">df_fuels</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">df_fuels_yr_wk</span><span class="p">,</span> <span class="n">sort</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="k">except</span><span class="p">:</span>
+        <span class="n">warn</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Failed to retrieve week </span><span class="si">{</span><span class="n">week</span><span class="si">}</span><span class="s1"> in </span><span class="si">{</span><span class="n">year</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+
+<span class="n">df_fuels</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+</code></pre></div>
+<div><span class="Text-label" style="display:inline-block; overflow:hidden; white-space:nowrap; text-overflow:ellipsis; min-width:0; max-width:15ex; vertical-align:middle; text-align:right"></span>
+<progress style="width:60ex" max="583" value="583" class="Progress-main"/></progress>
+<span class="Progress-label"><strong>100%</strong></span>
+<span class="Iteration-label">580/583</span>
+<span class="Time-label">[03:16<00:00, 0.34s/it]</span></div>
+
+<table>
+<thead>
+<tr>
+<th align="left">Unnamed: 0</th>
+<th align="right">Biomass</th>
+<th align="right">Biomass planned</th>
+<th align="right">Brown Coal</th>
+<th align="right">Brown Coal planned</th>
+<th align="right">Gas</th>
+<th align="right">Gas planned</th>
+<th align="right">Hard Coal</th>
+<th align="right">Hard Coal planned</th>
+<th align="right">Hydro Power</th>
+<th align="right">Hydro Power planned</th>
+<th align="left">...</th>
+<th align="right">Residual load forecast</th>
+<th align="right">Seasonal Storage</th>
+<th align="right">Seasonal Storage ante</th>
+<th align="right">Solar</th>
+<th align="right">Solar forecast</th>
+<th align="right">Uranium</th>
+<th align="right">Uranium planned</th>
+<th align="right">Wind</th>
+<th align="right">Wind forecast</th>
+<th align="right">net_balance</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">2010-01-04 00:00:00+01:00</td>
+<td align="right">3.637</td>
+<td align="right">nan</td>
+<td align="right">16.533</td>
+<td align="right">nan</td>
+<td align="right">4.726</td>
+<td align="right">nan</td>
+<td align="right">10.078</td>
+<td align="right">nan</td>
+<td align="right">2.331</td>
+<td align="right">nan</td>
+<td align="left">...</td>
+<td align="right">nan</td>
+<td align="right">0.068</td>
+<td align="right">nan</td>
+<td align="right">0</td>
+<td align="right">nan</td>
+<td align="right">16.826</td>
+<td align="right">nan</td>
+<td align="right">0.635</td>
+<td align="right">nan</td>
+<td align="right">-1.229</td>
+</tr>
+<tr>
+<td align="left">2010-01-04 01:00:00+01:00</td>
+<td align="right">3.637</td>
+<td align="right">nan</td>
+<td align="right">16.544</td>
+<td align="right">nan</td>
+<td align="right">4.856</td>
+<td align="right">nan</td>
+<td align="right">8.816</td>
+<td align="right">nan</td>
+<td align="right">2.293</td>
+<td align="right">nan</td>
+<td align="left">...</td>
+<td align="right">nan</td>
+<td align="right">0.003</td>
+<td align="right">nan</td>
+<td align="right">0</td>
+<td align="right">nan</td>
+<td align="right">16.841</td>
+<td align="right">nan</td>
+<td align="right">0.528</td>
+<td align="right">nan</td>
+<td align="right">-1.593</td>
+</tr>
+<tr>
+<td align="left">2010-01-04 02:00:00+01:00</td>
+<td align="right">3.637</td>
+<td align="right">nan</td>
+<td align="right">16.368</td>
+<td align="right">nan</td>
+<td align="right">5.275</td>
+<td align="right">nan</td>
+<td align="right">7.954</td>
+<td align="right">nan</td>
+<td align="right">2.299</td>
+<td align="right">nan</td>
+<td align="left">...</td>
+<td align="right">nan</td>
+<td align="right">0</td>
+<td align="right">nan</td>
+<td align="right">0</td>
+<td align="right">nan</td>
+<td align="right">16.846</td>
+<td align="right">nan</td>
+<td align="right">0.616</td>
+<td align="right">nan</td>
+<td align="right">-1.378</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p>We'll remove the null columns and reorder the remaining ones to clean it up a little bit</p>
+<div class="highlight"><pre><span></span><code><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Biomass&#39;</span><span class="p">,</span> <span class="s1">&#39;Brown Coal&#39;</span><span class="p">,</span> <span class="s1">&#39;Gas&#39;</span><span class="p">,</span> <span class="s1">&#39;Hard Coal&#39;</span><span class="p">,</span> <span class="s1">&#39;Hydro Power&#39;</span><span class="p">,</span>
+           <span class="s1">&#39;Oil&#39;</span><span class="p">,</span> <span class="s1">&#39;Others&#39;</span><span class="p">,</span> <span class="s1">&#39;Pumped Storage&#39;</span><span class="p">,</span> <span class="s1">&#39;Seasonal Storage&#39;</span><span class="p">,</span> <span class="c1">#&#39;Import Balance&#39;, </span>
+           <span class="s1">&#39;Solar&#39;</span><span class="p">,</span> <span class="s1">&#39;Uranium&#39;</span><span class="p">,</span> <span class="s1">&#39;Wind&#39;</span><span class="p">,</span> <span class="s1">&#39;net_balance&#39;</span><span class="p">]</span>
+
+<span class="n">df_fuels_clean</span> <span class="o">=</span> <span class="p">(</span><span class="n">df_fuels</span>
+                  <span class="p">[</span><span class="n">columns</span><span class="p">]</span>
+                  <span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span>
+                  <span class="o">.</span><span class="n">resample</span><span class="p">(</span><span class="s1">&#39;H&#39;</span><span class="p">)</span>
+                  <span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+                  <span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">how</span><span class="o">=</span><span class="s1">&#39;all&#39;</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+                 <span class="p">)</span>
+
+<span class="n">df_fuels_clean</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</code></pre></div>
+<table>
+<thead>
+<tr>
+<th align="left">Unnamed: 0</th>
+<th align="right">Biomass</th>
+<th align="right">Brown Coal</th>
+<th align="right">Gas</th>
+<th align="right">Hard Coal</th>
+<th align="right">Hydro Power</th>
+<th align="right">Oil</th>
+<th align="right">Others</th>
+<th align="right">Pumped Storage</th>
+<th align="right">Seasonal Storage</th>
+<th align="right">Solar</th>
+<th align="right">Uranium</th>
+<th align="right">Wind</th>
+<th align="right">net_balance</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">2010-01-04 00:00:00+01:00</td>
+<td align="right">3.637</td>
+<td align="right">16.533</td>
+<td align="right">4.726</td>
+<td align="right">10.078</td>
+<td align="right">2.331</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0.052</td>
+<td align="right">0.068</td>
+<td align="right">0</td>
+<td align="right">16.826</td>
+<td align="right">0.635</td>
+<td align="right">-1.229</td>
+</tr>
+<tr>
+<td align="left">2010-01-04 01:00:00+01:00</td>
+<td align="right">3.637</td>
+<td align="right">16.544</td>
+<td align="right">4.856</td>
+<td align="right">8.816</td>
+<td align="right">2.293</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0.038</td>
+<td align="right">0.003</td>
+<td align="right">0</td>
+<td align="right">16.841</td>
+<td align="right">0.528</td>
+<td align="right">-1.593</td>
+</tr>
+<tr>
+<td align="left">2010-01-04 02:00:00+01:00</td>
+<td align="right">3.637</td>
+<td align="right">16.368</td>
+<td align="right">5.275</td>
+<td align="right">7.954</td>
+<td align="right">2.299</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0.032</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">16.846</td>
+<td align="right">0.616</td>
+<td align="right">-1.378</td>
+</tr>
+<tr>
+<td align="left">2010-01-04 03:00:00+01:00</td>
+<td align="right">3.637</td>
+<td align="right">15.837</td>
+<td align="right">5.354</td>
+<td align="right">7.681</td>
+<td align="right">2.299</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0.027</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">16.699</td>
+<td align="right">0.63</td>
+<td align="right">-1.624</td>
+</tr>
+<tr>
+<td align="left">2010-01-04 04:00:00+01:00</td>
+<td align="right">3.637</td>
+<td align="right">15.452</td>
+<td align="right">5.918</td>
+<td align="right">7.498</td>
+<td align="right">2.301</td>
+<td align="right">0.003</td>
+<td align="right">0</td>
+<td align="right">0.02</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">16.635</td>
+<td align="right">0.713</td>
+<td align="right">-0.731</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p>We'll quickly confirm that there are no duplicates</p>
+<div class="highlight"><pre><span></span><code><span class="k">assert</span> <span class="n">df_fuels_clean</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">duplicated</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">==</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;There are multiple entries for a datetime&#39;</span>
+</code></pre></div>
+<p><br></p>
+<p>Next we check for any missing datetimes</p>
+<div class="highlight"><pre><span></span><code><span class="n">s_null_vals</span> <span class="o">=</span> <span class="n">df_fuels_clean</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">==</span><span class="n">df_fuels_clean</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="nb">round</span><span class="p">(</span><span class="mi">100</span><span class="o">*</span><span class="n">s_null_vals</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span> <span class="mi">2</span><span class="p">)</span><span class="si">}</span><span class="s1">% of the datetimes are missing data&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;There are </span><span class="si">{</span><span class="p">(</span><span class="n">s_null_vals</span><span class="o">.</span><span class="n">resample</span><span class="p">(</span><span class="s1">&#39;D&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="si">}</span><span class="s2"> days with missing data, totalling </span><span class="si">{</span><span class="n">s_null_vals</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="si">}</span><span class="s2"> hours of individual missing hours&quot;</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>0.16% of the datetimes are missing data
+There are 7 days with missing data, totalling 157 hours of individual missing hours
+</code></pre></div>
+<p><br></p>
+<p>Because there are only a few missing datetimes we'll choose to drop them from the dataset</p>
+<div class="highlight"><pre><span></span><code><span class="n">df_fuels_clean</span> <span class="o">=</span> <span class="n">df_fuels_clean</span><span class="p">[</span><span class="o">~</span><span class="n">s_null_vals</span><span class="p">]</span>
+</code></pre></div>
+<p><br></p>
+<p>Finally we'll save the cleaned dataframe</p>
+<div class="highlight"><pre><span></span><code><span class="n">df_fuels_clean</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;local_datetime&#39;</span>
+<span class="n">df_fuels_clean</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;../data/raw/energy_charts.csv&#39;</span><span class="p">)</span>
+</code></pre></div>
+<p><br></p>
+<h3 id="entsoe">ENTSOE<a class="headerlink" href="#entsoe" title="Permanent link">&para;</a></h3>
+<p>We'll use ENTSOE as the source for our German price data, we'll also have to use it to get the exact RES and demand volumes for the bidding zone that Germany is within. </p>
+<p><br></p>
+<h5 id="prices">Prices<a class="headerlink" href="#prices" title="Permanent link">&para;</a></h5>
+<p>We'll begin by initialising our client API for ENTSOE</p>
+<div class="highlight"><pre><span></span><code><span class="n">api_key</span> <span class="o">=</span> <span class="s1">&#39;3ce8c447-2be7-47e8-9440-af8994617ec1&#39;</span>
+
+<span class="n">client</span> <span class="o">=</span> <span class="n">EntsoePandasClient</span><span class="p">(</span><span class="n">api_key</span><span class="o">=</span><span class="n">api_key</span><span class="p">)</span>
+
+<span class="n">client</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>&lt;entsoe.entsoe.EntsoePandasClient at 0x216d1b88d60&gt;
+</code></pre></div>
+<p><br></p>
+<p>We'll then make a test request for price data from the German market</p>
+<div class="highlight"><pre><span></span><code><span class="n">params</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;documentType&#39;</span><span class="p">:</span> <span class="s1">&#39;A44&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;in_Domain&#39;</span><span class="p">:</span> <span class="s1">&#39;10Y1001A1001A63L&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;out_Domain&#39;</span><span class="p">:</span> <span class="s1">&#39;10Y1001A1001A63L&#39;</span>
+<span class="p">}</span>
+
+<span class="n">start</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Timestamp</span><span class="p">(</span><span class="s1">&#39;2018-09-01&#39;</span><span class="p">,</span> <span class="n">tz</span><span class="o">=</span><span class="s1">&#39;UTC&#39;</span><span class="p">)</span>
+<span class="n">end</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Timestamp</span><span class="p">(</span><span class="s1">&#39;2018-09-30&#39;</span><span class="p">,</span> <span class="n">tz</span><span class="o">=</span><span class="s1">&#39;UTC&#39;</span><span class="p">)</span>
+
+<span class="n">r</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">_base_request</span><span class="p">(</span><span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">,</span> <span class="n">start</span><span class="o">=</span><span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="n">end</span><span class="p">)</span>
+
+<span class="n">r</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>&lt;Response [200]&gt;
+</code></pre></div>
+<p><br></p>
+<p>We'll extract the price time-series from the returned JSON</p>
+<div class="highlight"><pre><span></span><code><span class="c1">#exports</span>
+<span class="k">def</span> <span class="nf">parse_A44_response</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="s1">&#39;H&#39;</span><span class="p">,</span> <span class="n">tz</span><span class="o">=</span><span class="s1">&#39;UTC&#39;</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Extracts the price time-series&quot;&quot;&quot;</span>
+    <span class="n">s_price</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+    <span class="n">parsed_r</span> <span class="o">=</span> <span class="n">xmltodict</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">timeseries</span> <span class="ow">in</span> <span class="n">parsed_r</span><span class="p">[</span><span class="s1">&#39;Publication_MarketDocument&#39;</span><span class="p">][</span><span class="s1">&#39;TimeSeries&#39;</span><span class="p">]:</span>
+        <span class="n">dt_rng</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="n">timeseries</span><span class="p">[</span><span class="s1">&#39;Period&#39;</span><span class="p">][</span><span class="s1">&#39;timeInterval&#39;</span><span class="p">][</span><span class="s1">&#39;start&#39;</span><span class="p">],</span> <span class="n">timeseries</span><span class="p">[</span><span class="s1">&#39;Period&#39;</span><span class="p">][</span><span class="s1">&#39;timeInterval&#39;</span><span class="p">][</span><span class="s1">&#39;end&#39;</span><span class="p">],</span> <span class="n">freq</span><span class="o">=</span><span class="n">freq</span><span class="p">,</span> <span class="n">tz</span><span class="o">=</span><span class="n">tz</span><span class="p">)[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+        <span class="n">s_dt_price</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">timeseries</span><span class="p">[</span><span class="s1">&#39;Period&#39;</span><span class="p">][</span><span class="s1">&#39;Point&#39;</span><span class="p">])[</span><span class="s1">&#39;price.amount&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span>
+        <span class="n">s_dt_price</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="n">dt_rng</span>
+        <span class="n">s_price</span> <span class="o">=</span> <span class="n">s_price</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">s_dt_price</span><span class="p">)</span>
+
+    <span class="k">assert</span> <span class="n">s_price</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">duplicated</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">==</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;There are duplicate date indexes&#39;</span>
+
+    <span class="k">return</span> <span class="n">s_price</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="n">s_price</span> <span class="o">=</span> <span class="n">parse_A44_response</span><span class="p">(</span><span class="n">r</span><span class="p">)</span>
+
+<span class="n">s_price</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>2018-08-31 22:00:00+00:00    57.58
+2018-08-31 23:00:00+00:00    55.99
+2018-09-01 00:00:00+00:00    55.56
+2018-09-01 01:00:00+00:00    54.02
+2018-09-01 02:00:00+00:00    52.69
+Freq: H, dtype: float64
+</code></pre></div>
+<p><br></p>
+<p>We can't query very large date ranges so we'll break up our requests into quarterly batches. </p>
+<p>We'll also account for the fact that the German market changes to exclude Austria after 2018-10-01 by creating two sets of date pairs.</p>
+<div class="highlight"><pre><span></span><code><span class="n">DE_AT_LU_dt_pairs</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span>
+    <span class="n">pd</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="s1">&#39;2015&#39;</span><span class="p">,</span> <span class="s1">&#39;2018-07&#39;</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="s1">&#39;3MS&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%Y-%m-</span><span class="si">%d</span><span class="s1"> %H:%M&#39;</span><span class="p">),</span> 
+    <span class="n">pd</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="s1">&#39;2015-03-31 23:55&#39;</span><span class="p">,</span> <span class="s1">&#39;2018-09-30 23:55&#39;</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="s1">&#39;3M&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%Y-%m-</span><span class="si">%d</span><span class="s1"> %H:%M&#39;</span><span class="p">)</span>
+<span class="p">))</span>
+
+<span class="n">DE_AT_LU_dt_pairs</span><span class="p">[:</span><span class="mi">5</span><span class="p">]</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>[(&#39;2015-01-01 00:00&#39;, &#39;2015-03-31 23:55&#39;),
+ (&#39;2015-04-01 00:00&#39;, &#39;2015-06-30 23:55&#39;),
+ (&#39;2015-07-01 00:00&#39;, &#39;2015-09-30 23:55&#39;),
+ (&#39;2015-10-01 00:00&#39;, &#39;2015-12-31 23:55&#39;),
+ (&#39;2016-01-01 00:00&#39;, &#39;2016-03-31 23:55&#39;)]
+</code></pre></div>
+<p><br></p>
+<p>We're now ready to create a wrapper to collate the date from each date batch</p>
+<div class="highlight"><pre><span></span><code><span class="c1">#exports</span>
+<span class="k">def</span> <span class="nf">retreive_DAM_prices</span><span class="p">(</span><span class="n">dt_pairs</span><span class="p">,</span> <span class="n">domain</span><span class="o">=</span><span class="s1">&#39;10Y1001A1001A63L&#39;</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Retrieves and collates the day-ahead prices for the specified date ranges&quot;&quot;&quot;</span>
+    <span class="n">params</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">&#39;documentType&#39;</span><span class="p">:</span> <span class="s1">&#39;A44&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;in_Domain&#39;</span><span class="p">:</span> <span class="n">domain</span><span class="p">,</span>
+        <span class="s1">&#39;out_Domain&#39;</span><span class="p">:</span> <span class="n">domain</span>
+    <span class="p">}</span>
+
+    <span class="n">s_price</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">dt_pair</span> <span class="ow">in</span> <span class="n">track</span><span class="p">(</span><span class="n">dt_pairs</span><span class="p">):</span>
+        <span class="n">start</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Timestamp</span><span class="p">(</span><span class="n">dt_pair</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">tz</span><span class="o">=</span><span class="s1">&#39;UTC&#39;</span><span class="p">)</span>
+        <span class="n">end</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Timestamp</span><span class="p">(</span><span class="n">dt_pair</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">tz</span><span class="o">=</span><span class="s1">&#39;UTC&#39;</span><span class="p">)</span>
+
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">r</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">_base_request</span><span class="p">(</span><span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">,</span> <span class="n">start</span><span class="o">=</span><span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="n">end</span><span class="p">)</span>
+
+            <span class="n">s_price_dt_rng</span> <span class="o">=</span> <span class="n">parse_A44_response</span><span class="p">(</span><span class="n">r</span><span class="p">)</span>
+            <span class="n">s_price</span> <span class="o">=</span> <span class="n">s_price</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">s_price_dt_rng</span><span class="p">)</span>
+        <span class="k">except</span><span class="p">:</span>
+            <span class="n">warn</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">start</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%Y-%m-</span><span class="si">%d</span><span class="s1">&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2"> - </span><span class="si">{</span><span class="n">end</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%Y-%m-</span><span class="si">%d</span><span class="s1">&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2"> failed&quot;</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">s_price</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="n">s_price_DE_AT_LU</span> <span class="o">=</span> <span class="n">retreive_DAM_prices</span><span class="p">(</span><span class="n">DE_AT_LU_dt_pairs</span><span class="p">)</span>
+
+<span class="n">s_price_DE_AT_LU</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</code></pre></div>
+<div><span class="Text-label" style="display:inline-block; overflow:hidden; white-space:nowrap; text-overflow:ellipsis; min-width:0; max-width:15ex; vertical-align:middle; text-align:right"></span>
+<progress style="width:60ex" max="15" value="15" class="Progress-main"/></progress>
+<span class="Progress-label"><strong>100%</strong></span>
+<span class="Iteration-label">15/15</span>
+<span class="Time-label">[00:20<00:01, 1.31s/it]</span></div>
+
+<div class="highlight"><pre><span></span><code>2015-01-04 23:00:00+00:00    22.34
+2015-01-05 00:00:00+00:00    17.93
+2015-01-05 01:00:00+00:00    15.17
+2015-01-05 02:00:00+00:00    16.38
+2015-01-05 03:00:00+00:00    17.38
+dtype: float64
+</code></pre></div>
+<p><br></p>
+<p>We'll repeat this for the market excluding Austria</p>
+<div class="highlight"><pre><span></span><code><span class="n">DE_LU_dt_pairs</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span>
+    <span class="n">pd</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="s1">&#39;2018-10&#39;</span><span class="p">,</span> <span class="s1">&#39;2021-01&#39;</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="s1">&#39;3MS&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%Y-%m-</span><span class="si">%d</span><span class="s1"> %H:%M&#39;</span><span class="p">),</span> 
+    <span class="n">pd</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="s1">&#39;2018-12-31 23:55&#39;</span><span class="p">,</span> <span class="s1">&#39;2021-02-28 23:55&#39;</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="s1">&#39;3M&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%Y-%m-</span><span class="si">%d</span><span class="s1"> %H:%M&#39;</span><span class="p">)</span>
+<span class="p">))</span>
+
+<span class="n">s_price_DE_LU</span> <span class="o">=</span> <span class="n">retreive_DAM_prices</span><span class="p">(</span><span class="n">DE_LU_dt_pairs</span><span class="p">,</span> <span class="n">domain</span><span class="o">=</span><span class="s1">&#39;10Y1001A1001A82H&#39;</span><span class="p">)</span>
+
+<span class="n">s_price_DE_LU</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</code></pre></div>
+<div><span class="Text-label" style="display:inline-block; overflow:hidden; white-space:nowrap; text-overflow:ellipsis; min-width:0; max-width:15ex; vertical-align:middle; text-align:right"></span>
+<progress style="width:60ex" max="9" value="9" class="Progress-main"/></progress>
+<span class="Progress-label"><strong>100%</strong></span>
+<span class="Iteration-label">9/9</span>
+<span class="Time-label">[00:11<00:01, 1.25s/it]</span></div>
+
+<div class="highlight"><pre><span></span><code>2018-09-30 22:00:00+00:00    59.53
+2018-09-30 23:00:00+00:00    56.10
+2018-10-01 00:00:00+00:00    51.41
+2018-10-01 01:00:00+00:00    47.38
+2018-10-01 02:00:00+00:00    47.59
+dtype: float64
+</code></pre></div>
+<p><br></p>
+<p>We'll now combine and visualise the time-series</p>
+<div class="highlight"><pre><span></span><code><span class="n">s_price</span> <span class="o">=</span> <span class="n">s_price_DE_AT_LU</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">s_price_DE_LU</span><span class="p">)</span>
+<span class="n">s_price</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="n">s_price</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">tz_convert</span><span class="p">(</span><span class="s1">&#39;Europe/Berlin&#39;</span><span class="p">)</span>
+
+<span class="n">s_price</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>&lt;AxesSubplot:&gt;
+</code></pre></div>
+<p><img alt="png" src="../img/nbs/output_67_1.png" /></p>
+<p><br></p>
+<p>Before moving on we'll save this series as a csv</p>
+<div class="highlight"><pre><span></span><code><span class="n">s_price</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;DE_price&#39;</span>
+<span class="n">s_price</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;local_datetime&#39;</span>
+
+<span class="n">s_price</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;../data/raw/ENTSOE_DE_price.csv&#39;</span><span class="p">)</span>
+</code></pre></div>
+<p><br></p>
+<h5 id="generation-by-fuel-type">Generation by Fuel-Type<a class="headerlink" href="#generation-by-fuel-type" title="Permanent link">&para;</a></h5>
+<p>We'll now create the functions for retrieving and parsing the fuel data</p>
+<div class="highlight"><pre><span></span><code><span class="c1">#exports</span>
+<span class="k">def</span> <span class="nf">parse_A75_response</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="s1">&#39;15T&#39;</span><span class="p">,</span> <span class="n">tz</span><span class="o">=</span><span class="s1">&#39;UTC&#39;</span><span class="p">,</span> <span class="n">warn_on_failure</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Extracts the production data by fuel-type from the JSON response&quot;&quot;&quot;</span>
+    <span class="n">psr_code_to_type</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">&#39;A03&#39;</span><span class="p">:</span> <span class="s1">&#39;Mixed&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;A04&#39;</span><span class="p">:</span> <span class="s1">&#39;Generation&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;A05&#39;</span><span class="p">:</span> <span class="s1">&#39;Load&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;B01&#39;</span><span class="p">:</span> <span class="s1">&#39;Biomass&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;B02&#39;</span><span class="p">:</span> <span class="s1">&#39;Fossil Brown coal/Lignite&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;B03&#39;</span><span class="p">:</span> <span class="s1">&#39;Fossil Coal-derived gas&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;B04&#39;</span><span class="p">:</span> <span class="s1">&#39;Fossil Gas&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;B05&#39;</span><span class="p">:</span> <span class="s1">&#39;Fossil Hard coal&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;B06&#39;</span><span class="p">:</span> <span class="s1">&#39;Fossil Oil&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;B07&#39;</span><span class="p">:</span> <span class="s1">&#39;Fossil Oil shale&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;B08&#39;</span><span class="p">:</span> <span class="s1">&#39;Fossil Peat&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;B09&#39;</span><span class="p">:</span> <span class="s1">&#39;Geothermal&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;B10&#39;</span><span class="p">:</span> <span class="s1">&#39;Hydro Pumped Storage&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;B11&#39;</span><span class="p">:</span> <span class="s1">&#39;Hydro Run-of-river and poundage&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;B12&#39;</span><span class="p">:</span> <span class="s1">&#39;Hydro Water Reservoir&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;B13&#39;</span><span class="p">:</span> <span class="s1">&#39;Marine&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;B14&#39;</span><span class="p">:</span> <span class="s1">&#39;Nuclear&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;B15&#39;</span><span class="p">:</span> <span class="s1">&#39;Other renewable&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;B16&#39;</span><span class="p">:</span> <span class="s1">&#39;Solar&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;B17&#39;</span><span class="p">:</span> <span class="s1">&#39;Waste&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;B18&#39;</span><span class="p">:</span> <span class="s1">&#39;Wind Offshore&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;B19&#39;</span><span class="p">:</span> <span class="s1">&#39;Wind Onshore&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;B20&#39;</span><span class="p">:</span> <span class="s1">&#39;Other&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;B21&#39;</span><span class="p">:</span> <span class="s1">&#39;AC Link&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;B22&#39;</span><span class="p">:</span> <span class="s1">&#39;DC Link&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;B23&#39;</span><span class="p">:</span> <span class="s1">&#39;Substation&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;B24&#39;</span><span class="p">:</span> <span class="s1">&#39;Transformer&#39;</span>
+    <span class="p">}</span>
+
+    <span class="n">parsed_r</span> <span class="o">=</span> <span class="n">xmltodict</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+
+    <span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="sa">f</span><span class="s1">&#39;B</span><span class="si">{</span><span class="nb">str</span><span class="p">(</span><span class="n">fuel_idx</span><span class="p">)</span><span class="o">.</span><span class="n">zfill</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="si">}</span><span class="s1">&#39;</span> <span class="k">for</span> <span class="n">fuel_idx</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">24</span><span class="p">)]</span>
+    <span class="n">index</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span>
+        <span class="n">parsed_r</span><span class="p">[</span><span class="s1">&#39;GL_MarketDocument&#39;</span><span class="p">][</span><span class="s1">&#39;time_Period.timeInterval&#39;</span><span class="p">][</span><span class="s1">&#39;start&#39;</span><span class="p">],</span> 
+        <span class="n">parsed_r</span><span class="p">[</span><span class="s1">&#39;GL_MarketDocument&#39;</span><span class="p">][</span><span class="s1">&#39;time_Period.timeInterval&#39;</span><span class="p">][</span><span class="s1">&#39;end&#39;</span><span class="p">],</span> 
+        <span class="n">freq</span><span class="o">=</span><span class="n">freq</span><span class="p">,</span> <span class="n">tz</span><span class="o">=</span><span class="n">tz</span><span class="p">)[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+
+    <span class="n">df_production</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">columns</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">index</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">timeseries</span> <span class="ow">in</span> <span class="n">parsed_r</span><span class="p">[</span><span class="s1">&#39;GL_MarketDocument&#39;</span><span class="p">][</span><span class="s1">&#39;TimeSeries&#39;</span><span class="p">]:</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">psr_type</span> <span class="o">=</span> <span class="n">timeseries</span><span class="p">[</span><span class="s1">&#39;MktPSRType&#39;</span><span class="p">][</span><span class="s1">&#39;psrType&#39;</span><span class="p">]</span>
+            <span class="n">dt_rng</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="n">timeseries</span><span class="p">[</span><span class="s1">&#39;Period&#39;</span><span class="p">][</span><span class="s1">&#39;timeInterval&#39;</span><span class="p">][</span><span class="s1">&#39;start&#39;</span><span class="p">],</span> <span class="n">timeseries</span><span class="p">[</span><span class="s1">&#39;Period&#39;</span><span class="p">][</span><span class="s1">&#39;timeInterval&#39;</span><span class="p">][</span><span class="s1">&#39;end&#39;</span><span class="p">],</span> <span class="n">freq</span><span class="o">=</span><span class="n">freq</span><span class="p">,</span> <span class="n">tz</span><span class="o">=</span><span class="n">tz</span><span class="p">)[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+
+            <span class="n">s_psr_type</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">timeseries</span><span class="p">[</span><span class="s1">&#39;Period&#39;</span><span class="p">][</span><span class="s1">&#39;Point&#39;</span><span class="p">])[</span><span class="s1">&#39;quantity&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span>
+            <span class="n">s_psr_type</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="n">dt_rng</span>
+
+            <span class="n">df_production</span><span class="p">[</span><span class="n">psr_type</span><span class="p">]</span> <span class="o">=</span> <span class="n">s_psr_type</span>
+
+        <span class="k">except</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">warn_on_failure</span> <span class="o">==</span> <span class="kc">True</span><span class="p">:</span>
+                <span class="n">warn</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">timeseries</span><span class="p">[</span><span class="s1">&#39;Period&#39;</span><span class="p">][</span><span class="s1">&#39;timeInterval&#39;</span><span class="p">][</span><span class="s1">&#39;start&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">-</span><span class="si">{</span><span class="n">timeseries</span><span class="p">[</span><span class="s1">&#39;Period&#39;</span><span class="p">][</span><span class="s1">&#39;timeInterval&#39;</span><span class="p">][</span><span class="s1">&#39;start&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2"> failed for </span><span class="si">{</span><span class="n">psr_type</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="k">assert</span> <span class="n">df_production</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">duplicated</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">==</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;There are duplicate date indexes&#39;</span>
+
+    <span class="n">df_production</span> <span class="o">=</span> <span class="n">df_production</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">how</span><span class="o">=</span><span class="s1">&#39;all&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">how</span><span class="o">=</span><span class="s1">&#39;all&#39;</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">df_production</span> <span class="o">=</span> <span class="n">df_production</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="n">psr_code_to_type</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">df_production</span>
+
+<span class="k">def</span> <span class="nf">retrieve_production</span><span class="p">(</span><span class="n">dt_pairs</span><span class="p">,</span> <span class="n">domain</span><span class="o">=</span><span class="s1">&#39;10Y1001A1001A63L&#39;</span><span class="p">,</span> <span class="n">warn_on_failure</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Retrieves and collates the production data for the specified date ranges&quot;&quot;&quot;</span>
+    <span class="n">params</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">&#39;documentType&#39;</span><span class="p">:</span> <span class="s1">&#39;A75&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;processType&#39;</span><span class="p">:</span> <span class="s1">&#39;A16&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;in_Domain&#39;</span><span class="p">:</span> <span class="n">domain</span>
+    <span class="p">}</span>
+
+    <span class="n">df_production</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">dt_pair</span> <span class="ow">in</span> <span class="n">track</span><span class="p">(</span><span class="n">dt_pairs</span><span class="p">):</span>
+        <span class="n">start</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Timestamp</span><span class="p">(</span><span class="n">dt_pair</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">tz</span><span class="o">=</span><span class="s1">&#39;UTC&#39;</span><span class="p">)</span>
+        <span class="n">end</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Timestamp</span><span class="p">(</span><span class="n">dt_pair</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">tz</span><span class="o">=</span><span class="s1">&#39;UTC&#39;</span><span class="p">)</span>
+
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">r</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">_base_request</span><span class="p">(</span><span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">,</span> <span class="n">start</span><span class="o">=</span><span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="n">end</span><span class="p">)</span>
+
+            <span class="n">df_production_dt_rng</span> <span class="o">=</span> <span class="n">parse_A75_response</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">warn_on_failure</span><span class="o">=</span><span class="n">warn_on_failure</span><span class="p">)</span>
+            <span class="n">df_production</span> <span class="o">=</span> <span class="n">df_production</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">df_production_dt_rng</span><span class="p">)</span>
+        <span class="k">except</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">warn_on_failure</span> <span class="o">==</span> <span class="kc">True</span><span class="p">:</span>
+                <span class="n">warn</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">start</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%Y-%m-</span><span class="si">%d</span><span class="s1">&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2"> - </span><span class="si">{</span><span class="n">end</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%Y-%m-</span><span class="si">%d</span><span class="s1">&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2"> failed&quot;</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">df_production</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="n">df_production_DE_AT_LU</span> <span class="o">=</span> <span class="n">retrieve_production</span><span class="p">(</span><span class="n">DE_AT_LU_dt_pairs</span><span class="p">)</span>
+<span class="n">df_production_DE_LU</span> <span class="o">=</span> <span class="n">retrieve_production</span><span class="p">(</span><span class="n">DE_LU_dt_pairs</span><span class="p">,</span> <span class="n">domain</span><span class="o">=</span><span class="s1">&#39;10Y1001A1001A82H&#39;</span><span class="p">)</span>
+
+<span class="n">df_production</span> <span class="o">=</span> <span class="n">df_production_DE_AT_LU</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">df_production_DE_LU</span><span class="p">)</span>
+
+<span class="n">df_production</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</code></pre></div>
+<div><span class="Text-label" style="display:inline-block; overflow:hidden; white-space:nowrap; text-overflow:ellipsis; min-width:0; max-width:15ex; vertical-align:middle; text-align:right"></span>
+<progress style="width:60ex" max="15" value="15" class="Progress-main"/></progress>
+<span class="Progress-label"><strong>100%</strong></span>
+<span class="Iteration-label">15/15</span>
+<span class="Time-label">[05:37<00:18, 22.45s/it]</span></div>
+
+<div><span class="Text-label" style="display:inline-block; overflow:hidden; white-space:nowrap; text-overflow:ellipsis; min-width:0; max-width:15ex; vertical-align:middle; text-align:right"></span>
+<progress style="width:60ex" max="9" value="9" class="Progress-main"/></progress>
+<span class="Progress-label"><strong>100%</strong></span>
+<span class="Iteration-label">9/9</span>
+<span class="Time-label">[02:37<00:14, 17.45s/it]</span></div>
+
+<table>
+<thead>
+<tr>
+<th align="left">Unnamed: 0</th>
+<th align="right">Biomass</th>
+<th align="right">Fossil Brown coal/Lignite</th>
+<th align="right">Fossil Coal-derived gas</th>
+<th align="right">Fossil Gas</th>
+<th align="right">Fossil Hard coal</th>
+<th align="right">Fossil Oil</th>
+<th align="right">Geothermal</th>
+<th align="right">Hydro Pumped Storage</th>
+<th align="right">Hydro Run-of-river and poundage</th>
+<th align="right">Hydro Water Reservoir</th>
+<th align="right">Nuclear</th>
+<th align="right">Other renewable</th>
+<th align="right">Solar</th>
+<th align="right">Waste</th>
+<th align="right">Wind Offshore</th>
+<th align="right">Wind Onshore</th>
+<th align="right">Other</th>
+<th align="right">Marine</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">2015-01-01 23:00:00+00:00</td>
+<td align="right">nan</td>
+<td align="right">nan</td>
+<td align="right">nan</td>
+<td align="right">nan</td>
+<td align="right">nan</td>
+<td align="right">5</td>
+<td align="right">nan</td>
+<td align="right">nan</td>
+<td align="right">nan</td>
+<td align="right">0</td>
+<td align="right">nan</td>
+<td align="right">nan</td>
+<td align="right">nan</td>
+<td align="right">nan</td>
+<td align="right">391</td>
+<td align="right">0</td>
+<td align="right">nan</td>
+<td align="right">nan</td>
+</tr>
+<tr>
+<td align="left">2015-01-01 23:15:00+00:00</td>
+<td align="right">nan</td>
+<td align="right">nan</td>
+<td align="right">nan</td>
+<td align="right">nan</td>
+<td align="right">nan</td>
+<td align="right">5</td>
+<td align="right">nan</td>
+<td align="right">nan</td>
+<td align="right">nan</td>
+<td align="right">0</td>
+<td align="right">nan</td>
+<td align="right">nan</td>
+<td align="right">nan</td>
+<td align="right">nan</td>
+<td align="right">292</td>
+<td align="right">0</td>
+<td align="right">nan</td>
+<td align="right">nan</td>
+</tr>
+<tr>
+<td align="left">2015-01-01 23:30:00+00:00</td>
+<td align="right">nan</td>
+<td align="right">nan</td>
+<td align="right">nan</td>
+<td align="right">nan</td>
+<td align="right">nan</td>
+<td align="right">5</td>
+<td align="right">nan</td>
+<td align="right">nan</td>
+<td align="right">nan</td>
+<td align="right">0</td>
+<td align="right">nan</td>
+<td align="right">nan</td>
+<td align="right">nan</td>
+<td align="right">nan</td>
+<td align="right">271</td>
+<td align="right">0</td>
+<td align="right">nan</td>
+<td align="right">nan</td>
+</tr>
+<tr>
+<td align="left">2015-01-01 23:45:00+00:00</td>
+<td align="right">nan</td>
+<td align="right">nan</td>
+<td align="right">nan</td>
+<td align="right">nan</td>
+<td align="right">nan</td>
+<td align="right">5</td>
+<td align="right">nan</td>
+<td align="right">nan</td>
+<td align="right">nan</td>
+<td align="right">0</td>
+<td align="right">nan</td>
+<td align="right">nan</td>
+<td align="right">nan</td>
+<td align="right">nan</td>
+<td align="right">266</td>
+<td align="right">0</td>
+<td align="right">nan</td>
+<td align="right">nan</td>
+</tr>
+<tr>
+<td align="left">2015-01-02 00:00:00+00:00</td>
+<td align="right">nan</td>
+<td align="right">nan</td>
+<td align="right">nan</td>
+<td align="right">nan</td>
+<td align="right">nan</td>
+<td align="right">5</td>
+<td align="right">nan</td>
+<td align="right">nan</td>
+<td align="right">nan</td>
+<td align="right">0</td>
+<td align="right">nan</td>
+<td align="right">nan</td>
+<td align="right">nan</td>
+<td align="right">nan</td>
+<td align="right">268</td>
+<td align="right">0</td>
+<td align="right">nan</td>
+<td align="right">nan</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p>We'll quickly inspect for the presence of null values, due to the large number found we'll use the energy-charts data when it comes to fuel generation</p>
+<div class="highlight"><pre><span></span><code><span class="n">df_production</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>Biomass                            0.068175
+Fossil Brown coal/Lignite          0.068175
+Fossil Coal-derived gas            0.998617
+Fossil Gas                         0.385562
+Fossil Hard coal                   0.068175
+Fossil Oil                         0.362709
+Geothermal                         0.068175
+Hydro Pumped Storage               0.068175
+Hydro Run-of-river and poundage    0.068175
+Hydro Water Reservoir              0.250576
+Nuclear                            0.269564
+Other renewable                    0.068175
+Solar                              0.178234
+Waste                              0.068175
+Wind Offshore                      0.157710
+Wind Onshore                       0.141564
+Other                              0.068175
+Marine                             0.979668
+dtype: float64
+</code></pre></div>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
+        
+          <a href="../ug-04-gb-mcc/" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+            </div>
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Marginal Cost Curve
+              </div>
+            </div>
+          </a>
+        
+        
+          <a href="../dev-02-eda/" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Exploratory Data Analysis
+              </div>
+            </div>
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../assets/javascripts/vendor.08c56446.min.js"></script>
+      <script src="../assets/javascripts/bundle.6ced434e.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}</script>
+      
+      <script>
+        app = initialize({
+          base: "..",
+          features: ['header.autohide', 'navigation.tabs', 'navigation.instant', 'search.suggest'],
+          search: Object.assign({
+            worker: "../assets/javascripts/worker/search.8c7e0a7e.min.js"
+          }, typeof search !== "undefined" && search)
+        })
+      </script>
+      
+        <script src="../javascripts/config.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

@@ -1,0 +1,1185 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+      <link rel="shortcut icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-6.2.2">
+    
+    
+      
+        <title>Power Curve Cleaning - Outage Watch</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.73f7c429.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.39b8e14a.min.css">
+        
+          
+          
+          <meta name="theme-color" content="#000000">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono",SFMono-Regular,Consolas,Menlo,monospace}</style>
+      
+    
+    
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="black" data-md-color-accent="">
+      
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#quantile-lowess-for-data-cleaning" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid" aria-label="Header">
+    <a href=".." title="Outage Watch" class="md-header-nav__button md-logo" aria-label="Outage Watch">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header-nav__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header-nav__title" data-md-component="header-title">
+      <div class="md-header-nav__ellipsis">
+        <div class="md-header-nav__topic">
+          <span class="md-ellipsis">
+            Outage Watch
+          </span>
+        </div>
+        <div class="md-header-nav__topic">
+          <span class="md-ellipsis">
+            
+              Power Curve Cleaning
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      <label class="md-header-nav__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" data-md-component="search-reset" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header-nav__source">
+        
+<a href="https://github.com/OSUKED/Outage-Watch/" title="Go to repository" class="md-source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    OSUKED/Outage-Watch
+  </div>
+</a>
+      </div>
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href=".." class="md-tabs__link">
+      Home
+    </a>
+  </li>
+
+      
+        
+  
+  
+    
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../ug-01-quantile/" class="md-tabs__link md-tabs__link--active">
+        User Guide
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../dev-01-retrieval/" class="md-tabs__link">
+        Development
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Outage Watch" class="md-nav__button md-logo" aria-label="Outage Watch">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    Outage Watch
+  </label>
+  
+    <div class="md-nav__source">
+      
+<a href="https://github.com/OSUKED/Outage-Watch/" title="Go to repository" class="md-source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    OSUKED/Outage-Watch
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+
+  <li class="md-nav__item">
+    <a href=".." class="md-nav__link">
+      Home
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  
+
+
+  
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2" checked>
+    
+    <label class="md-nav__link" for="nav-2">
+      User Guide
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="User Guide" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        <span class="md-nav__icon md-icon"></span>
+        User Guide
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="../ug-01-quantile/" class="md-nav__link">
+      Quantile Predictions
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="../ug-02-confidence/" class="md-nav__link">
+      Confidence Intervals
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Power Curve Cleaning
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+    
+    <a href="./" class="md-nav__link md-nav__link--active">
+      Power Curve Cleaning
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#imports" class="md-nav__link">
+    Imports
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#loading-data" class="md-nav__link">
+    Loading Data
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#power-curve-cleaning" class="md-nav__link">
+    Power Curve Cleaning
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="../ug-04-gb-mcc/" class="md-nav__link">
+      Marginal Cost Curve
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+
+  
+  <li class="md-nav__item md-nav__item--nested">
+    
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3" >
+    
+    <label class="md-nav__link" for="nav-3">
+      Development
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Development" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        <span class="md-nav__icon md-icon"></span>
+        Development
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="../dev-01-retrieval/" class="md-nav__link">
+      Data Retrieval
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="../dev-02-eda/" class="md-nav__link">
+      Exploratory Data Analysis
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="../dev-03-lowess/" class="md-nav__link">
+      LOWESS
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="../dev-04-price-surface-estimation/" class="md-nav__link">
+      Price Curve Estimation
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="../dev-05-price-moe/" class="md-nav__link">
+      Price MOE Calculation
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="../dev-06-carbon-surface-estimation-and-moe/" class="md-nav__link">
+      Carbon Curve Estimation & MOE
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="../dev-07-prediction-confidence-and-intervals/" class="md-nav__link">
+      Prediction & Confidence Intervals
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="../dev-08-hyper-parameter-tuning/" class="md-nav__link">
+      Hyper-Parameter Tuning
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="../dev-09-tables-and-figures/" class="md-nav__link">
+      Tables & Figures
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="../dev-10-ci-cd/" class="md-nav__link">
+      CI-CD
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#imports" class="md-nav__link">
+    Imports
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#loading-data" class="md-nav__link">
+    Loading Data
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#power-curve-cleaning" class="md-nav__link">
+    Power Curve Cleaning
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/OSUKED/Outage-Watch/edit/main/docs/ug-03-power-curve.md" title="Edit this page" class="md-content__button md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+                  </a>
+                
+                
+                <h1 id="quantile-lowess-for-data-cleaning">Quantile LOWESS for Data Cleaning<a class="headerlink" href="#quantile-lowess-for-data-cleaning" title="Permanent link">&para;</a></h1>
+<p>In this notebook we'll look at how we can use our LOWESS methods to process wind turbine SCADA data and fit a clean power curve that doesn't include under-powered periods.</p>
+<p><br></p>
+<h3 id="imports">Imports<a class="headerlink" href="#imports" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="kn">from</span> <span class="nn">moepy</span> <span class="kn">import</span> <span class="n">lowess</span><span class="p">,</span> <span class="n">eda</span>
+</code></pre></div>
+<p><br></p>
+<h3 id="loading-data">Loading Data<a class="headerlink" href="#loading-data" title="Permanent link">&para;</a></h3>
+<p>We'll start by loading the SCADA data in</p>
+<div class="highlight"><pre><span></span><code><span class="n">df_SCADA</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;../data/lowess_examples/turbine_SCADA.csv&#39;</span><span class="p">)</span>
+
+<span class="n">df_SCADA</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+</code></pre></div>
+<table>
+<thead>
+<tr>
+<th align="right">Unnamed: 0</th>
+<th align="left">UTC</th>
+<th align="right">T01_active_power</th>
+<th align="right">T01_blade_pitch</th>
+<th align="right">T01_generator_speed</th>
+<th align="right">T01_wind_speed</th>
+<th align="right">T02_active_power</th>
+<th align="right">T02_blade_pitch</th>
+<th align="right">T02_generator_speed</th>
+<th align="right">T02_wind_speed</th>
+<th align="right">T03_active_power</th>
+<th align="left">...</th>
+<th align="right">T09_theoretical_power</th>
+<th align="right">T10_theoretical_power</th>
+<th align="right">T11_theoretical_power</th>
+<th align="right">T12_theoretical_power</th>
+<th align="right">T13_theoretical_power</th>
+<th align="right">T14_theoretical_power</th>
+<th align="right">T15_theoretical_power</th>
+<th align="right">T16_theoretical_power</th>
+<th align="right">pc_error</th>
+<th align="right">wind_angle_rad</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="right">0</td>
+<td align="left">2017-09-30 18:26:40</td>
+<td align="right">56</td>
+<td align="right">-0.4</td>
+<td align="right">573</td>
+<td align="right">4.51</td>
+<td align="right">-4</td>
+<td align="right">5.2</td>
+<td align="right">682</td>
+<td align="right">2.21</td>
+<td align="right">-41</td>
+<td align="left">...</td>
+<td align="right">163</td>
+<td align="right">0</td>
+<td align="right">23.32</td>
+<td align="right">101.26</td>
+<td align="right">121.42</td>
+<td align="right">32.33</td>
+<td align="right">54.88</td>
+<td align="right">93.42</td>
+<td align="right">838.636</td>
+<td align="right">nan</td>
+</tr>
+<tr>
+<td align="right">1</td>
+<td align="left">2017-09-30 18:56:40</td>
+<td align="right">56</td>
+<td align="right">-0.4</td>
+<td align="right">573</td>
+<td align="right">4.51</td>
+<td align="right">-4</td>
+<td align="right">5.2</td>
+<td align="right">682</td>
+<td align="right">2.21</td>
+<td align="right">-41</td>
+<td align="left">...</td>
+<td align="right">163</td>
+<td align="right">0</td>
+<td align="right">23.32</td>
+<td align="right">101.26</td>
+<td align="right">121.42</td>
+<td align="right">32.33</td>
+<td align="right">54.88</td>
+<td align="right">93.42</td>
+<td align="right">838.636</td>
+<td align="right">nan</td>
+</tr>
+<tr>
+<td align="right">2</td>
+<td align="left">2017-09-30 19:26:40</td>
+<td align="right">56</td>
+<td align="right">-0.4</td>
+<td align="right">573</td>
+<td align="right">4.51</td>
+<td align="right">-4</td>
+<td align="right">5.2</td>
+<td align="right">682</td>
+<td align="right">2.21</td>
+<td align="right">-41</td>
+<td align="left">...</td>
+<td align="right">163</td>
+<td align="right">0</td>
+<td align="right">23.32</td>
+<td align="right">101.26</td>
+<td align="right">121.42</td>
+<td align="right">32.33</td>
+<td align="right">54.88</td>
+<td align="right">93.42</td>
+<td align="right">838.636</td>
+<td align="right">nan</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p>We'll extract data for a single turbine</p>
+<div class="highlight"><pre><span></span><code><span class="n">filter_for_turbine</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">df</span><span class="p">,</span> <span class="n">turbine</span><span class="o">=</span><span class="mi">1</span><span class="p">:</span> <span class="n">df</span><span class="p">[[</span><span class="s1">&#39;UTC&#39;</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;T</span><span class="si">{</span><span class="nb">str</span><span class="p">(</span><span class="n">turbine</span><span class="p">)</span><span class="o">.</span><span class="n">zfill</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="si">}</span><span class="s1">_active_power&#39;</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;T</span><span class="si">{</span><span class="nb">str</span><span class="p">(</span><span class="n">turbine</span><span class="p">)</span><span class="o">.</span><span class="n">zfill</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="si">}</span><span class="s1">_wind_speed&#39;</span><span class="p">,</span> <span class="s1">&#39;wind_angle_rad&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">pipe</span><span class="p">(</span><span class="k">lambda</span> <span class="n">df</span><span class="p">:</span> <span class="n">df</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">,</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;T</span><span class="si">{</span><span class="nb">str</span><span class="p">(</span><span class="n">turbine</span><span class="p">)</span><span class="o">.</span><span class="n">zfill</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="si">}</span><span class="s1">_&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)))))</span>
+
+<span class="n">df_turbine</span> <span class="o">=</span> <span class="n">filter_for_turbine</span><span class="p">(</span><span class="n">df_SCADA</span><span class="p">,</span> <span class="mi">15</span><span class="p">)</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span>
+
+<span class="n">df_turbine</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</code></pre></div>
+<table>
+<thead>
+<tr>
+<th align="right">Unnamed: 0</th>
+<th align="left">UTC</th>
+<th align="right">active_power</th>
+<th align="right">wind_speed</th>
+<th align="right">wind_angle_rad</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="right">12</td>
+<td align="left">2017-10-01 00:26:40</td>
+<td align="right">68</td>
+<td align="right">4.39667</td>
+<td align="right">-1.03557</td>
+</tr>
+<tr>
+<td align="right">13</td>
+<td align="left">2017-10-01 00:56:40</td>
+<td align="right">112.5</td>
+<td align="right">3.69</td>
+<td align="right">-0.969684</td>
+</tr>
+<tr>
+<td align="right">14</td>
+<td align="left">2017-10-01 01:26:40</td>
+<td align="right">238</td>
+<td align="right">4.67</td>
+<td align="right">0.395575</td>
+</tr>
+<tr>
+<td align="right">15</td>
+<td align="left">2017-10-01 01:56:40</td>
+<td align="right">494</td>
+<td align="right">7.14</td>
+<td align="right">-1.46098</td>
+</tr>
+<tr>
+<td align="right">16</td>
+<td align="left">2017-10-01 02:26:40</td>
+<td align="right">562</td>
+<td align="right">5.37</td>
+<td align="right">0.493009</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<h3 id="power-curve-cleaning">Power Curve Cleaning<a class="headerlink" href="#power-curve-cleaning" title="Permanent link">&para;</a></h3>
+<p>We'll then try and fit a Lowess estimate for the power curve.</p>
+<div class="highlight"><pre><span></span><code><span class="o">%%</span><span class="n">time</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="n">df_turbine</span><span class="p">[</span><span class="s1">&#39;wind_speed&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">df_turbine</span><span class="p">[</span><span class="s1">&#39;active_power&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
+
+<span class="n">lowess_model</span> <span class="o">=</span> <span class="n">lowess</span><span class="o">.</span><span class="n">Lowess</span><span class="p">()</span>
+<span class="n">lowess_model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">frac</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">num_fits</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+
+<span class="n">x_pred</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">101</span><span class="p">)</span>
+<span class="n">y_pred</span> <span class="o">=</span> <span class="n">lowess_model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">x_pred</span><span class="p">)</span>
+
+<span class="c1"># Plotting</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_pred</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Robust LOESS&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;With Noise&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;C1&#39;</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">frameon</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>c:\users\ayrto\desktop\phd\analysis\merit-order-effect\moepy\lowess.py:145: FutureWarning: `rcond` parameter will change to the default of machine precision times ``max(M, N)`` where M and N are the input matrix dimensions.
+To use the future default and silence this warning we advise to pass `rcond=None`, to keep using the old, explicitly pass `rcond=-1`.
+  betas = np.linalg.lstsq(A, b)[0]
+
+
+Wall time: 585 ms
+
+
+
+
+
+&lt;matplotlib.legend.Legend at 0x1d5af4428e0&gt;
+</code></pre></div>
+<p><img alt="png" src="../img/nbs/output_7_3.png" /></p>
+<p><br></p>
+<p>Unfortunately the fit is thrown by the large number of occurences where the farm is under-powered or set to output 0, we want to remove these so that we can estimate the 'standard' power curve. We'll create a quantile Lowess fit to see if that helps us understand the data any better.</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Estimating the quantiles</span>
+<span class="n">df_quantiles</span> <span class="o">=</span> <span class="n">lowess</span><span class="o">.</span><span class="n">quantile_model</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">frac</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">qs</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">0.025</span><span class="p">,</span> <span class="mf">0.975</span><span class="p">,</span> <span class="mi">41</span><span class="p">),</span> <span class="n">num_fits</span><span class="o">=</span><span class="mi">40</span><span class="p">)</span>
+
+<span class="c1"># Cleaning names and sorting for plotting</span>
+<span class="n">df_quantiles</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="sa">f</span><span class="s1">&#39;p</span><span class="si">{</span><span class="nb">int</span><span class="p">(</span><span class="n">col</span><span class="o">*</span><span class="mi">100</span><span class="p">)</span><span class="si">}</span><span class="s1">&#39;</span> <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">df_quantiles</span><span class="o">.</span><span class="n">columns</span><span class="p">]</span>
+<span class="n">df_quantiles</span> <span class="o">=</span> <span class="n">df_quantiles</span><span class="p">[</span><span class="n">df_quantiles</span><span class="o">.</span><span class="n">columns</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]]</span>
+
+<span class="n">df_quantiles</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</code></pre></div>
+<div><span class="Text-label" style="display:inline-block; overflow:hidden; white-space:nowrap; text-overflow:ellipsis; min-width:0; max-width:15ex; vertical-align:middle; text-align:right"></span>
+<progress style="width:60ex" max="41" value="41" class="Progress-main"/></progress>
+<span class="Progress-label"><strong>100%</strong></span>
+<span class="Iteration-label">41/41</span>
+<span class="Time-label">[02:08<00:03, 3.12s/it]</span></div>
+
+<table>
+<thead>
+<tr>
+<th align="right">x</th>
+<th align="right">p97</th>
+<th align="right">p95</th>
+<th align="right">p92</th>
+<th align="right">p90</th>
+<th align="right">p88</th>
+<th align="right">p85</th>
+<th align="right">p83</th>
+<th align="right">p80</th>
+<th align="right">p78</th>
+<th align="right">p76</th>
+<th align="left">...</th>
+<th align="right">p23</th>
+<th align="right">p21</th>
+<th align="right">p19</th>
+<th align="right">p16</th>
+<th align="right">p14</th>
+<th align="right">p12</th>
+<th align="right">p9</th>
+<th align="right">p7</th>
+<th align="right">p4</th>
+<th align="right">p2</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="right">0.25</td>
+<td align="right">-31.8607</td>
+<td align="right">-36.669</td>
+<td align="right">-49.5917</td>
+<td align="right">-50.8011</td>
+<td align="right">-54.8979</td>
+<td align="right">-62.4346</td>
+<td align="right">-65.6697</td>
+<td align="right">-68.2331</td>
+<td align="right">-68.9789</td>
+<td align="right">-69.7274</td>
+<td align="left">...</td>
+<td align="right">-79.5962</td>
+<td align="right">-74.3463</td>
+<td align="right">-69.0825</td>
+<td align="right">-62.7053</td>
+<td align="right">-58.362</td>
+<td align="right">-53.9233</td>
+<td align="right">-50.0939</td>
+<td align="right">-49.134</td>
+<td align="right">-50.205</td>
+<td align="right">-51.815</td>
+</tr>
+<tr>
+<td align="right">0.33</td>
+<td align="right">-25.204</td>
+<td align="right">-31.2919</td>
+<td align="right">-44.4735</td>
+<td align="right">-46.1838</td>
+<td align="right">-50.4993</td>
+<td align="right">-58.1508</td>
+<td align="right">-61.4824</td>
+<td align="right">-64.1785</td>
+<td align="right">-65.0755</td>
+<td align="right">-65.9571</td>
+<td align="left">...</td>
+<td align="right">-78.2436</td>
+<td align="right">-73.3799</td>
+<td align="right">-68.4272</td>
+<td align="right">-62.3658</td>
+<td align="right">-58.1436</td>
+<td align="right">-53.8781</td>
+<td align="right">-50.0808</td>
+<td align="right">-49.0606</td>
+<td align="right">-49.9814</td>
+<td align="right">-51.5724</td>
+</tr>
+<tr>
+<td align="right">0.41</td>
+<td align="right">-18.6577</td>
+<td align="right">-25.9899</td>
+<td align="right">-39.441</td>
+<td align="right">-41.6317</td>
+<td align="right">-46.1561</td>
+<td align="right">-53.9169</td>
+<td align="right">-57.3385</td>
+<td align="right">-60.163</td>
+<td align="right">-61.2086</td>
+<td align="right">-62.2258</td>
+<td align="left">...</td>
+<td align="right">-76.897</td>
+<td align="right">-72.4143</td>
+<td align="right">-67.7797</td>
+<td align="right">-62.0494</td>
+<td align="right">-57.9512</td>
+<td align="right">-53.8512</td>
+<td align="right">-50.0791</td>
+<td align="right">-49.0013</td>
+<td align="right">-49.7576</td>
+<td align="right">-51.3317</td>
+</tr>
+<tr>
+<td align="right">0.49</td>
+<td align="right">-12.1758</td>
+<td align="right">-20.7247</td>
+<td align="right">-34.4592</td>
+<td align="right">-37.1132</td>
+<td align="right">-41.8401</td>
+<td align="right">-49.7063</td>
+<td align="right">-53.2149</td>
+<td align="right">-56.1647</td>
+<td align="right">-57.3571</td>
+<td align="right">-58.5129</td>
+<td align="left">...</td>
+<td align="right">-75.5433</td>
+<td align="right">-71.4351</td>
+<td align="right">-67.1239</td>
+<td align="right">-61.7374</td>
+<td align="right">-57.7682</td>
+<td align="right">-53.8289</td>
+<td align="right">-50.0794</td>
+<td align="right">-48.9493</td>
+<td align="right">-49.5327</td>
+<td align="right">-51.0921</td>
+</tr>
+<tr>
+<td align="right">0.57</td>
+<td align="right">-5.71114</td>
+<td align="right">-15.4572</td>
+<td align="right">-29.4922</td>
+<td align="right">-32.596</td>
+<td align="right">-37.5225</td>
+<td align="right">-45.4924</td>
+<td align="right">-49.0885</td>
+<td align="right">-52.1612</td>
+<td align="right">-53.4996</td>
+<td align="right">-54.7973</td>
+<td align="left">...</td>
+<td align="right">-74.1691</td>
+<td align="right">-70.4282</td>
+<td align="right">-66.4441</td>
+<td align="right">-61.4111</td>
+<td align="right">-57.5778</td>
+<td align="right">-53.7971</td>
+<td align="right">-50.0722</td>
+<td align="right">-48.8973</td>
+<td align="right">-49.3056</td>
+<td align="right">-50.853</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p>Plotting these we can see an interesting relationship, where for many of the lower quantiles the estimate peaks then quickly drops to around 0. It is the area below and to the right of these peaks that we want to remove from our power curve estimate.</p>
+<div class="highlight"><pre><span></span><code><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">dpi</span><span class="o">=</span><span class="mi">150</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">df_quantiles</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;viridis&#39;</span><span class="p">,</span> <span class="n">legend</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
+
+<span class="n">eda</span><span class="o">.</span><span class="n">hide_spines</span><span class="p">(</span><span class="n">ax</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Wind Speed (m/s)&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Active Power (MW)&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">26</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>(0.0, 2715.0737814101485)
+</code></pre></div>
+<p><img alt="png" src="../img/nbs/output_11_1.png" /></p>
+<p><br></p>
+<p>We'll first identify the ratio between the peak value and the final value (above speeds of 25 m/s). We'll then remove points after the peak where the ratio between their peak and final values exceeds a defined threshold (in our case 2).</p>
+<p>N.b. there's probably a much nicer way to do this where the for loop isn't needed, this would be handy to implement as it would be good to have a vector containing all of the indexes that have been removed.</p>
+<div class="highlight"><pre><span></span><code><span class="n">exceeded_quantiles</span> <span class="o">=</span> <span class="p">((</span><span class="n">df_quantiles</span><span class="o">.</span><span class="n">max</span><span class="p">()</span><span class="o">/</span><span class="n">df_quantiles</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="mf">0.1</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">2</span><span class="p">)</span>
+                      <span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="kc">False</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">)</span>
+                      <span class="o">.</span><span class="n">dropna</span><span class="p">()</span>
+                      <span class="o">.</span><span class="n">index</span>
+                     <span class="p">)</span>
+
+<span class="n">s_maxs</span> <span class="o">=</span> <span class="n">df_quantiles</span><span class="p">[</span><span class="n">exceeded_quantiles</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+<span class="n">s_idxmaxs</span> <span class="o">=</span> <span class="n">df_quantiles</span><span class="p">[</span><span class="n">exceeded_quantiles</span><span class="p">]</span><span class="o">.</span><span class="n">idxmax</span><span class="p">()</span>
+
+<span class="n">cleaned_x</span> <span class="o">=</span> <span class="n">x</span>
+<span class="n">cleaned_y</span> <span class="o">=</span> <span class="n">y</span>
+
+<span class="k">for</span> <span class="n">exceeded_quantile</span> <span class="ow">in</span> <span class="n">exceeded_quantiles</span><span class="p">:</span>
+    <span class="n">min_x</span> <span class="o">=</span> <span class="n">s_idxmaxs</span><span class="p">[</span><span class="n">exceeded_quantile</span><span class="p">]</span>
+    <span class="n">max_y</span> <span class="o">=</span> <span class="n">s_maxs</span><span class="p">[</span><span class="n">exceeded_quantile</span><span class="p">]</span>
+
+    <span class="n">idxs_to_remove</span> <span class="o">=</span> <span class="p">(</span><span class="n">cleaned_x</span> <span class="o">&gt;</span> <span class="n">min_x</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">cleaned_y</span> <span class="o">&lt;</span> <span class="n">max_y</span><span class="p">)</span>
+
+    <span class="n">cleaned_x</span> <span class="o">=</span> <span class="n">cleaned_x</span><span class="p">[</span><span class="o">~</span><span class="n">idxs_to_remove</span><span class="p">]</span>
+    <span class="n">cleaned_y</span> <span class="o">=</span> <span class="n">cleaned_y</span><span class="p">[</span><span class="o">~</span><span class="n">idxs_to_remove</span><span class="p">]</span>
+</code></pre></div>
+<p><br></p>
+<p>Visualising the results we can clearly see that the unwanted periods have been removed</p>
+<div class="highlight"><pre><span></span><code><span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">dpi</span><span class="o">=</span><span class="mi">250</span><span class="p">,</span> <span class="n">ncols</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+
+<span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">cleaned_x</span><span class="p">,</span> <span class="n">cleaned_y</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Original&#39;</span><span class="p">)</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Cleaned&#39;</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">ax</span> <span class="ow">in</span> <span class="n">axs</span><span class="p">:</span>
+    <span class="n">eda</span><span class="o">.</span><span class="n">hide_spines</span><span class="p">(</span><span class="n">ax</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Wind Speed (m/s)&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Active Power (MW)&#39;</span><span class="p">)</span>
+</code></pre></div>
+<p><img alt="png" src="../img/nbs/output_15_0.png" /></p>
+<p><br></p>
+<p>We're now ready to make our power curve lowess estimate again</p>
+<div class="highlight"><pre><span></span><code><span class="o">%%</span><span class="n">time</span>
+
+<span class="n">lowess_model</span> <span class="o">=</span> <span class="n">lowess</span><span class="o">.</span><span class="n">Lowess</span><span class="p">()</span>
+<span class="n">lowess_model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">cleaned_x</span><span class="p">,</span> <span class="n">cleaned_y</span><span class="p">,</span> <span class="n">frac</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">num_fits</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+
+<span class="n">x_pred</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">101</span><span class="p">)</span>
+<span class="n">y_pred</span> <span class="o">=</span> <span class="n">lowess_model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">x_pred</span><span class="p">)</span>
+
+<span class="c1"># Plotting</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">dpi</span><span class="o">=</span><span class="mi">150</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_pred</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Robust LOESS&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">cleaned_x</span><span class="p">,</span> <span class="n">cleaned_y</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Observed&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;C1&#39;</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">frameon</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">eda</span><span class="o">.</span><span class="n">hide_spines</span><span class="p">(</span><span class="n">ax</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Wind Speed (m/s)&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Active Power (MW)&#39;</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>c:\users\ayrto\desktop\phd\analysis\merit-order-effect\moepy\lowess.py:145: FutureWarning: `rcond` parameter will change to the default of machine precision times ``max(M, N)`` where M and N are the input matrix dimensions.
+To use the future default and silence this warning we advise to pass `rcond=None`, to keep using the old, explicitly pass `rcond=-1`.
+  betas = np.linalg.lstsq(A, b)[0]
+
+
+Wall time: 550 ms
+
+
+
+
+
+Text(0, 0.5, &#39;Active Power (MW)&#39;)
+</code></pre></div>
+<p><img alt="png" src="../img/nbs/output_17_3.png" /></p>
+<p><br></p>
+<p>Potential areas for future exploration:
+* Clip y to something like 0.01, just needs to be marginally above 0
+* Should check what happens to the lower part though, because of frac the neg values may be helping
+* What happens if I fit for data where power&lt;2250 and speed&lt;14
+* Could then have a seperate distribution fit for the period after
+* Could then use weights to transition between them
+* Inspecting the active power spikes for the removed values should identify set-points</p>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
+        
+          <a href="../ug-02-confidence/" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+            </div>
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Confidence Intervals
+              </div>
+            </div>
+          </a>
+        
+        
+          <a href="../ug-04-gb-mcc/" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Marginal Cost Curve
+              </div>
+            </div>
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../assets/javascripts/vendor.08c56446.min.js"></script>
+      <script src="../assets/javascripts/bundle.6ced434e.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}</script>
+      
+      <script>
+        app = initialize({
+          base: "..",
+          features: ['header.autohide', 'navigation.tabs', 'navigation.instant', 'search.suggest'],
+          search: Object.assign({
+            worker: "../assets/javascripts/worker/search.8c7e0a7e.min.js"
+          }, typeof search !== "undefined" && search)
+        })
+      </script>
+      
+        <script src="../javascripts/config.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

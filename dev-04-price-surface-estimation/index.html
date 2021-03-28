@@ -1,0 +1,1297 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+      <link rel="shortcut icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-6.2.2">
+    
+    
+      
+        <title>Price Curve Estimation - Outage Watch</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.73f7c429.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.39b8e14a.min.css">
+        
+          
+          
+          <meta name="theme-color" content="#000000">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono",SFMono-Regular,Consolas,Menlo,monospace}</style>
+      
+    
+    
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="black" data-md-color-accent="">
+      
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#estimation-of-price-surfaces" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid" aria-label="Header">
+    <a href=".." title="Outage Watch" class="md-header-nav__button md-logo" aria-label="Outage Watch">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header-nav__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header-nav__title" data-md-component="header-title">
+      <div class="md-header-nav__ellipsis">
+        <div class="md-header-nav__topic">
+          <span class="md-ellipsis">
+            Outage Watch
+          </span>
+        </div>
+        <div class="md-header-nav__topic">
+          <span class="md-ellipsis">
+            
+              Price Curve Estimation
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      <label class="md-header-nav__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" data-md-component="search-reset" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header-nav__source">
+        
+<a href="https://github.com/OSUKED/Outage-Watch/" title="Go to repository" class="md-source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    OSUKED/Outage-Watch
+  </div>
+</a>
+      </div>
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href=".." class="md-tabs__link">
+      Home
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../ug-01-quantile/" class="md-tabs__link">
+        User Guide
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+    
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../dev-01-retrieval/" class="md-tabs__link md-tabs__link--active">
+        Development
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Outage Watch" class="md-nav__button md-logo" aria-label="Outage Watch">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    Outage Watch
+  </label>
+  
+    <div class="md-nav__source">
+      
+<a href="https://github.com/OSUKED/Outage-Watch/" title="Go to repository" class="md-source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    OSUKED/Outage-Watch
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+
+  <li class="md-nav__item">
+    <a href=".." class="md-nav__link">
+      Home
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+
+  
+  <li class="md-nav__item md-nav__item--nested">
+    
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2" >
+    
+    <label class="md-nav__link" for="nav-2">
+      User Guide
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="User Guide" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        <span class="md-nav__icon md-icon"></span>
+        User Guide
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="../ug-01-quantile/" class="md-nav__link">
+      Quantile Predictions
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="../ug-02-confidence/" class="md-nav__link">
+      Confidence Intervals
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="../ug-03-power-curve/" class="md-nav__link">
+      Power Curve Cleaning
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="../ug-04-gb-mcc/" class="md-nav__link">
+      Marginal Cost Curve
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  
+
+
+  
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3" checked>
+    
+    <label class="md-nav__link" for="nav-3">
+      Development
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Development" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        <span class="md-nav__icon md-icon"></span>
+        Development
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="../dev-01-retrieval/" class="md-nav__link">
+      Data Retrieval
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="../dev-02-eda/" class="md-nav__link">
+      Exploratory Data Analysis
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="../dev-03-lowess/" class="md-nav__link">
+      LOWESS
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Price Curve Estimation
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+    
+    <a href="./" class="md-nav__link md-nav__link--active">
+      Price Curve Estimation
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#imports" class="md-nav__link">
+    Imports
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#user-inputs" class="md-nav__link">
+    User Inputs
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#loading-cleaning-data" class="md-nav__link">
+    Loading &amp; Cleaning Data
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#results-wrapper" class="md-nav__link">
+    Results Wrapper
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="../dev-05-price-moe/" class="md-nav__link">
+      Price MOE Calculation
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="../dev-06-carbon-surface-estimation-and-moe/" class="md-nav__link">
+      Carbon Curve Estimation & MOE
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="../dev-07-prediction-confidence-and-intervals/" class="md-nav__link">
+      Prediction & Confidence Intervals
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="../dev-08-hyper-parameter-tuning/" class="md-nav__link">
+      Hyper-Parameter Tuning
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="../dev-09-tables-and-figures/" class="md-nav__link">
+      Tables & Figures
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="../dev-10-ci-cd/" class="md-nav__link">
+      CI-CD
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#imports" class="md-nav__link">
+    Imports
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#user-inputs" class="md-nav__link">
+    User Inputs
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#loading-cleaning-data" class="md-nav__link">
+    Loading &amp; Cleaning Data
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#results-wrapper" class="md-nav__link">
+    Results Wrapper
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/OSUKED/Outage-Watch/edit/main/docs/dev-04-price-surface-estimation.md" title="Edit this page" class="md-content__button md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+                  </a>
+                
+                
+                <h1 id="estimation-of-price-surfaces">Estimation of Price Surfaces<a class="headerlink" href="#estimation-of-price-surfaces" title="Permanent link">&para;</a></h1>
+<p>This notebook outlines how to specify different variants the model, then proceeds to fit them.</p>
+<p><br></p>
+<h3 id="imports">Imports<a class="headerlink" href="#imports" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="c1">#exports</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">pickle</span>
+<span class="kn">import</span> <span class="nn">FEAutils</span> <span class="k">as</span> <span class="nn">hlp</span>
+<span class="kn">from</span> <span class="nn">ipypb</span> <span class="kn">import</span> <span class="n">track</span>
+
+<span class="kn">from</span> <span class="nn">moepy</span> <span class="kn">import</span> <span class="n">lowess</span><span class="p">,</span> <span class="n">eda</span>
+</code></pre></div>
+<p><br></p>
+<h3 id="user-inputs">User Inputs<a class="headerlink" href="#user-inputs" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">models_dir</span> <span class="o">=</span> <span class="s1">&#39;../data/models&#39;</span>
+<span class="n">load_existing_model</span> <span class="o">=</span> <span class="kc">True</span>
+</code></pre></div>
+<p><br></p>
+<h3 id="loading-cleaning-data">Loading &amp; Cleaning Data<a class="headerlink" href="#loading-cleaning-data" title="Permanent link">&para;</a></h3>
+<p>We'll start by loading in ...</p>
+<div class="highlight"><pre><span></span><code><span class="o">%%</span><span class="n">time</span>
+
+<span class="n">df_EI</span> <span class="o">=</span> <span class="n">eda</span><span class="o">.</span><span class="n">load_EI_df</span><span class="p">(</span><span class="s1">&#39;../data/raw/electric_insights.csv&#39;</span><span class="p">)</span>
+
+<span class="n">df_EI</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>Wall time: 1.69 s
+</code></pre></div>
+<table>
+<thead>
+<tr>
+<th align="left">local_datetime</th>
+<th align="right">day_ahead_price</th>
+<th align="right">SP</th>
+<th align="right">imbalance_price</th>
+<th align="right">valueSum</th>
+<th align="right">temperature</th>
+<th align="right">TCO2_per_h</th>
+<th align="right">gCO2_per_kWh</th>
+<th align="right">nuclear</th>
+<th align="right">biomass</th>
+<th align="right">coal</th>
+<th align="left">...</th>
+<th align="right">demand</th>
+<th align="right">pumped_storage</th>
+<th align="right">wind_onshore</th>
+<th align="right">wind_offshore</th>
+<th align="right">belgian</th>
+<th align="right">dutch</th>
+<th align="right">french</th>
+<th align="right">ireland</th>
+<th align="right">northern_ireland</th>
+<th align="right">irish</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">2009-01-01 00:00:00+00:00</td>
+<td align="right">58.05</td>
+<td align="right">1</td>
+<td align="right">74.74</td>
+<td align="right">74.74</td>
+<td align="right">-0.6</td>
+<td align="right">21278</td>
+<td align="right">555</td>
+<td align="right">6.973</td>
+<td align="right">0</td>
+<td align="right">17.65</td>
+<td align="left">...</td>
+<td align="right">38.329</td>
+<td align="right">-0.404</td>
+<td align="right">nan</td>
+<td align="right">nan</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">1.977</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">-0.161</td>
+</tr>
+<tr>
+<td align="left">2009-01-01 00:30:00+00:00</td>
+<td align="right">56.33</td>
+<td align="right">2</td>
+<td align="right">74.89</td>
+<td align="right">74.89</td>
+<td align="right">-0.6</td>
+<td align="right">21442</td>
+<td align="right">558</td>
+<td align="right">6.968</td>
+<td align="right">0</td>
+<td align="right">17.77</td>
+<td align="left">...</td>
+<td align="right">38.461</td>
+<td align="right">-0.527</td>
+<td align="right">nan</td>
+<td align="right">nan</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">1.977</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">-0.16</td>
+</tr>
+<tr>
+<td align="left">2009-01-01 01:00:00+00:00</td>
+<td align="right">52.98</td>
+<td align="right">3</td>
+<td align="right">76.41</td>
+<td align="right">76.41</td>
+<td align="right">-0.6</td>
+<td align="right">21614</td>
+<td align="right">569</td>
+<td align="right">6.97</td>
+<td align="right">0</td>
+<td align="right">18.07</td>
+<td align="left">...</td>
+<td align="right">37.986</td>
+<td align="right">-1.018</td>
+<td align="right">nan</td>
+<td align="right">nan</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">1.977</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">-0.16</td>
+</tr>
+<tr>
+<td align="left">2009-01-01 01:30:00+00:00</td>
+<td align="right">50.39</td>
+<td align="right">4</td>
+<td align="right">37.73</td>
+<td align="right">37.73</td>
+<td align="right">-0.6</td>
+<td align="right">21320</td>
+<td align="right">578</td>
+<td align="right">6.969</td>
+<td align="right">0</td>
+<td align="right">18.022</td>
+<td align="left">...</td>
+<td align="right">36.864</td>
+<td align="right">-1.269</td>
+<td align="right">nan</td>
+<td align="right">nan</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">1.746</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">-0.16</td>
+</tr>
+<tr>
+<td align="left">2009-01-01 02:00:00+00:00</td>
+<td align="right">48.7</td>
+<td align="right">5</td>
+<td align="right">59</td>
+<td align="right">59</td>
+<td align="right">-0.6</td>
+<td align="right">21160</td>
+<td align="right">585</td>
+<td align="right">6.96</td>
+<td align="right">0</td>
+<td align="right">17.998</td>
+<td align="left">...</td>
+<td align="right">36.18</td>
+<td align="right">-1.566</td>
+<td align="right">nan</td>
+<td align="right">nan</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">1.73</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">-0.16</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p>... and cleaning the GB data</p>
+<div class="highlight"><pre><span></span><code><span class="n">df_EI_model</span> <span class="o">=</span> <span class="n">df_EI</span><span class="p">[[</span><span class="s1">&#39;day_ahead_price&#39;</span><span class="p">,</span> <span class="s1">&#39;demand&#39;</span><span class="p">,</span> <span class="s1">&#39;solar&#39;</span><span class="p">,</span> <span class="s1">&#39;wind&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span>
+
+<span class="n">s_demand</span> <span class="o">=</span> <span class="n">df_EI_model</span><span class="p">[</span><span class="s1">&#39;demand&#39;</span><span class="p">]</span>
+<span class="n">s_price</span> <span class="o">=</span> <span class="n">df_EI_model</span><span class="p">[</span><span class="s1">&#39;day_ahead_price&#39;</span><span class="p">]</span>
+<span class="n">s_dispatchable</span> <span class="o">=</span> <span class="n">df_EI_model</span><span class="p">[</span><span class="s1">&#39;demand&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="n">df_EI_model</span><span class="p">[[</span><span class="s1">&#39;solar&#39;</span><span class="p">,</span> <span class="s1">&#39;wind&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># Plotting</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">dpi</span><span class="o">=</span><span class="mi">150</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">s_dispatchable</span><span class="p">[</span><span class="s1">&#39;2010-09&#39;</span><span class="p">:</span><span class="s1">&#39;2011-03&#39;</span><span class="p">],</span> <span class="n">s_price</span><span class="p">[</span><span class="s1">&#39;2010-09&#39;</span><span class="p">:</span><span class="s1">&#39;2011-03&#39;</span><span class="p">],</span> <span class="n">s</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">s_dispatchable</span><span class="p">[</span><span class="s1">&#39;2020-03&#39;</span><span class="p">:</span><span class="s1">&#39;2020-09&#39;</span><span class="p">],</span> <span class="n">s_price</span><span class="p">[</span><span class="s1">&#39;2020-03&#39;</span><span class="p">:</span><span class="s1">&#39;2020-09&#39;</span><span class="p">],</span> <span class="n">s</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="n">hlp</span><span class="o">.</span><span class="n">hide_spines</span><span class="p">(</span><span class="n">ax</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">60</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="o">-</span><span class="mi">25</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Demand - [Wind + Solar] (MW)&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Price (£/MWh)&#39;</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>Text(0, 0.5, &#39;Price (£/MWh)&#39;)
+</code></pre></div>
+<p><img alt="png" src="../img/nbs/output_7_1.png" /></p>
+<p><br></p>
+<p>As well as the DE data</p>
+<div class="highlight"><pre><span></span><code><span class="n">df_DE</span> <span class="o">=</span> <span class="n">eda</span><span class="o">.</span><span class="n">load_DE_df</span><span class="p">(</span><span class="s1">&#39;../data/raw/energy_charts.csv&#39;</span><span class="p">,</span> <span class="s1">&#39;../data/raw/ENTSOE_DE_price.csv&#39;</span><span class="p">)</span>
+
+<span class="n">df_DE_model</span> <span class="o">=</span> <span class="n">df_DE</span><span class="p">[[</span><span class="s1">&#39;price&#39;</span><span class="p">,</span> <span class="s1">&#39;demand&#39;</span><span class="p">,</span> <span class="s1">&#39;Solar&#39;</span><span class="p">,</span> <span class="s1">&#39;Wind&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span>
+
+<span class="n">s_DE_demand</span> <span class="o">=</span> <span class="n">df_DE_model</span><span class="p">[</span><span class="s1">&#39;demand&#39;</span><span class="p">]</span>
+<span class="n">s_DE_price</span> <span class="o">=</span> <span class="n">df_DE_model</span><span class="p">[</span><span class="s1">&#39;price&#39;</span><span class="p">]</span>
+<span class="n">s_DE_dispatchable</span> <span class="o">=</span> <span class="n">df_DE_model</span><span class="p">[</span><span class="s1">&#39;demand&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="n">df_DE_model</span><span class="p">[[</span><span class="s1">&#39;Solar&#39;</span><span class="p">,</span> <span class="s1">&#39;Wind&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># Plotting</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">dpi</span><span class="o">=</span><span class="mi">150</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">s_DE_dispatchable</span><span class="p">[</span><span class="s1">&#39;2015-09&#39;</span><span class="p">:</span><span class="s1">&#39;2016-03&#39;</span><span class="p">],</span> <span class="n">s_DE_price</span><span class="p">[</span><span class="s1">&#39;2015-09&#39;</span><span class="p">:</span><span class="s1">&#39;2016-03&#39;</span><span class="p">],</span> <span class="n">s</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">s_DE_dispatchable</span><span class="p">[</span><span class="s1">&#39;2020-03&#39;</span><span class="p">:</span><span class="s1">&#39;2020-09&#39;</span><span class="p">],</span> <span class="n">s_DE_price</span><span class="p">[</span><span class="s1">&#39;2020-03&#39;</span><span class="p">:</span><span class="s1">&#39;2020-09&#39;</span><span class="p">],</span> <span class="n">s</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="n">hlp</span><span class="o">.</span><span class="n">hide_spines</span><span class="p">(</span><span class="n">ax</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">75</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="o">-</span><span class="mi">25</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Demand - [Wind + Solar] (MW)&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Price (£/MWh)&#39;</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>Text(0, 0.5, &#39;Price (£/MWh)&#39;)
+</code></pre></div>
+<p><img alt="png" src="../img/nbs/output_9_1.png" /></p>
+<p><br></p>
+<h3 id="results-wrapper">Results Wrapper<a class="headerlink" href="#results-wrapper" title="Permanent link">&para;</a></h3>
+<p>We'll start defining each of the price models that we'll fit, using the <code>PicklableFunction</code> class to ensure that all of our models can be saved for later use.</p>
+<div class="highlight"><pre><span></span><code><span class="c1">#exports</span>
+<span class="kn">import</span> <span class="nn">copy</span>
+<span class="kn">import</span> <span class="nn">types</span>
+<span class="kn">import</span> <span class="nn">marshal</span>
+
+<span class="k">class</span> <span class="nc">PicklableFunction</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Provides a wrapper to ensure functions can be pickled&quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fun</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_fun</span> <span class="o">=</span> <span class="n">fun</span>
+
+    <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_fun</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__getstate__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">pickle</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_fun</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">marshal</span><span class="o">.</span><span class="n">dumps</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">_fun</span><span class="o">.</span><span class="vm">__code__</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_fun</span><span class="o">.</span><span class="vm">__name__</span><span class="p">))</span>
+
+    <span class="k">def</span> <span class="nf">__setstate__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">state</span><span class="p">):</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_fun</span> <span class="o">=</span> <span class="n">pickle</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">state</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+            <span class="n">code</span><span class="p">,</span> <span class="n">name</span> <span class="o">=</span> <span class="n">marshal</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">state</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_fun</span> <span class="o">=</span> <span class="n">types</span><span class="o">.</span><span class="n">FunctionType</span><span class="p">(</span><span class="n">code</span><span class="p">,</span> <span class="p">{},</span> <span class="n">name</span><span class="p">)</span>
+
+        <span class="k">return</span>
+
+<span class="k">def</span> <span class="nf">get_fit_kwarg_sets</span><span class="p">(</span><span class="n">qs</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.9</span><span class="p">,</span> <span class="mi">9</span><span class="p">)):</span>
+    <span class="sd">&quot;&quot;&quot;Helper to generate kwargs for the `fit` method of `Lowess`&quot;&quot;&quot;</span>
+    <span class="n">fit_kwarg_sets</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="c1"># quantile lowess</span>
+        <span class="p">{</span> 
+            <span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="sa">f</span><span class="s1">&#39;p</span><span class="si">{</span><span class="nb">int</span><span class="p">(</span><span class="n">q</span><span class="o">*</span><span class="mi">100</span><span class="p">)</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;lowess_kwargs&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;reg_func&#39;</span><span class="p">:</span> <span class="n">PicklableFunction</span><span class="p">(</span><span class="n">lowess</span><span class="o">.</span><span class="n">calc_quant_reg_betas</span><span class="p">)},</span>
+            <span class="s1">&#39;q&#39;</span><span class="p">:</span> <span class="n">q</span><span class="p">,</span>
+        <span class="p">}</span>
+        <span class="k">for</span> <span class="n">q</span> <span class="ow">in</span> <span class="n">qs</span>
+
+        <span class="c1"># standard lowess</span>
+    <span class="p">]</span> <span class="o">+</span> <span class="p">[{</span><span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;average&#39;</span><span class="p">}]</span> 
+
+    <span class="k">return</span> <span class="n">fit_kwarg_sets</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="n">model_definitions</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;DAM_price_GB&#39;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s1">&#39;dt_idx&#39;</span><span class="p">:</span> <span class="n">s_dispatchable</span><span class="o">.</span><span class="n">index</span><span class="p">,</span>
+        <span class="s1">&#39;x&#39;</span><span class="p">:</span> <span class="n">s_dispatchable</span><span class="o">.</span><span class="n">values</span><span class="p">,</span>
+        <span class="s1">&#39;y&#39;</span><span class="p">:</span> <span class="n">s_price</span><span class="o">.</span><span class="n">values</span><span class="p">,</span>
+        <span class="s1">&#39;reg_dates_start&#39;</span><span class="p">:</span> <span class="s1">&#39;2009-01-01&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;reg_dates_end&#39;</span><span class="p">:</span> <span class="s1">&#39;2021-01-01&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;reg_dates_freq&#39;</span><span class="p">:</span> <span class="s1">&#39;13W&#39;</span><span class="p">,</span> <span class="c1"># 13 </span>
+        <span class="s1">&#39;frac&#39;</span><span class="p">:</span> <span class="mf">0.3</span><span class="p">,</span> 
+        <span class="s1">&#39;num_fits&#39;</span><span class="p">:</span> <span class="mi">31</span><span class="p">,</span> <span class="c1"># 31</span>
+        <span class="s1">&#39;dates_smoothing_value&#39;</span><span class="p">:</span> <span class="mi">26</span><span class="p">,</span> <span class="c1"># 26</span>
+        <span class="s1">&#39;dates_smoothing_units&#39;</span><span class="p">:</span> <span class="s1">&#39;W&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;fit_kwarg_sets&#39;</span><span class="p">:</span> <span class="n">get_fit_kwarg_sets</span><span class="p">(</span><span class="n">qs</span><span class="o">=</span><span class="p">[</span><span class="mf">0.16</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.84</span><span class="p">])</span>
+    <span class="p">},</span>
+    <span class="s1">&#39;DAM_price_demand_GB&#39;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s1">&#39;dt_idx&#39;</span><span class="p">:</span> <span class="n">s_demand</span><span class="o">.</span><span class="n">index</span><span class="p">,</span>
+        <span class="s1">&#39;x&#39;</span><span class="p">:</span> <span class="n">s_demand</span><span class="o">.</span><span class="n">values</span><span class="p">,</span>
+        <span class="s1">&#39;y&#39;</span><span class="p">:</span> <span class="n">s_price</span><span class="o">.</span><span class="n">values</span><span class="p">,</span>
+        <span class="s1">&#39;reg_dates_start&#39;</span><span class="p">:</span> <span class="s1">&#39;2009-01-01&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;reg_dates_end&#39;</span><span class="p">:</span> <span class="s1">&#39;2021-01-01&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;reg_dates_freq&#39;</span><span class="p">:</span> <span class="s1">&#39;13W&#39;</span><span class="p">,</span> <span class="c1"># 13 </span>
+        <span class="s1">&#39;frac&#39;</span><span class="p">:</span> <span class="mf">0.3</span><span class="p">,</span> 
+        <span class="s1">&#39;num_fits&#39;</span><span class="p">:</span> <span class="mi">31</span><span class="p">,</span> <span class="c1"># 31</span>
+        <span class="s1">&#39;dates_smoothing_value&#39;</span><span class="p">:</span> <span class="mi">26</span><span class="p">,</span> <span class="c1"># 26</span>
+        <span class="s1">&#39;dates_smoothing_units&#39;</span><span class="p">:</span> <span class="s1">&#39;W&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;fit_kwarg_sets&#39;</span><span class="p">:</span> <span class="n">get_fit_kwarg_sets</span><span class="p">(</span><span class="n">qs</span><span class="o">=</span><span class="p">[</span><span class="mf">0.5</span><span class="p">])</span>
+    <span class="p">},</span>
+    <span class="s1">&#39;DAM_price_DE&#39;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s1">&#39;dt_idx&#39;</span><span class="p">:</span> <span class="n">s_DE_dispatchable</span><span class="o">.</span><span class="n">index</span><span class="p">,</span>
+        <span class="s1">&#39;x&#39;</span><span class="p">:</span> <span class="n">s_DE_dispatchable</span><span class="o">.</span><span class="n">values</span><span class="p">,</span>
+        <span class="s1">&#39;y&#39;</span><span class="p">:</span> <span class="n">s_DE_price</span><span class="o">.</span><span class="n">values</span><span class="p">,</span>
+        <span class="s1">&#39;reg_dates_start&#39;</span><span class="p">:</span> <span class="s1">&#39;2015-01-04&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;reg_dates_end&#39;</span><span class="p">:</span> <span class="s1">&#39;2021-01-01&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;reg_dates_freq&#39;</span><span class="p">:</span> <span class="s1">&#39;13W&#39;</span><span class="p">,</span> <span class="c1"># 13 </span>
+        <span class="s1">&#39;frac&#39;</span><span class="p">:</span> <span class="mf">0.3</span><span class="p">,</span> 
+        <span class="s1">&#39;num_fits&#39;</span><span class="p">:</span> <span class="mi">31</span><span class="p">,</span> <span class="c1"># 31</span>
+        <span class="s1">&#39;dates_smoothing_value&#39;</span><span class="p">:</span> <span class="mi">26</span><span class="p">,</span> <span class="c1"># 26</span>
+        <span class="s1">&#39;dates_smoothing_units&#39;</span><span class="p">:</span> <span class="s1">&#39;W&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;fit_kwarg_sets&#39;</span><span class="p">:</span> <span class="n">get_fit_kwarg_sets</span><span class="p">(</span><span class="n">qs</span><span class="o">=</span><span class="p">[</span><span class="mf">0.16</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.84</span><span class="p">])</span>
+    <span class="p">},</span>
+    <span class="s1">&#39;DAM_price_demand_DE&#39;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s1">&#39;dt_idx&#39;</span><span class="p">:</span> <span class="n">s_DE_dispatchable</span><span class="o">.</span><span class="n">index</span><span class="p">,</span>
+        <span class="s1">&#39;x&#39;</span><span class="p">:</span> <span class="n">s_DE_demand</span><span class="o">.</span><span class="n">values</span><span class="p">,</span>
+        <span class="s1">&#39;y&#39;</span><span class="p">:</span> <span class="n">s_DE_price</span><span class="o">.</span><span class="n">values</span><span class="p">,</span>
+        <span class="s1">&#39;reg_dates_start&#39;</span><span class="p">:</span> <span class="s1">&#39;2015-01-04&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;reg_dates_end&#39;</span><span class="p">:</span> <span class="s1">&#39;2021-01-01&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;reg_dates_freq&#39;</span><span class="p">:</span> <span class="s1">&#39;13W&#39;</span><span class="p">,</span> <span class="c1"># 13 </span>
+        <span class="s1">&#39;frac&#39;</span><span class="p">:</span> <span class="mf">0.3</span><span class="p">,</span> 
+        <span class="s1">&#39;num_fits&#39;</span><span class="p">:</span> <span class="mi">31</span><span class="p">,</span> <span class="c1"># 31</span>
+        <span class="s1">&#39;dates_smoothing_value&#39;</span><span class="p">:</span> <span class="mi">26</span><span class="p">,</span> <span class="c1"># 26</span>
+        <span class="s1">&#39;dates_smoothing_units&#39;</span><span class="p">:</span> <span class="s1">&#39;W&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;fit_kwarg_sets&#39;</span><span class="p">:</span> <span class="n">get_fit_kwarg_sets</span><span class="p">(</span><span class="n">qs</span><span class="o">=</span><span class="p">[</span><span class="mf">0.5</span><span class="p">])</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p><br></p>
+<p>We'll now take these model definitions to fit and save them</p>
+<div class="highlight"><pre><span></span><code><span class="c1">#exports</span>
+<span class="k">def</span> <span class="nf">fit_models</span><span class="p">(</span><span class="n">model_definitions</span><span class="p">,</span> <span class="n">models_dir</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Fits LOWESS variants using the specified model definitions&quot;&quot;&quot;</span>
+    <span class="k">for</span> <span class="n">model_parent_name</span><span class="p">,</span> <span class="n">model_spec</span> <span class="ow">in</span> <span class="n">model_definitions</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="k">for</span> <span class="n">fit_kwarg_set</span> <span class="ow">in</span> <span class="n">track</span><span class="p">(</span><span class="n">model_spec</span><span class="p">[</span><span class="s1">&#39;fit_kwarg_sets&#39;</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="n">model_parent_name</span><span class="p">):</span>
+            <span class="n">run_name</span> <span class="o">=</span> <span class="n">fit_kwarg_set</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">)</span>
+            <span class="n">model_name</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">model_parent_name</span><span class="si">}</span><span class="s1">_</span><span class="si">{</span><span class="n">run_name</span><span class="si">}</span><span class="s1">&#39;</span>
+
+            <span class="k">if</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">model_name</span><span class="si">}</span><span class="s1">.pkl&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">models_dir</span><span class="p">):</span>
+                <span class="n">smooth_dates</span> <span class="o">=</span> <span class="n">lowess</span><span class="o">.</span><span class="n">SmoothDates</span><span class="p">()</span>
+
+                <span class="n">reg_dates</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span>
+                    <span class="n">model_spec</span><span class="p">[</span><span class="s1">&#39;reg_dates_start&#39;</span><span class="p">],</span> 
+                    <span class="n">model_spec</span><span class="p">[</span><span class="s1">&#39;reg_dates_end&#39;</span><span class="p">],</span> 
+                    <span class="n">freq</span><span class="o">=</span><span class="n">model_spec</span><span class="p">[</span><span class="s1">&#39;reg_dates_freq&#39;</span><span class="p">]</span>
+                <span class="p">)</span>
+
+                <span class="n">smooth_dates</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span>
+                    <span class="n">model_spec</span><span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">],</span> 
+                    <span class="n">model_spec</span><span class="p">[</span><span class="s1">&#39;y&#39;</span><span class="p">],</span> 
+                    <span class="n">dt_idx</span><span class="o">=</span><span class="n">model_spec</span><span class="p">[</span><span class="s1">&#39;dt_idx&#39;</span><span class="p">],</span> 
+                    <span class="n">reg_dates</span><span class="o">=</span><span class="n">reg_dates</span><span class="p">,</span> 
+                    <span class="n">frac</span><span class="o">=</span><span class="n">model_spec</span><span class="p">[</span><span class="s1">&#39;frac&#39;</span><span class="p">],</span> 
+                    <span class="n">threshold_value</span><span class="o">=</span><span class="n">model_spec</span><span class="p">[</span><span class="s1">&#39;dates_smoothing_value&#39;</span><span class="p">],</span> 
+                    <span class="n">threshold_units</span><span class="o">=</span><span class="n">model_spec</span><span class="p">[</span><span class="s1">&#39;dates_smoothing_units&#39;</span><span class="p">],</span>
+                    <span class="n">num_fits</span><span class="o">=</span><span class="n">model_spec</span><span class="p">[</span><span class="s1">&#39;num_fits&#39;</span><span class="p">],</span> 
+                    <span class="o">**</span><span class="n">fit_kwarg_set</span>
+                <span class="p">)</span>
+
+                <span class="n">model_fp</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">models_dir</span><span class="si">}</span><span class="s1">/</span><span class="si">{</span><span class="n">model_name</span><span class="si">}</span><span class="s1">.pkl&#39;</span>
+                <span class="n">pickle</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">smooth_dates</span><span class="p">,</span> <span class="nb">open</span><span class="p">(</span><span class="n">model_fp</span><span class="p">,</span> <span class="s1">&#39;wb&#39;</span><span class="p">))</span>
+
+                <span class="k">del</span> <span class="n">smooth_dates</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="n">fit_models</span><span class="p">(</span><span class="n">model_definitions</span><span class="p">,</span> <span class="n">models_dir</span><span class="p">)</span>
+</code></pre></div>
+<div><span class="Text-label" style="display:inline-block; overflow:hidden; white-space:nowrap; text-overflow:ellipsis; min-width:15ex; max-width:15ex; vertical-align:middle; text-align:right">DAM_price_GB</span>
+<progress style="width:45ex" max="4" value="4" class="Progress-main"/></progress>
+<span class="Progress-label"><strong>100%</strong></span>
+<span class="Iteration-label">4/4</span>
+<span class="Time-label">[00:00<00:00, 0.00s/it]</span></div>
+
+<div><span class="Text-label" style="display:inline-block; overflow:hidden; white-space:nowrap; text-overflow:ellipsis; min-width:15ex; max-width:15ex; vertical-align:middle; text-align:right">DAM_price_demand_GB</span>
+<progress style="width:45ex" max="2" value="2" class="Progress-main"/></progress>
+<span class="Progress-label"><strong>100%</strong></span>
+<span class="Iteration-label">2/2</span>
+<span class="Time-label">[00:00<00:00, 0.00s/it]</span></div>
+
+<div><span class="Text-label" style="display:inline-block; overflow:hidden; white-space:nowrap; text-overflow:ellipsis; min-width:15ex; max-width:15ex; vertical-align:middle; text-align:right">DAM_price_DE</span>
+<progress style="width:45ex" max="4" value="4" class="Progress-main"/></progress>
+<span class="Progress-label"><strong>100%</strong></span>
+<span class="Iteration-label">4/4</span>
+<span class="Time-label">[00:00<00:00, 0.00s/it]</span></div>
+
+<div><span class="Text-label" style="display:inline-block; overflow:hidden; white-space:nowrap; text-overflow:ellipsis; min-width:15ex; max-width:15ex; vertical-align:middle; text-align:right">DAM_price_demand_DE</span>
+<progress style="width:45ex" max="2" value="2" class="Progress-main"/></progress>
+<span class="Progress-label"><strong>100%</strong></span>
+<span class="Iteration-label">2/2</span>
+<span class="Time-label">[00:00<00:00, 0.00s/it]</span></div>
+
+<p><br></p>
+<p>We'll load one of the models in</p>
+<div class="highlight"><pre><span></span><code><span class="o">%%</span><span class="n">time</span>
+
+<span class="k">if</span> <span class="n">load_existing_model</span> <span class="o">==</span> <span class="kc">True</span><span class="p">:</span>
+    <span class="n">smooth_dates</span> <span class="o">=</span> <span class="n">pickle</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">models_dir</span><span class="si">}</span><span class="s1">/DAM_price_GB_p50.pkl&#39;</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">))</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="n">lowess_kwargs</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="n">reg_dates</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="s1">&#39;2009-01-01&#39;</span><span class="p">,</span> <span class="s1">&#39;2021-01-01&#39;</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="s1">&#39;13W&#39;</span><span class="p">)</span>
+
+    <span class="n">smooth_dates</span> <span class="o">=</span> <span class="n">lowess</span><span class="o">.</span><span class="n">SmoothDates</span><span class="p">()</span>
+    <span class="n">smooth_dates</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">s_dispatchable</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">s_price</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">dt_idx</span><span class="o">=</span><span class="n">s_dispatchable</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> 
+                     <span class="n">reg_dates</span><span class="o">=</span><span class="n">reg_dates</span><span class="p">,</span> <span class="n">frac</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">num_fits</span><span class="o">=</span><span class="mi">31</span><span class="p">,</span> <span class="n">threshold_value</span><span class="o">=</span><span class="mi">26</span><span class="p">,</span> <span class="n">lowess_kwargs</span><span class="o">=</span><span class="n">lowess_kwargs</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>Wall time: 2.7 s
+</code></pre></div>
+<p><br></p>
+<p>And create a prediction surface using it</p>
+<div class="highlight"><pre><span></span><code><span class="o">%%</span><span class="n">time</span>
+
+<span class="n">x_pred</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">60</span><span class="p">,</span> <span class="mi">521</span><span class="p">)</span>
+<span class="n">dt_pred</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="s1">&#39;2009-01-01&#39;</span><span class="p">,</span> <span class="s1">&#39;2021-01-01&#39;</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="s1">&#39;1W&#39;</span><span class="p">)</span>
+
+<span class="n">df_pred</span> <span class="o">=</span> <span class="n">smooth_dates</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">x_pred</span><span class="o">=</span><span class="n">x_pred</span><span class="p">,</span> <span class="n">dt_pred</span><span class="o">=</span><span class="n">dt_pred</span><span class="p">)</span>
+
+<span class="n">df_pred</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>Wall time: 346 ms
+</code></pre></div>
+<table>
+<thead>
+<tr>
+<th align="right">Unnamed: 0</th>
+<th align="right">2009-01-04</th>
+<th align="right">2009-01-11</th>
+<th align="right">2009-01-18</th>
+<th align="right">2009-01-25</th>
+<th align="right">2009-02-01</th>
+<th align="right">2009-02-08</th>
+<th align="right">2009-02-15</th>
+<th align="right">2009-02-22</th>
+<th align="right">2009-03-01</th>
+<th align="right">2009-03-08</th>
+<th align="left">...</th>
+<th align="right">2020-10-25</th>
+<th align="right">2020-11-01</th>
+<th align="right">2020-11-08</th>
+<th align="right">2020-11-15</th>
+<th align="right">2020-11-22</th>
+<th align="right">2020-11-29</th>
+<th align="right">2020-12-06</th>
+<th align="right">2020-12-13</th>
+<th align="right">2020-12-20</th>
+<th align="right">2020-12-27</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="right">8</td>
+<td align="right">-7.66001</td>
+<td align="right">-7.78927</td>
+<td align="right">-7.91081</td>
+<td align="right">-8.02572</td>
+<td align="right">-8.13481</td>
+<td align="right">-8.23875</td>
+<td align="right">-8.33813</td>
+<td align="right">-8.43345</td>
+<td align="right">-8.52519</td>
+<td align="right">-8.61382</td>
+<td align="left">...</td>
+<td align="right">10.2354</td>
+<td align="right">10.292</td>
+<td align="right">10.3476</td>
+<td align="right">10.4021</td>
+<td align="right">10.4557</td>
+<td align="right">10.5085</td>
+<td align="right">10.5611</td>
+<td align="right">10.6143</td>
+<td align="right">10.6691</td>
+<td align="right">10.7271</td>
+</tr>
+<tr>
+<td align="right">8.1</td>
+<td align="right">-7.46772</td>
+<td align="right">-7.59637</td>
+<td align="right">-7.71734</td>
+<td align="right">-7.83171</td>
+<td align="right">-7.94028</td>
+<td align="right">-8.04374</td>
+<td align="right">-8.14266</td>
+<td align="right">-8.23754</td>
+<td align="right">-8.32887</td>
+<td align="right">-8.41709</td>
+<td align="left">...</td>
+<td align="right">10.4429</td>
+<td align="right">10.4994</td>
+<td align="right">10.5548</td>
+<td align="right">10.6092</td>
+<td align="right">10.6627</td>
+<td align="right">10.7154</td>
+<td align="right">10.7679</td>
+<td align="right">10.821</td>
+<td align="right">10.8758</td>
+<td align="right">10.9336</td>
+</tr>
+<tr>
+<td align="right">8.2</td>
+<td align="right">-7.27561</td>
+<td align="right">-7.40364</td>
+<td align="right">-7.52404</td>
+<td align="right">-7.63785</td>
+<td align="right">-7.74592</td>
+<td align="right">-7.84889</td>
+<td align="right">-7.94734</td>
+<td align="right">-8.04178</td>
+<td align="right">-8.13268</td>
+<td align="right">-8.22049</td>
+<td align="left">...</td>
+<td align="right">10.6503</td>
+<td align="right">10.7066</td>
+<td align="right">10.7619</td>
+<td align="right">10.8162</td>
+<td align="right">10.8695</td>
+<td align="right">10.9222</td>
+<td align="right">10.9746</td>
+<td align="right">11.0276</td>
+<td align="right">11.0823</td>
+<td align="right">11.1401</td>
+</tr>
+<tr>
+<td align="right">8.3</td>
+<td align="right">-7.08366</td>
+<td align="right">-7.21108</td>
+<td align="right">-7.33089</td>
+<td align="right">-7.44416</td>
+<td align="right">-7.5517</td>
+<td align="right">-7.65418</td>
+<td align="right">-7.75217</td>
+<td align="right">-7.84616</td>
+<td align="right">-7.93663</td>
+<td align="right">-8.02403</td>
+<td align="left">...</td>
+<td align="right">10.8576</td>
+<td align="right">10.9138</td>
+<td align="right">10.9689</td>
+<td align="right">11.023</td>
+<td align="right">11.0763</td>
+<td align="right">11.1288</td>
+<td align="right">11.1812</td>
+<td align="right">11.2341</td>
+<td align="right">11.2888</td>
+<td align="right">11.3464</td>
+</tr>
+<tr>
+<td align="right">8.4</td>
+<td align="right">-6.89188</td>
+<td align="right">-7.01867</td>
+<td align="right">-7.13789</td>
+<td align="right">-7.25061</td>
+<td align="right">-7.35763</td>
+<td align="right">-7.45962</td>
+<td align="right">-7.55713</td>
+<td align="right">-7.65067</td>
+<td align="right">-7.74071</td>
+<td align="right">-7.82769</td>
+<td align="left">...</td>
+<td align="right">11.0648</td>
+<td align="right">11.1208</td>
+<td align="right">11.1757</td>
+<td align="right">11.2298</td>
+<td align="right">11.2829</td>
+<td align="right">11.3353</td>
+<td align="right">11.3876</td>
+<td align="right">11.4405</td>
+<td align="right">11.4951</td>
+<td align="right">11.5527</td>
+</tr>
+</tbody>
+</table>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
+        
+          <a href="../dev-03-lowess/" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+            </div>
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                LOWESS
+              </div>
+            </div>
+          </a>
+        
+        
+          <a href="../dev-05-price-moe/" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Price MOE Calculation
+              </div>
+            </div>
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../assets/javascripts/vendor.08c56446.min.js"></script>
+      <script src="../assets/javascripts/bundle.6ced434e.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}</script>
+      
+      <script>
+        app = initialize({
+          base: "..",
+          features: ['header.autohide', 'navigation.tabs', 'navigation.instant', 'search.suggest'],
+          search: Object.assign({
+            worker: "../assets/javascripts/worker/search.8c7e0a7e.min.js"
+          }, typeof search !== "undefined" && search)
+        })
+      </script>
+      
+        <script src="../javascripts/config.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

@@ -1,0 +1,1211 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+      <link rel="shortcut icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-6.2.2">
+    
+    
+      
+        <title>Exploratory Data Analysis - Outage Watch</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.73f7c429.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.39b8e14a.min.css">
+        
+          
+          
+          <meta name="theme-color" content="#000000">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono",SFMono-Regular,Consolas,Menlo,monospace}</style>
+      
+    
+    
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="black" data-md-color-accent="">
+      
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#exploratory-data-analysis" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid" aria-label="Header">
+    <a href=".." title="Outage Watch" class="md-header-nav__button md-logo" aria-label="Outage Watch">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header-nav__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header-nav__title" data-md-component="header-title">
+      <div class="md-header-nav__ellipsis">
+        <div class="md-header-nav__topic">
+          <span class="md-ellipsis">
+            Outage Watch
+          </span>
+        </div>
+        <div class="md-header-nav__topic">
+          <span class="md-ellipsis">
+            
+              Exploratory Data Analysis
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      <label class="md-header-nav__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" data-md-component="search-reset" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header-nav__source">
+        
+<a href="https://github.com/OSUKED/Outage-Watch/" title="Go to repository" class="md-source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    OSUKED/Outage-Watch
+  </div>
+</a>
+      </div>
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href=".." class="md-tabs__link">
+      Home
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../ug-01-quantile/" class="md-tabs__link">
+        User Guide
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+    
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../dev-01-retrieval/" class="md-tabs__link md-tabs__link--active">
+        Development
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Outage Watch" class="md-nav__button md-logo" aria-label="Outage Watch">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    Outage Watch
+  </label>
+  
+    <div class="md-nav__source">
+      
+<a href="https://github.com/OSUKED/Outage-Watch/" title="Go to repository" class="md-source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    OSUKED/Outage-Watch
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+
+  <li class="md-nav__item">
+    <a href=".." class="md-nav__link">
+      Home
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+
+  
+  <li class="md-nav__item md-nav__item--nested">
+    
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2" >
+    
+    <label class="md-nav__link" for="nav-2">
+      User Guide
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="User Guide" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        <span class="md-nav__icon md-icon"></span>
+        User Guide
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="../ug-01-quantile/" class="md-nav__link">
+      Quantile Predictions
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="../ug-02-confidence/" class="md-nav__link">
+      Confidence Intervals
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="../ug-03-power-curve/" class="md-nav__link">
+      Power Curve Cleaning
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="../ug-04-gb-mcc/" class="md-nav__link">
+      Marginal Cost Curve
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  
+
+
+  
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3" checked>
+    
+    <label class="md-nav__link" for="nav-3">
+      Development
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Development" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        <span class="md-nav__icon md-icon"></span>
+        Development
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="../dev-01-retrieval/" class="md-nav__link">
+      Data Retrieval
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Exploratory Data Analysis
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+    
+    <a href="./" class="md-nav__link md-nav__link--active">
+      Exploratory Data Analysis
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#imports" class="md-nav__link">
+    Imports
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#loading-data" class="md-nav__link">
+    Loading Data
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#stacked-fuels-time-series" class="md-nav__link">
+    Stacked-Fuels Time-Series
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="../dev-03-lowess/" class="md-nav__link">
+      LOWESS
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="../dev-04-price-surface-estimation/" class="md-nav__link">
+      Price Curve Estimation
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="../dev-05-price-moe/" class="md-nav__link">
+      Price MOE Calculation
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="../dev-06-carbon-surface-estimation-and-moe/" class="md-nav__link">
+      Carbon Curve Estimation & MOE
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="../dev-07-prediction-confidence-and-intervals/" class="md-nav__link">
+      Prediction & Confidence Intervals
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="../dev-08-hyper-parameter-tuning/" class="md-nav__link">
+      Hyper-Parameter Tuning
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="../dev-09-tables-and-figures/" class="md-nav__link">
+      Tables & Figures
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="../dev-10-ci-cd/" class="md-nav__link">
+      CI-CD
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#imports" class="md-nav__link">
+    Imports
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#loading-data" class="md-nav__link">
+    Loading Data
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#stacked-fuels-time-series" class="md-nav__link">
+    Stacked-Fuels Time-Series
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/OSUKED/Outage-Watch/edit/main/docs/dev-02-eda.md" title="Edit this page" class="md-content__button md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+                  </a>
+                
+                
+                <h1 id="exploratory-data-analysis">Exploratory Data Analysis<a class="headerlink" href="#exploratory-data-analysis" title="Permanent link">&para;</a></h1>
+<p>This notebook includes some visualisation and exploration of the price and fuel data for Germany and Great Britain</p>
+<p><br></p>
+<h3 id="imports">Imports<a class="headerlink" href="#imports" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="c1">#exports</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">matplotlib.transforms</span> <span class="k">as</span> <span class="nn">mtf</span>
+</code></pre></div>
+<p><br></p>
+<h3 id="loading-data">Loading Data<a class="headerlink" href="#loading-data" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="c1">#exports</span>
+<span class="k">def</span> <span class="nf">load_EI_df</span><span class="p">(</span><span class="n">EI_fp</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Loads the electric insights data and returns a DataFrame&quot;&quot;&quot;</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">EI_fp</span><span class="p">)</span>
+
+    <span class="n">df</span><span class="p">[</span><span class="s1">&#39;local_datetime&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;local_datetime&#39;</span><span class="p">],</span> <span class="n">utc</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;local_datetime&#39;</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">df</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="o">%%</span><span class="n">time</span>
+
+<span class="n">df</span> <span class="o">=</span> <span class="n">load_EI_df</span><span class="p">(</span><span class="s1">&#39;../data/raw/electric_insights.csv&#39;</span><span class="p">)</span>
+
+<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>Wall time: 7.95 s
+</code></pre></div>
+<table>
+<thead>
+<tr>
+<th align="left">local_datetime</th>
+<th align="right">day_ahead_price</th>
+<th align="right">SP</th>
+<th align="right">imbalance_price</th>
+<th align="right">valueSum</th>
+<th align="right">temperature</th>
+<th align="right">TCO2_per_h</th>
+<th align="right">gCO2_per_kWh</th>
+<th align="right">nuclear</th>
+<th align="right">biomass</th>
+<th align="right">coal</th>
+<th align="left">...</th>
+<th align="right">demand</th>
+<th align="right">pumped_storage</th>
+<th align="right">wind_onshore</th>
+<th align="right">wind_offshore</th>
+<th align="right">belgian</th>
+<th align="right">dutch</th>
+<th align="right">french</th>
+<th align="right">ireland</th>
+<th align="right">northern_ireland</th>
+<th align="right">irish</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">2009-01-01 00:00:00+00:00</td>
+<td align="right">58.05</td>
+<td align="right">1</td>
+<td align="right">74.74</td>
+<td align="right">74.74</td>
+<td align="right">-0.6</td>
+<td align="right">21278</td>
+<td align="right">555</td>
+<td align="right">6.973</td>
+<td align="right">0</td>
+<td align="right">17.65</td>
+<td align="left">...</td>
+<td align="right">38.329</td>
+<td align="right">-0.404</td>
+<td align="right">nan</td>
+<td align="right">nan</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">1.977</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">-0.161</td>
+</tr>
+<tr>
+<td align="left">2009-01-01 00:30:00+00:00</td>
+<td align="right">56.33</td>
+<td align="right">2</td>
+<td align="right">74.89</td>
+<td align="right">74.89</td>
+<td align="right">-0.6</td>
+<td align="right">21442</td>
+<td align="right">558</td>
+<td align="right">6.968</td>
+<td align="right">0</td>
+<td align="right">17.77</td>
+<td align="left">...</td>
+<td align="right">38.461</td>
+<td align="right">-0.527</td>
+<td align="right">nan</td>
+<td align="right">nan</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">1.977</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">-0.16</td>
+</tr>
+<tr>
+<td align="left">2009-01-01 01:00:00+00:00</td>
+<td align="right">52.98</td>
+<td align="right">3</td>
+<td align="right">76.41</td>
+<td align="right">76.41</td>
+<td align="right">-0.6</td>
+<td align="right">21614</td>
+<td align="right">569</td>
+<td align="right">6.97</td>
+<td align="right">0</td>
+<td align="right">18.07</td>
+<td align="left">...</td>
+<td align="right">37.986</td>
+<td align="right">-1.018</td>
+<td align="right">nan</td>
+<td align="right">nan</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">1.977</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">-0.16</td>
+</tr>
+<tr>
+<td align="left">2009-01-01 01:30:00+00:00</td>
+<td align="right">50.39</td>
+<td align="right">4</td>
+<td align="right">37.73</td>
+<td align="right">37.73</td>
+<td align="right">-0.6</td>
+<td align="right">21320</td>
+<td align="right">578</td>
+<td align="right">6.969</td>
+<td align="right">0</td>
+<td align="right">18.022</td>
+<td align="left">...</td>
+<td align="right">36.864</td>
+<td align="right">-1.269</td>
+<td align="right">nan</td>
+<td align="right">nan</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">1.746</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">-0.16</td>
+</tr>
+<tr>
+<td align="left">2009-01-01 02:00:00+00:00</td>
+<td align="right">48.7</td>
+<td align="right">5</td>
+<td align="right">59</td>
+<td align="right">59</td>
+<td align="right">-0.6</td>
+<td align="right">21160</td>
+<td align="right">585</td>
+<td align="right">6.96</td>
+<td align="right">0</td>
+<td align="right">17.998</td>
+<td align="left">...</td>
+<td align="right">36.18</td>
+<td align="right">-1.566</td>
+<td align="right">nan</td>
+<td align="right">nan</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">1.73</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">-0.16</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p>We'll do the same for the German Energy-Charts and ENTSOE data</p>
+<div class="highlight"><pre><span></span><code><span class="c1">#exports</span>
+<span class="k">def</span> <span class="nf">load_DE_df</span><span class="p">(</span><span class="n">EC_fp</span><span class="p">,</span> <span class="n">ENTSOE_fp</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Loads the energy-charts and ENTSOE data and returns a DataFrame&quot;&quot;&quot;</span>
+    <span class="c1"># Energy-Charts</span>
+    <span class="n">df_DE</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">EC_fp</span><span class="p">)</span>
+
+    <span class="n">df_DE</span><span class="p">[</span><span class="s1">&#39;local_datetime&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">df_DE</span><span class="p">[</span><span class="s1">&#39;local_datetime&#39;</span><span class="p">],</span> <span class="n">utc</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">df_DE</span> <span class="o">=</span> <span class="n">df_DE</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;local_datetime&#39;</span><span class="p">)</span>
+
+    <span class="c1"># ENTSOE</span>
+    <span class="n">df_ENTSOE</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">ENTSOE_fp</span><span class="p">)</span>
+
+    <span class="n">df_ENTSOE</span><span class="p">[</span><span class="s1">&#39;local_datetime&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">df_ENTSOE</span><span class="p">[</span><span class="s1">&#39;local_datetime&#39;</span><span class="p">],</span> <span class="n">utc</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">df_ENTSOE</span> <span class="o">=</span> <span class="n">df_ENTSOE</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;local_datetime&#39;</span><span class="p">)</span>
+
+    <span class="c1"># Combining data</span>
+    <span class="n">df_DE</span><span class="p">[</span><span class="s1">&#39;demand&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_DE</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+    <span class="n">s_price</span> <span class="o">=</span> <span class="n">df_ENTSOE</span><span class="p">[</span><span class="s1">&#39;DE_price&#39;</span><span class="p">]</span>
+    <span class="n">df_DE</span><span class="p">[</span><span class="s1">&#39;price&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">s_price</span><span class="p">[</span><span class="o">~</span><span class="n">s_price</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">duplicated</span><span class="p">(</span><span class="n">keep</span><span class="o">=</span><span class="s1">&#39;first&#39;</span><span class="p">)]</span>
+
+    <span class="k">return</span> <span class="n">df_DE</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="n">df_DE</span> <span class="o">=</span> <span class="n">load_DE_df</span><span class="p">(</span><span class="s1">&#39;../data/raw/energy_charts.csv&#39;</span><span class="p">,</span> <span class="s1">&#39;../data/raw/ENTSOE_DE_price.csv&#39;</span><span class="p">)</span>
+
+<span class="n">df_DE</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</code></pre></div>
+<table>
+<thead>
+<tr>
+<th align="left">local_datetime</th>
+<th align="right">Biomass</th>
+<th align="right">Brown Coal</th>
+<th align="right">Gas</th>
+<th align="right">Hard Coal</th>
+<th align="right">Hydro Power</th>
+<th align="right">Oil</th>
+<th align="right">Others</th>
+<th align="right">Pumped Storage</th>
+<th align="right">Seasonal Storage</th>
+<th align="right">Solar</th>
+<th align="right">Uranium</th>
+<th align="right">Wind</th>
+<th align="right">net_balance</th>
+<th align="right">demand</th>
+<th align="right">price</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">2010-01-03 23:00:00+00:00</td>
+<td align="right">3.637</td>
+<td align="right">16.533</td>
+<td align="right">4.726</td>
+<td align="right">10.078</td>
+<td align="right">2.331</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0.052</td>
+<td align="right">0.068</td>
+<td align="right">0</td>
+<td align="right">16.826</td>
+<td align="right">0.635</td>
+<td align="right">-1.229</td>
+<td align="right">53.657</td>
+<td align="right">nan</td>
+</tr>
+<tr>
+<td align="left">2010-01-04 00:00:00+00:00</td>
+<td align="right">3.637</td>
+<td align="right">16.544</td>
+<td align="right">4.856</td>
+<td align="right">8.816</td>
+<td align="right">2.293</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0.038</td>
+<td align="right">0.003</td>
+<td align="right">0</td>
+<td align="right">16.841</td>
+<td align="right">0.528</td>
+<td align="right">-1.593</td>
+<td align="right">51.963</td>
+<td align="right">nan</td>
+</tr>
+<tr>
+<td align="left">2010-01-04 01:00:00+00:00</td>
+<td align="right">3.637</td>
+<td align="right">16.368</td>
+<td align="right">5.275</td>
+<td align="right">7.954</td>
+<td align="right">2.299</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0.032</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">16.846</td>
+<td align="right">0.616</td>
+<td align="right">-1.378</td>
+<td align="right">51.649</td>
+<td align="right">nan</td>
+</tr>
+<tr>
+<td align="left">2010-01-04 02:00:00+00:00</td>
+<td align="right">3.637</td>
+<td align="right">15.837</td>
+<td align="right">5.354</td>
+<td align="right">7.681</td>
+<td align="right">2.299</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0.027</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">16.699</td>
+<td align="right">0.63</td>
+<td align="right">-1.624</td>
+<td align="right">50.54</td>
+<td align="right">nan</td>
+</tr>
+<tr>
+<td align="left">2010-01-04 03:00:00+00:00</td>
+<td align="right">3.637</td>
+<td align="right">15.452</td>
+<td align="right">5.918</td>
+<td align="right">7.498</td>
+<td align="right">2.301</td>
+<td align="right">0.003</td>
+<td align="right">0</td>
+<td align="right">0.02</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">16.635</td>
+<td align="right">0.713</td>
+<td align="right">-0.731</td>
+<td align="right">51.446</td>
+<td align="right">nan</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<h3 id="stacked-fuels-time-series">Stacked-Fuels Time-Series<a class="headerlink" href="#stacked-fuels-time-series" title="Permanent link">&para;</a></h3>
+<p>We'll create a stacked plot of the different generation types over time. We'll begin by cleaning the dataframe and merging columns so that it's ready for plotting, we'll also take the 7-day rolling average to make long-term trends clearer.</p>
+<div class="highlight"><pre><span></span><code><span class="c1">#exports</span>
+<span class="k">def</span> <span class="nf">clean_df_for_plot</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="s1">&#39;7D&#39;</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Cleans the electric insights dataframe for plotting&quot;&quot;&quot;</span>
+    <span class="n">fuel_order</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Imports &amp; Storage&#39;</span><span class="p">,</span> <span class="s1">&#39;nuclear&#39;</span><span class="p">,</span> <span class="s1">&#39;biomass&#39;</span><span class="p">,</span> <span class="s1">&#39;gas&#39;</span><span class="p">,</span> <span class="s1">&#39;coal&#39;</span><span class="p">,</span> <span class="s1">&#39;hydro&#39;</span><span class="p">,</span> <span class="s1">&#39;wind&#39;</span><span class="p">,</span> <span class="s1">&#39;solar&#39;</span><span class="p">]</span>
+    <span class="n">interconnectors</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;french&#39;</span><span class="p">,</span> <span class="s1">&#39;irish&#39;</span><span class="p">,</span> <span class="s1">&#39;dutch&#39;</span><span class="p">,</span> <span class="s1">&#39;belgian&#39;</span><span class="p">,</span> <span class="s1">&#39;ireland&#39;</span><span class="p">,</span> <span class="s1">&#39;northern_ireland&#39;</span><span class="p">]</span>
+
+    <span class="n">df</span> <span class="o">=</span> <span class="p">(</span><span class="n">df</span>
+          <span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+          <span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">imports_storage</span><span class="o">=</span><span class="n">df</span><span class="p">[</span><span class="n">interconnectors</span><span class="o">+</span><span class="p">[</span><span class="s1">&#39;pumped_storage&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
+          <span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;imports_storage&#39;</span><span class="p">:</span><span class="s1">&#39;Imports &amp; Storage&#39;</span><span class="p">})</span>
+          <span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="n">interconnectors</span><span class="o">+</span><span class="p">[</span><span class="s1">&#39;demand&#39;</span><span class="p">,</span> <span class="s1">&#39;pumped_storage&#39;</span><span class="p">])</span>
+          <span class="p">[</span><span class="n">fuel_order</span><span class="p">]</span>
+         <span class="p">)</span>
+
+    <span class="n">df_resampled</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;float&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">resample</span><span class="p">(</span><span class="n">freq</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">df_resampled</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="n">df_plot</span> <span class="o">=</span> <span class="n">clean_df_for_plot</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+
+<span class="n">df_plot</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</code></pre></div>
+<table>
+<thead>
+<tr>
+<th align="left">local_datetime</th>
+<th align="right">Imports &amp; Storage</th>
+<th align="right">nuclear</th>
+<th align="right">biomass</th>
+<th align="right">gas</th>
+<th align="right">coal</th>
+<th align="right">hydro</th>
+<th align="right">wind</th>
+<th align="right">solar</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">2009-01-01 00:00:00+00:00</td>
+<td align="right">-0.039018</td>
+<td align="right">5.76854</td>
+<td align="right">0</td>
+<td align="right">16.2951</td>
+<td align="right">20.1324</td>
+<td align="right">0.35589</td>
+<td align="right">0.390015</td>
+<td align="right">0</td>
+</tr>
+<tr>
+<td align="left">2009-01-08 00:00:00+00:00</td>
+<td align="right">-0.921768</td>
+<td align="right">5.5829</td>
+<td align="right">0</td>
+<td align="right">16.3811</td>
+<td align="right">21.6997</td>
+<td align="right">0.551753</td>
+<td align="right">1.15155</td>
+<td align="right">0</td>
+</tr>
+<tr>
+<td align="left">2009-01-15 00:00:00+00:00</td>
+<td align="right">-0.024241</td>
+<td align="right">5.55999</td>
+<td align="right">0</td>
+<td align="right">14.84</td>
+<td align="right">20.4463</td>
+<td align="right">0.704382</td>
+<td align="right">1.483</td>
+<td align="right">0</td>
+</tr>
+<tr>
+<td align="left">2009-01-22 00:00:00+00:00</td>
+<td align="right">0.18283</td>
+<td align="right">6.22841</td>
+<td align="right">0</td>
+<td align="right">14.4678</td>
+<td align="right">20.5907</td>
+<td align="right">0.562277</td>
+<td align="right">0.938827</td>
+<td align="right">0</td>
+</tr>
+<tr>
+<td align="left">2009-01-29 00:00:00+00:00</td>
+<td align="right">0.120204</td>
+<td align="right">6.79959</td>
+<td align="right">0</td>
+<td align="right">13.9657</td>
+<td align="right">21.3497</td>
+<td align="right">0.519632</td>
+<td align="right">1.36261</td>
+<td align="right">0</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p>We'll also define the colours we'll use for each fuel-type</p>
+<p>N.b. the colour palette used is from <a href="https://www.sciencedirect.com/science/article/pii/S0301421516307017">this paper</a></p>
+<div class="highlight"><pre><span></span><code><span class="n">fuel_colour_dict_rgb</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;Imports &amp; Storage&#39;</span> <span class="p">:</span> <span class="p">(</span><span class="mi">121</span><span class="p">,</span><span class="mi">68</span><span class="p">,</span><span class="mi">149</span><span class="p">),</span> 
+    <span class="s1">&#39;nuclear&#39;</span> <span class="p">:</span> <span class="p">(</span><span class="mi">77</span><span class="p">,</span><span class="mi">157</span><span class="p">,</span><span class="mi">87</span><span class="p">),</span> 
+    <span class="s1">&#39;biomass&#39;</span> <span class="p">:</span> <span class="p">(</span><span class="mi">168</span><span class="p">,</span><span class="mi">125</span><span class="p">,</span><span class="mi">81</span><span class="p">),</span> 
+    <span class="s1">&#39;gas&#39;</span> <span class="p">:</span> <span class="p">(</span><span class="mi">254</span><span class="p">,</span><span class="mi">156</span><span class="p">,</span><span class="mi">66</span><span class="p">),</span> 
+    <span class="s1">&#39;coal&#39;</span> <span class="p">:</span> <span class="p">(</span><span class="mi">122</span><span class="p">,</span><span class="mi">122</span><span class="p">,</span><span class="mi">122</span><span class="p">),</span> 
+    <span class="s1">&#39;hydro&#39;</span> <span class="p">:</span> <span class="p">(</span><span class="mi">50</span><span class="p">,</span><span class="mi">120</span><span class="p">,</span><span class="mi">196</span><span class="p">),</span> 
+    <span class="s1">&#39;wind&#39;</span> <span class="p">:</span> <span class="p">(</span><span class="mi">72</span><span class="p">,</span><span class="mi">194</span><span class="p">,</span><span class="mi">227</span><span class="p">),</span> 
+    <span class="s1">&#39;solar&#39;</span> <span class="p">:</span> <span class="p">(</span><span class="mi">255</span><span class="p">,</span><span class="mi">219</span><span class="p">,</span><span class="mi">65</span><span class="p">),</span>
+<span class="p">}</span>
+</code></pre></div>
+<p><br></p>
+<p>However we need to convert from rgb to matplotlib plotting colours (0-1 not 0-255)</p>
+<div class="highlight"><pre><span></span><code><span class="c1">#exports</span>
+<span class="k">def</span> <span class="nf">rgb_2_plt_tuple</span><span class="p">(</span><span class="n">rgb_tuple</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;converts a standard rgb set from a 0-255 range to 0-1&quot;&quot;&quot;</span>
+    <span class="n">plt_tuple</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">([</span><span class="n">x</span><span class="o">/</span><span class="mi">255</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">rgb_tuple</span><span class="p">])</span>
+    <span class="k">return</span> <span class="n">plt_tuple</span>
+
+<span class="k">def</span> <span class="nf">convert_fuel_colour_dict_to_plt_tuple</span><span class="p">(</span><span class="n">fuel_colour_dict_rgb</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Converts a dictionary of fuel colours to matplotlib colour values&quot;&quot;&quot;</span>
+    <span class="n">fuel_colour_dict_plt</span> <span class="o">=</span> <span class="n">fuel_colour_dict_rgb</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+
+    <span class="n">fuel_colour_dict_plt</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="n">fuel</span><span class="p">:</span> <span class="n">rgb_2_plt_tuple</span><span class="p">(</span><span class="n">rgb_tuple</span><span class="p">)</span> 
+        <span class="k">for</span> <span class="n">fuel</span><span class="p">,</span> <span class="n">rgb_tuple</span> 
+        <span class="ow">in</span> <span class="n">fuel_colour_dict_plt</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
+    <span class="p">}</span>
+
+    <span class="k">return</span> <span class="n">fuel_colour_dict_plt</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="n">fuel_colour_dict_plt</span> <span class="o">=</span> <span class="n">convert_fuel_colour_dict_to_plt_tuple</span><span class="p">(</span><span class="n">fuel_colour_dict_rgb</span><span class="p">)</span>
+
+<span class="n">sns</span><span class="o">.</span><span class="n">palplot</span><span class="p">(</span><span class="n">fuel_colour_dict_plt</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
+</code></pre></div>
+<p><img alt="png" src="../img/nbs/output_15_0.png" /></p>
+<p><br></p>
+<p>Finally we can plot the stacked fuel plot itself</p>
+<div class="highlight"><pre><span></span><code><span class="c1">#exports</span>
+<span class="k">def</span> <span class="nf">hide_spines</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">positions</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;top&quot;</span><span class="p">,</span> <span class="s2">&quot;right&quot;</span><span class="p">]):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Pass a matplotlib axis and list of positions with spines to be removed</span>
+
+<span class="sd">    Parameters:</span>
+<span class="sd">        ax:          Matplotlib axis object</span>
+<span class="sd">        positions:   Python list e.g. [&#39;top&#39;, &#39;bottom&#39;]</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">positions</span><span class="p">,</span> <span class="nb">list</span><span class="p">),</span> <span class="s2">&quot;Position must be passed as a list &quot;</span>
+
+    <span class="k">for</span> <span class="n">position</span> <span class="ow">in</span> <span class="n">positions</span><span class="p">:</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">spines</span><span class="p">[</span><span class="n">position</span><span class="p">]</span><span class="o">.</span><span class="n">set_visible</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">stacked_fuel_plot</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">fuel_colour_dict</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">save_path</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">150</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Plots the electric insights fuel data as a stacked area graph&quot;&quot;&quot;</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">fuel_colour_dict</span><span class="o">.</span><span class="n">keys</span><span class="p">()]</span>
+
+    <span class="k">if</span> <span class="n">ax</span> <span class="o">==</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span> <span class="n">dpi</span><span class="o">=</span><span class="n">dpi</span><span class="p">)</span>
+        <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">()</span>
+
+    <span class="n">ax</span><span class="o">.</span><span class="n">stackplot</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">df</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">capitalize</span><span class="p">(),</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.25</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;white&#39;</span><span class="p">,</span> <span class="n">colors</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="n">fuel_colour_dict</span><span class="o">.</span><span class="n">values</span><span class="p">()))</span>
+
+    <span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;axes.ymargin&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">spines</span><span class="p">[</span><span class="s1">&#39;bottom&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">set_position</span><span class="p">(</span><span class="s1">&#39;zero&#39;</span><span class="p">)</span>
+    <span class="n">hide_spines</span><span class="p">(</span><span class="n">ax</span><span class="p">)</span>
+
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">max</span><span class="p">())</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">ncol</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">bbox_to_anchor</span><span class="o">=</span><span class="p">(</span><span class="mf">0.85</span><span class="p">,</span> <span class="mf">1.15</span><span class="p">),</span> <span class="n">frameon</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Generation (GW)&#39;</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">save_path</span><span class="p">:</span>
+        <span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="n">save_path</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">ax</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="n">stacked_fuel_plot</span><span class="p">(</span><span class="n">df_plot</span><span class="p">,</span> <span class="n">fuel_colour_dict_plt</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">250</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>&lt;AxesSubplot:ylabel=&#39;Generation (GW)&#39;&gt;
+</code></pre></div>
+<p><img alt="png" src="../img/nbs/output_18_1.png" /></p>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
+        
+          <a href="../dev-01-retrieval/" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+            </div>
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Data Retrieval
+              </div>
+            </div>
+          </a>
+        
+        
+          <a href="../dev-03-lowess/" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                LOWESS
+              </div>
+            </div>
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../assets/javascripts/vendor.08c56446.min.js"></script>
+      <script src="../assets/javascripts/bundle.6ced434e.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}</script>
+      
+      <script>
+        app = initialize({
+          base: "..",
+          features: ['header.autohide', 'navigation.tabs', 'navigation.instant', 'search.suggest'],
+          search: Object.assign({
+            worker: "../assets/javascripts/worker/search.8c7e0a7e.min.js"
+          }, typeof search !== "undefined" && search)
+        })
+      </script>
+      
+        <script src="../javascripts/config.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

@@ -1,0 +1,1988 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+      <link rel="shortcut icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-6.2.2">
+    
+    
+      
+        <title>Carbon Curve Estimation & MOE - Outage Watch</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.73f7c429.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.39b8e14a.min.css">
+        
+          
+          
+          <meta name="theme-color" content="#000000">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono",SFMono-Regular,Consolas,Menlo,monospace}</style>
+      
+    
+    
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="black" data-md-color-accent="">
+      
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#carbon-merit-order-effect-analysis" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid" aria-label="Header">
+    <a href=".." title="Outage Watch" class="md-header-nav__button md-logo" aria-label="Outage Watch">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header-nav__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header-nav__title" data-md-component="header-title">
+      <div class="md-header-nav__ellipsis">
+        <div class="md-header-nav__topic">
+          <span class="md-ellipsis">
+            Outage Watch
+          </span>
+        </div>
+        <div class="md-header-nav__topic">
+          <span class="md-ellipsis">
+            
+              Carbon Curve Estimation & MOE
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      <label class="md-header-nav__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" data-md-component="search-reset" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header-nav__source">
+        
+<a href="https://github.com/OSUKED/Outage-Watch/" title="Go to repository" class="md-source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    OSUKED/Outage-Watch
+  </div>
+</a>
+      </div>
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href=".." class="md-tabs__link">
+      Home
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../ug-01-quantile/" class="md-tabs__link">
+        User Guide
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+    
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../dev-01-retrieval/" class="md-tabs__link md-tabs__link--active">
+        Development
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Outage Watch" class="md-nav__button md-logo" aria-label="Outage Watch">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    Outage Watch
+  </label>
+  
+    <div class="md-nav__source">
+      
+<a href="https://github.com/OSUKED/Outage-Watch/" title="Go to repository" class="md-source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    OSUKED/Outage-Watch
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+
+  <li class="md-nav__item">
+    <a href=".." class="md-nav__link">
+      Home
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+
+  
+  <li class="md-nav__item md-nav__item--nested">
+    
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2" >
+    
+    <label class="md-nav__link" for="nav-2">
+      User Guide
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="User Guide" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        <span class="md-nav__icon md-icon"></span>
+        User Guide
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="../ug-01-quantile/" class="md-nav__link">
+      Quantile Predictions
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="../ug-02-confidence/" class="md-nav__link">
+      Confidence Intervals
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="../ug-03-power-curve/" class="md-nav__link">
+      Power Curve Cleaning
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="../ug-04-gb-mcc/" class="md-nav__link">
+      Marginal Cost Curve
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  
+
+
+  
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3" checked>
+    
+    <label class="md-nav__link" for="nav-3">
+      Development
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Development" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        <span class="md-nav__icon md-icon"></span>
+        Development
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="../dev-01-retrieval/" class="md-nav__link">
+      Data Retrieval
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="../dev-02-eda/" class="md-nav__link">
+      Exploratory Data Analysis
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="../dev-03-lowess/" class="md-nav__link">
+      LOWESS
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="../dev-04-price-surface-estimation/" class="md-nav__link">
+      Price Curve Estimation
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="../dev-05-price-moe/" class="md-nav__link">
+      Price MOE Calculation
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Carbon Curve Estimation & MOE
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+    
+    <a href="./" class="md-nav__link md-nav__link--active">
+      Carbon Curve Estimation & MOE
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#imports" class="md-nav__link">
+    Imports
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#user-inputs" class="md-nav__link">
+    User Inputs
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#germany" class="md-nav__link">
+    Germany
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#great-britain" class="md-nav__link">
+    Great Britain
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#model-fitting" class="md-nav__link">
+    Model Fitting
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#german-model-evaluation-carbon-savings-calculations" class="md-nav__link">
+    German Model Evaluation &amp; Carbon Savings Calculations
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#british-model-evaluation-carbon-savings-calculations" class="md-nav__link">
+    British Model Evaluation &amp; Carbon Savings Calculations
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#plots" class="md-nav__link">
+    Plots
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#saving-results" class="md-nav__link">
+    Saving Results
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="../dev-07-prediction-confidence-and-intervals/" class="md-nav__link">
+      Prediction & Confidence Intervals
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="../dev-08-hyper-parameter-tuning/" class="md-nav__link">
+      Hyper-Parameter Tuning
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="../dev-09-tables-and-figures/" class="md-nav__link">
+      Tables & Figures
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="../dev-10-ci-cd/" class="md-nav__link">
+      CI-CD
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#imports" class="md-nav__link">
+    Imports
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#user-inputs" class="md-nav__link">
+    User Inputs
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#germany" class="md-nav__link">
+    Germany
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#great-britain" class="md-nav__link">
+    Great Britain
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#model-fitting" class="md-nav__link">
+    Model Fitting
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#german-model-evaluation-carbon-savings-calculations" class="md-nav__link">
+    German Model Evaluation &amp; Carbon Savings Calculations
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#british-model-evaluation-carbon-savings-calculations" class="md-nav__link">
+    British Model Evaluation &amp; Carbon Savings Calculations
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#plots" class="md-nav__link">
+    Plots
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#saving-results" class="md-nav__link">
+    Saving Results
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/OSUKED/Outage-Watch/edit/main/docs/dev-06-carbon-surface-estimation-and-moe.md" title="Edit this page" class="md-content__button md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+                  </a>
+                
+                
+                <h1 id="carbon-merit-order-effect-analysis">Carbon Merit Order Effect Analysis<a class="headerlink" href="#carbon-merit-order-effect-analysis" title="Permanent link">&para;</a></h1>
+<p>This notebook outlines the analysis required to determine the carbon merit-order-effect of variable renewable generation in the GB and DE power markets.</p>
+<p><br></p>
+<h3 id="imports">Imports<a class="headerlink" href="#imports" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="kn">from</span> <span class="nn">moepy</span> <span class="kn">import</span> <span class="n">surface</span><span class="p">,</span> <span class="n">moe</span>
+
+<span class="kn">import</span> <span class="nn">pickle</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">r2_score</span>
+<span class="kn">from</span> <span class="nn">moepy.surface</span> <span class="kn">import</span> <span class="n">PicklableFunction</span>
+</code></pre></div>
+<p><br></p>
+<h3 id="user-inputs">User Inputs<a class="headerlink" href="#user-inputs" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">models_dir</span> <span class="o">=</span> <span class="s1">&#39;../data/models&#39;</span>
+</code></pre></div>
+<p><br></p>
+<h3 id="germany">Germany<a class="headerlink" href="#germany" title="Permanent link">&para;</a></h3>
+<p>We'll start by loading in the data</p>
+<div class="highlight"><pre><span></span><code><span class="n">df_fuels_DE</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;../data/raw/energy_charts.csv&#39;</span><span class="p">)</span>
+
+<span class="n">df_fuels_DE</span> <span class="o">=</span> <span class="n">df_fuels_DE</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;local_datetime&#39;</span><span class="p">)</span>
+<span class="n">df_fuels_DE</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">df_fuels_DE</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">utc</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">tz_convert</span><span class="p">(</span><span class="s1">&#39;Europe/Berlin&#39;</span><span class="p">)</span>
+
+<span class="n">df_fuels_DE</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</code></pre></div>
+<table>
+<thead>
+<tr>
+<th align="left">local_datetime</th>
+<th align="right">Biomass</th>
+<th align="right">Brown Coal</th>
+<th align="right">Gas</th>
+<th align="right">Hard Coal</th>
+<th align="right">Hydro Power</th>
+<th align="right">Oil</th>
+<th align="right">Others</th>
+<th align="right">Pumped Storage</th>
+<th align="right">Seasonal Storage</th>
+<th align="right">Solar</th>
+<th align="right">Uranium</th>
+<th align="right">Wind</th>
+<th align="right">net_balance</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">2010-01-04 00:00:00+01:00</td>
+<td align="right">3.637</td>
+<td align="right">16.533</td>
+<td align="right">4.726</td>
+<td align="right">10.078</td>
+<td align="right">2.331</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0.052</td>
+<td align="right">0.068</td>
+<td align="right">0</td>
+<td align="right">16.826</td>
+<td align="right">0.635</td>
+<td align="right">-1.229</td>
+</tr>
+<tr>
+<td align="left">2010-01-04 01:00:00+01:00</td>
+<td align="right">3.637</td>
+<td align="right">16.544</td>
+<td align="right">4.856</td>
+<td align="right">8.816</td>
+<td align="right">2.293</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0.038</td>
+<td align="right">0.003</td>
+<td align="right">0</td>
+<td align="right">16.841</td>
+<td align="right">0.528</td>
+<td align="right">-1.593</td>
+</tr>
+<tr>
+<td align="left">2010-01-04 02:00:00+01:00</td>
+<td align="right">3.637</td>
+<td align="right">16.368</td>
+<td align="right">5.275</td>
+<td align="right">7.954</td>
+<td align="right">2.299</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0.032</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">16.846</td>
+<td align="right">0.616</td>
+<td align="right">-1.378</td>
+</tr>
+<tr>
+<td align="left">2010-01-04 03:00:00+01:00</td>
+<td align="right">3.637</td>
+<td align="right">15.837</td>
+<td align="right">5.354</td>
+<td align="right">7.681</td>
+<td align="right">2.299</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0.027</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">16.699</td>
+<td align="right">0.63</td>
+<td align="right">-1.624</td>
+</tr>
+<tr>
+<td align="left">2010-01-04 04:00:00+01:00</td>
+<td align="right">3.637</td>
+<td align="right">15.452</td>
+<td align="right">5.918</td>
+<td align="right">7.498</td>
+<td align="right">2.301</td>
+<td align="right">0.003</td>
+<td align="right">0</td>
+<td align="right">0.02</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">16.635</td>
+<td align="right">0.713</td>
+<td align="right">-0.731</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p>We now need to conver the fuel generation time-series into a carbon intensity time-series. We'll use data provided by <a href="https://www.volker-quaschning.de/datserv/CO2-spez/index_e.php">volker-quaschning</a>. The units are kgCO2 / kWh, equivalent to Tonnes/MWh.</p>
+<p>N.b. We are looking at the fuel emissions (not avg over lifecycle incl. CAPEX)</p>
+<div class="highlight"><pre><span></span><code><span class="n">DE_fuel_to_co2_intensity</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;Biomass&#39;</span><span class="p">:</span> <span class="mf">0.39</span><span class="p">,</span> 
+    <span class="s1">&#39;Brown Coal&#39;</span><span class="p">:</span> <span class="mf">0.36</span><span class="p">,</span> 
+    <span class="s1">&#39;Gas&#39;</span><span class="p">:</span> <span class="mf">0.23</span><span class="p">,</span> 
+    <span class="s1">&#39;Hard Coal&#39;</span><span class="p">:</span> <span class="mf">0.34</span><span class="p">,</span> 
+    <span class="s1">&#39;Hydro Power&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> 
+    <span class="s1">&#39;Oil&#39;</span><span class="p">:</span> <span class="mf">0.28</span><span class="p">,</span>
+    <span class="s1">&#39;Others&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> 
+    <span class="s1">&#39;Pumped Storage&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> 
+    <span class="s1">&#39;Seasonal Storage&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> 
+    <span class="s1">&#39;Solar&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> 
+    <span class="s1">&#39;Uranium&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="s1">&#39;Wind&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> 
+    <span class="s1">&#39;net_balance&#39;</span><span class="p">:</span> <span class="mi">0</span> 
+<span class="p">}</span>
+
+<span class="n">s_DE_emissions_tonnes</span> <span class="o">=</span> <span class="p">(</span><span class="n">df_fuels_DE</span>
+                         <span class="o">.</span><span class="n">multiply</span><span class="p">(</span><span class="mf">1e3</span><span class="p">)</span> <span class="c1"># converting to MWh</span>
+                         <span class="p">[</span><span class="n">DE_fuel_to_co2_intensity</span><span class="o">.</span><span class="n">keys</span><span class="p">()]</span>
+                         <span class="o">.</span><span class="n">multiply</span><span class="p">(</span><span class="n">DE_fuel_to_co2_intensity</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
+                         <span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+                        <span class="p">)</span>
+
+<span class="n">s_DE_emissions_tonnes</span> <span class="o">=</span> <span class="n">s_DE_emissions_tonnes</span><span class="p">[</span><span class="n">s_DE_emissions_tonnes</span><span class="o">&gt;</span><span class="mi">2000</span><span class="p">]</span>
+
+<span class="n">sns</span><span class="o">.</span><span class="n">histplot</span><span class="p">(</span><span class="n">s_DE_emissions_tonnes</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>&lt;AxesSubplot:ylabel=&#39;Count&#39;&gt;
+</code></pre></div>
+<p><img alt="png" src="../img/nbs/output_7_1.png" /></p>
+<p><br></p>
+<p>We'll do a quick plot of the change over time</p>
+<div class="highlight"><pre><span></span><code><span class="n">df_DE</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+    <span class="s1">&#39;demand&#39;</span><span class="p">:</span> <span class="n">df_fuels_DE</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span>
+    <span class="s1">&#39;dispatchable&#39;</span><span class="p">:</span> <span class="n">df_fuels_DE</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Solar&#39;</span><span class="p">,</span> <span class="s1">&#39;Wind&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span>
+    <span class="s1">&#39;emissions&#39;</span><span class="p">:</span> <span class="n">s_DE_emissions_tonnes</span>
+<span class="p">})</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span>
+
+<span class="c1"># Plotting</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">dpi</span><span class="o">=</span><span class="mi">150</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">df_DE</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">&#39;2010-09&#39;</span><span class="p">:</span><span class="s1">&#39;2011-03&#39;</span><span class="p">,</span> <span class="s1">&#39;dispatchable&#39;</span><span class="p">],</span> <span class="n">df_DE</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">&#39;2010-09&#39;</span><span class="p">:</span><span class="s1">&#39;2011-03&#39;</span><span class="p">,</span> <span class="s1">&#39;emissions&#39;</span><span class="p">],</span> <span class="n">s</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.25</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">df_DE</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">&#39;2019-09&#39;</span><span class="p">:</span><span class="s1">&#39;2020-03&#39;</span><span class="p">,</span> <span class="s1">&#39;dispatchable&#39;</span><span class="p">],</span> <span class="n">df_DE</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">&#39;2019-09&#39;</span><span class="p">:</span><span class="s1">&#39;2020-03&#39;</span><span class="p">,</span> <span class="s1">&#39;emissions&#39;</span><span class="p">],</span> <span class="n">s</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.25</span><span class="p">)</span>
+
+<span class="n">eda</span><span class="o">.</span><span class="n">hide_spines</span><span class="p">(</span><span class="n">ax</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">80</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="mi">3000</span><span class="p">,</span> <span class="mi">20000</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Demand - [Wind + Solar] (GW)&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;CO2 Emissions (Tonnes)&#39;</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>Text(0, 0.5, &#39;CO2 Emissions (Tonnes)&#39;)
+</code></pre></div>
+<p><img alt="png" src="../img/nbs/output_9_1.png" /></p>
+<p><br></p>
+<h3 id="great-britain">Great Britain<a class="headerlink" href="#great-britain" title="Permanent link">&para;</a></h3>
+<p>We'll now do the same for the GB system</p>
+<div class="highlight"><pre><span></span><code><span class="n">df_fuels_GB</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;../data/raw/electric_insights.csv&#39;</span><span class="p">)</span>
+
+<span class="n">df_fuels_GB</span> <span class="o">=</span> <span class="n">df_fuels_GB</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;local_datetime&#39;</span><span class="p">)</span>
+<span class="n">df_fuels_GB</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">df_fuels_GB</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">utc</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">tz_convert</span><span class="p">(</span><span class="s1">&#39;Europe/Berlin&#39;</span><span class="p">)</span>
+
+<span class="n">df_fuels_GB</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</code></pre></div>
+<table>
+<thead>
+<tr>
+<th align="left">local_datetime</th>
+<th align="right">day_ahead_price</th>
+<th align="right">SP</th>
+<th align="right">imbalance_price</th>
+<th align="right">valueSum</th>
+<th align="right">temperature</th>
+<th align="right">TCO2_per_h</th>
+<th align="right">gCO2_per_kWh</th>
+<th align="right">nuclear</th>
+<th align="right">biomass</th>
+<th align="right">coal</th>
+<th align="left">...</th>
+<th align="right">demand</th>
+<th align="right">pumped_storage</th>
+<th align="right">wind_onshore</th>
+<th align="right">wind_offshore</th>
+<th align="right">belgian</th>
+<th align="right">dutch</th>
+<th align="right">french</th>
+<th align="right">ireland</th>
+<th align="right">northern_ireland</th>
+<th align="right">irish</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">2009-01-01 01:00:00+01:00</td>
+<td align="right">58.05</td>
+<td align="right">1</td>
+<td align="right">74.74</td>
+<td align="right">74.74</td>
+<td align="right">-0.6</td>
+<td align="right">21278</td>
+<td align="right">555</td>
+<td align="right">6.973</td>
+<td align="right">0</td>
+<td align="right">17.65</td>
+<td align="left">...</td>
+<td align="right">38.329</td>
+<td align="right">-0.404</td>
+<td align="right">nan</td>
+<td align="right">nan</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">1.977</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">-0.161</td>
+</tr>
+<tr>
+<td align="left">2009-01-01 01:30:00+01:00</td>
+<td align="right">56.33</td>
+<td align="right">2</td>
+<td align="right">74.89</td>
+<td align="right">74.89</td>
+<td align="right">-0.6</td>
+<td align="right">21442</td>
+<td align="right">558</td>
+<td align="right">6.968</td>
+<td align="right">0</td>
+<td align="right">17.77</td>
+<td align="left">...</td>
+<td align="right">38.461</td>
+<td align="right">-0.527</td>
+<td align="right">nan</td>
+<td align="right">nan</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">1.977</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">-0.16</td>
+</tr>
+<tr>
+<td align="left">2009-01-01 02:00:00+01:00</td>
+<td align="right">52.98</td>
+<td align="right">3</td>
+<td align="right">76.41</td>
+<td align="right">76.41</td>
+<td align="right">-0.6</td>
+<td align="right">21614</td>
+<td align="right">569</td>
+<td align="right">6.97</td>
+<td align="right">0</td>
+<td align="right">18.07</td>
+<td align="left">...</td>
+<td align="right">37.986</td>
+<td align="right">-1.018</td>
+<td align="right">nan</td>
+<td align="right">nan</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">1.977</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">-0.16</td>
+</tr>
+<tr>
+<td align="left">2009-01-01 02:30:00+01:00</td>
+<td align="right">50.39</td>
+<td align="right">4</td>
+<td align="right">37.73</td>
+<td align="right">37.73</td>
+<td align="right">-0.6</td>
+<td align="right">21320</td>
+<td align="right">578</td>
+<td align="right">6.969</td>
+<td align="right">0</td>
+<td align="right">18.022</td>
+<td align="left">...</td>
+<td align="right">36.864</td>
+<td align="right">-1.269</td>
+<td align="right">nan</td>
+<td align="right">nan</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">1.746</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">-0.16</td>
+</tr>
+<tr>
+<td align="left">2009-01-01 03:00:00+01:00</td>
+<td align="right">48.7</td>
+<td align="right">5</td>
+<td align="right">59</td>
+<td align="right">59</td>
+<td align="right">-0.6</td>
+<td align="right">21160</td>
+<td align="right">585</td>
+<td align="right">6.96</td>
+<td align="right">0</td>
+<td align="right">17.998</td>
+<td align="left">...</td>
+<td align="right">36.18</td>
+<td align="right">-1.566</td>
+<td align="right">nan</td>
+<td align="right">nan</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">1.73</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">-0.16</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p>We'll source the carbon intensity data from DUKES where possible and Electric Insights where it isn't.</p>
+<p><img src="..\nbs\..\img\docs\GB DUKES carbon intensity.png" width="600" style="max-width: 600px"></p>
+<div class="highlight"><pre><span></span><code><span class="n">GB_fuel_to_co2_intensity</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;nuclear&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> 
+    <span class="s1">&#39;biomass&#39;</span><span class="p">:</span> <span class="mf">0.121</span><span class="p">,</span> <span class="c1"># from EI </span>
+    <span class="s1">&#39;coal&#39;</span><span class="p">:</span> <span class="mf">0.921</span><span class="p">,</span> <span class="c1"># DUKES 2018 value</span>
+    <span class="s1">&#39;gas&#39;</span><span class="p">:</span> <span class="mf">0.377</span><span class="p">,</span> <span class="c1"># DUKES 2018 value (lower than many CCGT estimates, let alone OCGT)</span>
+    <span class="s1">&#39;hydro&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> 
+    <span class="s1">&#39;pumped_storage&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> 
+    <span class="s1">&#39;solar&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="s1">&#39;wind&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="s1">&#39;belgian&#39;</span><span class="p">:</span> <span class="mf">0.4</span><span class="p">,</span>  
+    <span class="s1">&#39;dutch&#39;</span><span class="p">:</span> <span class="mf">0.474</span><span class="p">,</span> <span class="c1"># from EI </span>
+    <span class="s1">&#39;french&#39;</span><span class="p">:</span> <span class="mf">0.053</span><span class="p">,</span> <span class="c1"># from EI </span>
+    <span class="s1">&#39;ireland&#39;</span><span class="p">:</span> <span class="mf">0.458</span><span class="p">,</span> <span class="c1"># from EI </span>
+    <span class="s1">&#39;northern_ireland&#39;</span><span class="p">:</span> <span class="mf">0.458</span> <span class="c1"># from EI </span>
+<span class="p">}</span>
+
+<span class="n">s_GB_emissions_tonnes</span> <span class="o">=</span> <span class="p">(</span><span class="n">df_fuels_GB</span>
+                         <span class="o">.</span><span class="n">multiply</span><span class="p">(</span><span class="mf">1e3</span><span class="o">*</span><span class="mf">0.5</span><span class="p">)</span> <span class="c1"># converting to MWh</span>
+                         <span class="p">[</span><span class="n">GB_fuel_to_co2_intensity</span><span class="o">.</span><span class="n">keys</span><span class="p">()]</span>
+                         <span class="o">.</span><span class="n">multiply</span><span class="p">(</span><span class="n">GB_fuel_to_co2_intensity</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
+                         <span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+                        <span class="p">)</span>
+
+<span class="n">sns</span><span class="o">.</span><span class="n">histplot</span><span class="p">(</span><span class="n">s_GB_emissions_tonnes</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>&lt;AxesSubplot:ylabel=&#39;Count&#39;&gt;
+</code></pre></div>
+<p><img alt="png" src="../img/nbs/output_13_1.png" /></p>
+<p><br></p>
+<p>We'll do the same visualisation for GB of how the carbon intensity has changed over time.</p>
+<p>Interestly we can see a clear fall in the carbon intensity of the GB dispatchable fleet, whereas with Germany the difference is negligible and if anything has slightly increased.</p>
+<div class="highlight"><pre><span></span><code><span class="n">df_GB</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+    <span class="s1">&#39;demand&#39;</span><span class="p">:</span> <span class="n">df_fuels_GB</span><span class="p">[</span><span class="n">GB_fuel_to_co2_intensity</span><span class="o">.</span><span class="n">keys</span><span class="p">()]</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span>
+    <span class="s1">&#39;dispatchable&#39;</span><span class="p">:</span> <span class="n">df_fuels_GB</span><span class="p">[</span><span class="n">GB_fuel_to_co2_intensity</span><span class="o">.</span><span class="n">keys</span><span class="p">()]</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;solar&#39;</span><span class="p">,</span> <span class="s1">&#39;wind&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span>
+    <span class="s1">&#39;emissions&#39;</span><span class="p">:</span> <span class="n">s_GB_emissions_tonnes</span>
+<span class="p">})</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span>
+
+<span class="c1"># Plotting</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">dpi</span><span class="o">=</span><span class="mi">250</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">df_GB</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">&#39;2010-09&#39;</span><span class="p">:</span><span class="s1">&#39;2011-03&#39;</span><span class="p">,</span> <span class="s1">&#39;dispatchable&#39;</span><span class="p">],</span> <span class="n">df_GB</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">&#39;2010-09&#39;</span><span class="p">:</span><span class="s1">&#39;2011-03&#39;</span><span class="p">,</span> <span class="s1">&#39;emissions&#39;</span><span class="p">],</span> <span class="n">s</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.25</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Winter 10/11&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">df_GB</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">&#39;2019-09&#39;</span><span class="p">:</span><span class="s1">&#39;2020-03&#39;</span><span class="p">,</span> <span class="s1">&#39;dispatchable&#39;</span><span class="p">],</span> <span class="n">df_GB</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">&#39;2019-09&#39;</span><span class="p">:</span><span class="s1">&#39;2020-03&#39;</span><span class="p">,</span> <span class="s1">&#39;emissions&#39;</span><span class="p">],</span> <span class="n">s</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.25</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Winter 19/20&#39;</span><span class="p">)</span>
+
+<span class="n">eda</span><span class="o">.</span><span class="n">hide_spines</span><span class="p">(</span><span class="n">ax</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">60</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">17500</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Demand - [Wind + Solar] (GW)&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;CO2 Emissions (Tonnes)&#39;</span><span class="p">)</span>
+
+<span class="n">lgnd</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">frameon</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span> <span class="c1"># Need to increase the legend marker size</span>
+<span class="n">lgnd</span><span class="o">.</span><span class="n">legendHandles</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">_sizes</span> <span class="o">=</span> <span class="p">[</span><span class="mi">30</span><span class="p">]</span>
+<span class="n">lgnd</span><span class="o">.</span><span class="n">legendHandles</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">_sizes</span> <span class="o">=</span> <span class="p">[</span><span class="mi">30</span><span class="p">]</span>
+
+<span class="k">for</span> <span class="n">lh</span> <span class="ow">in</span> <span class="n">lgnd</span><span class="o">.</span><span class="n">legendHandles</span><span class="p">:</span> 
+    <span class="n">lh</span><span class="o">.</span><span class="n">set_alpha</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+</code></pre></div>
+<p><img alt="png" src="../img/nbs/output_15_0.png" /></p>
+<p><br></p>
+<h3 id="model-fitting">Model Fitting<a class="headerlink" href="#model-fitting" title="Permanent link">&para;</a></h3>
+<p>We're ready to define and fit our models</p>
+<div class="highlight"><pre><span></span><code><span class="n">model_definitions</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;carbon_emissions_DE&#39;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s1">&#39;dt_idx&#39;</span><span class="p">:</span> <span class="n">df_DE</span><span class="o">.</span><span class="n">index</span><span class="p">,</span>
+        <span class="s1">&#39;x&#39;</span><span class="p">:</span> <span class="n">df_DE</span><span class="p">[</span><span class="s1">&#39;dispatchable&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">,</span>
+        <span class="s1">&#39;y&#39;</span><span class="p">:</span> <span class="n">df_DE</span><span class="p">[</span><span class="s1">&#39;emissions&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">,</span>
+        <span class="s1">&#39;reg_dates_start&#39;</span><span class="p">:</span> <span class="s1">&#39;2010-01-04&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;reg_dates_end&#39;</span><span class="p">:</span> <span class="s1">&#39;2021-01-01&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;reg_dates_freq&#39;</span><span class="p">:</span> <span class="s1">&#39;13W&#39;</span><span class="p">,</span>  
+        <span class="s1">&#39;frac&#39;</span><span class="p">:</span> <span class="mf">0.3</span><span class="p">,</span> 
+        <span class="s1">&#39;num_fits&#39;</span><span class="p">:</span> <span class="mi">31</span><span class="p">,</span> 
+        <span class="s1">&#39;dates_smoothing_value&#39;</span><span class="p">:</span> <span class="mi">26</span><span class="p">,</span> 
+        <span class="s1">&#39;dates_smoothing_units&#39;</span><span class="p">:</span> <span class="s1">&#39;W&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;fit_kwarg_sets&#39;</span><span class="p">:</span> <span class="n">surface</span><span class="o">.</span><span class="n">get_fit_kwarg_sets</span><span class="p">(</span><span class="n">qs</span><span class="o">=</span><span class="p">[</span><span class="mf">0.16</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.84</span><span class="p">])</span>
+    <span class="p">},</span>
+    <span class="s1">&#39;carbon_emissions_GB&#39;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s1">&#39;dt_idx&#39;</span><span class="p">:</span> <span class="n">df_GB</span><span class="o">.</span><span class="n">index</span><span class="p">,</span>
+        <span class="s1">&#39;x&#39;</span><span class="p">:</span> <span class="n">df_GB</span><span class="p">[</span><span class="s1">&#39;dispatchable&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">,</span>
+        <span class="s1">&#39;y&#39;</span><span class="p">:</span> <span class="n">df_GB</span><span class="p">[</span><span class="s1">&#39;emissions&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">,</span>
+        <span class="s1">&#39;reg_dates_start&#39;</span><span class="p">:</span> <span class="s1">&#39;2010-01-04&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;reg_dates_end&#39;</span><span class="p">:</span> <span class="s1">&#39;2021-01-01&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;reg_dates_freq&#39;</span><span class="p">:</span> <span class="s1">&#39;13W&#39;</span><span class="p">,</span>  
+        <span class="s1">&#39;frac&#39;</span><span class="p">:</span> <span class="mf">0.3</span><span class="p">,</span> 
+        <span class="s1">&#39;num_fits&#39;</span><span class="p">:</span> <span class="mi">31</span><span class="p">,</span> 
+        <span class="s1">&#39;dates_smoothing_value&#39;</span><span class="p">:</span> <span class="mi">26</span><span class="p">,</span>
+        <span class="s1">&#39;dates_smoothing_units&#39;</span><span class="p">:</span> <span class="s1">&#39;W&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;fit_kwarg_sets&#39;</span><span class="p">:</span> <span class="n">surface</span><span class="o">.</span><span class="n">get_fit_kwarg_sets</span><span class="p">(</span><span class="n">qs</span><span class="o">=</span><span class="p">[</span><span class="mf">0.16</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.84</span><span class="p">])</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="n">surface</span><span class="o">.</span><span class="n">fit_models</span><span class="p">(</span><span class="n">model_definitions</span><span class="p">,</span> <span class="n">models_dir</span><span class="p">)</span>
+</code></pre></div>
+<div><span class="Text-label" style="display:inline-block; overflow:hidden; white-space:nowrap; text-overflow:ellipsis; min-width:15ex; max-width:15ex; vertical-align:middle; text-align:right">carbon_emissions_DE</span>
+<progress style="width:45ex" max="4" value="4" class="Progress-main"/></progress>
+<span class="Progress-label"><strong>100%</strong></span>
+<span class="Iteration-label">4/4</span>
+<span class="Time-label">[00:00<00:00, 0.00s/it]</span></div>
+
+<div><span class="Text-label" style="display:inline-block; overflow:hidden; white-space:nowrap; text-overflow:ellipsis; min-width:15ex; max-width:15ex; vertical-align:middle; text-align:right">carbon_emissions_GB</span>
+<progress style="width:45ex" max="4" value="4" class="Progress-main"/></progress>
+<span class="Progress-label"><strong>100%</strong></span>
+<span class="Iteration-label">4/4</span>
+<span class="Time-label">[00:00<00:00, 0.00s/it]</span></div>
+
+<p><br></p>
+<h3 id="german-model-evaluation-carbon-savings-calculations">German Model Evaluation &amp; Carbon Savings Calculations<a class="headerlink" href="#german-model-evaluation-carbon-savings-calculations" title="Permanent link">&para;</a></h3>
+<p>We'll start by loading in the model</p>
+<div class="highlight"><pre><span></span><code><span class="o">%%</span><span class="n">time</span>
+
+<span class="n">DE_model_fp</span> <span class="o">=</span> <span class="s1">&#39;../data/models/carbon_emissions_DE_p50.pkl&#39;</span>
+<span class="n">DE_smooth_dates</span> <span class="o">=</span> <span class="n">pickle</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="n">DE_model_fp</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">))</span>
+
+<span class="n">DE_x_pred</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">91</span><span class="p">,</span> <span class="mi">961</span><span class="p">)</span>
+<span class="n">DE_dt_pred</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="s1">&#39;2010-01-01&#39;</span><span class="p">,</span> <span class="s1">&#39;2020-12-31&#39;</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="s1">&#39;D&#39;</span><span class="p">)</span>
+
+<span class="n">df_DE_pred</span> <span class="o">=</span> <span class="n">DE_smooth_dates</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">x_pred</span><span class="o">=</span><span class="n">DE_x_pred</span><span class="p">,</span> <span class="n">dt_pred</span><span class="o">=</span><span class="n">DE_dt_pred</span><span class="p">)</span>
+<span class="n">df_DE_pred</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">df_DE_pred</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+<span class="n">df_DE_pred</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>Wall time: 2.94 s
+</code></pre></div>
+<table>
+<thead>
+<tr>
+<th align="right">Unnamed: 0</th>
+<th align="right">2010-01-01</th>
+<th align="right">2010-01-02</th>
+<th align="right">2010-01-03</th>
+<th align="right">2010-01-04</th>
+<th align="right">2010-01-05</th>
+<th align="right">2010-01-06</th>
+<th align="right">2010-01-07</th>
+<th align="right">2010-01-08</th>
+<th align="right">2010-01-09</th>
+<th align="right">2010-01-10</th>
+<th align="left">...</th>
+<th align="right">2020-12-22</th>
+<th align="right">2020-12-23</th>
+<th align="right">2020-12-24</th>
+<th align="right">2020-12-25</th>
+<th align="right">2020-12-26</th>
+<th align="right">2020-12-27</th>
+<th align="right">2020-12-28</th>
+<th align="right">2020-12-29</th>
+<th align="right">2020-12-30</th>
+<th align="right">2020-12-31</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="right">-5</td>
+<td align="right">3886.65</td>
+<td align="right">3879.82</td>
+<td align="right">3873.02</td>
+<td align="right">3866.24</td>
+<td align="right">3859.49</td>
+<td align="right">3852.78</td>
+<td align="right">3846.09</td>
+<td align="right">3839.43</td>
+<td align="right">3832.81</td>
+<td align="right">3826.22</td>
+<td align="left">...</td>
+<td align="right">90.9967</td>
+<td align="right">89.6073</td>
+<td align="right">88.2112</td>
+<td align="right">86.8081</td>
+<td align="right">85.3975</td>
+<td align="right">83.9787</td>
+<td align="right">82.5515</td>
+<td align="right">81.1158</td>
+<td align="right">79.6717</td>
+<td align="right">78.2193</td>
+</tr>
+<tr>
+<td align="right">-4.9</td>
+<td align="right">3892.08</td>
+<td align="right">3885.26</td>
+<td align="right">3878.48</td>
+<td align="right">3871.72</td>
+<td align="right">3864.99</td>
+<td align="right">3858.3</td>
+<td align="right">3851.63</td>
+<td align="right">3844.99</td>
+<td align="right">3838.39</td>
+<td align="right">3831.82</td>
+<td align="left">...</td>
+<td align="right">109.687</td>
+<td align="right">108.304</td>
+<td align="right">106.915</td>
+<td align="right">105.518</td>
+<td align="right">104.113</td>
+<td align="right">102.701</td>
+<td align="right">101.28</td>
+<td align="right">99.8512</td>
+<td align="right">98.4136</td>
+<td align="right">96.9678</td>
+</tr>
+<tr>
+<td align="right">-4.8</td>
+<td align="right">3897.58</td>
+<td align="right">3890.78</td>
+<td align="right">3884.01</td>
+<td align="right">3877.28</td>
+<td align="right">3870.57</td>
+<td align="right">3863.89</td>
+<td align="right">3857.24</td>
+<td align="right">3850.62</td>
+<td align="right">3844.04</td>
+<td align="right">3837.48</td>
+<td align="left">...</td>
+<td align="right">128.39</td>
+<td align="right">127.013</td>
+<td align="right">125.63</td>
+<td align="right">124.24</td>
+<td align="right">122.842</td>
+<td align="right">121.436</td>
+<td align="right">120.021</td>
+<td align="right">118.599</td>
+<td align="right">117.168</td>
+<td align="right">115.728</td>
+</tr>
+<tr>
+<td align="right">-4.7</td>
+<td align="right">3903.14</td>
+<td align="right">3896.36</td>
+<td align="right">3889.62</td>
+<td align="right">3882.89</td>
+<td align="right">3876.2</td>
+<td align="right">3869.54</td>
+<td align="right">3862.91</td>
+<td align="right">3856.31</td>
+<td align="right">3849.75</td>
+<td align="right">3843.21</td>
+<td align="left">...</td>
+<td align="right">147.105</td>
+<td align="right">145.734</td>
+<td align="right">144.357</td>
+<td align="right">142.973</td>
+<td align="right">141.581</td>
+<td align="right">140.182</td>
+<td align="right">138.774</td>
+<td align="right">137.358</td>
+<td align="right">135.933</td>
+<td align="right">134.501</td>
+</tr>
+<tr>
+<td align="right">-4.6</td>
+<td align="right">3908.73</td>
+<td align="right">3901.97</td>
+<td align="right">3895.24</td>
+<td align="right">3888.54</td>
+<td align="right">3881.86</td>
+<td align="right">3875.22</td>
+<td align="right">3868.61</td>
+<td align="right">3862.03</td>
+<td align="right">3855.48</td>
+<td align="right">3848.96</td>
+<td align="left">...</td>
+<td align="right">165.828</td>
+<td align="right">164.463</td>
+<td align="right">163.092</td>
+<td align="right">161.715</td>
+<td align="right">160.33</td>
+<td align="right">158.936</td>
+<td align="right">157.535</td>
+<td align="right">156.125</td>
+<td align="right">154.707</td>
+<td align="right">153.281</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p>We'll then visualise the surface prediction as a heatmap</p>
+<div class="highlight"><pre><span></span><code><span class="n">df_DE_dispatchable_lims</span> <span class="o">=</span> <span class="n">moe</span><span class="o">.</span><span class="n">construct_dispatchable_lims_df</span><span class="p">(</span><span class="n">df_DE</span><span class="p">[</span><span class="s1">&#39;dispatchable&#39;</span><span class="p">],</span> <span class="n">rolling_w</span><span class="o">=</span><span class="mi">6</span><span class="p">)</span>
+<span class="n">df_DE_pred_mask</span> <span class="o">=</span> <span class="n">moe</span><span class="o">.</span><span class="n">construct_pred_mask_df</span><span class="p">(</span><span class="n">df_DE_pred</span><span class="p">,</span> <span class="n">df_DE_dispatchable_lims</span><span class="p">)</span>
+
+<span class="c1"># Plotting</span>
+<span class="n">min_y</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">max_y</span> <span class="o">=</span> <span class="mi">80</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">dpi</span><span class="o">=</span><span class="mi">150</span><span class="p">)</span>
+
+<span class="n">htmp</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">heatmap</span><span class="p">(</span><span class="n">df_DE_pred</span><span class="p">[</span><span class="n">min_y</span><span class="p">:</span><span class="n">max_y</span><span class="p">]</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">df_DE_pred_mask</span><span class="p">[</span><span class="n">min_y</span><span class="p">:</span><span class="n">max_y</span><span class="p">],</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">)</span><span class="o">.</span><span class="n">iloc</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">cbar_kws</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;label&#39;</span><span class="p">:</span> <span class="s1">&#39;Hourly CO2 Emissions (Tonnes)&#39;</span><span class="p">})</span>
+
+<span class="n">moe</span><span class="o">.</span><span class="n">set_ticks</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">min_y</span><span class="p">,</span> <span class="n">max_y</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="s1">&#39;y&#39;</span><span class="p">)</span>
+<span class="n">moe</span><span class="o">.</span><span class="n">set_date_ticks</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="s1">&#39;2010-01-01&#39;</span><span class="p">,</span> <span class="s1">&#39;2021-01-01&#39;</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="s1">&#39;1YS&#39;</span><span class="p">,</span> <span class="n">date_format</span><span class="o">=</span><span class="s1">&#39;%Y&#39;</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">spine</span> <span class="ow">in</span> <span class="n">htmp</span><span class="o">.</span><span class="n">spines</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="n">spine</span><span class="o">.</span><span class="n">set_visible</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">eda</span><span class="o">.</span><span class="n">hide_spines</span><span class="p">(</span><span class="n">ax</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Demand - [Solar + Wind] (GW)&#39;</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>C:\Users\Ayrto\anaconda3\envs\MOE\lib\site-packages\sklearn\utils\validation.py:63: FutureWarning: Arrays of bytes/strings is being converted to decimal numbers if dtype=&#39;numeric&#39;. This behavior is deprecated in 0.24 and will be removed in 1.1 (renaming of 0.26). Please convert your data to numeric values explicitly instead.
+  return f(*args, **kwargs)
+
+
+
+
+
+Text(69.58333333333334, 0.5, &#39;Demand - [Solar + Wind] (GW)&#39;)
+</code></pre></div>
+<p><img alt="png" src="../img/nbs/output_21_2.png" /></p>
+<p><br></p>
+<p>We'll calculate the model metrics</p>
+<div class="highlight"><pre><span></span><code><span class="n">s_DE_pred_ts_dispatch</span><span class="p">,</span> <span class="n">s_DE_pred_ts_demand</span> <span class="o">=</span> <span class="n">moe</span><span class="o">.</span><span class="n">get_model_pred_ts</span><span class="p">(</span><span class="n">df_DE</span><span class="p">[</span><span class="s1">&#39;dispatchable&#39;</span><span class="p">],</span> <span class="n">DE_model_fp</span><span class="p">,</span> <span class="n">s_demand</span><span class="o">=</span><span class="n">df_DE</span><span class="p">[</span><span class="s1">&#39;demand&#39;</span><span class="p">],</span> <span class="n">x_pred</span><span class="o">=</span><span class="n">DE_x_pred</span><span class="p">,</span> <span class="n">dt_pred</span><span class="o">=</span><span class="n">DE_dt_pred</span><span class="p">)</span>
+<span class="n">s_DE_err</span> <span class="o">=</span> <span class="n">s_DE_pred_ts_dispatch</span> <span class="o">-</span> <span class="n">df_DE</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">s_DE_pred_ts_dispatch</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="s1">&#39;emissions&#39;</span><span class="p">]</span>
+<span class="n">metrics</span> <span class="o">=</span> <span class="n">moe</span><span class="o">.</span><span class="n">calc_error_metrics</span><span class="p">(</span><span class="n">s_DE_err</span><span class="p">)</span>
+
+<span class="n">metrics</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>C:\Users\Ayrto\anaconda3\envs\MOE\lib\site-packages\pandas\core\indexes\base.py:5277: FutureWarning: Indexing a timezone-aware DatetimeIndex with a timezone-naive datetime is deprecated and will raise KeyError in a future version.  Use a timezone-aware object instead.
+  start_slice, end_slice = self.slice_locs(start, end, step=step, kind=kind)
+</code></pre></div>
+<div><span class="Text-label" style="display:inline-block; overflow:hidden; white-space:nowrap; text-overflow:ellipsis; min-width:0; max-width:15ex; vertical-align:middle; text-align:right"></span>
+<progress style="width:60ex" max="96191" value="96191" class="Progress-main"/></progress>
+<span class="Progress-label"><strong>100%</strong></span>
+<span class="Iteration-label">0/96191</span>
+<span class="Time-label">[01:24<00:00, 0.00s/it]</span></div>
+
+<div><span class="Text-label" style="display:inline-block; overflow:hidden; white-space:nowrap; text-overflow:ellipsis; min-width:0; max-width:15ex; vertical-align:middle; text-align:right"></span>
+<progress style="width:60ex" max="96191" value="96191" class="Progress-main"/></progress>
+<span class="Progress-label"><strong>100%</strong></span>
+<span class="Iteration-label">0/96191</span>
+<span class="Time-label">[01:15<00:00, 0.00s/it]</span></div>
+
+<div class="highlight"><pre><span></span><code>{&#39;median_abs_err&#39;: 603.7669189236494,
+ &#39;mean_abs_err&#39;: 750.7665511092414,
+ &#39;root_mean_square_error&#39;: 967.8069705064318}
+</code></pre></div>
+<p><br></p>
+<p>And <span class="arithmatex">\(r^{2}\)</span> score</p>
+<div class="highlight"><pre><span></span><code><span class="n">r2_score</span><span class="p">(</span><span class="n">df_DE</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">s_DE_pred_ts_dispatch</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="s1">&#39;emissions&#39;</span><span class="p">],</span> <span class="n">s_DE_pred_ts_dispatch</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>0.9139682818721121
+</code></pre></div>
+<p><br></p>
+<p>We're now ready to calculate the total savings</p>
+<div class="highlight"><pre><span></span><code><span class="n">start_date</span> <span class="o">=</span> <span class="s1">&#39;2010&#39;</span>
+<span class="n">end_date</span> <span class="o">=</span> <span class="s1">&#39;2020&#39;</span>
+
+<span class="n">s_DE_MOE</span> <span class="o">=</span> <span class="n">s_DE_pred_ts_demand</span> <span class="o">-</span> <span class="n">s_DE_pred_ts_dispatch</span>
+<span class="n">s_DE_MOE</span> <span class="o">=</span> <span class="n">s_DE_MOE</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span>
+
+<span class="n">total_saving</span> <span class="o">=</span> <span class="n">s_DE_MOE</span><span class="p">[</span><span class="n">start_date</span><span class="p">:</span><span class="n">end_date</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The total saving between </span><span class="si">{</span><span class="n">start_date</span><span class="si">}</span><span class="s2"> and </span><span class="si">{</span><span class="n">end_date</span><span class="si">}</span><span class="s2"> was </span><span class="si">{</span><span class="n">total_saving</span><span class="si">:</span><span class="s2">,.0f</span><span class="si">}</span><span class="s2"> Tonnes&quot;</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>The total saving between 2010 and 2020 was 318,923,308 Tonnes
+</code></pre></div>
+<p><br></p>
+<p>And get some context for the average and total emissions over the same period</p>
+<div class="highlight"><pre><span></span><code><span class="n">s_DE_emissions</span> <span class="o">=</span> <span class="n">df_DE</span><span class="p">[</span><span class="s1">&#39;emissions&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">s_DE_MOE</span><span class="o">.</span><span class="n">index</span><span class="p">]</span>
+
+<span class="n">avg_DE_HH_emissions</span> <span class="o">=</span> <span class="n">s_DE_emissions</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+<span class="n">total_DE_emissions</span> <span class="o">=</span> <span class="n">s_DE_emissions</span><span class="p">[</span><span class="n">start_date</span><span class="p">:</span><span class="n">end_date</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+
+<span class="n">avg_DE_HH_emissions</span><span class="p">,</span> <span class="n">total_DE_emissions</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>(11870.320551662837, 1141818004.185)
+</code></pre></div>
+<p><br></p>
+<p>We'll calculate the average percentage emissions reduction due to the MOE</p>
+<div class="highlight"><pre><span></span><code><span class="n">total_saving</span><span class="o">/</span><span class="p">(</span><span class="n">total_DE_emissions</span><span class="o">+</span><span class="n">total_saving</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>0.21832976535024085
+</code></pre></div>
+<p><br></p>
+<p>Finally we'll generate the MOE percentage time-series</p>
+<div class="highlight"><pre><span></span><code><span class="n">s_DE_emissions_rolling</span> <span class="o">=</span> <span class="n">s_DE_emissions</span><span class="o">.</span><span class="n">rolling</span><span class="p">(</span><span class="mi">48</span><span class="o">*</span><span class="mi">28</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span>
+<span class="n">s_DE_MOE_rolling</span> <span class="o">=</span> <span class="n">s_DE_MOE</span><span class="o">.</span><span class="n">rolling</span><span class="p">(</span><span class="mi">48</span><span class="o">*</span><span class="mi">28</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span>
+
+<span class="n">s_DE_MOE_pct_reduction</span> <span class="o">=</span> <span class="n">s_DE_MOE_rolling</span><span class="o">/</span><span class="n">s_DE_emissions_rolling</span>
+
+<span class="n">s_DE_MOE_pct_reduction</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>&lt;AxesSubplot:xlabel=&#39;local_datetime&#39;&gt;
+</code></pre></div>
+<p><img alt="png" src="../img/nbs/output_33_1.png" /></p>
+<p><br></p>
+<h3 id="british-model-evaluation-carbon-savings-calculations">British Model Evaluation &amp; Carbon Savings Calculations<a class="headerlink" href="#british-model-evaluation-carbon-savings-calculations" title="Permanent link">&para;</a></h3>
+<p>We'll start by loading in the model</p>
+<div class="highlight"><pre><span></span><code><span class="o">%%</span><span class="n">time</span>
+
+<span class="n">start_date</span> <span class="o">=</span> <span class="s1">&#39;2010-01-01&#39;</span>
+<span class="n">end_date</span> <span class="o">=</span> <span class="s1">&#39;2020-12-31&#39;</span>
+
+<span class="n">GB_model_fp</span> <span class="o">=</span> <span class="s1">&#39;../data/models/carbon_emissions_GB_p50.pkl&#39;</span>
+<span class="n">GB_smooth_dates</span> <span class="o">=</span> <span class="n">pickle</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="n">GB_model_fp</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">))</span>
+
+<span class="n">GB_x_pred</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">91</span><span class="p">,</span> <span class="mi">961</span><span class="p">)</span>
+<span class="n">GB_dt_pred</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="n">start_date</span><span class="p">,</span> <span class="n">end_date</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="s1">&#39;D&#39;</span><span class="p">)</span>
+
+<span class="n">df_GB_pred</span> <span class="o">=</span> <span class="n">GB_smooth_dates</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">x_pred</span><span class="o">=</span><span class="n">GB_x_pred</span><span class="p">,</span> <span class="n">dt_pred</span><span class="o">=</span><span class="n">GB_dt_pred</span><span class="p">)</span>
+<span class="n">df_GB_pred</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">df_GB_pred</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+<span class="n">df_GB_pred</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>Wall time: 3.42 s
+</code></pre></div>
+<table>
+<thead>
+<tr>
+<th align="right">Unnamed: 0</th>
+<th align="right">2010-01-01</th>
+<th align="right">2010-01-02</th>
+<th align="right">2010-01-03</th>
+<th align="right">2010-01-04</th>
+<th align="right">2010-01-05</th>
+<th align="right">2010-01-06</th>
+<th align="right">2010-01-07</th>
+<th align="right">2010-01-08</th>
+<th align="right">2010-01-09</th>
+<th align="right">2010-01-10</th>
+<th align="left">...</th>
+<th align="right">2020-12-22</th>
+<th align="right">2020-12-23</th>
+<th align="right">2020-12-24</th>
+<th align="right">2020-12-25</th>
+<th align="right">2020-12-26</th>
+<th align="right">2020-12-27</th>
+<th align="right">2020-12-28</th>
+<th align="right">2020-12-29</th>
+<th align="right">2020-12-30</th>
+<th align="right">2020-12-31</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="right">-5</td>
+<td align="right">-3464.32</td>
+<td align="right">-3464.5</td>
+<td align="right">-3464.68</td>
+<td align="right">-3464.85</td>
+<td align="right">-3465.03</td>
+<td align="right">-3465.2</td>
+<td align="right">-3465.38</td>
+<td align="right">-3465.55</td>
+<td align="right">-3465.72</td>
+<td align="right">-3465.89</td>
+<td align="left">...</td>
+<td align="right">-1132.67</td>
+<td align="right">-1132.65</td>
+<td align="right">-1132.62</td>
+<td align="right">-1132.59</td>
+<td align="right">-1132.57</td>
+<td align="right">-1132.54</td>
+<td align="right">-1132.52</td>
+<td align="right">-1132.49</td>
+<td align="right">-1132.46</td>
+<td align="right">-1132.44</td>
+</tr>
+<tr>
+<td align="right">-4.9</td>
+<td align="right">-3440</td>
+<td align="right">-3440.17</td>
+<td align="right">-3440.33</td>
+<td align="right">-3440.49</td>
+<td align="right">-3440.66</td>
+<td align="right">-3440.82</td>
+<td align="right">-3440.98</td>
+<td align="right">-3441.14</td>
+<td align="right">-3441.29</td>
+<td align="right">-3441.45</td>
+<td align="left">...</td>
+<td align="right">-1119.73</td>
+<td align="right">-1119.7</td>
+<td align="right">-1119.67</td>
+<td align="right">-1119.65</td>
+<td align="right">-1119.62</td>
+<td align="right">-1119.6</td>
+<td align="right">-1119.57</td>
+<td align="right">-1119.55</td>
+<td align="right">-1119.52</td>
+<td align="right">-1119.49</td>
+</tr>
+<tr>
+<td align="right">-4.8</td>
+<td align="right">-3415.64</td>
+<td align="right">-3415.79</td>
+<td align="right">-3415.94</td>
+<td align="right">-3416.1</td>
+<td align="right">-3416.24</td>
+<td align="right">-3416.39</td>
+<td align="right">-3416.54</td>
+<td align="right">-3416.68</td>
+<td align="right">-3416.83</td>
+<td align="right">-3416.97</td>
+<td align="left">...</td>
+<td align="right">-1106.78</td>
+<td align="right">-1106.75</td>
+<td align="right">-1106.73</td>
+<td align="right">-1106.7</td>
+<td align="right">-1106.68</td>
+<td align="right">-1106.65</td>
+<td align="right">-1106.63</td>
+<td align="right">-1106.6</td>
+<td align="right">-1106.57</td>
+<td align="right">-1106.55</td>
+</tr>
+<tr>
+<td align="right">-4.7</td>
+<td align="right">-3391.24</td>
+<td align="right">-3391.38</td>
+<td align="right">-3391.52</td>
+<td align="right">-3391.66</td>
+<td align="right">-3391.79</td>
+<td align="right">-3391.93</td>
+<td align="right">-3392.06</td>
+<td align="right">-3392.2</td>
+<td align="right">-3392.33</td>
+<td align="right">-3392.46</td>
+<td align="left">...</td>
+<td align="right">-1093.84</td>
+<td align="right">-1093.81</td>
+<td align="right">-1093.78</td>
+<td align="right">-1093.76</td>
+<td align="right">-1093.73</td>
+<td align="right">-1093.71</td>
+<td align="right">-1093.68</td>
+<td align="right">-1093.66</td>
+<td align="right">-1093.63</td>
+<td align="right">-1093.6</td>
+</tr>
+<tr>
+<td align="right">-4.6</td>
+<td align="right">-3366.81</td>
+<td align="right">-3366.93</td>
+<td align="right">-3367.06</td>
+<td align="right">-3367.18</td>
+<td align="right">-3367.31</td>
+<td align="right">-3367.43</td>
+<td align="right">-3367.55</td>
+<td align="right">-3367.67</td>
+<td align="right">-3367.79</td>
+<td align="right">-3367.91</td>
+<td align="left">...</td>
+<td align="right">-1080.89</td>
+<td align="right">-1080.87</td>
+<td align="right">-1080.84</td>
+<td align="right">-1080.82</td>
+<td align="right">-1080.79</td>
+<td align="right">-1080.77</td>
+<td align="right">-1080.74</td>
+<td align="right">-1080.71</td>
+<td align="right">-1080.69</td>
+<td align="right">-1080.66</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p>We'll then visualise the surface prediction as a heatmap</p>
+<div class="highlight"><pre><span></span><code><span class="n">df_GB_dispatchable_lims</span> <span class="o">=</span> <span class="n">moe</span><span class="o">.</span><span class="n">construct_dispatchable_lims_df</span><span class="p">(</span><span class="n">df_GB</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">start_date</span><span class="p">:</span><span class="n">end_date</span><span class="p">,</span> <span class="s1">&#39;dispatchable&#39;</span><span class="p">],</span> <span class="n">rolling_w</span><span class="o">=</span><span class="mi">6</span><span class="p">)</span>
+<span class="n">df_GB_pred_mask</span> <span class="o">=</span> <span class="n">moe</span><span class="o">.</span><span class="n">construct_pred_mask_df</span><span class="p">(</span><span class="n">df_GB_pred</span><span class="p">,</span> <span class="n">df_GB_dispatchable_lims</span><span class="p">)</span>
+
+<span class="c1"># Plotting</span>
+<span class="n">min_y</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">max_y</span> <span class="o">=</span> <span class="mi">60</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">dpi</span><span class="o">=</span><span class="mi">150</span><span class="p">)</span>
+
+<span class="n">htmp</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">heatmap</span><span class="p">(</span><span class="n">df_GB_pred</span><span class="p">[</span><span class="n">min_y</span><span class="p">:</span><span class="n">max_y</span><span class="p">]</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">df_GB_pred_mask</span><span class="p">[</span><span class="n">min_y</span><span class="p">:</span><span class="n">max_y</span><span class="p">],</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">)</span><span class="o">.</span><span class="n">iloc</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">cbar_kws</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;label&#39;</span><span class="p">:</span> <span class="s1">&#39;Half-Hourly CO2 Emissions (Tonnes)&#39;</span><span class="p">})</span>
+
+<span class="n">moe</span><span class="o">.</span><span class="n">set_ticks</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">min_y</span><span class="p">,</span> <span class="n">max_y</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="s1">&#39;y&#39;</span><span class="p">)</span>
+<span class="n">moe</span><span class="o">.</span><span class="n">set_date_ticks</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="s1">&#39;2010-01-01&#39;</span><span class="p">,</span> <span class="s1">&#39;2021-01-01&#39;</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="s1">&#39;1YS&#39;</span><span class="p">,</span> <span class="n">date_format</span><span class="o">=</span><span class="s1">&#39;%Y&#39;</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">spine</span> <span class="ow">in</span> <span class="n">htmp</span><span class="o">.</span><span class="n">spines</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="n">spine</span><span class="o">.</span><span class="n">set_visible</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">eda</span><span class="o">.</span><span class="n">hide_spines</span><span class="p">(</span><span class="n">ax</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Demand - [Solar + Wind] (GW)&#39;</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>C:\Users\Ayrto\anaconda3\envs\MOE\lib\site-packages\sklearn\utils\validation.py:63: FutureWarning: Arrays of bytes/strings is being converted to decimal numbers if dtype=&#39;numeric&#39;. This behavior is deprecated in 0.24 and will be removed in 1.1 (renaming of 0.26). Please convert your data to numeric values explicitly instead.
+  return f(*args, **kwargs)
+
+
+
+
+
+Text(69.58333333333334, 0.5, &#39;Demand - [Solar + Wind] (GW)&#39;)
+</code></pre></div>
+<p><img alt="png" src="../img/nbs/output_37_2.png" /></p>
+<p><br></p>
+<p>We'll calculate the model metrics</p>
+<div class="highlight"><pre><span></span><code><span class="n">s_GB_pred_ts_dispatch</span><span class="p">,</span> <span class="n">s_GB_pred_ts_demand</span> <span class="o">=</span> <span class="n">moe</span><span class="o">.</span><span class="n">get_model_pred_ts</span><span class="p">(</span><span class="n">df_GB</span><span class="p">[</span><span class="s1">&#39;dispatchable&#39;</span><span class="p">],</span> <span class="n">GB_model_fp</span><span class="p">,</span> <span class="n">s_demand</span><span class="o">=</span><span class="n">df_GB</span><span class="p">[</span><span class="s1">&#39;demand&#39;</span><span class="p">],</span> <span class="n">x_pred</span><span class="o">=</span><span class="n">GB_x_pred</span><span class="p">,</span> <span class="n">dt_pred</span><span class="o">=</span><span class="n">GB_dt_pred</span><span class="p">)</span>
+<span class="n">s_GB_err</span> <span class="o">=</span> <span class="n">s_GB_pred_ts_dispatch</span> <span class="o">-</span> <span class="n">df_GB</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">s_GB_pred_ts_dispatch</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="s1">&#39;emissions&#39;</span><span class="p">]</span>
+<span class="n">metrics</span> <span class="o">=</span> <span class="n">moe</span><span class="o">.</span><span class="n">calc_error_metrics</span><span class="p">(</span><span class="n">s_GB_err</span><span class="p">)</span>
+
+<span class="n">metrics</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>C:\Users\Ayrto\anaconda3\envs\MOE\lib\site-packages\pandas\core\indexes\base.py:5277: FutureWarning: Indexing a timezone-aware DatetimeIndex with a timezone-naive datetime is deprecated and will raise KeyError in a future version.  Use a timezone-aware object instead.
+  start_slice, end_slice = self.slice_locs(start, end, step=step, kind=kind)
+</code></pre></div>
+<div><span class="Text-label" style="display:inline-block; overflow:hidden; white-space:nowrap; text-overflow:ellipsis; min-width:0; max-width:15ex; vertical-align:middle; text-align:right"></span>
+<progress style="width:60ex" max="192336" value="75555" class="Progress-main"/></progress>
+<span class="Progress-label"><strong>39%</strong></span>
+<span class="Iteration-label">0/192336</span>
+<span class="Time-label">[01:00<00:00, 0.00s/it]</span></div>
+
+<p><br></p>
+<p>And <span class="arithmatex">\(r^{2}\)</span> score</p>
+<div class="highlight"><pre><span></span><code><span class="n">r2_score</span><span class="p">(</span><span class="n">df_GB</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">s_GB_pred_ts_dispatch</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="s1">&#39;emissions&#39;</span><span class="p">],</span> <span class="n">s_GB_pred_ts_dispatch</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>0.9557674211115541
+</code></pre></div>
+<p><br></p>
+<p>We're now ready to calculate the total savings</p>
+<div class="highlight"><pre><span></span><code><span class="n">s_GB_MOE</span> <span class="o">=</span> <span class="n">s_GB_pred_ts_demand</span> <span class="o">-</span> <span class="n">s_GB_pred_ts_dispatch</span>
+<span class="n">s_GB_MOE</span> <span class="o">=</span> <span class="n">s_GB_MOE</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span>
+
+<span class="n">total_saving</span> <span class="o">=</span> <span class="n">s_GB_MOE</span><span class="p">[</span><span class="n">start_date</span><span class="p">:</span><span class="n">end_date</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The total saving between </span><span class="si">{</span><span class="n">start_date</span><span class="si">}</span><span class="s2"> and </span><span class="si">{</span><span class="n">end_date</span><span class="si">}</span><span class="s2"> was </span><span class="si">{</span><span class="n">total_saving</span><span class="si">:</span><span class="s2">,.0f</span><span class="si">}</span><span class="s2"> Tonnes&quot;</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>The total saving between 2010-01-01 and 2020-12-31 was 221,069,470 Tonnes
+</code></pre></div>
+<p><br></p>
+<p>And get some context for the average and total emissions over the same period</p>
+<div class="highlight"><pre><span></span><code><span class="n">s_GB_emissions</span> <span class="o">=</span> <span class="n">df_GB</span><span class="p">[</span><span class="s1">&#39;emissions&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">s_GB_MOE</span><span class="o">.</span><span class="n">index</span><span class="p">]</span>
+
+<span class="n">avg_GB_HH_emissions</span> <span class="o">=</span> <span class="n">s_GB_emissions</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+<span class="n">total_GB_emissions</span> <span class="o">=</span> <span class="n">s_GB_emissions</span><span class="p">[</span><span class="n">start_date</span><span class="p">:</span><span class="n">end_date</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+
+<span class="n">avg_GB_HH_emissions</span><span class="p">,</span> <span class="n">total_GB_emissions</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>(6034.469929827791, 1160645808.423358)
+</code></pre></div>
+<p><br></p>
+<p>We'll calculate the average percentage emissions reduction due to the MOE</p>
+<div class="highlight"><pre><span></span><code><span class="n">total_saving</span><span class="o">/</span><span class="p">(</span><span class="n">total_GB_emissions</span><span class="o">+</span><span class="n">total_saving</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>0.15999639957299291
+</code></pre></div>
+<p><br></p>
+<p>Finally we'll generate the MOE percentage time-series</p>
+<div class="highlight"><pre><span></span><code><span class="n">s_GB_emissions_rolling</span> <span class="o">=</span> <span class="n">s_GB_emissions</span><span class="o">.</span><span class="n">rolling</span><span class="p">(</span><span class="mi">48</span><span class="o">*</span><span class="mi">28</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span>
+<span class="n">s_GB_MOE_rolling</span> <span class="o">=</span> <span class="n">s_GB_MOE</span><span class="o">.</span><span class="n">rolling</span><span class="p">(</span><span class="mi">48</span><span class="o">*</span><span class="mi">28</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span>
+
+<span class="n">s_GB_MOE_pct_reduction</span> <span class="o">=</span> <span class="n">s_GB_MOE_rolling</span><span class="o">/</span><span class="n">s_GB_emissions_rolling</span>
+
+<span class="n">s_GB_MOE_pct_reduction</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>&lt;AxesSubplot:xlabel=&#39;local_datetime&#39;&gt;
+</code></pre></div>
+<p><img alt="png" src="../img/nbs/output_49_1.png" /></p>
+<p><br></p>
+<h3 id="plots">Plots<a class="headerlink" href="#plots" title="Permanent link">&para;</a></h3>
+<p>In this section we'll generate some of the plots needed for the paper, starting with the heatmap of the emissions surfaces</p>
+<div class="highlight"><pre><span></span><code><span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">dpi</span><span class="o">=</span><span class="mi">150</span><span class="p">,</span> <span class="n">ncols</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">14</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+
+<span class="c1"># GB</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">min_y</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">max_y</span> <span class="o">=</span> <span class="mi">60</span>
+
+<span class="n">htmp</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">heatmap</span><span class="p">(</span><span class="n">df_GB_pred</span><span class="p">[</span><span class="n">min_y</span><span class="p">:</span><span class="n">max_y</span><span class="p">]</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">df_GB_pred_mask</span><span class="p">[</span><span class="n">min_y</span><span class="p">:</span><span class="n">max_y</span><span class="p">],</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">)</span><span class="o">.</span><span class="n">iloc</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">cbar_kws</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;label&#39;</span><span class="p">:</span> <span class="s1">&#39;Half-Hourly CO2 Emissions (Tonnes)&#39;</span><span class="p">})</span>
+
+<span class="n">moe</span><span class="o">.</span><span class="n">set_ticks</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">min_y</span><span class="p">,</span> <span class="n">max_y</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="s1">&#39;y&#39;</span><span class="p">)</span>
+<span class="n">moe</span><span class="o">.</span><span class="n">set_date_ticks</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="s1">&#39;2010-01-01&#39;</span><span class="p">,</span> <span class="s1">&#39;2021-01-01&#39;</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="s1">&#39;1YS&#39;</span><span class="p">,</span> <span class="n">date_format</span><span class="o">=</span><span class="s1">&#39;%Y&#39;</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">spine</span> <span class="ow">in</span> <span class="n">htmp</span><span class="o">.</span><span class="n">spines</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="n">spine</span><span class="o">.</span><span class="n">set_visible</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">eda</span><span class="o">.</span><span class="n">hide_spines</span><span class="p">(</span><span class="n">ax</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Demand - [Solar + Wind] (GW)&#39;</span><span class="p">)</span>
+
+<span class="c1"># DE</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">min_y</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">max_y</span> <span class="o">=</span> <span class="mi">80</span>
+
+<span class="n">htmp</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">heatmap</span><span class="p">(</span><span class="n">df_DE_pred</span><span class="p">[</span><span class="n">min_y</span><span class="p">:</span><span class="n">max_y</span><span class="p">]</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">df_DE_pred_mask</span><span class="p">[</span><span class="n">min_y</span><span class="p">:</span><span class="n">max_y</span><span class="p">],</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">)</span><span class="o">.</span><span class="n">iloc</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">cbar_kws</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;label&#39;</span><span class="p">:</span> <span class="s1">&#39;Hourly CO2 Emissions (Tonnes)&#39;</span><span class="p">})</span>
+
+<span class="n">moe</span><span class="o">.</span><span class="n">set_ticks</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">min_y</span><span class="p">,</span> <span class="n">max_y</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="s1">&#39;y&#39;</span><span class="p">)</span>
+<span class="n">moe</span><span class="o">.</span><span class="n">set_date_ticks</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="s1">&#39;2010-01-01&#39;</span><span class="p">,</span> <span class="s1">&#39;2021-01-01&#39;</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="s1">&#39;1YS&#39;</span><span class="p">,</span> <span class="n">date_format</span><span class="o">=</span><span class="s1">&#39;%Y&#39;</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">spine</span> <span class="ow">in</span> <span class="n">htmp</span><span class="o">.</span><span class="n">spines</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="n">spine</span><span class="o">.</span><span class="n">set_visible</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">eda</span><span class="o">.</span><span class="n">hide_spines</span><span class="p">(</span><span class="n">ax</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Demand - [Solar + Wind] (GW)&#39;</span><span class="p">)</span>
+
+<span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>C:\Users\Ayrto\anaconda3\envs\MOE\lib\site-packages\sklearn\utils\validation.py:63: FutureWarning: Arrays of bytes/strings is being converted to decimal numbers if dtype=&#39;numeric&#39;. This behavior is deprecated in 0.24 and will be removed in 1.1 (renaming of 0.26). Please convert your data to numeric values explicitly instead.
+  return f(*args, **kwargs)
+C:\Users\Ayrto\anaconda3\envs\MOE\lib\site-packages\sklearn\utils\validation.py:63: FutureWarning: Arrays of bytes/strings is being converted to decimal numbers if dtype=&#39;numeric&#39;. This behavior is deprecated in 0.24 and will be removed in 1.1 (renaming of 0.26). Please convert your data to numeric values explicitly instead.
+  return f(*args, **kwargs)
+</code></pre></div>
+<p><img alt="png" src="../img/nbs/output_51_1.png" /></p>
+<p><br></p>
+<p>We'll also plot the MOE time-series</p>
+<div class="highlight"><pre><span></span><code><span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">dpi</span><span class="o">=</span><span class="mi">150</span><span class="p">,</span> <span class="n">ncols</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">14</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+
+<span class="c1"># GB</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">s_GB_MOE</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">s_GB_MOE</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mf">0.01</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+<span class="n">s_GB_MOE_rolling</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;28-Day Average&#39;</span><span class="p">)</span>
+
+<span class="n">eda</span><span class="o">.</span><span class="n">hide_spines</span><span class="p">(</span><span class="n">ax</span><span class="p">)</span>
+<span class="c1"># ax.set_ylim(0, 40)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="s1">&#39;2010&#39;</span><span class="p">),</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="s1">&#39;2021&#39;</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Merit Order Effect (Tonnes CO2)&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">frameon</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="c1"># DE</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">s_DE_MOE</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">s_DE_MOE</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">s_DE_MOE_rolling</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">s_DE_MOE_rolling</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">1.5</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;28-Day Average&#39;</span><span class="p">)</span>
+
+<span class="n">eda</span><span class="o">.</span><span class="n">hide_spines</span><span class="p">(</span><span class="n">ax</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="s1">&#39;2010&#39;</span><span class="p">),</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="s1">&#39;2021&#39;</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Merit Order Effect (Tonnes CO2)&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">frameon</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>&lt;matplotlib.legend.Legend at 0x1fc9fa1f130&gt;
+</code></pre></div>
+<p><img alt="png" src="../img/nbs/output_53_1.png" /></p>
+<p><br></p>
+<h3 id="saving-results">Saving Results<a class="headerlink" href="#saving-results" title="Permanent link">&para;</a></h3>
+<p>Additionaly we'll save the time-series predictions and model metrics, starting with the GB time-series</p>
+<div class="highlight"><pre><span></span><code><span class="n">df_GB_results_ts</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+    <span class="s1">&#39;prediction&#39;</span><span class="p">:</span> <span class="n">s_GB_pred_ts_dispatch</span><span class="p">,</span>
+    <span class="s1">&#39;counterfactual&#39;</span><span class="p">:</span> <span class="n">s_GB_pred_ts_demand</span><span class="p">,</span>
+    <span class="s1">&#39;observed&#39;</span><span class="p">:</span> <span class="n">df_GB</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">s_GB_pred_ts_dispatch</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="s1">&#39;emissions&#39;</span><span class="p">],</span>
+    <span class="s1">&#39;moe&#39;</span><span class="p">:</span> <span class="n">s_GB_MOE</span>
+<span class="p">})</span>
+
+<span class="n">df_GB_results_ts</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</code></pre></div>
+<table>
+<thead>
+<tr>
+<th align="left">local_datetime</th>
+<th align="right">prediction</th>
+<th align="right">counterfactual</th>
+<th align="right">observed</th>
+<th align="right">moe</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">2010-01-01 01:00:00+01:00</td>
+<td align="right">8414.72</td>
+<td align="right">8861.95</td>
+<td align="right">7949.28</td>
+<td align="right">447.23</td>
+</tr>
+<tr>
+<td align="left">2010-01-01 01:30:00+01:00</td>
+<td align="right">8535.22</td>
+<td align="right">8986.13</td>
+<td align="right">8030.29</td>
+<td align="right">450.914</td>
+</tr>
+<tr>
+<td align="left">2010-01-01 02:00:00+01:00</td>
+<td align="right">8414.72</td>
+<td align="right">8820.73</td>
+<td align="right">7974.91</td>
+<td align="right">406.012</td>
+</tr>
+<tr>
+<td align="left">2010-01-01 02:30:00+01:00</td>
+<td align="right">7983.82</td>
+<td align="right">8454.75</td>
+<td align="right">7707.51</td>
+<td align="right">470.937</td>
+</tr>
+<tr>
+<td align="left">2010-01-01 03:00:00+01:00</td>
+<td align="right">7645.47</td>
+<td align="right">8060.81</td>
+<td align="right">7456.2</td>
+<td align="right">415.345</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p>Which we'll save to csv</p>
+<div class="highlight"><pre><span></span><code><span class="n">df_GB_results_ts</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;../data/results/GB_carbon.csv&#39;</span><span class="p">)</span>
+</code></pre></div>
+<p><br></p>
+<p>Then the DE time-series</p>
+<div class="highlight"><pre><span></span><code><span class="n">df_DE_results_ts</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+    <span class="s1">&#39;prediction&#39;</span><span class="p">:</span> <span class="n">s_DE_pred_ts_dispatch</span><span class="p">,</span>
+    <span class="s1">&#39;counterfactual&#39;</span><span class="p">:</span> <span class="n">s_DE_pred_ts_demand</span><span class="p">,</span>
+    <span class="s1">&#39;observed&#39;</span><span class="p">:</span> <span class="n">df_DE</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">s_DE_pred_ts_dispatch</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="s1">&#39;emissions&#39;</span><span class="p">],</span>
+    <span class="s1">&#39;moe&#39;</span><span class="p">:</span> <span class="n">s_DE_MOE</span>
+<span class="p">})</span>
+
+<span class="n">df_DE_results_ts</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;../data/results/DE_carbon.csv&#39;</span><span class="p">)</span>
+
+<span class="n">df_DE_results_ts</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</code></pre></div>
+<table>
+<thead>
+<tr>
+<th align="left">local_datetime</th>
+<th align="right">prediction</th>
+<th align="right">counterfactual</th>
+<th align="right">observed</th>
+<th align="right">moe</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">2010-01-04 00:00:00+01:00</td>
+<td align="right">11981.6</td>
+<td align="right">12179</td>
+<td align="right">11883.8</td>
+<td align="right">197.359</td>
+</tr>
+<tr>
+<td align="left">2010-01-04 01:00:00+01:00</td>
+<td align="right">11518.7</td>
+<td align="right">11694.3</td>
+<td align="right">11488.6</td>
+<td align="right">175.594</td>
+</tr>
+<tr>
+<td align="left">2010-01-04 02:00:00+01:00</td>
+<td align="right">11400.5</td>
+<td align="right">11577.4</td>
+<td align="right">11228.5</td>
+<td align="right">176.903</td>
+</tr>
+<tr>
+<td align="left">2010-01-04 03:00:00+01:00</td>
+<td align="right">11071.5</td>
+<td align="right">11251.9</td>
+<td align="right">10962.7</td>
+<td align="right">180.385</td>
+</tr>
+<tr>
+<td align="left">2010-01-04 04:00:00+01:00</td>
+<td align="right">11311.5</td>
+<td align="right">11518.7</td>
+<td align="right">10892.5</td>
+<td align="right">207.187</td>
+</tr>
+</tbody>
+</table>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
+        
+          <a href="../dev-05-price-moe/" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+            </div>
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Price MOE Calculation
+              </div>
+            </div>
+          </a>
+        
+        
+          <a href="../dev-07-prediction-confidence-and-intervals/" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Prediction & Confidence Intervals
+              </div>
+            </div>
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../assets/javascripts/vendor.08c56446.min.js"></script>
+      <script src="../assets/javascripts/bundle.6ced434e.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}</script>
+      
+      <script>
+        app = initialize({
+          base: "..",
+          features: ['header.autohide', 'navigation.tabs', 'navigation.instant', 'search.suggest'],
+          search: Object.assign({
+            worker: "../assets/javascripts/worker/search.8c7e0a7e.min.js"
+          }, typeof search !== "undefined" && search)
+        })
+      </script>
+      
+        <script src="../javascripts/config.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>
