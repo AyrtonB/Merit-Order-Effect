@@ -12,13 +12,13 @@ pip install moepy
 
 `moepy` makes it simple to fit a LOWESS curve, a quick start example to generate the plot below can be found [here](https://ayrtonb.github.io/Merit-Order-Effect/ug-04-gb-mcc/).
 
-![](../img/latest_gb_mcc.png)
+![](img/latest_gb_mcc.png)
 
 <br>
 
 The library also includes the option to ensemble LOWESS models together and smooth them over time, an example is shown below for the marginal cost curve of dispatchable generation in Great Britain.
 
-![](../img/UK_price_MOE_heatmap.png)
+![](img/UK_price_MOE_heatmap.png)
 
 <br>
 

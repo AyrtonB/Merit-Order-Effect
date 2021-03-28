@@ -10,9 +10,13 @@ You can install the library using:
 pip install moepy
 ```
 
+![](img/latest_gb_mcc.png)
+
+<br>
+
 The library also includes the option to ensemble LOWESS models together and smooth them over time, an example is shown below for the marginal cost curve of dispatchable generation in Great Britain.
 
-![](../img/UK_price_MOE_heatmap.png)
+![](img/UK_price_MOE_heatmap.png)
 
 <br>
 
