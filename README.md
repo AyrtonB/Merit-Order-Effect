@@ -22,7 +22,7 @@ The library also includes the option to ensemble LOWESS models together and smoo
 
 <br>
 
-### The Paper
+### Paper
 
 The `moepy` library was developed to enable new research into the Merit-Order-Effect of renewables in the British and German power systems. The full paper can be found [here](#)(<b>this will be made available once the paper has been submitted</b>), the abstract is shown below:
 
@@ -35,3 +35,21 @@ The `moepy` library was developed to enable new research into the Merit-Order-Ef
 We identified a strong relationship between increasing renewable penetration and the Merit-Order-Effect:
 
 ![](img/GB_MOE_RES_relationship_95_CI.png)
+
+<br>
+
+### Referencing
+
+If you use this software please cite it using the following:
+
+```
+@software{bourn_moepy_2021,
+    title = {moepy},
+    url = {https://ayrtonb.github.io/Merit-Order-Effect/},
+    abstract = {This repository outlines the development and usage of code and analysis used in calculating the Merit-Order-Effect (MOE) of renewables on price and carbon intensity of electricity markets. Beyond MOE analysis the `moepy` library can be used more generally for standard, quantile, and bootstrapped LOWESS estimation. The particular implementation of LOWESS in this software has been extended to significantly reduce the computational resource required.},
+    author = {Bourn, Ayrton},
+    month = mar,
+    year = {2021},
+    doi = {10.5281/zenodo.4642896},
+}
+```
