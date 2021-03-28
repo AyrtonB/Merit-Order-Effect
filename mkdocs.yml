@@ -1,6 +1,6 @@
-site_name: Outage Watch
-repo_url: https://github.com/OSUKED/Outage-Watch
-repo_name: OSUKED/Outage-Watch
+site_name: Merit-Order-Effect
+repo_url: https://github.com/AyrtonB/Merit-Order-Effect
+repo_name: AyrtonB/Merit-Order-Effect
 edit_uri: edit/main/docs/
 
 theme:
