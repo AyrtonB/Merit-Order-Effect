@@ -1,0 +1,58 @@
+site_name: Outage Watch
+repo_url: https://github.com/OSUKED/Outage-Watch
+repo_name: OSUKED/Outage-Watch
+edit_uri: edit/main/docs/
+
+theme:
+  name: material
+  icon:
+    repo: fontawesome/brands/git-alt
+  features:
+    - header.autohide
+    - navigation.tabs
+    - navigation.instant
+    - search.suggest
+  palette:
+    primary: black
+
+extra:
+  generator: false
+      
+markdown_extensions:
+  - toc:
+      permalink: true
+  - pymdownx.arithmatex:
+      generic: true
+  - pymdownx.tasklist
+  - footnotes
+  - attr_list
+  - pymdownx.snippets
+  - pymdownx.highlight
+  - pymdownx.superfences
+  
+extra_javascript:
+  - javascripts/config.js
+  - https://polyfill.io/v3/polyfill.min.js?features=es6
+  - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
+  
+plugins:
+  - search
+  
+nav:
+  - Home: index.md
+  - User Guide:
+    - Quantile Predictions: ug-01-quantile.md
+    - Confidence Intervals: ug-02-confidence.md
+    - Power Curve Cleaning: ug-03-power-curve.md
+    - Marginal Cost Curve: ug-04-gb-mcc.md
+  - Development:
+    - Data Retrieval: dev-01-retrieval.md
+    - Exploratory Data Analysis: dev-02-eda.md
+    - LOWESS: dev-03-lowess.md
+    - Price Curve Estimation: dev-04-price-surface-estimation.md
+    - Price MOE Calculation: dev-05-price-moe.md
+    - Carbon Curve Estimation & MOE: dev-06-carbon-surface-estimation-and-moe.md
+    - Prediction & Confidence Intervals: dev-07-prediction-confidence-and-intervals.md
+    - Hyper-Parameter Tuning: dev-08-hyper-parameter-tuning.md
+    - Tables & Figures: dev-09-tables-and-figures.md
+    - CI-CD: dev-10-ci-cd.md

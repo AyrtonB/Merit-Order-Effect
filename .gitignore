@@ -1,6 +1,6 @@
 # Project specific
 data/models/**
-write-up/resources/**
+write-up/**
 
 *.bak
 .gitattributes
