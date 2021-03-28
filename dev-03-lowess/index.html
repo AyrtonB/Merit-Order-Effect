@@ -748,7 +748,7 @@
 <p>We can see that we've just created a simple sin curve</p>
 <div class="highlight"><pre><span></span><code><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
 </code></pre></div>
-<div class="highlight"><pre><span></span><code>[&lt;matplotlib.lines.Line2D at 0x1a4b2c4ae80&gt;]
+<div class="highlight"><pre><span></span><code>[&lt;matplotlib.lines.Line2D at 0x1fd650f86d0&gt;]
 </code></pre></div>
 <p><img alt="png" src="../img/nbs/output_5_1.png" /></p>
 <p><br></p>
@@ -838,7 +838,7 @@ We'll now define a function that will map from the distances to their relative w
 </code></pre></div>
 <div class="highlight"><pre><span></span><code><span class="n">timeit</span><span class="p">(</span><span class="k">lambda</span><span class="p">:</span> <span class="n">get_weights</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">x</span><span class="p">[</span><span class="mi">5</span><span class="p">]),</span> <span class="n">number</span><span class="o">=</span><span class="mi">10000</span><span class="p">)</span>
 </code></pre></div>
-<div class="highlight"><pre><span></span><code>0.39384629999999987
+<div class="highlight"><pre><span></span><code>0.6126709999999989
 </code></pre></div>
 <p><br></p>
 <p>We've successfully calculated the weights with respect to a single point but we need to repeat this across each of value locations in our dataset.</p>
@@ -890,13 +890,13 @@ We'll now define a function that will map from the distances to their relative w
 
 <span class="n">timeit</span><span class="p">(</span><span class="k">lambda</span><span class="p">:</span> <span class="p">[</span><span class="n">get_dist</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">x</span><span class="p">[</span><span class="n">x_idx</span><span class="p">])</span> <span class="k">for</span> <span class="n">x_idx</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">))],</span> <span class="n">number</span><span class="o">=</span><span class="mi">10000</span><span class="p">)</span>
 </code></pre></div>
-<div class="highlight"><pre><span></span><code>672 ms ± 10.4 ms per loop (mean ± std. dev. of 7 runs, 1 loop each)
+<div class="highlight"><pre><span></span><code>825 ms ± 163 ms per loop (mean ± std. dev. of 7 runs, 1 loop each)
 </code></pre></div>
 <div class="highlight"><pre><span></span><code><span class="o">%%</span><span class="n">timeit</span>
 
 <span class="n">timeit</span><span class="p">(</span><span class="k">lambda</span><span class="p">:</span> <span class="n">vector_to_dist_matrix</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">number</span><span class="o">=</span><span class="mi">10000</span><span class="p">)</span>
 </code></pre></div>
-<div class="highlight"><pre><span></span><code>43.4 ms ± 2.63 ms per loop (mean ± std. dev. of 7 runs, 10 loops each)
+<div class="highlight"><pre><span></span><code>55.5 ms ± 3.06 ms per loop (mean ± std. dev. of 7 runs, 10 loops each)
 </code></pre></div>
 <p><br></p>
 <p>Now we need to calculate the distance threshold (max distance away from point of interest that is within the data fraction specified). </p>
@@ -910,7 +910,7 @@ We'll now define a function that will map from the distances to their relative w
 
 <span class="n">timeit</span><span class="p">(</span><span class="k">lambda</span><span class="p">:</span> <span class="n">gramfort_get_dist_thresholds</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">frac_idx</span><span class="p">),</span> <span class="n">number</span><span class="o">=</span><span class="mi">10000</span><span class="p">)</span>
 </code></pre></div>
-<div class="highlight"><pre><span></span><code>1.3339513000000007
+<div class="highlight"><pre><span></span><code>1.7785535999999986
 </code></pre></div>
 <p><br></p>
 <p>Pretty quick, lets see if we could do better though. </p>
@@ -923,7 +923,7 @@ We'll now define a function that will map from the distances to their relative w
 
 <span class="n">timeit</span><span class="p">(</span><span class="k">lambda</span><span class="p">:</span> <span class="n">get_dist_thresholds</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">frac_idx</span><span class="p">,</span> <span class="n">dist_matrix</span><span class="p">),</span> <span class="n">number</span><span class="o">=</span><span class="mi">10000</span><span class="p">)</span>
 </code></pre></div>
-<div class="highlight"><pre><span></span><code>0.06741010000000003
+<div class="highlight"><pre><span></span><code>0.10906620000000089
 </code></pre></div>
 <p><br></p>
 <p>Now we have both the distance matrix and thresholds we can start to calculate the weightings, the first step to this is scale and clip the distances based on their threshold values.</p>
@@ -941,21 +941,21 @@ We'll now define a function that will map from the distances to their relative w
 <p>We can now calculate the tri-cubic weighting. We repeat this using both base Python and Numpy to see which is faster, surprisingly base Python comes out on top.</p>
 <div class="highlight"><pre><span></span><code><span class="n">timeit</span><span class="p">(</span><span class="k">lambda</span><span class="p">:</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">inv_linear_weights</span> <span class="o">**</span> <span class="mi">3</span><span class="p">)</span> <span class="o">**</span> <span class="mi">3</span><span class="p">,</span> <span class="n">number</span><span class="o">=</span><span class="mi">10000</span><span class="p">)</span>
 </code></pre></div>
-<div class="highlight"><pre><span></span><code>0.2501098000000006
+<div class="highlight"><pre><span></span><code>0.4310475999999994
 </code></pre></div>
 <div class="highlight"><pre><span></span><code><span class="n">timeit</span><span class="p">(</span><span class="k">lambda</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">power</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">power</span><span class="p">(</span><span class="n">inv_linear_weights</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="mi">3</span><span class="p">),</span> <span class="n">number</span><span class="o">=</span><span class="mi">10000</span><span class="p">)</span>
 </code></pre></div>
-<div class="highlight"><pre><span></span><code>0.24560150000000114
+<div class="highlight"><pre><span></span><code>0.44873660000000015
 </code></pre></div>
 <p><br></p>
 <p>After a little more exploration it appears that Numpy's <i>power</i> function only offers improvements over base Python when the exponent is very high. For a good discussion on why this is the case you can read more <a href="">here</a>.</p>
 <div class="highlight"><pre><span></span><code><span class="n">timeit</span><span class="p">(</span><span class="k">lambda</span><span class="p">:</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">inv_linear_weights</span> <span class="o">**</span> <span class="mi">50000</span><span class="p">)</span> <span class="o">**</span> <span class="mi">50000</span><span class="p">,</span> <span class="n">number</span><span class="o">=</span><span class="mi">10000</span><span class="p">)</span>
 </code></pre></div>
-<div class="highlight"><pre><span></span><code>0.28330940000000027
+<div class="highlight"><pre><span></span><code>0.5387637000000005
 </code></pre></div>
 <div class="highlight"><pre><span></span><code><span class="n">timeit</span><span class="p">(</span><span class="k">lambda</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">power</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">power</span><span class="p">(</span><span class="n">inv_linear_weights</span><span class="p">,</span> <span class="mi">50000</span><span class="p">),</span> <span class="mi">50000</span><span class="p">),</span> <span class="n">number</span><span class="o">=</span><span class="mi">10000</span><span class="p">)</span>
 </code></pre></div>
-<div class="highlight"><pre><span></span><code>0.2943747000000023
+<div class="highlight"><pre><span></span><code>0.526861499999999
 </code></pre></div>
 <p><br></p>
 <p>We'll now wrap these two steps up into a single function</p>
@@ -1016,7 +1016,7 @@ We'll now define a function that will map from the distances to their relative w
 <p>Looks good, we'll also time it</p>
 <div class="highlight"><pre><span></span><code><span class="n">timeit</span><span class="p">(</span><span class="k">lambda</span><span class="p">:</span> <span class="n">get_full_dataset_weights_matrix</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">frac</span><span class="o">=</span><span class="n">frac</span><span class="p">),</span> <span class="n">number</span><span class="o">=</span><span class="mi">10000</span><span class="p">)</span>
 </code></pre></div>
-<div class="highlight"><pre><span></span><code>1.0831957999999986
+<div class="highlight"><pre><span></span><code>1.4529582999999988
 </code></pre></div>
 <p><br></p>
 <p>Currently we have created a weights matrix that scales in size as the square of the dataset length, this could quickly become prohibitively computationally expensive for large datasets.</p>
