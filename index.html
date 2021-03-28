@@ -588,12 +588,16 @@
                   </a>
                 
                 
-                <p><a href="https://zenodo.org/badge/latestdoi/326810654"><img alt="DOI" src="https://zenodo.org/badge/326810654.svg" /></a> <a href="https://badge.fury.io/py/moepy"><img alt="PyPI version" src="https://badge.fury.io/py/moepy.svg" /></a></p>
+                <p><a href="https://zenodo.org/badge/latestdoi/326810654"><img alt="DOI" src="https://zenodo.org/badge/326810654.svg" /></a> <a href="https://badge.fury.io/py/moepy"><img alt="PyPI version" src="https://badge.fury.io/py/moepy.svg" /></a> <a href="https://notebooks.gesis.org/binder/v2/gh/AyrtonB/Merit-Order-Effect/main?urlpath=lab"><img alt="Binder" src="https://notebooks.gesis.org/binder/badge_logo.svg" /></a></p>
 <h1 id="merit-order-effect">Merit-Order-Effect<a class="headerlink" href="#merit-order-effect" title="Permanent link">&para;</a></h1>
 <p>This repository/site outlines the development and usage of code and analysis used in calculating the Merit-Order-Effect (MOE) of renewables on price and carbon intensity of electricity markets. Beyond MOE analysis the <code>moepy</code> library can be used more generally for standard, quantile, and bootstrapped LOWESS estimation. The particular implementation of LOWESS in this software has been extended to significantly reduce the computational resource required.</p>
 <p>You can install the library using:</p>
 <div class="highlight"><pre><span></span><code>pip install moepy
 </code></pre></div>
+<p><img alt="" src="img/latest_gb_mcc.png" /></p>
+<p><br></p>
+<p>The library also includes the option to ensemble LOWESS models together and smooth them over time, an example is shown below for the marginal cost curve of dispatchable generation in Great Britain.</p>
+<p><img alt="" src="img/UK_price_MOE_heatmap.png" /></p>
 <p><br></p>
 <h3 id="the-paper">The Paper<a class="headerlink" href="#the-paper" title="Permanent link">&para;</a></h3>
 <p>The <code>moepy</code> library was developed to enable new research into the Merit-Order-Effect of renewables in the British and German power systems. The full paper can be found <a href="#">here</a><sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup>, the abstract is shown below:</p>
@@ -602,6 +606,8 @@
 <p>Existing research focuses on linear methods for modelling the merit order stack, masking the larger MOE seen in the steeper top/bottom regions. In this work a blended LOWESS model is used to capture the non-linear relationship between electricity price and dispatchable generation, with historical renewable output data then used to simulate the MOE. The stationary nature of many existing methodologies means they struggle to adapt to changes in the system such as the effect of the Covid-19 pandemic, we use a time-adaptive model to effectively address this limitation. Alongside an extension to the standard LOWESS implementation the use of a time-adaptive model significantly reduces the computational resource required. </p>
 <p>Our results indicate that renewables delivered reductions equal to 318M tonnes of CO<span class="arithmatex">\(_{2}\)</span> between 2010 and 2020, and 56B EUR between 2015 and 2020 in Germany. In GB the reductions amounted to a 442M tonnes of CO<span class="arithmatex">\(_{2}\)</span>and £17B saving between 2010 and 2020.</p>
 </blockquote>
+<p>We identified a strong relationship between increasing renewable penetration and the Merit-Order-Effect:</p>
+<p><img alt="" src="../img/GB_MOE_RES_relationship_95_CI.png" /></p>
 <div class="footnote">
 <hr />
 <ol>
