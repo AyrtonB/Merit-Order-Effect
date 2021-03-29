@@ -381,7 +381,7 @@
 
   <li class="md-nav__item">
     <a href="../ug-03-power-curve/" class="md-nav__link">
-      Power Curve Cleaning
+      Power Curve Fitting
     </a>
   </li>
 
@@ -653,54 +653,70 @@
 
 <span class="n">df_LIGO</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </code></pre></div>
-<table>
-<thead>
-<tr>
-<th align="right">Unnamed: 0</th>
-<th align="right">frequency</th>
-<th align="right">L1</th>
-<th align="right">H1</th>
-<th align="right">H1_smoothed</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td align="right">0</td>
-<td align="right">0</td>
-<td align="right">2.38353e-18</td>
-<td align="right">2.21569e-20</td>
-<td align="right">3.24e-18</td>
-</tr>
-<tr>
-<td align="right">1</td>
-<td align="right">0.25</td>
-<td align="right">1.68562e-18</td>
-<td align="right">2.01396e-20</td>
-<td align="right">2.6449e-19</td>
-</tr>
-<tr>
-<td align="right">2</td>
-<td align="right">0.5</td>
-<td align="right">1.24297e-21</td>
-<td align="right">5.5185e-21</td>
-<td align="right">9e-20</td>
-</tr>
-<tr>
-<td align="right">3</td>
-<td align="right">0.75</td>
-<td align="right">6.6778e-22</td>
-<td align="right">2.54612e-21</td>
-<td align="right">4.48443e-20</td>
-</tr>
-<tr>
-<td align="right">4</td>
-<td align="right">1</td>
-<td align="right">6.80032e-22</td>
-<td align="right">3.33945e-21</td>
-<td align="right">2.67769e-20</td>
-</tr>
-</tbody>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>frequency</th>
+      <th>L1</th>
+      <th>H1</th>
+      <th>H1_smoothed</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0.00</td>
+      <td>2.383528e-18</td>
+      <td>2.215686e-20</td>
+      <td>3.240000e-18</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>0.25</td>
+      <td>1.685617e-18</td>
+      <td>2.013959e-20</td>
+      <td>2.644898e-19</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>0.50</td>
+      <td>1.242968e-21</td>
+      <td>5.518498e-21</td>
+      <td>9.000000e-20</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>0.75</td>
+      <td>6.677796e-22</td>
+      <td>2.546120e-21</td>
+      <td>4.484429e-20</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>1.00</td>
+      <td>6.800320e-22</td>
+      <td>3.339454e-21</td>
+      <td>2.677686e-20</td>
+    </tr>
+  </tbody>
 </table>
+</div>
+
 <p><br></p>
 <h3 id="baseline-fit">Baseline Fit<a class="headerlink" href="#baseline-fit" title="Permanent link">&para;</a></h3>
 <p>We'll quickly plot the observed data alongside the smoothed estimate provided in the raw data</p>
@@ -713,7 +729,7 @@
 <span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">frameon</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 <span class="n">eda</span><span class="o">.</span><span class="n">hide_spines</span><span class="p">(</span><span class="n">ax</span><span class="p">)</span>
 </code></pre></div>
-<p><img alt="png" src="../img/nbs/output_5_0.png" /></p>
+<p><img alt="png" src="../img/nbs/ug-02-confidence_cell_6_output_0.png" /></p>
 <p><br></p>
 <h3 id="lowess-fit">LOWESS Fit<a class="headerlink" href="#lowess-fit" title="Permanent link">&para;</a></h3>
 <div class="highlight"><pre><span></span><code><span class="n">x</span> <span class="o">=</span> <span class="n">df_LIGO</span><span class="p">[</span><span class="s1">&#39;frequency&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
@@ -729,156 +745,197 @@
 <span class="Iteration-label">500/500</span>
 <span class="Time-label">[01:37<00:00, 0.19s/it]</span></div>
 
-<table>
-<thead>
-<tr>
-<th align="right">x</th>
-<th align="right">0</th>
-<th align="right">1</th>
-<th align="right">2</th>
-<th align="right">3</th>
-<th align="right">4</th>
-<th align="right">5</th>
-<th align="right">6</th>
-<th align="right">7</th>
-<th align="right">8</th>
-<th align="right">9</th>
-<th align="left">...</th>
-<th align="right">490</th>
-<th align="right">491</th>
-<th align="right">492</th>
-<th align="right">493</th>
-<th align="right">494</th>
-<th align="right">495</th>
-<th align="right">496</th>
-<th align="right">497</th>
-<th align="right">498</th>
-<th align="right">499</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td align="right">0</td>
-<td align="right">-52.5227</td>
-<td align="right">-52.724</td>
-<td align="right">-52.4039</td>
-<td align="right">-52.5183</td>
-<td align="right">-52.5897</td>
-<td align="right">-52.4715</td>
-<td align="right">-52.5306</td>
-<td align="right">-52.4727</td>
-<td align="right">-52.5534</td>
-<td align="right">-52.5212</td>
-<td align="left">...</td>
-<td align="right">-52.5536</td>
-<td align="right">-52.6798</td>
-<td align="right">-52.508</td>
-<td align="right">-52.554</td>
-<td align="right">-52.4346</td>
-<td align="right">-52.6022</td>
-<td align="right">-52.355</td>
-<td align="right">-52.5031</td>
-<td align="right">-52.5719</td>
-<td align="right">-52.5057</td>
-</tr>
-<tr>
-<td align="right">0.25</td>
-<td align="right">-52.5235</td>
-<td align="right">-52.7245</td>
-<td align="right">-52.4049</td>
-<td align="right">-52.5192</td>
-<td align="right">-52.5904</td>
-<td align="right">-52.4723</td>
-<td align="right">-52.5314</td>
-<td align="right">-52.4737</td>
-<td align="right">-52.5542</td>
-<td align="right">-52.522</td>
-<td align="left">...</td>
-<td align="right">-52.5544</td>
-<td align="right">-52.6804</td>
-<td align="right">-52.5088</td>
-<td align="right">-52.5547</td>
-<td align="right">-52.4356</td>
-<td align="right">-52.6029</td>
-<td align="right">-52.3561</td>
-<td align="right">-52.504</td>
-<td align="right">-52.5727</td>
-<td align="right">-52.5066</td>
-</tr>
-<tr>
-<td align="right">0.5</td>
-<td align="right">-52.5244</td>
-<td align="right">-52.725</td>
-<td align="right">-52.4059</td>
-<td align="right">-52.5201</td>
-<td align="right">-52.5912</td>
-<td align="right">-52.4732</td>
-<td align="right">-52.5322</td>
-<td align="right">-52.4746</td>
-<td align="right">-52.555</td>
-<td align="right">-52.5228</td>
-<td align="left">...</td>
-<td align="right">-52.5553</td>
-<td align="right">-52.681</td>
-<td align="right">-52.5096</td>
-<td align="right">-52.5555</td>
-<td align="right">-52.4365</td>
-<td align="right">-52.6037</td>
-<td align="right">-52.3573</td>
-<td align="right">-52.5048</td>
-<td align="right">-52.5735</td>
-<td align="right">-52.5075</td>
-</tr>
-<tr>
-<td align="right">0.75</td>
-<td align="right">-52.5252</td>
-<td align="right">-52.7256</td>
-<td align="right">-52.4069</td>
-<td align="right">-52.521</td>
-<td align="right">-52.5919</td>
-<td align="right">-52.4741</td>
-<td align="right">-52.533</td>
-<td align="right">-52.4755</td>
-<td align="right">-52.5559</td>
-<td align="right">-52.5236</td>
-<td align="left">...</td>
-<td align="right">-52.5561</td>
-<td align="right">-52.6816</td>
-<td align="right">-52.5105</td>
-<td align="right">-52.5562</td>
-<td align="right">-52.4375</td>
-<td align="right">-52.6044</td>
-<td align="right">-52.3584</td>
-<td align="right">-52.5057</td>
-<td align="right">-52.5743</td>
-<td align="right">-52.5084</td>
-</tr>
-<tr>
-<td align="right">1</td>
-<td align="right">-52.5261</td>
-<td align="right">-52.7261</td>
-<td align="right">-52.4079</td>
-<td align="right">-52.5218</td>
-<td align="right">-52.5927</td>
-<td align="right">-52.4749</td>
-<td align="right">-52.5338</td>
-<td align="right">-52.4764</td>
-<td align="right">-52.5567</td>
-<td align="right">-52.5244</td>
-<td align="left">...</td>
-<td align="right">-52.5569</td>
-<td align="right">-52.6822</td>
-<td align="right">-52.5113</td>
-<td align="right">-52.5569</td>
-<td align="right">-52.4384</td>
-<td align="right">-52.6051</td>
-<td align="right">-52.3595</td>
-<td align="right">-52.5065</td>
-<td align="right">-52.5751</td>
-<td align="right">-52.5093</td>
-</tr>
-</tbody>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>bootstrap_run</th>
+      <th>0</th>
+      <th>1</th>
+      <th>2</th>
+      <th>3</th>
+      <th>4</th>
+      <th>5</th>
+      <th>6</th>
+      <th>7</th>
+      <th>8</th>
+      <th>9</th>
+      <th>...</th>
+      <th>490</th>
+      <th>491</th>
+      <th>492</th>
+      <th>493</th>
+      <th>494</th>
+      <th>495</th>
+      <th>496</th>
+      <th>497</th>
+      <th>498</th>
+      <th>499</th>
+    </tr>
+    <tr>
+      <th>x</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0.00</th>
+      <td>-52.522688</td>
+      <td>-52.723992</td>
+      <td>-52.403880</td>
+      <td>-52.518329</td>
+      <td>-52.589661</td>
+      <td>-52.471483</td>
+      <td>-52.530602</td>
+      <td>-52.472742</td>
+      <td>-52.553386</td>
+      <td>-52.521174</td>
+      <td>...</td>
+      <td>-52.553563</td>
+      <td>-52.679811</td>
+      <td>-52.508000</td>
+      <td>-52.553981</td>
+      <td>-52.434621</td>
+      <td>-52.602228</td>
+      <td>-52.354963</td>
+      <td>-52.503137</td>
+      <td>-52.571861</td>
+      <td>-52.505725</td>
+    </tr>
+    <tr>
+      <th>0.25</th>
+      <td>-52.523537</td>
+      <td>-52.724512</td>
+      <td>-52.404898</td>
+      <td>-52.519205</td>
+      <td>-52.590425</td>
+      <td>-52.472350</td>
+      <td>-52.531392</td>
+      <td>-52.473654</td>
+      <td>-52.554215</td>
+      <td>-52.521989</td>
+      <td>...</td>
+      <td>-52.554409</td>
+      <td>-52.680397</td>
+      <td>-52.508822</td>
+      <td>-52.554718</td>
+      <td>-52.435565</td>
+      <td>-52.602946</td>
+      <td>-52.356110</td>
+      <td>-52.503988</td>
+      <td>-52.572670</td>
+      <td>-52.506609</td>
+    </tr>
+    <tr>
+      <th>0.50</th>
+      <td>-52.524386</td>
+      <td>-52.725032</td>
+      <td>-52.405915</td>
+      <td>-52.520080</td>
+      <td>-52.591188</td>
+      <td>-52.473217</td>
+      <td>-52.532181</td>
+      <td>-52.474565</td>
+      <td>-52.555043</td>
+      <td>-52.522803</td>
+      <td>...</td>
+      <td>-52.555255</td>
+      <td>-52.680982</td>
+      <td>-52.509644</td>
+      <td>-52.555453</td>
+      <td>-52.436508</td>
+      <td>-52.603663</td>
+      <td>-52.357256</td>
+      <td>-52.504839</td>
+      <td>-52.573478</td>
+      <td>-52.507491</td>
+    </tr>
+    <tr>
+      <th>0.75</th>
+      <td>-52.525234</td>
+      <td>-52.725552</td>
+      <td>-52.406931</td>
+      <td>-52.520954</td>
+      <td>-52.591950</td>
+      <td>-52.474084</td>
+      <td>-52.532970</td>
+      <td>-52.475476</td>
+      <td>-52.555870</td>
+      <td>-52.523616</td>
+      <td>...</td>
+      <td>-52.556101</td>
+      <td>-52.681567</td>
+      <td>-52.510465</td>
+      <td>-52.556189</td>
+      <td>-52.437451</td>
+      <td>-52.604380</td>
+      <td>-52.358401</td>
+      <td>-52.505690</td>
+      <td>-52.574286</td>
+      <td>-52.508373</td>
+    </tr>
+    <tr>
+      <th>1.00</th>
+      <td>-52.526081</td>
+      <td>-52.726071</td>
+      <td>-52.407947</td>
+      <td>-52.521828</td>
+      <td>-52.592713</td>
+      <td>-52.474949</td>
+      <td>-52.533758</td>
+      <td>-52.476386</td>
+      <td>-52.556697</td>
+      <td>-52.524429</td>
+      <td>...</td>
+      <td>-52.556946</td>
+      <td>-52.682152</td>
+      <td>-52.511286</td>
+      <td>-52.556923</td>
+      <td>-52.438393</td>
+      <td>-52.605096</td>
+      <td>-52.359546</td>
+      <td>-52.506540</td>
+      <td>-52.575093</td>
+      <td>-52.509255</td>
+    </tr>
+  </tbody>
 </table>
+<p>5 rows × 500 columns</p>
+</div>
+
 <p><br></p>
 <p>Using <code>df_bootstrap</code> we can calculate the confidence interval of our predictions, the Pandas DataFrame <code>quantile</code> method makes this particularly simple.</p>
 <div class="highlight"><pre><span></span><code><span class="n">df_conf_intvl</span> <span class="o">=</span> <span class="n">lowess</span><span class="o">.</span><span class="n">get_confidence_interval</span><span class="p">(</span><span class="n">df_bootstrap</span><span class="p">,</span> <span class="n">conf_pct</span><span class="o">=</span><span class="mf">0.95</span><span class="p">)</span>
@@ -893,7 +950,7 @@
 <span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">frameon</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 <span class="n">eda</span><span class="o">.</span><span class="n">hide_spines</span><span class="p">(</span><span class="n">ax</span><span class="p">)</span>
 </code></pre></div>
-<p><img alt="png" src="../img/nbs/output_9_0.png" /></p>
+<p><img alt="png" src="../img/nbs/ug-02-confidence_cell_10_output_0.png" /></p>
 <p><br></p>
 <p>We can see that we capture the middle and higher frequencies fairly well but due to the smaller number of data-points in the low frequency region the LOWESS fit is unable to model it as well. The <code>frac</code> could be decreased to improve this but then comes at the cost of processing more inaccurate estimates in the other regions. One way to address this could be to introduce an option where <code>frac</code> can be varied for each local regression model.</p>
 <p>For now we'll just limit our prediction to the domain where the confidence interval is 'reasonable', we'll start by calculating the 95% confidence interval.</p>
@@ -938,7 +995,7 @@ Name: 95pct_pred_intvl, Length: 8193, dtype: float64
 <span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">y_max</span><span class="p">)</span>
 <span class="n">eda</span><span class="o">.</span><span class="n">hide_spines</span><span class="p">(</span><span class="n">ax</span><span class="p">)</span>
 </code></pre></div>
-<p><img alt="png" src="../img/nbs/output_13_0.png" /></p>
+<p><img alt="png" src="../img/nbs/ug-02-confidence_cell_14_output_0.png" /></p>
 <p><br></p>
 <p>We'll then only plot our confidence interval when it's in this 'reasonable' range</p>
 <div class="highlight"><pre><span></span><code><span class="n">conf_intvl_idxs_to_keep</span> <span class="o">=</span> <span class="p">(</span><span class="n">s_95pct_conf_intvl</span><span class="o">&lt;</span><span class="n">x_max</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="kc">False</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">)</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span><span class="o">.</span><span class="n">index</span>
@@ -953,7 +1010,7 @@ Name: 95pct_pred_intvl, Length: 8193, dtype: float64
 <span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">frameon</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 <span class="n">eda</span><span class="o">.</span><span class="n">hide_spines</span><span class="p">(</span><span class="n">ax</span><span class="p">)</span>
 </code></pre></div>
-<p><img alt="png" src="../img/nbs/output_15_0.png" /></p>
+<p><img alt="png" src="../img/nbs/ug-02-confidence_cell_16_output_0.png" /></p>
                 
               
               
@@ -993,7 +1050,7 @@ Name: 95pct_pred_intvl, Length: 8193, dtype: float64
                 <span class="md-footer-nav__direction">
                   Next
                 </span>
-                Power Curve Cleaning
+                Power Curve Fitting
               </div>
             </div>
             <div class="md-footer-nav__button md-icon">

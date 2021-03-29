@@ -322,7 +322,7 @@
 
   <li class="md-nav__item">
     <a href="../ug-03-power-curve/" class="md-nav__link">
-      Power Curve Cleaning
+      Power Curve Fitting
     </a>
   </li>
 
@@ -657,156 +657,197 @@
 </code></pre></div>
 <div class="highlight"><pre><span></span><code>Wall time: 7.75 s
 </code></pre></div>
-<table>
-<thead>
-<tr>
-<th align="left">local_datetime</th>
-<th align="right">day_ahead_price</th>
-<th align="right">SP</th>
-<th align="right">imbalance_price</th>
-<th align="right">valueSum</th>
-<th align="right">temperature</th>
-<th align="right">TCO2_per_h</th>
-<th align="right">gCO2_per_kWh</th>
-<th align="right">nuclear</th>
-<th align="right">biomass</th>
-<th align="right">coal</th>
-<th align="left">...</th>
-<th align="right">demand</th>
-<th align="right">pumped_storage</th>
-<th align="right">wind_onshore</th>
-<th align="right">wind_offshore</th>
-<th align="right">belgian</th>
-<th align="right">dutch</th>
-<th align="right">french</th>
-<th align="right">ireland</th>
-<th align="right">northern_ireland</th>
-<th align="right">irish</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td align="left">2021-02-01 00:00:00+00:00</td>
-<td align="right">51.99</td>
-<td align="right">1</td>
-<td align="right">68.95</td>
-<td align="right">68.95</td>
-<td align="right">2.9</td>
-<td align="right">4797.76</td>
-<td align="right">175.8</td>
-<td align="right">5.564</td>
-<td align="right">1.945</td>
-<td align="right">0.465</td>
-<td align="left">...</td>
-<td align="right">27.291</td>
-<td align="right">0</td>
-<td align="right">3.02828</td>
-<td align="right">3.51436</td>
-<td align="right">0.902</td>
-<td align="right">0</td>
-<td align="right">1.806</td>
-<td align="right">0</td>
-<td align="right">0.018</td>
-<td align="right">-0.05</td>
-</tr>
-<tr>
-<td align="left">2021-02-01 00:30:00+00:00</td>
-<td align="right">54.19</td>
-<td align="right">2</td>
-<td align="right">69</td>
-<td align="right">69</td>
-<td align="right">2.9</td>
-<td align="right">5149.7</td>
-<td align="right">186.031</td>
-<td align="right">5.559</td>
-<td align="right">1.963</td>
-<td align="right">0.563</td>
-<td align="left">...</td>
-<td align="right">27.682</td>
-<td align="right">0</td>
-<td align="right">2.90388</td>
-<td align="right">3.44746</td>
-<td align="right">0.902</td>
-<td align="right">0</td>
-<td align="right">1.806</td>
-<td align="right">0</td>
-<td align="right">0.016</td>
-<td align="right">0.016</td>
-</tr>
-<tr>
-<td align="left">2021-02-01 01:00:00+00:00</td>
-<td align="right">55.07</td>
-<td align="right">3</td>
-<td align="right">75</td>
-<td align="right">75</td>
-<td align="right">2.9</td>
-<td align="right">5177.97</td>
-<td align="right">189.309</td>
-<td align="right">5.565</td>
-<td align="right">2.077</td>
-<td align="right">0.68</td>
-<td align="left">...</td>
-<td align="right">27.352</td>
-<td align="right">0</td>
-<td align="right">2.76413</td>
-<td align="right">3.36153</td>
-<td align="right">0.952</td>
-<td align="right">0</td>
-<td align="right">1.906</td>
-<td align="right">0</td>
-<td align="right">0.018</td>
-<td align="right">0.018</td>
-</tr>
-<tr>
-<td align="left">2021-02-01 01:30:00+00:00</td>
-<td align="right">56.3</td>
-<td align="right">4</td>
-<td align="right">72</td>
-<td align="right">72</td>
-<td align="right">2.9</td>
-<td align="right">5131.08</td>
-<td align="right">190.892</td>
-<td align="right">5.563</td>
-<td align="right">2.122</td>
-<td align="right">0.716</td>
-<td align="left">...</td>
-<td align="right">26.8796</td>
-<td align="right">0</td>
-<td align="right">2.62404</td>
-<td align="right">3.19386</td>
-<td align="right">0.952</td>
-<td align="right">0</td>
-<td align="right">1.906</td>
-<td align="right">0</td>
-<td align="right">0.016</td>
-<td align="right">0.016</td>
-</tr>
-<tr>
-<td align="left">2021-02-01 02:00:00+00:00</td>
-<td align="right">56.71</td>
-<td align="right">5</td>
-<td align="right">75</td>
-<td align="right">75</td>
-<td align="right">2.9</td>
-<td align="right">5105.37</td>
-<td align="right">193.368</td>
-<td align="right">5.561</td>
-<td align="right">2.134</td>
-<td align="right">0.718</td>
-<td align="left">...</td>
-<td align="right">26.4023</td>
-<td align="right">0</td>
-<td align="right">2.41751</td>
-<td align="right">2.93459</td>
-<td align="right">0.926</td>
-<td align="right">0</td>
-<td align="right">1.906</td>
-<td align="right">0</td>
-<td align="right">0.018</td>
-<td align="right">0.018</td>
-</tr>
-</tbody>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>day_ahead_price</th>
+      <th>SP</th>
+      <th>imbalance_price</th>
+      <th>valueSum</th>
+      <th>temperature</th>
+      <th>TCO2_per_h</th>
+      <th>gCO2_per_kWh</th>
+      <th>nuclear</th>
+      <th>biomass</th>
+      <th>coal</th>
+      <th>...</th>
+      <th>demand</th>
+      <th>pumped_storage</th>
+      <th>wind_onshore</th>
+      <th>wind_offshore</th>
+      <th>belgian</th>
+      <th>dutch</th>
+      <th>french</th>
+      <th>ireland</th>
+      <th>northern_ireland</th>
+      <th>irish</th>
+    </tr>
+    <tr>
+      <th>local_datetime</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2021-02-01 00:00:00+00:00</th>
+      <td>51.99</td>
+      <td>1</td>
+      <td>68.95</td>
+      <td>68.95</td>
+      <td>2.9</td>
+      <td>4797.759</td>
+      <td>175.799988</td>
+      <td>5.564</td>
+      <td>1.945</td>
+      <td>0.465</td>
+      <td>...</td>
+      <td>27.291009</td>
+      <td>0.0</td>
+      <td>3.028282</td>
+      <td>3.514363</td>
+      <td>0.902</td>
+      <td>0.0</td>
+      <td>1.806</td>
+      <td>0.0</td>
+      <td>0.018</td>
+      <td>-0.050</td>
+    </tr>
+    <tr>
+      <th>2021-02-01 00:30:00+00:00</th>
+      <td>54.19</td>
+      <td>2</td>
+      <td>69.00</td>
+      <td>69.00</td>
+      <td>2.9</td>
+      <td>5149.705</td>
+      <td>186.030814</td>
+      <td>5.559</td>
+      <td>1.963</td>
+      <td>0.563</td>
+      <td>...</td>
+      <td>27.682000</td>
+      <td>0.0</td>
+      <td>2.903885</td>
+      <td>3.447460</td>
+      <td>0.902</td>
+      <td>0.0</td>
+      <td>1.806</td>
+      <td>0.0</td>
+      <td>0.016</td>
+      <td>0.016</td>
+    </tr>
+    <tr>
+      <th>2021-02-01 01:00:00+00:00</th>
+      <td>55.07</td>
+      <td>3</td>
+      <td>75.00</td>
+      <td>75.00</td>
+      <td>2.9</td>
+      <td>5177.972</td>
+      <td>189.308716</td>
+      <td>5.565</td>
+      <td>2.077</td>
+      <td>0.680</td>
+      <td>...</td>
+      <td>27.352000</td>
+      <td>0.0</td>
+      <td>2.764132</td>
+      <td>3.361527</td>
+      <td>0.952</td>
+      <td>0.0</td>
+      <td>1.906</td>
+      <td>0.0</td>
+      <td>0.018</td>
+      <td>0.018</td>
+    </tr>
+    <tr>
+      <th>2021-02-01 01:30:00+00:00</th>
+      <td>56.30</td>
+      <td>4</td>
+      <td>72.00</td>
+      <td>72.00</td>
+      <td>2.9</td>
+      <td>5131.084</td>
+      <td>190.891574</td>
+      <td>5.563</td>
+      <td>2.122</td>
+      <td>0.716</td>
+      <td>...</td>
+      <td>26.879573</td>
+      <td>0.0</td>
+      <td>2.624037</td>
+      <td>3.193860</td>
+      <td>0.952</td>
+      <td>0.0</td>
+      <td>1.906</td>
+      <td>0.0</td>
+      <td>0.016</td>
+      <td>0.016</td>
+    </tr>
+    <tr>
+      <th>2021-02-01 02:00:00+00:00</th>
+      <td>56.71</td>
+      <td>5</td>
+      <td>75.00</td>
+      <td>75.00</td>
+      <td>2.9</td>
+      <td>5105.370</td>
+      <td>193.368381</td>
+      <td>5.561</td>
+      <td>2.134</td>
+      <td>0.718</td>
+      <td>...</td>
+      <td>26.402300</td>
+      <td>0.0</td>
+      <td>2.417506</td>
+      <td>2.934586</td>
+      <td>0.926</td>
+      <td>0.0</td>
+      <td>1.906</td>
+      <td>0.0</td>
+      <td>0.018</td>
+      <td>0.018</td>
+    </tr>
+  </tbody>
 </table>
+<p>5 rows × 24 columns</p>
+</div>
+
 <p><br></p>
 <p>We'll quickly visualise the relationship between price and dispatchable load for each half-hour period</p>
 <div class="highlight"><pre><span></span><code><span class="n">df_model</span> <span class="o">=</span> <span class="n">df</span><span class="p">[[</span><span class="s1">&#39;day_ahead_price&#39;</span><span class="p">,</span> <span class="s1">&#39;demand&#39;</span><span class="p">,</span> <span class="s1">&#39;solar&#39;</span><span class="p">,</span> <span class="s1">&#39;wind&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span>
@@ -826,7 +867,7 @@
 </code></pre></div>
 <div class="highlight"><pre><span></span><code>Text(0, 0.5, &#39;Price (£/MWh)&#39;)
 </code></pre></div>
-<p><img alt="png" src="../img/nbs/output_5_1.png" /></p>
+<p><img alt="png" src="../img/nbs/ug-04-gb-mcc_cell_6_output_1.png" /></p>
 <p><br></p>
 <h3 id="marginal-cost-curve-estimation">Marginal Cost Curve Estimation<a class="headerlink" href="#marginal-cost-curve-estimation" title="Permanent link">&para;</a></h3>
 <p>We're now ready to fit our LOWESS model</p>
@@ -842,7 +883,7 @@
 </code></pre></div>
 <div class="highlight"><pre><span></span><code>&lt;AxesSubplot:&gt;
 </code></pre></div>
-<p><img alt="png" src="../img/nbs/output_7_1.png" /></p>
+<p><img alt="png" src="../img/nbs/ug-04-gb-mcc_cell_8_output_1.png" /></p>
 <p><br></p>
 <p>We'll then visualise the estimated fit alongside the historical observations</p>
 <div class="highlight"><pre><span></span><code><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">dpi</span><span class="o">=</span><span class="mi">250</span><span class="p">)</span>
@@ -856,7 +897,7 @@
 <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Day-Ahead Price (£/MWh)&#39;</span><span class="p">)</span>
 <span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s1">&#39;../img/latest_gb_mcc.png&#39;</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">250</span><span class="p">)</span>
 </code></pre></div>
-<p><img alt="png" src="../img/nbs/output_9_0.png" /></p>
+<p><img alt="png" src="../img/nbs/ug-04-gb-mcc_cell_10_output_0.png" /></p>
                 
               
               
@@ -884,7 +925,7 @@
                 <span class="md-footer-nav__direction">
                   Previous
                 </span>
-                Power Curve Cleaning
+                Power Curve Fitting
               </div>
             </div>
           </a>

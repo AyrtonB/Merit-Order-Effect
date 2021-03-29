@@ -320,7 +320,7 @@
 
   <li class="md-nav__item">
     <a href="../ug-03-power-curve/" class="md-nav__link">
-      Power Curve Cleaning
+      Power Curve Fitting
     </a>
   </li>
 
@@ -667,156 +667,197 @@
 </code></pre></div>
 <div class="highlight"><pre><span></span><code>Wall time: 1.69 s
 </code></pre></div>
-<table>
-<thead>
-<tr>
-<th align="left">local_datetime</th>
-<th align="right">day_ahead_price</th>
-<th align="right">SP</th>
-<th align="right">imbalance_price</th>
-<th align="right">valueSum</th>
-<th align="right">temperature</th>
-<th align="right">TCO2_per_h</th>
-<th align="right">gCO2_per_kWh</th>
-<th align="right">nuclear</th>
-<th align="right">biomass</th>
-<th align="right">coal</th>
-<th align="left">...</th>
-<th align="right">demand</th>
-<th align="right">pumped_storage</th>
-<th align="right">wind_onshore</th>
-<th align="right">wind_offshore</th>
-<th align="right">belgian</th>
-<th align="right">dutch</th>
-<th align="right">french</th>
-<th align="right">ireland</th>
-<th align="right">northern_ireland</th>
-<th align="right">irish</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td align="left">2009-01-01 00:00:00+00:00</td>
-<td align="right">58.05</td>
-<td align="right">1</td>
-<td align="right">74.74</td>
-<td align="right">74.74</td>
-<td align="right">-0.6</td>
-<td align="right">21278</td>
-<td align="right">555</td>
-<td align="right">6.973</td>
-<td align="right">0</td>
-<td align="right">17.65</td>
-<td align="left">...</td>
-<td align="right">38.329</td>
-<td align="right">-0.404</td>
-<td align="right">nan</td>
-<td align="right">nan</td>
-<td align="right">0</td>
-<td align="right">0</td>
-<td align="right">1.977</td>
-<td align="right">0</td>
-<td align="right">0</td>
-<td align="right">-0.161</td>
-</tr>
-<tr>
-<td align="left">2009-01-01 00:30:00+00:00</td>
-<td align="right">56.33</td>
-<td align="right">2</td>
-<td align="right">74.89</td>
-<td align="right">74.89</td>
-<td align="right">-0.6</td>
-<td align="right">21442</td>
-<td align="right">558</td>
-<td align="right">6.968</td>
-<td align="right">0</td>
-<td align="right">17.77</td>
-<td align="left">...</td>
-<td align="right">38.461</td>
-<td align="right">-0.527</td>
-<td align="right">nan</td>
-<td align="right">nan</td>
-<td align="right">0</td>
-<td align="right">0</td>
-<td align="right">1.977</td>
-<td align="right">0</td>
-<td align="right">0</td>
-<td align="right">-0.16</td>
-</tr>
-<tr>
-<td align="left">2009-01-01 01:00:00+00:00</td>
-<td align="right">52.98</td>
-<td align="right">3</td>
-<td align="right">76.41</td>
-<td align="right">76.41</td>
-<td align="right">-0.6</td>
-<td align="right">21614</td>
-<td align="right">569</td>
-<td align="right">6.97</td>
-<td align="right">0</td>
-<td align="right">18.07</td>
-<td align="left">...</td>
-<td align="right">37.986</td>
-<td align="right">-1.018</td>
-<td align="right">nan</td>
-<td align="right">nan</td>
-<td align="right">0</td>
-<td align="right">0</td>
-<td align="right">1.977</td>
-<td align="right">0</td>
-<td align="right">0</td>
-<td align="right">-0.16</td>
-</tr>
-<tr>
-<td align="left">2009-01-01 01:30:00+00:00</td>
-<td align="right">50.39</td>
-<td align="right">4</td>
-<td align="right">37.73</td>
-<td align="right">37.73</td>
-<td align="right">-0.6</td>
-<td align="right">21320</td>
-<td align="right">578</td>
-<td align="right">6.969</td>
-<td align="right">0</td>
-<td align="right">18.022</td>
-<td align="left">...</td>
-<td align="right">36.864</td>
-<td align="right">-1.269</td>
-<td align="right">nan</td>
-<td align="right">nan</td>
-<td align="right">0</td>
-<td align="right">0</td>
-<td align="right">1.746</td>
-<td align="right">0</td>
-<td align="right">0</td>
-<td align="right">-0.16</td>
-</tr>
-<tr>
-<td align="left">2009-01-01 02:00:00+00:00</td>
-<td align="right">48.7</td>
-<td align="right">5</td>
-<td align="right">59</td>
-<td align="right">59</td>
-<td align="right">-0.6</td>
-<td align="right">21160</td>
-<td align="right">585</td>
-<td align="right">6.96</td>
-<td align="right">0</td>
-<td align="right">17.998</td>
-<td align="left">...</td>
-<td align="right">36.18</td>
-<td align="right">-1.566</td>
-<td align="right">nan</td>
-<td align="right">nan</td>
-<td align="right">0</td>
-<td align="right">0</td>
-<td align="right">1.73</td>
-<td align="right">0</td>
-<td align="right">0</td>
-<td align="right">-0.16</td>
-</tr>
-</tbody>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>day_ahead_price</th>
+      <th>SP</th>
+      <th>imbalance_price</th>
+      <th>valueSum</th>
+      <th>temperature</th>
+      <th>TCO2_per_h</th>
+      <th>gCO2_per_kWh</th>
+      <th>nuclear</th>
+      <th>biomass</th>
+      <th>coal</th>
+      <th>...</th>
+      <th>demand</th>
+      <th>pumped_storage</th>
+      <th>wind_onshore</th>
+      <th>wind_offshore</th>
+      <th>belgian</th>
+      <th>dutch</th>
+      <th>french</th>
+      <th>ireland</th>
+      <th>northern_ireland</th>
+      <th>irish</th>
+    </tr>
+    <tr>
+      <th>local_datetime</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2009-01-01 00:00:00+00:00</th>
+      <td>58.05</td>
+      <td>1</td>
+      <td>74.74</td>
+      <td>74.74</td>
+      <td>-0.6</td>
+      <td>21278.0</td>
+      <td>555.0</td>
+      <td>6.973</td>
+      <td>0.0</td>
+      <td>17.650</td>
+      <td>...</td>
+      <td>38.329</td>
+      <td>-0.404</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.977</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>-0.161</td>
+    </tr>
+    <tr>
+      <th>2009-01-01 00:30:00+00:00</th>
+      <td>56.33</td>
+      <td>2</td>
+      <td>74.89</td>
+      <td>74.89</td>
+      <td>-0.6</td>
+      <td>21442.0</td>
+      <td>558.0</td>
+      <td>6.968</td>
+      <td>0.0</td>
+      <td>17.770</td>
+      <td>...</td>
+      <td>38.461</td>
+      <td>-0.527</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.977</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>-0.160</td>
+    </tr>
+    <tr>
+      <th>2009-01-01 01:00:00+00:00</th>
+      <td>52.98</td>
+      <td>3</td>
+      <td>76.41</td>
+      <td>76.41</td>
+      <td>-0.6</td>
+      <td>21614.0</td>
+      <td>569.0</td>
+      <td>6.970</td>
+      <td>0.0</td>
+      <td>18.070</td>
+      <td>...</td>
+      <td>37.986</td>
+      <td>-1.018</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.977</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>-0.160</td>
+    </tr>
+    <tr>
+      <th>2009-01-01 01:30:00+00:00</th>
+      <td>50.39</td>
+      <td>4</td>
+      <td>37.73</td>
+      <td>37.73</td>
+      <td>-0.6</td>
+      <td>21320.0</td>
+      <td>578.0</td>
+      <td>6.969</td>
+      <td>0.0</td>
+      <td>18.022</td>
+      <td>...</td>
+      <td>36.864</td>
+      <td>-1.269</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.746</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>-0.160</td>
+    </tr>
+    <tr>
+      <th>2009-01-01 02:00:00+00:00</th>
+      <td>48.70</td>
+      <td>5</td>
+      <td>59.00</td>
+      <td>59.00</td>
+      <td>-0.6</td>
+      <td>21160.0</td>
+      <td>585.0</td>
+      <td>6.960</td>
+      <td>0.0</td>
+      <td>17.998</td>
+      <td>...</td>
+      <td>36.180</td>
+      <td>-1.566</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.730</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>-0.160</td>
+    </tr>
+  </tbody>
 </table>
+<p>5 rows × 24 columns</p>
+</div>
+
 <p><br></p>
 <p>... and cleaning the GB data</p>
 <div class="highlight"><pre><span></span><code><span class="n">df_EI_model</span> <span class="o">=</span> <span class="n">df_EI</span><span class="p">[[</span><span class="s1">&#39;day_ahead_price&#39;</span><span class="p">,</span> <span class="s1">&#39;demand&#39;</span><span class="p">,</span> <span class="s1">&#39;solar&#39;</span><span class="p">,</span> <span class="s1">&#39;wind&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span>
@@ -1058,156 +1099,172 @@
 </code></pre></div>
 <div class="highlight"><pre><span></span><code>Wall time: 346 ms
 </code></pre></div>
-<table>
-<thead>
-<tr>
-<th align="right">Unnamed: 0</th>
-<th align="right">2009-01-04</th>
-<th align="right">2009-01-11</th>
-<th align="right">2009-01-18</th>
-<th align="right">2009-01-25</th>
-<th align="right">2009-02-01</th>
-<th align="right">2009-02-08</th>
-<th align="right">2009-02-15</th>
-<th align="right">2009-02-22</th>
-<th align="right">2009-03-01</th>
-<th align="right">2009-03-08</th>
-<th align="left">...</th>
-<th align="right">2020-10-25</th>
-<th align="right">2020-11-01</th>
-<th align="right">2020-11-08</th>
-<th align="right">2020-11-15</th>
-<th align="right">2020-11-22</th>
-<th align="right">2020-11-29</th>
-<th align="right">2020-12-06</th>
-<th align="right">2020-12-13</th>
-<th align="right">2020-12-20</th>
-<th align="right">2020-12-27</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td align="right">8</td>
-<td align="right">-7.66001</td>
-<td align="right">-7.78927</td>
-<td align="right">-7.91081</td>
-<td align="right">-8.02572</td>
-<td align="right">-8.13481</td>
-<td align="right">-8.23875</td>
-<td align="right">-8.33813</td>
-<td align="right">-8.43345</td>
-<td align="right">-8.52519</td>
-<td align="right">-8.61382</td>
-<td align="left">...</td>
-<td align="right">10.2354</td>
-<td align="right">10.292</td>
-<td align="right">10.3476</td>
-<td align="right">10.4021</td>
-<td align="right">10.4557</td>
-<td align="right">10.5085</td>
-<td align="right">10.5611</td>
-<td align="right">10.6143</td>
-<td align="right">10.6691</td>
-<td align="right">10.7271</td>
-</tr>
-<tr>
-<td align="right">8.1</td>
-<td align="right">-7.46772</td>
-<td align="right">-7.59637</td>
-<td align="right">-7.71734</td>
-<td align="right">-7.83171</td>
-<td align="right">-7.94028</td>
-<td align="right">-8.04374</td>
-<td align="right">-8.14266</td>
-<td align="right">-8.23754</td>
-<td align="right">-8.32887</td>
-<td align="right">-8.41709</td>
-<td align="left">...</td>
-<td align="right">10.4429</td>
-<td align="right">10.4994</td>
-<td align="right">10.5548</td>
-<td align="right">10.6092</td>
-<td align="right">10.6627</td>
-<td align="right">10.7154</td>
-<td align="right">10.7679</td>
-<td align="right">10.821</td>
-<td align="right">10.8758</td>
-<td align="right">10.9336</td>
-</tr>
-<tr>
-<td align="right">8.2</td>
-<td align="right">-7.27561</td>
-<td align="right">-7.40364</td>
-<td align="right">-7.52404</td>
-<td align="right">-7.63785</td>
-<td align="right">-7.74592</td>
-<td align="right">-7.84889</td>
-<td align="right">-7.94734</td>
-<td align="right">-8.04178</td>
-<td align="right">-8.13268</td>
-<td align="right">-8.22049</td>
-<td align="left">...</td>
-<td align="right">10.6503</td>
-<td align="right">10.7066</td>
-<td align="right">10.7619</td>
-<td align="right">10.8162</td>
-<td align="right">10.8695</td>
-<td align="right">10.9222</td>
-<td align="right">10.9746</td>
-<td align="right">11.0276</td>
-<td align="right">11.0823</td>
-<td align="right">11.1401</td>
-</tr>
-<tr>
-<td align="right">8.3</td>
-<td align="right">-7.08366</td>
-<td align="right">-7.21108</td>
-<td align="right">-7.33089</td>
-<td align="right">-7.44416</td>
-<td align="right">-7.5517</td>
-<td align="right">-7.65418</td>
-<td align="right">-7.75217</td>
-<td align="right">-7.84616</td>
-<td align="right">-7.93663</td>
-<td align="right">-8.02403</td>
-<td align="left">...</td>
-<td align="right">10.8576</td>
-<td align="right">10.9138</td>
-<td align="right">10.9689</td>
-<td align="right">11.023</td>
-<td align="right">11.0763</td>
-<td align="right">11.1288</td>
-<td align="right">11.1812</td>
-<td align="right">11.2341</td>
-<td align="right">11.2888</td>
-<td align="right">11.3464</td>
-</tr>
-<tr>
-<td align="right">8.4</td>
-<td align="right">-6.89188</td>
-<td align="right">-7.01867</td>
-<td align="right">-7.13789</td>
-<td align="right">-7.25061</td>
-<td align="right">-7.35763</td>
-<td align="right">-7.45962</td>
-<td align="right">-7.55713</td>
-<td align="right">-7.65067</td>
-<td align="right">-7.74071</td>
-<td align="right">-7.82769</td>
-<td align="left">...</td>
-<td align="right">11.0648</td>
-<td align="right">11.1208</td>
-<td align="right">11.1757</td>
-<td align="right">11.2298</td>
-<td align="right">11.2829</td>
-<td align="right">11.3353</td>
-<td align="right">11.3876</td>
-<td align="right">11.4405</td>
-<td align="right">11.4951</td>
-<td align="right">11.5527</td>
-</tr>
-</tbody>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>2009-01-04</th>
+      <th>2009-01-11</th>
+      <th>2009-01-18</th>
+      <th>2009-01-25</th>
+      <th>2009-02-01</th>
+      <th>2009-02-08</th>
+      <th>2009-02-15</th>
+      <th>2009-02-22</th>
+      <th>2009-03-01</th>
+      <th>2009-03-08</th>
+      <th>...</th>
+      <th>2020-10-25</th>
+      <th>2020-11-01</th>
+      <th>2020-11-08</th>
+      <th>2020-11-15</th>
+      <th>2020-11-22</th>
+      <th>2020-11-29</th>
+      <th>2020-12-06</th>
+      <th>2020-12-13</th>
+      <th>2020-12-20</th>
+      <th>2020-12-27</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>8.0</th>
+      <td>-7.660008</td>
+      <td>-7.789268</td>
+      <td>-7.910814</td>
+      <td>-8.025717</td>
+      <td>-8.134805</td>
+      <td>-8.238751</td>
+      <td>-8.338129</td>
+      <td>-8.433449</td>
+      <td>-8.525193</td>
+      <td>-8.613820</td>
+      <td>...</td>
+      <td>10.235374</td>
+      <td>10.292018</td>
+      <td>10.347611</td>
+      <td>10.402138</td>
+      <td>10.455693</td>
+      <td>10.508530</td>
+      <td>10.561129</td>
+      <td>10.614270</td>
+      <td>10.669140</td>
+      <td>10.727071</td>
+    </tr>
+    <tr>
+      <th>8.1</th>
+      <td>-7.467721</td>
+      <td>-7.596370</td>
+      <td>-7.717343</td>
+      <td>-7.831705</td>
+      <td>-7.940282</td>
+      <td>-8.043744</td>
+      <td>-8.142661</td>
+      <td>-8.237542</td>
+      <td>-8.328865</td>
+      <td>-8.417088</td>
+      <td>...</td>
+      <td>10.442911</td>
+      <td>10.499384</td>
+      <td>10.554824</td>
+      <td>10.609219</td>
+      <td>10.662661</td>
+      <td>10.715403</td>
+      <td>10.767921</td>
+      <td>10.820990</td>
+      <td>10.875787</td>
+      <td>10.933636</td>
+    </tr>
+    <tr>
+      <th>8.2</th>
+      <td>-7.275607</td>
+      <td>-7.403641</td>
+      <td>-7.524036</td>
+      <td>-7.637854</td>
+      <td>-7.745917</td>
+      <td>-7.848890</td>
+      <td>-7.947342</td>
+      <td>-8.041780</td>
+      <td>-8.132678</td>
+      <td>-8.220493</td>
+      <td>...</td>
+      <td>10.650337</td>
+      <td>10.706638</td>
+      <td>10.761927</td>
+      <td>10.816190</td>
+      <td>10.869521</td>
+      <td>10.922169</td>
+      <td>10.974607</td>
+      <td>11.027605</td>
+      <td>11.082331</td>
+      <td>11.140099</td>
+    </tr>
+    <tr>
+      <th>8.3</th>
+      <td>-7.083662</td>
+      <td>-7.211075</td>
+      <td>-7.330889</td>
+      <td>-7.444158</td>
+      <td>-7.551701</td>
+      <td>-7.654183</td>
+      <td>-7.752166</td>
+      <td>-7.846157</td>
+      <td>-7.936627</td>
+      <td>-8.024030</td>
+      <td>...</td>
+      <td>10.857636</td>
+      <td>10.913767</td>
+      <td>10.968906</td>
+      <td>11.023039</td>
+      <td>11.076259</td>
+      <td>11.128814</td>
+      <td>11.181173</td>
+      <td>11.234100</td>
+      <td>11.288756</td>
+      <td>11.346444</td>
+    </tr>
+    <tr>
+      <th>8.4</th>
+      <td>-6.891877</td>
+      <td>-7.018666</td>
+      <td>-7.137894</td>
+      <td>-7.250611</td>
+      <td>-7.357631</td>
+      <td>-7.459617</td>
+      <td>-7.557128</td>
+      <td>-7.650668</td>
+      <td>-7.740706</td>
+      <td>-7.827694</td>
+      <td>...</td>
+      <td>11.064795</td>
+      <td>11.120757</td>
+      <td>11.175747</td>
+      <td>11.229751</td>
+      <td>11.282861</td>
+      <td>11.335324</td>
+      <td>11.387606</td>
+      <td>11.440464</td>
+      <td>11.495050</td>
+      <td>11.552659</td>
+    </tr>
+  </tbody>
 </table>
+<p>5 rows × 626 columns</p>
+</div>
                 
               
               
