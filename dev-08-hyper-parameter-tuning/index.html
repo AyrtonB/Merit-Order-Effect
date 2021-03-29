@@ -892,7 +892,7 @@ dtype: float64
     <span class="n">optimizer_kwargs</span><span class="o">=</span><span class="p">{</span>
         <span class="s1">&#39;random_state&#39;</span><span class="p">:</span> <span class="mi">42</span>
     <span class="p">},</span>
-    <span class="n">n_iter</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span>
+    <span class="n">n_iter</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span>
     <span class="n">verbose</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
     <span class="n">cv</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="c1"># 8 works well for me as that&#39;s how many concurrent workers I can use</span>
     <span class="n">fit_params</span><span class="o">=</span><span class="n">fit_params</span><span class="p">,</span>
@@ -907,126 +907,30 @@ dtype: float64
     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Cross-validation score: </span><span class="si">{</span><span class="n">opt</span><span class="o">.</span><span class="n">best_score_</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">Best params: </span><span class="se">\n</span><span class="si">{</span><span class="n">opt</span><span class="o">.</span><span class="n">best_params_</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
 </code></pre></div>
-<div class="highlight"><pre><span></span><code>Fitting 4 folds for each of 1 candidates, totalling 4 fits
-
-
-[Parallel(n_jobs=5)]: Using backend LokyBackend with 5 concurrent workers.
-[Parallel(n_jobs=5)]: Done   4 out of   4 | elapsed:  4.1min finished
-[Parallel(n_jobs=5)]: Using backend LokyBackend with 5 concurrent workers.
-
-
-Fitting 4 folds for each of 1 candidates, totalling 4 fits
-
-
-[Parallel(n_jobs=5)]: Done   4 out of   4 | elapsed:  4.5min finished
-[Parallel(n_jobs=5)]: Using backend LokyBackend with 5 concurrent workers.
-
-
-Fitting 4 folds for each of 1 candidates, totalling 4 fits
-
-
-[Parallel(n_jobs=5)]: Done   4 out of   4 | elapsed:  4.5min finished
-[Parallel(n_jobs=5)]: Using backend LokyBackend with 5 concurrent workers.
-
-
-Fitting 4 folds for each of 1 candidates, totalling 4 fits
-
-
-[Parallel(n_jobs=5)]: Done   4 out of   4 | elapsed:  4.7min finished
-[Parallel(n_jobs=5)]: Using backend LokyBackend with 5 concurrent workers.
-
-
-Fitting 4 folds for each of 1 candidates, totalling 4 fits
-
-
-[Parallel(n_jobs=5)]: Done   4 out of   4 | elapsed:  4.5min finished
-[Parallel(n_jobs=5)]: Using backend LokyBackend with 5 concurrent workers.
-
-
-Fitting 4 folds for each of 1 candidates, totalling 4 fits
-
-
-[Parallel(n_jobs=5)]: Done   4 out of   4 | elapsed:  3.8min finished
-[Parallel(n_jobs=5)]: Using backend LokyBackend with 5 concurrent workers.
-
-
-Fitting 4 folds for each of 1 candidates, totalling 4 fits
-
-
-[Parallel(n_jobs=5)]: Done   4 out of   4 | elapsed:  3.4min finished
-[Parallel(n_jobs=5)]: Using backend LokyBackend with 5 concurrent workers.
-
-
-Fitting 4 folds for each of 1 candidates, totalling 4 fits
-
-
-[Parallel(n_jobs=5)]: Done   4 out of   4 | elapsed:  3.5min finished
-[Parallel(n_jobs=5)]: Using backend LokyBackend with 5 concurrent workers.
-
-
-Fitting 4 folds for each of 1 candidates, totalling 4 fits
-
-
-[Parallel(n_jobs=5)]: Done   4 out of   4 | elapsed:  3.1min finished
-
-
-Fitting 4 folds for each of 1 candidates, totalling 4 fits
-
-
-[Parallel(n_jobs=5)]: Using backend LokyBackend with 5 concurrent workers.
-[Parallel(n_jobs=5)]: Done   4 out of   4 | elapsed:  3.1min finished
-
-
-Fitting 4 folds for each of 1 candidates, totalling 4 fits
-
-
-[Parallel(n_jobs=5)]: Using backend LokyBackend with 5 concurrent workers.
-[Parallel(n_jobs=5)]: Done   4 out of   4 | elapsed:  2.9min finished
-
-
-Fitting 4 folds for each of 1 candidates, totalling 4 fits
-
-
-[Parallel(n_jobs=5)]: Using backend LokyBackend with 5 concurrent workers.
-[Parallel(n_jobs=5)]: Done   4 out of   4 | elapsed:  3.1min finished
-
-
-Fitting 4 folds for each of 1 candidates, totalling 4 fits
-
-
-[Parallel(n_jobs=5)]: Using backend LokyBackend with 5 concurrent workers.
-[Parallel(n_jobs=5)]: Done   4 out of   4 | elapsed:  3.4min finished
-
-
-Fitting 4 folds for each of 1 candidates, totalling 4 fits
-
-
-[Parallel(n_jobs=5)]: Using backend LokyBackend with 5 concurrent workers.
-[Parallel(n_jobs=5)]: Done   4 out of   4 | elapsed:  3.4min finished
-
-
-Fitting 4 folds for each of 1 candidates, totalling 4 fits
-
-
-[Parallel(n_jobs=5)]: Using backend LokyBackend with 5 concurrent workers.
-[Parallel(n_jobs=5)]: Done   4 out of   4 | elapsed:  2.9min finished
+<div class="highlight"><pre><span></span><code>C:\Users\Ayrto\anaconda3\envs\MOE\lib\site-packages\skopt\optimizer\optimizer.py:449: UserWarning: The objective has been evaluated at this point before.
+  warnings.warn(&quot;The objective has been evaluated &quot;
+C:\Users\Ayrto\anaconda3\envs\MOE\lib\site-packages\skopt\optimizer\optimizer.py:449: UserWarning: The objective has been evaluated at this point before.
+  warnings.warn(&quot;The objective has been evaluated &quot;
+C:\Users\Ayrto\anaconda3\envs\MOE\lib\site-packages\skopt\optimizer\optimizer.py:449: UserWarning: The objective has been evaluated at this point before.
+  warnings.warn(&quot;The objective has been evaluated &quot;
+C:\Users\Ayrto\anaconda3\envs\MOE\lib\site-packages\skopt\optimizer\optimizer.py:449: UserWarning: The objective has been evaluated at this point before.
+  warnings.warn(&quot;The objective has been evaluated &quot;
+C:\Users\Ayrto\anaconda3\envs\MOE\lib\site-packages\skopt\optimizer\optimizer.py:449: UserWarning: The objective has been evaluated at this point before.
+  warnings.warn(&quot;The objective has been evaluated &quot;
+C:\Users\Ayrto\anaconda3\envs\MOE\lib\site-packages\skopt\optimizer\optimizer.py:449: UserWarning: The objective has been evaluated at this point before.
+  warnings.warn(&quot;The objective has been evaluated &quot;
 </code></pre></div>
 <div><span class="Text-label" style="display:inline-block; overflow:hidden; white-space:nowrap; text-overflow:ellipsis; min-width:0; max-width:15ex; vertical-align:middle; text-align:right"></span>
 <progress style="width:60ex" max="15" value="15" class="Progress-main"/></progress>
 <span class="Progress-label"><strong>100%</strong></span>
 <span class="Iteration-label">15/15</span>
-<span class="Time-label">[02:25<00:10, 9.69s/it]</span></div>
+<span class="Time-label">[02:25<00:09, 9.69s/it]</span></div>
 
-<div class="highlight"><pre><span></span><code>c:\users\ayrto\desktop\phd\analysis\merit-order-effect\moepy\lowess.py:145: FutureWarning: `rcond` parameter will change to the default of machine precision times ``max(M, N)`` where M and N are the input matrix dimensions.
-To use the future default and silence this warning we advise to pass `rcond=None`, to keep using the old, explicitly pass `rcond=-1`.
-  betas = np.linalg.lstsq(A, b)[0]
-
-
-Cross-validation score: 0.39
+<div class="highlight"><pre><span></span><code>Cross-validation score: 0.40
 
 Best params: 
-OrderedDict([(&#39;frac&#39;, 0.35), (&#39;threshold_value&#39;, 29)])
-Wall time: 57min 11s
+OrderedDict([(&#39;frac&#39;, 0.35), (&#39;threshold_value&#39;, 21)])
+Wall time: 1h 48min 47s
 </code></pre></div>
 <p><br></p>
 <p>We'll visualise the fitted objective surface</p>
@@ -1129,6 +1033,16 @@ Wall time: 57min 11s
         <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
       
         <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-AMS-MML_HTMLorMML-full,Safe&amp;delayStartupUntil=configured"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/config/TeX-AMS-MML_HTMLorMML-full.js"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/config/Safe.js?V=2.7.9"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/extensions/Safe.js?V=2.7.9"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/jax/output/HTML-CSS/fonts/STIX-Web/fontdata.js?V=2.7.9"></script>
       
     
   </body>

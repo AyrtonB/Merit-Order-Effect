@@ -745,7 +745,7 @@
 <h3 id="tables">Tables<a class="headerlink" href="#tables" title="Permanent link">&para;</a></h3>
 <h5 id="power-systems-overview">Power Systems Overview<a class="headerlink" href="#power-systems-overview" title="Permanent link">&para;</a></h5>
 <p>We'll first load in the DE data</p>
-<div class="highlight"><pre><span></span><code><span class="n">df_DE</span> <span class="o">=</span> <span class="n">eda</span><span class="o">.</span><span class="n">load_DE_df</span><span class="p">(</span><span class="s1">&#39;../data/energy_charts.csv&#39;</span><span class="p">,</span> <span class="s1">&#39;../data/ENTSOE_DE_price.csv&#39;</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><span class="n">df_DE</span> <span class="o">=</span> <span class="n">eda</span><span class="o">.</span><span class="n">load_DE_df</span><span class="p">(</span><span class="s1">&#39;../data/raw/energy_charts.csv&#39;</span><span class="p">,</span> <span class="s1">&#39;../data/raw/ENTSOE_DE_price.csv&#39;</span><span class="p">)</span>
 
 <span class="n">df_DE</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </code></pre></div>
@@ -917,7 +917,7 @@
 <p><br></p>
 <p>We'll do the same for GB</p>
 <div class="highlight"><pre><span></span><code><span class="c1"># Loading in</span>
-<span class="n">df_EI</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;../data/electric_insights.csv&#39;</span><span class="p">)</span>
+<span class="n">df_EI</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;../data/raw/electric_insights.csv&#39;</span><span class="p">)</span>
 
 <span class="n">df_EI</span> <span class="o">=</span> <span class="n">df_EI</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;local_datetime&#39;</span><span class="p">)</span>
 <span class="n">df_EI</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">df_EI</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">utc</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
@@ -1644,7 +1644,7 @@ Carbon (\%)            &amp;    39.70 &amp;          37.89 \\ \hline
 
 <span class="n">df_lit_results</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </code></pre></div>
-<div class="highlight"><pre><span></span><code>&lt;ipython-input-18-9abcc44159e6&gt;:237: FutureWarning: The default value of regex will change from True to False in a future version. In addition, single character regular expressions will*not* be treated as literal strings when regex=True.
+<div class="highlight"><pre><span></span><code>&lt;ipython-input-20-15bc63a4c27e&gt;:237: FutureWarning: The default value of regex will change from True to False in a future version. In addition, single character regular expressions will*not* be treated as literal strings when regex=True.
   df_lit_results[&#39;Study Year&#39;] = df_lit_results[&#39;Study&#39;].str.split(&#39;(&#39;).str[1].str.replace(&#39;)&#39;, &#39;&#39;).astype(int)
 </code></pre></div>
 <table>
@@ -1877,6 +1877,16 @@ Munksgaard and Morthorst (2008) &amp;                                          1
         <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
       
         <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-AMS-MML_HTMLorMML-full,Safe&amp;delayStartupUntil=configured"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/config/TeX-AMS-MML_HTMLorMML-full.js"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/config/Safe.js?V=2.7.9"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/extensions/Safe.js?V=2.7.9"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/jax/output/HTML-CSS/fonts/STIX-Web/fontdata.js?V=2.7.9"></script>
       
     
   </body>

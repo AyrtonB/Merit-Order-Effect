@@ -2218,6 +2218,8 @@ We'll start by creating a slightly noiser and longer sin curve than used previou
     <span class="n">df_conf_intvl</span><span class="p">[</span><span class="s1">&#39;min&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_bootstrap</span><span class="o">.</span><span class="n">quantile</span><span class="p">(</span><span class="n">conf_margin</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
     <span class="n">df_conf_intvl</span><span class="p">[</span><span class="s1">&#39;max&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_bootstrap</span><span class="o">.</span><span class="n">quantile</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">conf_margin</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 
+    <span class="n">df_conf_intvl</span> <span class="o">=</span> <span class="n">df_conf_intvl</span><span class="o">.</span><span class="n">sort_index</span><span class="p">()</span>
+
     <span class="k">return</span> <span class="n">df_conf_intvl</span>
 </code></pre></div>
 <div class="highlight"><pre><span></span><code><span class="n">df_conf_intvl</span> <span class="o">=</span> <span class="n">get_confidence_interval</span><span class="p">(</span><span class="n">df_bootstrap</span><span class="p">,</span> <span class="n">conf_pct</span><span class="o">=</span><span class="mf">0.95</span><span class="p">)</span>
@@ -3025,6 +3027,16 @@ We'll start by creating a slightly noiser and longer sin curve than used previou
         <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
       
         <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-AMS-MML_HTMLorMML-full,Safe&amp;delayStartupUntil=configured"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/config/TeX-AMS-MML_HTMLorMML-full.js"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/config/Safe.js?V=2.7.9"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/extensions/Safe.js?V=2.7.9"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/jax/output/HTML-CSS/fonts/STIX-Web/fontdata.js?V=2.7.9"></script>
       
     
   </body>
