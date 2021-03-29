@@ -49,13 +49,196 @@ df.head()
 
 
 
-| local_datetime            |   day_ahead_price |   SP |   imbalance_price |   valueSum |   temperature |   TCO2_per_h |   gCO2_per_kWh |   nuclear |   biomass |   coal | ...   |   demand |   pumped_storage |   wind_onshore |   wind_offshore |   belgian |   dutch |   french |   ireland |   northern_ireland |   irish |
-|:--------------------------|------------------:|-----:|------------------:|-----------:|--------------:|-------------:|---------------:|----------:|----------:|-------:|:------|---------:|-----------------:|---------------:|----------------:|----------:|--------:|---------:|----------:|-------------------:|--------:|
-| 2009-01-01 00:00:00+00:00 |             58.05 |    1 |             74.74 |      74.74 |          -0.6 |        21278 |            555 |     6.973 |         0 | 17.65  | ...   |   38.329 |           -0.404 |            nan |             nan |         0 |       0 |    1.977 |         0 |                  0 |  -0.161 |
-| 2009-01-01 00:30:00+00:00 |             56.33 |    2 |             74.89 |      74.89 |          -0.6 |        21442 |            558 |     6.968 |         0 | 17.77  | ...   |   38.461 |           -0.527 |            nan |             nan |         0 |       0 |    1.977 |         0 |                  0 |  -0.16  |
-| 2009-01-01 01:00:00+00:00 |             52.98 |    3 |             76.41 |      76.41 |          -0.6 |        21614 |            569 |     6.97  |         0 | 18.07  | ...   |   37.986 |           -1.018 |            nan |             nan |         0 |       0 |    1.977 |         0 |                  0 |  -0.16  |
-| 2009-01-01 01:30:00+00:00 |             50.39 |    4 |             37.73 |      37.73 |          -0.6 |        21320 |            578 |     6.969 |         0 | 18.022 | ...   |   36.864 |           -1.269 |            nan |             nan |         0 |       0 |    1.746 |         0 |                  0 |  -0.16  |
-| 2009-01-01 02:00:00+00:00 |             48.7  |    5 |             59    |      59    |          -0.6 |        21160 |            585 |     6.96  |         0 | 17.998 | ...   |   36.18  |           -1.566 |            nan |             nan |         0 |       0 |    1.73  |         0 |                  0 |  -0.16  |</div>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>day_ahead_price</th>
+      <th>SP</th>
+      <th>imbalance_price</th>
+      <th>valueSum</th>
+      <th>temperature</th>
+      <th>TCO2_per_h</th>
+      <th>gCO2_per_kWh</th>
+      <th>nuclear</th>
+      <th>biomass</th>
+      <th>coal</th>
+      <th>...</th>
+      <th>demand</th>
+      <th>pumped_storage</th>
+      <th>wind_onshore</th>
+      <th>wind_offshore</th>
+      <th>belgian</th>
+      <th>dutch</th>
+      <th>french</th>
+      <th>ireland</th>
+      <th>northern_ireland</th>
+      <th>irish</th>
+    </tr>
+    <tr>
+      <th>local_datetime</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2009-01-01 00:00:00+00:00</th>
+      <td>58.05</td>
+      <td>1</td>
+      <td>74.74</td>
+      <td>74.74</td>
+      <td>-0.6</td>
+      <td>21278.0</td>
+      <td>555.0</td>
+      <td>6.973</td>
+      <td>0.0</td>
+      <td>17.650</td>
+      <td>...</td>
+      <td>38.329</td>
+      <td>-0.404</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.977</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>-0.161</td>
+    </tr>
+    <tr>
+      <th>2009-01-01 00:30:00+00:00</th>
+      <td>56.33</td>
+      <td>2</td>
+      <td>74.89</td>
+      <td>74.89</td>
+      <td>-0.6</td>
+      <td>21442.0</td>
+      <td>558.0</td>
+      <td>6.968</td>
+      <td>0.0</td>
+      <td>17.770</td>
+      <td>...</td>
+      <td>38.461</td>
+      <td>-0.527</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.977</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>-0.160</td>
+    </tr>
+    <tr>
+      <th>2009-01-01 01:00:00+00:00</th>
+      <td>52.98</td>
+      <td>3</td>
+      <td>76.41</td>
+      <td>76.41</td>
+      <td>-0.6</td>
+      <td>21614.0</td>
+      <td>569.0</td>
+      <td>6.970</td>
+      <td>0.0</td>
+      <td>18.070</td>
+      <td>...</td>
+      <td>37.986</td>
+      <td>-1.018</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.977</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>-0.160</td>
+    </tr>
+    <tr>
+      <th>2009-01-01 01:30:00+00:00</th>
+      <td>50.39</td>
+      <td>4</td>
+      <td>37.73</td>
+      <td>37.73</td>
+      <td>-0.6</td>
+      <td>21320.0</td>
+      <td>578.0</td>
+      <td>6.969</td>
+      <td>0.0</td>
+      <td>18.022</td>
+      <td>...</td>
+      <td>36.864</td>
+      <td>-1.269</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.746</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>-0.160</td>
+    </tr>
+    <tr>
+      <th>2009-01-01 02:00:00+00:00</th>
+      <td>48.70</td>
+      <td>5</td>
+      <td>59.00</td>
+      <td>59.00</td>
+      <td>-0.6</td>
+      <td>21160.0</td>
+      <td>585.0</td>
+      <td>6.960</td>
+      <td>0.0</td>
+      <td>17.998</td>
+      <td>...</td>
+      <td>36.180</td>
+      <td>-1.566</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.730</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>-0.160</td>
+    </tr>
+  </tbody>
+</table>
+<p>5 rows × 24 columns</p>
+</div>
 
 
 
@@ -97,13 +280,153 @@ df_DE.head()
 
 
 
-| local_datetime            |   Biomass |   Brown Coal |   Gas |   Hard Coal |   Hydro Power |   Oil |   Others |   Pumped Storage |   Seasonal Storage |   Solar |   Uranium |   Wind |   net_balance |   demand |   price |
-|:--------------------------|----------:|-------------:|------:|------------:|--------------:|------:|---------:|-----------------:|-------------------:|--------:|----------:|-------:|--------------:|---------:|--------:|
-| 2010-01-03 23:00:00+00:00 |     3.637 |       16.533 | 4.726 |      10.078 |         2.331 | 0     |        0 |            0.052 |              0.068 |       0 |    16.826 |  0.635 |        -1.229 |   53.657 |     nan |
-| 2010-01-04 00:00:00+00:00 |     3.637 |       16.544 | 4.856 |       8.816 |         2.293 | 0     |        0 |            0.038 |              0.003 |       0 |    16.841 |  0.528 |        -1.593 |   51.963 |     nan |
-| 2010-01-04 01:00:00+00:00 |     3.637 |       16.368 | 5.275 |       7.954 |         2.299 | 0     |        0 |            0.032 |              0     |       0 |    16.846 |  0.616 |        -1.378 |   51.649 |     nan |
-| 2010-01-04 02:00:00+00:00 |     3.637 |       15.837 | 5.354 |       7.681 |         2.299 | 0     |        0 |            0.027 |              0     |       0 |    16.699 |  0.63  |        -1.624 |   50.54  |     nan |
-| 2010-01-04 03:00:00+00:00 |     3.637 |       15.452 | 5.918 |       7.498 |         2.301 | 0.003 |        0 |            0.02  |              0     |       0 |    16.635 |  0.713 |        -0.731 |   51.446 |     nan |</div>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Biomass</th>
+      <th>Brown Coal</th>
+      <th>Gas</th>
+      <th>Hard Coal</th>
+      <th>Hydro Power</th>
+      <th>Oil</th>
+      <th>Others</th>
+      <th>Pumped Storage</th>
+      <th>Seasonal Storage</th>
+      <th>Solar</th>
+      <th>Uranium</th>
+      <th>Wind</th>
+      <th>net_balance</th>
+      <th>demand</th>
+      <th>price</th>
+    </tr>
+    <tr>
+      <th>local_datetime</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2010-01-03 23:00:00+00:00</th>
+      <td>3.637</td>
+      <td>16.533</td>
+      <td>4.726</td>
+      <td>10.078</td>
+      <td>2.331</td>
+      <td>0.000</td>
+      <td>0.0</td>
+      <td>0.052</td>
+      <td>0.068</td>
+      <td>0.0</td>
+      <td>16.826</td>
+      <td>0.635</td>
+      <td>-1.229</td>
+      <td>53.657</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2010-01-04 00:00:00+00:00</th>
+      <td>3.637</td>
+      <td>16.544</td>
+      <td>4.856</td>
+      <td>8.816</td>
+      <td>2.293</td>
+      <td>0.000</td>
+      <td>0.0</td>
+      <td>0.038</td>
+      <td>0.003</td>
+      <td>0.0</td>
+      <td>16.841</td>
+      <td>0.528</td>
+      <td>-1.593</td>
+      <td>51.963</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2010-01-04 01:00:00+00:00</th>
+      <td>3.637</td>
+      <td>16.368</td>
+      <td>5.275</td>
+      <td>7.954</td>
+      <td>2.299</td>
+      <td>0.000</td>
+      <td>0.0</td>
+      <td>0.032</td>
+      <td>0.000</td>
+      <td>0.0</td>
+      <td>16.846</td>
+      <td>0.616</td>
+      <td>-1.378</td>
+      <td>51.649</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2010-01-04 02:00:00+00:00</th>
+      <td>3.637</td>
+      <td>15.837</td>
+      <td>5.354</td>
+      <td>7.681</td>
+      <td>2.299</td>
+      <td>0.000</td>
+      <td>0.0</td>
+      <td>0.027</td>
+      <td>0.000</td>
+      <td>0.0</td>
+      <td>16.699</td>
+      <td>0.630</td>
+      <td>-1.624</td>
+      <td>50.540</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2010-01-04 03:00:00+00:00</th>
+      <td>3.637</td>
+      <td>15.452</td>
+      <td>5.918</td>
+      <td>7.498</td>
+      <td>2.301</td>
+      <td>0.003</td>
+      <td>0.0</td>
+      <td>0.020</td>
+      <td>0.000</td>
+      <td>0.0</td>
+      <td>16.635</td>
+      <td>0.713</td>
+      <td>-0.731</td>
+      <td>51.446</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+</div>
 
 
 
@@ -141,13 +464,104 @@ df_plot.head()
 
 
 
-| local_datetime            |   Imports & Storage |   nuclear |   biomass |     gas |    coal |    hydro |     wind |   solar |
-|:--------------------------|--------------------:|----------:|----------:|--------:|--------:|---------:|---------:|--------:|
-| 2009-01-01 00:00:00+00:00 |           -0.039018 |   5.76854 |         0 | 16.2951 | 20.1324 | 0.35589  | 0.390015 |       0 |
-| 2009-01-08 00:00:00+00:00 |           -0.921768 |   5.5829  |         0 | 16.3811 | 21.6997 | 0.551753 | 1.15155  |       0 |
-| 2009-01-15 00:00:00+00:00 |           -0.024241 |   5.55999 |         0 | 14.84   | 20.4463 | 0.704382 | 1.483    |       0 |
-| 2009-01-22 00:00:00+00:00 |            0.18283  |   6.22841 |         0 | 14.4678 | 20.5907 | 0.562277 | 0.938827 |       0 |
-| 2009-01-29 00:00:00+00:00 |            0.120204 |   6.79959 |         0 | 13.9657 | 21.3497 | 0.519632 | 1.36261  |       0 |</div>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Imports &amp; Storage</th>
+      <th>nuclear</th>
+      <th>biomass</th>
+      <th>gas</th>
+      <th>coal</th>
+      <th>hydro</th>
+      <th>wind</th>
+      <th>solar</th>
+    </tr>
+    <tr>
+      <th>local_datetime</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2009-01-01 00:00:00+00:00</th>
+      <td>-0.039018</td>
+      <td>5.768536</td>
+      <td>0.0</td>
+      <td>16.295098</td>
+      <td>20.132420</td>
+      <td>0.355890</td>
+      <td>0.390015</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>2009-01-08 00:00:00+00:00</th>
+      <td>-0.921768</td>
+      <td>5.582896</td>
+      <td>0.0</td>
+      <td>16.381083</td>
+      <td>21.699726</td>
+      <td>0.551753</td>
+      <td>1.151545</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>2009-01-15 00:00:00+00:00</th>
+      <td>-0.024241</td>
+      <td>5.559986</td>
+      <td>0.0</td>
+      <td>14.839983</td>
+      <td>20.446309</td>
+      <td>0.704382</td>
+      <td>1.483002</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>2009-01-22 00:00:00+00:00</th>
+      <td>0.182830</td>
+      <td>6.228411</td>
+      <td>0.0</td>
+      <td>14.467771</td>
+      <td>20.590661</td>
+      <td>0.562277</td>
+      <td>0.938827</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>2009-01-29 00:00:00+00:00</th>
+      <td>0.120204</td>
+      <td>6.799589</td>
+      <td>0.0</td>
+      <td>13.965650</td>
+      <td>21.349710</td>
+      <td>0.519632</td>
+      <td>1.362611</td>
+      <td>0.0</td>
+    </tr>
+  </tbody>
+</table>
+</div>
 
 
 

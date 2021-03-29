@@ -39,13 +39,153 @@ df_DE.head()
 
 
 
-| local_datetime            |   Biomass |   Brown Coal |   Gas |   Hard Coal |   Hydro Power |   Oil |   Others |   Pumped Storage |   Seasonal Storage |   Solar |   Uranium |   Wind |   net_balance |   demand |   price |
-|:--------------------------|----------:|-------------:|------:|------------:|--------------:|------:|---------:|-----------------:|-------------------:|--------:|----------:|-------:|--------------:|---------:|--------:|
-| 2010-01-03 23:00:00+00:00 |     3.637 |       16.533 | 4.726 |      10.078 |         2.331 | 0     |        0 |            0.052 |              0.068 |       0 |    16.826 |  0.635 |        -1.229 |   53.657 |     nan |
-| 2010-01-04 00:00:00+00:00 |     3.637 |       16.544 | 4.856 |       8.816 |         2.293 | 0     |        0 |            0.038 |              0.003 |       0 |    16.841 |  0.528 |        -1.593 |   51.963 |     nan |
-| 2010-01-04 01:00:00+00:00 |     3.637 |       16.368 | 5.275 |       7.954 |         2.299 | 0     |        0 |            0.032 |              0     |       0 |    16.846 |  0.616 |        -1.378 |   51.649 |     nan |
-| 2010-01-04 02:00:00+00:00 |     3.637 |       15.837 | 5.354 |       7.681 |         2.299 | 0     |        0 |            0.027 |              0     |       0 |    16.699 |  0.63  |        -1.624 |   50.54  |     nan |
-| 2010-01-04 03:00:00+00:00 |     3.637 |       15.452 | 5.918 |       7.498 |         2.301 | 0.003 |        0 |            0.02  |              0     |       0 |    16.635 |  0.713 |        -0.731 |   51.446 |     nan |</div>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Biomass</th>
+      <th>Brown Coal</th>
+      <th>Gas</th>
+      <th>Hard Coal</th>
+      <th>Hydro Power</th>
+      <th>Oil</th>
+      <th>Others</th>
+      <th>Pumped Storage</th>
+      <th>Seasonal Storage</th>
+      <th>Solar</th>
+      <th>Uranium</th>
+      <th>Wind</th>
+      <th>net_balance</th>
+      <th>demand</th>
+      <th>price</th>
+    </tr>
+    <tr>
+      <th>local_datetime</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2010-01-03 23:00:00+00:00</th>
+      <td>3.637</td>
+      <td>16.533</td>
+      <td>4.726</td>
+      <td>10.078</td>
+      <td>2.331</td>
+      <td>0.000</td>
+      <td>0.0</td>
+      <td>0.052</td>
+      <td>0.068</td>
+      <td>0.0</td>
+      <td>16.826</td>
+      <td>0.635</td>
+      <td>-1.229</td>
+      <td>53.657</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2010-01-04 00:00:00+00:00</th>
+      <td>3.637</td>
+      <td>16.544</td>
+      <td>4.856</td>
+      <td>8.816</td>
+      <td>2.293</td>
+      <td>0.000</td>
+      <td>0.0</td>
+      <td>0.038</td>
+      <td>0.003</td>
+      <td>0.0</td>
+      <td>16.841</td>
+      <td>0.528</td>
+      <td>-1.593</td>
+      <td>51.963</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2010-01-04 01:00:00+00:00</th>
+      <td>3.637</td>
+      <td>16.368</td>
+      <td>5.275</td>
+      <td>7.954</td>
+      <td>2.299</td>
+      <td>0.000</td>
+      <td>0.0</td>
+      <td>0.032</td>
+      <td>0.000</td>
+      <td>0.0</td>
+      <td>16.846</td>
+      <td>0.616</td>
+      <td>-1.378</td>
+      <td>51.649</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2010-01-04 02:00:00+00:00</th>
+      <td>3.637</td>
+      <td>15.837</td>
+      <td>5.354</td>
+      <td>7.681</td>
+      <td>2.299</td>
+      <td>0.000</td>
+      <td>0.0</td>
+      <td>0.027</td>
+      <td>0.000</td>
+      <td>0.0</td>
+      <td>16.699</td>
+      <td>0.630</td>
+      <td>-1.624</td>
+      <td>50.540</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2010-01-04 03:00:00+00:00</th>
+      <td>3.637</td>
+      <td>15.452</td>
+      <td>5.918</td>
+      <td>7.498</td>
+      <td>2.301</td>
+      <td>0.003</td>
+      <td>0.0</td>
+      <td>0.020</td>
+      <td>0.000</td>
+      <td>0.0</td>
+      <td>16.635</td>
+      <td>0.713</td>
+      <td>-0.731</td>
+      <td>51.446</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+</div>
 
 
 
@@ -197,10 +337,48 @@ df_system_overview.head()
 
 
 
-| Unnamed: 0    |   Average Solar/Wind Generation (%) |   Average Demand (GW) |   Average Price ([EUR,GBP]/MWh) |   Average Carbon Intensity (gCO2/kWh) |
-|:--------------|------------------------------------:|----------------------:|--------------------------------:|--------------------------------------:|
-| Germany       |                               35.93 |                 55.96 |                           30.47 |                                153.8  |
-| Great Britain |                               29.83 |                 30.61 |                           33.77 |                                101.17 |</div>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Average Solar/Wind Generation (%)</th>
+      <th>Average Demand (GW)</th>
+      <th>Average Price ([EUR,GBP]/MWh)</th>
+      <th>Average Carbon Intensity  (gCO2/kWh)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Germany</th>
+      <td>35.93</td>
+      <td>55.96</td>
+      <td>30.47</td>
+      <td>153.80</td>
+    </tr>
+    <tr>
+      <th>Great Britain</th>
+      <td>29.83</td>
+      <td>30.61</td>
+      <td>33.77</td>
+      <td>101.17</td>
+    </tr>
+  </tbody>
+</table>
+</div>
 
 
 
@@ -281,9 +459,45 @@ df_GB_non0_co2_intensity
 
 
 
-| Unnamed: 0   |   Biomass |   Coal |   Gas |   Dutch |   French |   Ireland |
-|:-------------|----------:|-------:|------:|--------:|---------:|----------:|
-| gCO2/kWh     |       121 |    921 |   377 |     474 |       53 |       458 |</div>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Biomass</th>
+      <th>Coal</th>
+      <th>Gas</th>
+      <th>Dutch</th>
+      <th>French</th>
+      <th>Ireland</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>gCO2/kWh</th>
+      <td>121</td>
+      <td>921</td>
+      <td>377</td>
+      <td>474</td>
+      <td>53</td>
+      <td>458</td>
+    </tr>
+  </tbody>
+</table>
+</div>
 
 
 
@@ -355,9 +569,43 @@ df_DE_non0_co2_intensity
 
 
 
-| Unnamed: 0   |   Biomass |   Brown Coal |   Hard Coal |   Gas |   Oil |
-|:-------------|----------:|-------------:|------------:|------:|------:|
-| gCO2/kWh     |       390 |          360 |         340 |   230 |   280 |</div>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Biomass</th>
+      <th>Brown Coal</th>
+      <th>Hard Coal</th>
+      <th>Gas</th>
+      <th>Oil</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>gCO2/kWh</th>
+      <td>390</td>
+      <td>360</td>
+      <td>340</td>
+      <td>230</td>
+      <td>280</td>
+    </tr>
+  </tbody>
+</table>
+</div>
 
 
 
@@ -435,10 +683,42 @@ df_model_accuracy.head()
 
 
 
-| Unnamed: 0    |   Dispatchable Load |   Total Load |
-|:--------------|--------------------:|-------------:|
-| Germany       |                5.85 |        18.28 |
-| Great Britain |                6.56 |         8.42 |</div>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Dispatchable Load</th>
+      <th>Total Load</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Germany</th>
+      <td>5.85</td>
+      <td>18.28</td>
+    </tr>
+    <tr>
+      <th>Great Britain</th>
+      <td>6.56</td>
+      <td>8.42</td>
+    </tr>
+  </tbody>
+</table>
+</div>
 
 
 
@@ -501,13 +781,76 @@ df_GB_price_results_ts.head()
 
 
 
-| local_datetime            |   prediction |   counterfactual |   observed |      moe |
-|:--------------------------|-------------:|-----------------:|-----------:|---------:|
-| 2009-01-01 00:00:00+00:00 |      37.2034 |          37.3134 |      58.05 | 0.109938 |
-| 2009-01-01 00:30:00+00:00 |      37.3134 |          37.5351 |      56.33 | 0.221756 |
-| 2009-01-01 01:00:00+00:00 |      36.7685 |          36.9851 |      52.98 | 0.216574 |
-| 2009-01-01 01:30:00+00:00 |      35.5952 |          35.8076 |      50.39 | 0.212469 |
-| 2009-01-01 02:00:00+00:00 |      34.8494 |          35.0631 |      48.7  | 0.213697 |</div>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>prediction</th>
+      <th>counterfactual</th>
+      <th>observed</th>
+      <th>moe</th>
+    </tr>
+    <tr>
+      <th>local_datetime</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2009-01-01 00:00:00+00:00</th>
+      <td>37.203441</td>
+      <td>37.313379</td>
+      <td>58.05</td>
+      <td>0.109938</td>
+    </tr>
+    <tr>
+      <th>2009-01-01 00:30:00+00:00</th>
+      <td>37.313379</td>
+      <td>37.535135</td>
+      <td>56.33</td>
+      <td>0.221756</td>
+    </tr>
+    <tr>
+      <th>2009-01-01 01:00:00+00:00</th>
+      <td>36.768513</td>
+      <td>36.985087</td>
+      <td>52.98</td>
+      <td>0.216574</td>
+    </tr>
+    <tr>
+      <th>2009-01-01 01:30:00+00:00</th>
+      <td>35.595162</td>
+      <td>35.807631</td>
+      <td>50.39</td>
+      <td>0.212469</td>
+    </tr>
+    <tr>
+      <th>2009-01-01 02:00:00+00:00</th>
+      <td>34.849422</td>
+      <td>35.063119</td>
+      <td>48.70</td>
+      <td>0.213697</td>
+    </tr>
+  </tbody>
+</table>
+</div>
 
 
 
@@ -541,12 +884,52 @@ df_MOE_results.head()
 
 
 
-| Unnamed: 0            |   Germany |   Great Britain |
-|:----------------------|----------:|----------------:|
-| Price ([EUR,GBP]/MWh) |     22.17 |           13.89 |
-| Price (%)             |     43.43 |           29.66 |
-| Carbon (Tonnes/h)     |   5563.22 |         1657.88 |
-| Carbon (%)            |     39.7  |           37.89 |</div>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Germany</th>
+      <th>Great Britain</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Price ([EUR,GBP]/MWh)</th>
+      <td>22.17</td>
+      <td>13.89</td>
+    </tr>
+    <tr>
+      <th>Price (%)</th>
+      <td>43.43</td>
+      <td>29.66</td>
+    </tr>
+    <tr>
+      <th>Carbon (Tonnes/h)</th>
+      <td>5563.22</td>
+      <td>1657.88</td>
+    </tr>
+    <tr>
+      <th>Carbon (%)</th>
+      <td>39.70</td>
+      <td>37.89</td>
+    </tr>
+  </tbody>
+</table>
+</div>
 
 
 
@@ -843,13 +1226,75 @@ df_lit_results.head()
 
 
 
-|   Unnamed: 0 | Study                  | MOE                      | Period      | Region   | Method   |
-|-------------:|:-----------------------|:-------------------------|:------------|:---------|:---------|
-|            0 | Sensfuss et al. (2008) | 7.83 €/MWh             | 2006        | Germany  | ESS      |
-|            1 | de Miera et al. (2008) | 8.6-25.1% price decrease | 2005-2007   | Spain    | ESS      |
-|            2 | Weigt (2009)           | 10 €/MWh               | 2006-2008   | Germany  | ESS      |
-|            3 | Ciarreta et al. (2014) | 25-45 €/MWh            | 2008–2012 | Spain    | ESS      |
-|            4 | Bublitz et al. (2017)  | 5.40 €/MWh             | 2011-2015   | Germany  | ESS      |</div>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Study</th>
+      <th>MOE</th>
+      <th>Period</th>
+      <th>Region</th>
+      <th>Method</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Sensfuss et al. (2008)</td>
+      <td>7.83 €/MWh</td>
+      <td>2006</td>
+      <td>Germany</td>
+      <td>ESS</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>de Miera et al. (2008)</td>
+      <td>8.6-25.1% price decrease</td>
+      <td>2005-2007</td>
+      <td>Spain</td>
+      <td>ESS</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Weigt (2009)</td>
+      <td>10 €/MWh</td>
+      <td>2006-2008</td>
+      <td>Germany</td>
+      <td>ESS</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Ciarreta et al. (2014)</td>
+      <td>25-45 €/MWh</td>
+      <td>2008–2012</td>
+      <td>Spain</td>
+      <td>ESS</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Bublitz et al. (2017)</td>
+      <td>5.40 €/MWh</td>
+      <td>2011-2015</td>
+      <td>Germany</td>
+      <td>ESS</td>
+    </tr>
+  </tbody>
+</table>
+</div>
 
 
 

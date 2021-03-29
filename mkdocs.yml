@@ -48,7 +48,7 @@ nav:
   - User Guide:
     - Quantile Predictions: ug-01-quantile.md
     - Confidence Intervals: ug-02-confidence.md
-    - Power Curve Cleaning: ug-03-power-curve.md
+    - Power Curve Fitting: ug-03-power-curve.md
     - Marginal Cost Curve: ug-04-gb-mcc.md
   - Development:
     - Data Retrieval: dev-01-retrieval.md

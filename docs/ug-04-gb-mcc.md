@@ -55,13 +55,196 @@ df.head()
 
 
 
-| local_datetime            |   day_ahead_price |   SP |   imbalance_price |   valueSum |   temperature |   TCO2_per_h |   gCO2_per_kWh |   nuclear |   biomass |   coal | ...   |   demand |   pumped_storage |   wind_onshore |   wind_offshore |   belgian |   dutch |   french |   ireland |   northern_ireland |   irish |
-|:--------------------------|------------------:|-----:|------------------:|-----------:|--------------:|-------------:|---------------:|----------:|----------:|-------:|:------|---------:|-----------------:|---------------:|----------------:|----------:|--------:|---------:|----------:|-------------------:|--------:|
-| 2021-02-01 00:00:00+00:00 |             51.99 |    1 |             68.95 |      68.95 |           2.9 |      4797.76 |        175.8   |     5.564 |     1.945 |  0.465 | ...   |  27.291  |                0 |        3.02828 |         3.51436 |     0.902 |       0 |    1.806 |         0 |              0.018 |  -0.05  |
-| 2021-02-01 00:30:00+00:00 |             54.19 |    2 |             69    |      69    |           2.9 |      5149.7  |        186.031 |     5.559 |     1.963 |  0.563 | ...   |  27.682  |                0 |        2.90388 |         3.44746 |     0.902 |       0 |    1.806 |         0 |              0.016 |   0.016 |
-| 2021-02-01 01:00:00+00:00 |             55.07 |    3 |             75    |      75    |           2.9 |      5177.97 |        189.309 |     5.565 |     2.077 |  0.68  | ...   |  27.352  |                0 |        2.76413 |         3.36153 |     0.952 |       0 |    1.906 |         0 |              0.018 |   0.018 |
-| 2021-02-01 01:30:00+00:00 |             56.3  |    4 |             72    |      72    |           2.9 |      5131.08 |        190.892 |     5.563 |     2.122 |  0.716 | ...   |  26.8796 |                0 |        2.62404 |         3.19386 |     0.952 |       0 |    1.906 |         0 |              0.016 |   0.016 |
-| 2021-02-01 02:00:00+00:00 |             56.71 |    5 |             75    |      75    |           2.9 |      5105.37 |        193.368 |     5.561 |     2.134 |  0.718 | ...   |  26.4023 |                0 |        2.41751 |         2.93459 |     0.926 |       0 |    1.906 |         0 |              0.018 |   0.018 |</div>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>day_ahead_price</th>
+      <th>SP</th>
+      <th>imbalance_price</th>
+      <th>valueSum</th>
+      <th>temperature</th>
+      <th>TCO2_per_h</th>
+      <th>gCO2_per_kWh</th>
+      <th>nuclear</th>
+      <th>biomass</th>
+      <th>coal</th>
+      <th>...</th>
+      <th>demand</th>
+      <th>pumped_storage</th>
+      <th>wind_onshore</th>
+      <th>wind_offshore</th>
+      <th>belgian</th>
+      <th>dutch</th>
+      <th>french</th>
+      <th>ireland</th>
+      <th>northern_ireland</th>
+      <th>irish</th>
+    </tr>
+    <tr>
+      <th>local_datetime</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2021-02-01 00:00:00+00:00</th>
+      <td>51.99</td>
+      <td>1</td>
+      <td>68.95</td>
+      <td>68.95</td>
+      <td>2.9</td>
+      <td>4797.759</td>
+      <td>175.799988</td>
+      <td>5.564</td>
+      <td>1.945</td>
+      <td>0.465</td>
+      <td>...</td>
+      <td>27.291009</td>
+      <td>0.0</td>
+      <td>3.028282</td>
+      <td>3.514363</td>
+      <td>0.902</td>
+      <td>0.0</td>
+      <td>1.806</td>
+      <td>0.0</td>
+      <td>0.018</td>
+      <td>-0.050</td>
+    </tr>
+    <tr>
+      <th>2021-02-01 00:30:00+00:00</th>
+      <td>54.19</td>
+      <td>2</td>
+      <td>69.00</td>
+      <td>69.00</td>
+      <td>2.9</td>
+      <td>5149.705</td>
+      <td>186.030814</td>
+      <td>5.559</td>
+      <td>1.963</td>
+      <td>0.563</td>
+      <td>...</td>
+      <td>27.682000</td>
+      <td>0.0</td>
+      <td>2.903885</td>
+      <td>3.447460</td>
+      <td>0.902</td>
+      <td>0.0</td>
+      <td>1.806</td>
+      <td>0.0</td>
+      <td>0.016</td>
+      <td>0.016</td>
+    </tr>
+    <tr>
+      <th>2021-02-01 01:00:00+00:00</th>
+      <td>55.07</td>
+      <td>3</td>
+      <td>75.00</td>
+      <td>75.00</td>
+      <td>2.9</td>
+      <td>5177.972</td>
+      <td>189.308716</td>
+      <td>5.565</td>
+      <td>2.077</td>
+      <td>0.680</td>
+      <td>...</td>
+      <td>27.352000</td>
+      <td>0.0</td>
+      <td>2.764132</td>
+      <td>3.361527</td>
+      <td>0.952</td>
+      <td>0.0</td>
+      <td>1.906</td>
+      <td>0.0</td>
+      <td>0.018</td>
+      <td>0.018</td>
+    </tr>
+    <tr>
+      <th>2021-02-01 01:30:00+00:00</th>
+      <td>56.30</td>
+      <td>4</td>
+      <td>72.00</td>
+      <td>72.00</td>
+      <td>2.9</td>
+      <td>5131.084</td>
+      <td>190.891574</td>
+      <td>5.563</td>
+      <td>2.122</td>
+      <td>0.716</td>
+      <td>...</td>
+      <td>26.879573</td>
+      <td>0.0</td>
+      <td>2.624037</td>
+      <td>3.193860</td>
+      <td>0.952</td>
+      <td>0.0</td>
+      <td>1.906</td>
+      <td>0.0</td>
+      <td>0.016</td>
+      <td>0.016</td>
+    </tr>
+    <tr>
+      <th>2021-02-01 02:00:00+00:00</th>
+      <td>56.71</td>
+      <td>5</td>
+      <td>75.00</td>
+      <td>75.00</td>
+      <td>2.9</td>
+      <td>5105.370</td>
+      <td>193.368381</td>
+      <td>5.561</td>
+      <td>2.134</td>
+      <td>0.718</td>
+      <td>...</td>
+      <td>26.402300</td>
+      <td>0.0</td>
+      <td>2.417506</td>
+      <td>2.934586</td>
+      <td>0.926</td>
+      <td>0.0</td>
+      <td>1.906</td>
+      <td>0.0</td>
+      <td>0.018</td>
+      <td>0.018</td>
+    </tr>
+  </tbody>
+</table>
+<p>5 rows × 24 columns</p>
+</div>
 
 
 
@@ -94,7 +277,7 @@ ax.set_ylabel('Price (£/MWh)')
 
 
 
-![png](./img/nbs/output_5_1.png)
+![png](./img/nbs/ug-04-gb-mcc_cell_6_output_1.png)
 
 
 <br>
@@ -123,7 +306,7 @@ pd.Series(y_pred, index=x_pred).plot()
 
 
 
-![png](./img/nbs/output_7_1.png)
+![png](./img/nbs/ug-04-gb-mcc_cell_8_output_1.png)
 
 
 <br>
@@ -144,5 +327,5 @@ fig.savefig('../img/latest_gb_mcc.png', dpi=250)
 ```
 
 
-![png](./img/nbs/output_9_0.png)
+![png](./img/nbs/ug-04-gb-mcc_cell_10_output_0.png)
 

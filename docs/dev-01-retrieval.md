@@ -106,13 +106,69 @@ df.head()
 
 
 
-|   Unnamed: 0 | start                | end                  | value                                             | valueSum                                          |
-|-------------:|:---------------------|:---------------------|:--------------------------------------------------|:--------------------------------------------------|
-|            0 | 2019-01-01T00:00:00Z | 2019-01-01T00:30:00Z | {'nuclear': 6.924, 'biomass': 1.116, 'coal': 0... | {'nuclear': 6.924, 'biomass': 1.116, 'coal': 0... |
-|            1 | 2019-01-01T00:30:00Z | 2019-01-01T01:00:00Z | {'nuclear': 6.838, 'biomass': 1.103, 'coal': 0... | {'nuclear': 6.838, 'biomass': 1.103, 'coal': 0... |
-|            2 | 2019-01-01T01:00:00Z | 2019-01-01T01:30:00Z | {'nuclear': 6.834, 'biomass': 1.09, 'coal': 0,... | {'nuclear': 6.834, 'biomass': 1.09, 'coal': 0,... |
-|            3 | 2019-01-01T01:30:00Z | 2019-01-01T02:00:00Z | {'nuclear': 6.83, 'biomass': 1.085, 'coal': 0,... | {'nuclear': 6.83, 'biomass': 1.085, 'coal': 0,... |
-|            4 | 2019-01-01T02:00:00Z | 2019-01-01T02:30:00Z | {'nuclear': 6.827, 'biomass': 1.081, 'coal': 0... | {'nuclear': 6.827, 'biomass': 1.081, 'coal': 0... |</div>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>start</th>
+      <th>end</th>
+      <th>value</th>
+      <th>valueSum</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>2019-01-01T00:00:00Z</td>
+      <td>2019-01-01T00:30:00Z</td>
+      <td>{'nuclear': 6.924, 'biomass': 1.116, 'coal': 0...</td>
+      <td>{'nuclear': 6.924, 'biomass': 1.116, 'coal': 0...</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2019-01-01T00:30:00Z</td>
+      <td>2019-01-01T01:00:00Z</td>
+      <td>{'nuclear': 6.838, 'biomass': 1.103, 'coal': 0...</td>
+      <td>{'nuclear': 6.838, 'biomass': 1.103, 'coal': 0...</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2019-01-01T01:00:00Z</td>
+      <td>2019-01-01T01:30:00Z</td>
+      <td>{'nuclear': 6.834, 'biomass': 1.09, 'coal': 0,...</td>
+      <td>{'nuclear': 6.834, 'biomass': 1.09, 'coal': 0,...</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>2019-01-01T01:30:00Z</td>
+      <td>2019-01-01T02:00:00Z</td>
+      <td>{'nuclear': 6.83, 'biomass': 1.085, 'coal': 0,...</td>
+      <td>{'nuclear': 6.83, 'biomass': 1.085, 'coal': 0,...</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>2019-01-01T02:00:00Z</td>
+      <td>2019-01-01T02:30:00Z</td>
+      <td>{'nuclear': 6.827, 'biomass': 1.081, 'coal': 0...</td>
+      <td>{'nuclear': 6.827, 'biomass': 1.081, 'coal': 0...</td>
+    </tr>
+  </tbody>
+</table>
+</div>
 
 
 
@@ -146,11 +202,103 @@ df.head(3)
 
 
 
-|   Unnamed: 0 | start                | end                  | valueSum                                          |   nuclear |   biomass |   coal |   gas |   hydro |   wind | windTotal                                         |   solar |   demand |   pumpedStorage | imports                                           | exports                                           | balance                                           |
-|-------------:|:---------------------|:---------------------|:--------------------------------------------------|----------:|----------:|-------:|------:|--------:|-------:|:--------------------------------------------------|--------:|---------:|----------------:|:--------------------------------------------------|:--------------------------------------------------|:--------------------------------------------------|
-|            0 | 2019-01-01T00:00:00Z | 2019-01-01T00:30:00Z | {'nuclear': 6.924, 'biomass': 1.116, 'coal': 0... |     6.924 |     1.116 |      0 | 5.853 |   0.405 | 11.304 | {'windOnshore': 8.054581, 'windOffshore': 3.14... |       0 |   27.336 |           0     | {'belgian': 0, 'dutch': 0.182, 'french': 1.552... | {'french': 0, 'dutch': 0, 'irish': 0, 'pumpedS... | {'french': 1.552, 'dutch': 0.182, 'irish': -0.... |
-|            1 | 2019-01-01T00:30:00Z | 2019-01-01T01:00:00Z | {'nuclear': 6.838, 'biomass': 1.103, 'coal': 0... |     6.838 |     1.103 |      0 | 6.292 |   0.388 | 11.327 | {'windOnshore': 7.860487, 'windOffshore': 3.25... |       0 |   27.722 |           0.024 | {'belgian': 0, 'dutch': 0.196, 'french': 1.554... | {'french': 0, 'dutch': 0, 'irish': 0, 'pumpedS... | {'french': 1.554, 'dutch': 0.196, 'irish': -0.... |
-|            2 | 2019-01-01T01:00:00Z | 2019-01-01T01:30:00Z | {'nuclear': 6.834, 'biomass': 1.09, 'coal': 0,... |     6.834 |     1.09  |      0 | 5.719 |   0.372 | 11.335 | {'windOnshore': 7.879198000000001, 'windOffsho... |       0 |   27.442 |           0     | {'belgian': 0, 'dutch': 0.588, 'french': 1.504... | {'french': 0, 'dutch': 0, 'irish': 0, 'pumpedS... | {'french': 1.504, 'dutch': 0.588, 'irish': -0.... |</div>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>start</th>
+      <th>end</th>
+      <th>valueSum</th>
+      <th>nuclear</th>
+      <th>biomass</th>
+      <th>coal</th>
+      <th>gas</th>
+      <th>hydro</th>
+      <th>wind</th>
+      <th>windTotal</th>
+      <th>solar</th>
+      <th>demand</th>
+      <th>pumpedStorage</th>
+      <th>imports</th>
+      <th>exports</th>
+      <th>balance</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>2019-01-01T00:00:00Z</td>
+      <td>2019-01-01T00:30:00Z</td>
+      <td>{'nuclear': 6.924, 'biomass': 1.116, 'coal': 0...</td>
+      <td>6.924</td>
+      <td>1.116</td>
+      <td>0</td>
+      <td>5.853</td>
+      <td>0.405</td>
+      <td>11.304</td>
+      <td>{'windOnshore': 8.054581, 'windOffshore': 3.14...</td>
+      <td>0</td>
+      <td>27.336</td>
+      <td>0</td>
+      <td>{'belgian': 0, 'dutch': 0.182, 'french': 1.552...</td>
+      <td>{'french': 0, 'dutch': 0, 'irish': 0, 'pumpedS...</td>
+      <td>{'french': 1.552, 'dutch': 0.182, 'irish': -0....</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2019-01-01T00:30:00Z</td>
+      <td>2019-01-01T01:00:00Z</td>
+      <td>{'nuclear': 6.838, 'biomass': 1.103, 'coal': 0...</td>
+      <td>6.838</td>
+      <td>1.103</td>
+      <td>0</td>
+      <td>6.292</td>
+      <td>0.388</td>
+      <td>11.327</td>
+      <td>{'windOnshore': 7.860487, 'windOffshore': 3.25...</td>
+      <td>0</td>
+      <td>27.722</td>
+      <td>0.024</td>
+      <td>{'belgian': 0, 'dutch': 0.196, 'french': 1.554...</td>
+      <td>{'french': 0, 'dutch': 0, 'irish': 0, 'pumpedS...</td>
+      <td>{'french': 1.554, 'dutch': 0.196, 'irish': -0....</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2019-01-01T01:00:00Z</td>
+      <td>2019-01-01T01:30:00Z</td>
+      <td>{'nuclear': 6.834, 'biomass': 1.09, 'coal': 0,...</td>
+      <td>6.834</td>
+      <td>1.090</td>
+      <td>0</td>
+      <td>5.719</td>
+      <td>0.372</td>
+      <td>11.335</td>
+      <td>{'windOnshore': 7.879198000000001, 'windOffsho...</td>
+      <td>0</td>
+      <td>27.442</td>
+      <td>0</td>
+      <td>{'belgian': 0, 'dutch': 0.588, 'french': 1.504...</td>
+      <td>{'french': 0, 'dutch': 0, 'irish': 0, 'pumpedS...</td>
+      <td>{'french': 1.504, 'dutch': 0.588, 'irish': -0....</td>
+    </tr>
+  </tbody>
+</table>
+</div>
 
 
 
@@ -187,13 +335,159 @@ df.head()
 
 
 
-|   Unnamed: 0 | start                | end                  |   nuclear |   biomass |   coal |   gas |   hydro |   wind |   solar |   demand |   pumpedStorage |   windOnshore |   windOffshore |   belgian |   dutch |   french |   ireland |   northernIreland |   irish |
-|-------------:|:---------------------|:---------------------|----------:|----------:|-------:|------:|--------:|-------:|--------:|---------:|----------------:|--------------:|---------------:|----------:|--------:|---------:|----------:|------------------:|--------:|
-|            0 | 2019-01-01T00:00:00Z | 2019-01-01T00:30:00Z |     6.924 |     1.116 |      0 | 5.853 |   0.405 | 11.304 |       0 |   27.336 |           0     |       8.05458 |        3.14171 |         0 |   0.182 |    1.552 |         0 |                 0 |  -0.702 |
-|            1 | 2019-01-01T00:30:00Z | 2019-01-01T01:00:00Z |     6.838 |     1.103 |      0 | 6.292 |   0.388 | 11.327 |       0 |   27.722 |           0.024 |       7.86049 |        3.25389 |         0 |   0.196 |    1.554 |         0 |                 0 |  -0.696 |
-|            2 | 2019-01-01T01:00:00Z | 2019-01-01T01:30:00Z |     6.834 |     1.09  |      0 | 5.719 |   0.372 | 11.335 |       0 |   27.442 |           0     |       7.8792  |        3.34085 |         0 |   0.588 |    1.504 |         0 |                 0 |  -0.722 |
-|            3 | 2019-01-01T01:30:00Z | 2019-01-01T02:00:00Z |     6.83  |     1.085 |      0 | 5.02  |   0.368 | 11.063 |       0 |   26.47  |           0     |       7.70887 |        3.2137  |         0 |   0.6   |    1.504 |         0 |                 0 |  -0.77  |
-|            4 | 2019-01-01T02:00:00Z | 2019-01-01T02:30:00Z |     6.827 |     1.081 |      0 | 4.964 |   0.355 | 10.786 |       0 |   26.195 |           0     |       7.47943 |        3.12271 |         0 |   0.678 |    1.504 |         0 |                 0 |  -0.91  |</div>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>start</th>
+      <th>end</th>
+      <th>nuclear</th>
+      <th>biomass</th>
+      <th>coal</th>
+      <th>gas</th>
+      <th>hydro</th>
+      <th>wind</th>
+      <th>solar</th>
+      <th>demand</th>
+      <th>pumpedStorage</th>
+      <th>windOnshore</th>
+      <th>windOffshore</th>
+      <th>belgian</th>
+      <th>dutch</th>
+      <th>french</th>
+      <th>ireland</th>
+      <th>northernIreland</th>
+      <th>irish</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>2019-01-01T00:00:00Z</td>
+      <td>2019-01-01T00:30:00Z</td>
+      <td>6.924</td>
+      <td>1.116</td>
+      <td>0</td>
+      <td>5.853</td>
+      <td>0.405</td>
+      <td>11.304</td>
+      <td>0</td>
+      <td>27.336</td>
+      <td>0.000</td>
+      <td>8.054581</td>
+      <td>3.141711</td>
+      <td>0.0</td>
+      <td>0.182</td>
+      <td>1.552</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>-0.702</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2019-01-01T00:30:00Z</td>
+      <td>2019-01-01T01:00:00Z</td>
+      <td>6.838</td>
+      <td>1.103</td>
+      <td>0</td>
+      <td>6.292</td>
+      <td>0.388</td>
+      <td>11.327</td>
+      <td>0</td>
+      <td>27.722</td>
+      <td>0.024</td>
+      <td>7.860487</td>
+      <td>3.253887</td>
+      <td>0.0</td>
+      <td>0.196</td>
+      <td>1.554</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>-0.696</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2019-01-01T01:00:00Z</td>
+      <td>2019-01-01T01:30:00Z</td>
+      <td>6.834</td>
+      <td>1.090</td>
+      <td>0</td>
+      <td>5.719</td>
+      <td>0.372</td>
+      <td>11.335</td>
+      <td>0</td>
+      <td>27.442</td>
+      <td>0.000</td>
+      <td>7.879198</td>
+      <td>3.340851</td>
+      <td>0.0</td>
+      <td>0.588</td>
+      <td>1.504</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>-0.722</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>2019-01-01T01:30:00Z</td>
+      <td>2019-01-01T02:00:00Z</td>
+      <td>6.830</td>
+      <td>1.085</td>
+      <td>0</td>
+      <td>5.020</td>
+      <td>0.368</td>
+      <td>11.063</td>
+      <td>0</td>
+      <td>26.470</td>
+      <td>0.000</td>
+      <td>7.708874</td>
+      <td>3.213702</td>
+      <td>0.0</td>
+      <td>0.600</td>
+      <td>1.504</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>-0.770</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>2019-01-01T02:00:00Z</td>
+      <td>2019-01-01T02:30:00Z</td>
+      <td>6.827</td>
+      <td>1.081</td>
+      <td>0</td>
+      <td>4.964</td>
+      <td>0.355</td>
+      <td>10.786</td>
+      <td>0</td>
+      <td>26.195</td>
+      <td>0.000</td>
+      <td>7.479429</td>
+      <td>3.122706</td>
+      <td>0.0</td>
+      <td>0.678</td>
+      <td>1.504</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>-0.910</td>
+    </tr>
+  </tbody>
+</table>
+</div>
 
 
 
@@ -262,13 +556,174 @@ df.head()
 
 
 
-| local_datetime            |   nuclear |   biomass |   coal |   gas |   hydro |   wind |   solar |   demand |   pumpedStorage |   windOnshore |   windOffshore |   belgian |   dutch |   french |   ireland |   northernIreland |   irish |   SP |
-|:--------------------------|----------:|----------:|-------:|------:|--------:|-------:|--------:|---------:|----------------:|--------------:|---------------:|----------:|--------:|---------:|----------:|------------------:|--------:|-----:|
-| 2019-01-01 00:00:00+00:00 |     6.924 |     1.116 |      0 | 5.853 |   0.405 | 11.304 |       0 |   27.336 |           0     |       8.05458 |        3.14171 |         0 |   0.182 |    1.552 |         0 |                 0 |  -0.702 |    1 |
-| 2019-01-01 00:30:00+00:00 |     6.838 |     1.103 |      0 | 6.292 |   0.388 | 11.327 |       0 |   27.722 |           0.024 |       7.86049 |        3.25389 |         0 |   0.196 |    1.554 |         0 |                 0 |  -0.696 |    2 |
-| 2019-01-01 01:00:00+00:00 |     6.834 |     1.09  |      0 | 5.719 |   0.372 | 11.335 |       0 |   27.442 |           0     |       7.8792  |        3.34085 |         0 |   0.588 |    1.504 |         0 |                 0 |  -0.722 |    3 |
-| 2019-01-01 01:30:00+00:00 |     6.83  |     1.085 |      0 | 5.02  |   0.368 | 11.063 |       0 |   26.47  |           0     |       7.70887 |        3.2137  |         0 |   0.6   |    1.504 |         0 |                 0 |  -0.77  |    4 |
-| 2019-01-01 02:00:00+00:00 |     6.827 |     1.081 |      0 | 4.964 |   0.355 | 10.786 |       0 |   26.195 |           0     |       7.47943 |        3.12271 |         0 |   0.678 |    1.504 |         0 |                 0 |  -0.91  |    5 |</div>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>nuclear</th>
+      <th>biomass</th>
+      <th>coal</th>
+      <th>gas</th>
+      <th>hydro</th>
+      <th>wind</th>
+      <th>solar</th>
+      <th>demand</th>
+      <th>pumpedStorage</th>
+      <th>windOnshore</th>
+      <th>windOffshore</th>
+      <th>belgian</th>
+      <th>dutch</th>
+      <th>french</th>
+      <th>ireland</th>
+      <th>northernIreland</th>
+      <th>irish</th>
+      <th>SP</th>
+    </tr>
+    <tr>
+      <th>local_datetime</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2019-01-01 00:00:00+00:00</th>
+      <td>6.924</td>
+      <td>1.116</td>
+      <td>0</td>
+      <td>5.853</td>
+      <td>0.405</td>
+      <td>11.304</td>
+      <td>0</td>
+      <td>27.336</td>
+      <td>0.000</td>
+      <td>8.054581</td>
+      <td>3.141711</td>
+      <td>0.0</td>
+      <td>0.182</td>
+      <td>1.552</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>-0.702</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>2019-01-01 00:30:00+00:00</th>
+      <td>6.838</td>
+      <td>1.103</td>
+      <td>0</td>
+      <td>6.292</td>
+      <td>0.388</td>
+      <td>11.327</td>
+      <td>0</td>
+      <td>27.722</td>
+      <td>0.024</td>
+      <td>7.860487</td>
+      <td>3.253887</td>
+      <td>0.0</td>
+      <td>0.196</td>
+      <td>1.554</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>-0.696</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>2019-01-01 01:00:00+00:00</th>
+      <td>6.834</td>
+      <td>1.090</td>
+      <td>0</td>
+      <td>5.719</td>
+      <td>0.372</td>
+      <td>11.335</td>
+      <td>0</td>
+      <td>27.442</td>
+      <td>0.000</td>
+      <td>7.879198</td>
+      <td>3.340851</td>
+      <td>0.0</td>
+      <td>0.588</td>
+      <td>1.504</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>-0.722</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>2019-01-01 01:30:00+00:00</th>
+      <td>6.830</td>
+      <td>1.085</td>
+      <td>0</td>
+      <td>5.020</td>
+      <td>0.368</td>
+      <td>11.063</td>
+      <td>0</td>
+      <td>26.470</td>
+      <td>0.000</td>
+      <td>7.708874</td>
+      <td>3.213702</td>
+      <td>0.0</td>
+      <td>0.600</td>
+      <td>1.504</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>-0.770</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>2019-01-01 02:00:00+00:00</th>
+      <td>6.827</td>
+      <td>1.081</td>
+      <td>0</td>
+      <td>4.964</td>
+      <td>0.355</td>
+      <td>10.786</td>
+      <td>0</td>
+      <td>26.195</td>
+      <td>0.000</td>
+      <td>7.479429</td>
+      <td>3.122706</td>
+      <td>0.0</td>
+      <td>0.678</td>
+      <td>1.504</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>-0.910</td>
+      <td>5</td>
+    </tr>
+  </tbody>
+</table>
+</div>
 
 
 
@@ -332,13 +787,174 @@ df.head()
 
 
 
-| local_datetime            |   nuclear |   biomass |   coal |   gas |   hydro |   wind |   solar |   demand |   pumped_storage |   wind_onshore |   wind_offshore |   belgian |   dutch |   french |   ireland |   northern_ireland |   irish |   SP |
-|:--------------------------|----------:|----------:|-------:|------:|--------:|-------:|--------:|---------:|-----------------:|---------------:|----------------:|----------:|--------:|---------:|----------:|-------------------:|--------:|-----:|
-| 2019-01-01 00:00:00+00:00 |     6.924 |     1.116 |      0 | 5.853 |   0.405 | 11.304 |       0 |   27.336 |            0     |        8.05458 |         3.14171 |         0 |   0.182 |    1.552 |         0 |                  0 |  -0.702 |    1 |
-| 2019-01-01 00:30:00+00:00 |     6.838 |     1.103 |      0 | 6.292 |   0.388 | 11.327 |       0 |   27.722 |            0.024 |        7.86049 |         3.25389 |         0 |   0.196 |    1.554 |         0 |                  0 |  -0.696 |    2 |
-| 2019-01-01 01:00:00+00:00 |     6.834 |     1.09  |      0 | 5.719 |   0.372 | 11.335 |       0 |   27.442 |            0     |        7.8792  |         3.34085 |         0 |   0.588 |    1.504 |         0 |                  0 |  -0.722 |    3 |
-| 2019-01-01 01:30:00+00:00 |     6.83  |     1.085 |      0 | 5.02  |   0.368 | 11.063 |       0 |   26.47  |            0     |        7.70887 |         3.2137  |         0 |   0.6   |    1.504 |         0 |                  0 |  -0.77  |    4 |
-| 2019-01-01 02:00:00+00:00 |     6.827 |     1.081 |      0 | 4.964 |   0.355 | 10.786 |       0 |   26.195 |            0     |        7.47943 |         3.12271 |         0 |   0.678 |    1.504 |         0 |                  0 |  -0.91  |    5 |</div>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>nuclear</th>
+      <th>biomass</th>
+      <th>coal</th>
+      <th>gas</th>
+      <th>hydro</th>
+      <th>wind</th>
+      <th>solar</th>
+      <th>demand</th>
+      <th>pumped_storage</th>
+      <th>wind_onshore</th>
+      <th>wind_offshore</th>
+      <th>belgian</th>
+      <th>dutch</th>
+      <th>french</th>
+      <th>ireland</th>
+      <th>northern_ireland</th>
+      <th>irish</th>
+      <th>SP</th>
+    </tr>
+    <tr>
+      <th>local_datetime</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2019-01-01 00:00:00+00:00</th>
+      <td>6.924</td>
+      <td>1.116</td>
+      <td>0</td>
+      <td>5.853</td>
+      <td>0.405</td>
+      <td>11.304</td>
+      <td>0</td>
+      <td>27.336</td>
+      <td>0.000</td>
+      <td>8.054581</td>
+      <td>3.141711</td>
+      <td>0.0</td>
+      <td>0.182</td>
+      <td>1.552</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>-0.702</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>2019-01-01 00:30:00+00:00</th>
+      <td>6.838</td>
+      <td>1.103</td>
+      <td>0</td>
+      <td>6.292</td>
+      <td>0.388</td>
+      <td>11.327</td>
+      <td>0</td>
+      <td>27.722</td>
+      <td>0.024</td>
+      <td>7.860487</td>
+      <td>3.253887</td>
+      <td>0.0</td>
+      <td>0.196</td>
+      <td>1.554</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>-0.696</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>2019-01-01 01:00:00+00:00</th>
+      <td>6.834</td>
+      <td>1.090</td>
+      <td>0</td>
+      <td>5.719</td>
+      <td>0.372</td>
+      <td>11.335</td>
+      <td>0</td>
+      <td>27.442</td>
+      <td>0.000</td>
+      <td>7.879198</td>
+      <td>3.340851</td>
+      <td>0.0</td>
+      <td>0.588</td>
+      <td>1.504</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>-0.722</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>2019-01-01 01:30:00+00:00</th>
+      <td>6.830</td>
+      <td>1.085</td>
+      <td>0</td>
+      <td>5.020</td>
+      <td>0.368</td>
+      <td>11.063</td>
+      <td>0</td>
+      <td>26.470</td>
+      <td>0.000</td>
+      <td>7.708874</td>
+      <td>3.213702</td>
+      <td>0.0</td>
+      <td>0.600</td>
+      <td>1.504</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>-0.770</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>2019-01-01 02:00:00+00:00</th>
+      <td>6.827</td>
+      <td>1.081</td>
+      <td>0</td>
+      <td>4.964</td>
+      <td>0.355</td>
+      <td>10.786</td>
+      <td>0</td>
+      <td>26.195</td>
+      <td>0.000</td>
+      <td>7.479429</td>
+      <td>3.122706</td>
+      <td>0.0</td>
+      <td>0.678</td>
+      <td>1.504</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>-0.910</td>
+      <td>5</td>
+    </tr>
+  </tbody>
+</table>
+</div>
 
 
 
@@ -469,13 +1085,196 @@ df.head()
 
 
 
-| local_datetime            |   day_ahead_price |   SP |   imbalance_price |   valueSum |   temperature |   TCO2_per_h |   gCO2_per_kWh |   nuclear |   biomass |   coal | ...   |   demand |   pumped_storage |   wind_onshore |   wind_offshore |   belgian |   dutch |   french |   ireland |   northern_ireland |   irish |
-|:--------------------------|------------------:|-----:|------------------:|-----------:|--------------:|-------------:|---------------:|----------:|----------:|-------:|:------|---------:|-----------------:|---------------:|----------------:|----------:|--------:|---------:|----------:|-------------------:|--------:|
-| 2019-01-01 00:00:00+00:00 |             48.81 |    1 |                15 |         15 |           9.1 |      2287.01 |        83.6629 |     6.924 |     1.116 |      0 | ...   |   27.336 |            0     |        8.05458 |         3.14171 |         0 |   0.182 |    1.552 |         0 |                  0 |  -0.702 |
-| 2019-01-01 00:30:00+00:00 |             50.24 |    2 |                15 |         15 |           9.1 |      2467.91 |        89.0234 |     6.838 |     1.103 |      0 | ...   |   27.722 |            0.024 |        7.86049 |         3.25389 |         0 |   0.196 |    1.554 |         0 |                  0 |  -0.696 |
-| 2019-01-01 01:00:00+00:00 |             41.9  |    3 |                16 |         16 |           9.1 |      2411.83 |        87.8884 |     6.834 |     1.09  |      0 | ...   |   27.442 |            0     |        7.8792  |         3.34085 |         0 |   0.588 |    1.504 |         0 |                  0 |  -0.722 |
-| 2019-01-01 01:30:00+00:00 |             39.32 |    4 |                16 |         16 |           9.1 |      2119.53 |        80.073  |     6.83  |     1.085 |      0 | ...   |   26.47  |            0     |        7.70887 |         3.2137  |         0 |   0.6   |    1.504 |         0 |                  0 |  -0.77  |
-| 2019-01-01 02:00:00+00:00 |             34.09 |    5 |                16 |         16 |           9.1 |      2069.84 |        79.0166 |     6.827 |     1.081 |      0 | ...   |   26.195 |            0     |        7.47943 |         3.12271 |         0 |   0.678 |    1.504 |         0 |                  0 |  -0.91  |</div>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>day_ahead_price</th>
+      <th>SP</th>
+      <th>imbalance_price</th>
+      <th>valueSum</th>
+      <th>temperature</th>
+      <th>TCO2_per_h</th>
+      <th>gCO2_per_kWh</th>
+      <th>nuclear</th>
+      <th>biomass</th>
+      <th>coal</th>
+      <th>...</th>
+      <th>demand</th>
+      <th>pumped_storage</th>
+      <th>wind_onshore</th>
+      <th>wind_offshore</th>
+      <th>belgian</th>
+      <th>dutch</th>
+      <th>french</th>
+      <th>ireland</th>
+      <th>northern_ireland</th>
+      <th>irish</th>
+    </tr>
+    <tr>
+      <th>local_datetime</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2019-01-01 00:00:00+00:00</th>
+      <td>48.81</td>
+      <td>1</td>
+      <td>15.0</td>
+      <td>15.0</td>
+      <td>9.1</td>
+      <td>2287.010</td>
+      <td>83.662935</td>
+      <td>6.924</td>
+      <td>1.116</td>
+      <td>0</td>
+      <td>...</td>
+      <td>27.336</td>
+      <td>0.000</td>
+      <td>8.054581</td>
+      <td>3.141711</td>
+      <td>0.0</td>
+      <td>0.182</td>
+      <td>1.552</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>-0.702</td>
+    </tr>
+    <tr>
+      <th>2019-01-01 00:30:00+00:00</th>
+      <td>50.24</td>
+      <td>2</td>
+      <td>15.0</td>
+      <td>15.0</td>
+      <td>9.1</td>
+      <td>2467.906</td>
+      <td>89.023375</td>
+      <td>6.838</td>
+      <td>1.103</td>
+      <td>0</td>
+      <td>...</td>
+      <td>27.722</td>
+      <td>0.024</td>
+      <td>7.860487</td>
+      <td>3.253887</td>
+      <td>0.0</td>
+      <td>0.196</td>
+      <td>1.554</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>-0.696</td>
+    </tr>
+    <tr>
+      <th>2019-01-01 01:00:00+00:00</th>
+      <td>41.90</td>
+      <td>3</td>
+      <td>16.0</td>
+      <td>16.0</td>
+      <td>9.1</td>
+      <td>2411.834</td>
+      <td>87.888419</td>
+      <td>6.834</td>
+      <td>1.090</td>
+      <td>0</td>
+      <td>...</td>
+      <td>27.442</td>
+      <td>0.000</td>
+      <td>7.879198</td>
+      <td>3.340851</td>
+      <td>0.0</td>
+      <td>0.588</td>
+      <td>1.504</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>-0.722</td>
+    </tr>
+    <tr>
+      <th>2019-01-01 01:30:00+00:00</th>
+      <td>39.32</td>
+      <td>4</td>
+      <td>16.0</td>
+      <td>16.0</td>
+      <td>9.1</td>
+      <td>2119.532</td>
+      <td>80.072988</td>
+      <td>6.830</td>
+      <td>1.085</td>
+      <td>0</td>
+      <td>...</td>
+      <td>26.470</td>
+      <td>0.000</td>
+      <td>7.708874</td>
+      <td>3.213702</td>
+      <td>0.0</td>
+      <td>0.600</td>
+      <td>1.504</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>-0.770</td>
+    </tr>
+    <tr>
+      <th>2019-01-01 02:00:00+00:00</th>
+      <td>34.09</td>
+      <td>5</td>
+      <td>16.0</td>
+      <td>16.0</td>
+      <td>9.1</td>
+      <td>2069.840</td>
+      <td>79.016606</td>
+      <td>6.827</td>
+      <td>1.081</td>
+      <td>0</td>
+      <td>...</td>
+      <td>26.195</td>
+      <td>0.000</td>
+      <td>7.479429</td>
+      <td>3.122706</td>
+      <td>0.0</td>
+      <td>0.678</td>
+      <td>1.504</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>-0.910</td>
+    </tr>
+  </tbody>
+</table>
+<p>5 rows × 24 columns</p>
+</div>
 
 
 
@@ -651,10 +1450,91 @@ df_fuels.head(2)
 
 
 
-| datetime                  |   Hydro Power |   Biomass |   Uranium |   Brown Coal |   Hard Coal |   Oil |   Gas |   Others |   Pumped Storage |   Seasonal Storage |   Wind |   Solar |   net_balance |
-|:--------------------------|--------------:|----------:|----------:|-------------:|------------:|------:|------:|---------:|-----------------:|-------------------:|-------:|--------:|--------------:|
-| 2018-03-19 00:00:00+01:00 |         2.292 |      5.82 |     7.721 |       14.499 |       8.508 | 0.18  | 3.207 |    0.068 |            0.42  |              0.078 | 20.754 |       0 |        -9.044 |
-| 2018-03-19 01:00:00+01:00 |         2.291 |      5.82 |     7.829 |       14.49  |       8.941 | 0.179 | 3.287 |    0.068 |            0.245 |              0.064 | 19.012 |       0 |        -9.522 |</div>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Hydro Power</th>
+      <th>Biomass</th>
+      <th>Uranium</th>
+      <th>Brown Coal</th>
+      <th>Hard Coal</th>
+      <th>Oil</th>
+      <th>Gas</th>
+      <th>Others</th>
+      <th>Pumped Storage</th>
+      <th>Seasonal Storage</th>
+      <th>Wind</th>
+      <th>Solar</th>
+      <th>net_balance</th>
+    </tr>
+    <tr>
+      <th>datetime</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2018-03-19 00:00:00+01:00</th>
+      <td>2.292</td>
+      <td>5.82</td>
+      <td>7.721</td>
+      <td>14.499</td>
+      <td>8.508</td>
+      <td>0.180</td>
+      <td>3.207</td>
+      <td>0.068</td>
+      <td>0.420</td>
+      <td>0.078</td>
+      <td>20.754</td>
+      <td>0.0</td>
+      <td>-9.044</td>
+    </tr>
+    <tr>
+      <th>2018-03-19 01:00:00+01:00</th>
+      <td>2.291</td>
+      <td>5.82</td>
+      <td>7.829</td>
+      <td>14.490</td>
+      <td>8.941</td>
+      <td>0.179</td>
+      <td>3.287</td>
+      <td>0.068</td>
+      <td>0.245</td>
+      <td>0.064</td>
+      <td>19.012</td>
+      <td>0.0</td>
+      <td>-9.522</td>
+    </tr>
+  </tbody>
+</table>
+</div>
 
 
 
@@ -689,10 +1569,91 @@ df_fuels.head(2)
 
 
 
-| datetime                  |   Hydro Power |   Biomass |   Uranium |   Brown Coal |   Hard Coal |   Oil |   Gas |   Others |   Pumped Storage |   Seasonal Storage |   Wind |   Solar |   net_balance |
-|:--------------------------|--------------:|----------:|----------:|-------------:|------------:|------:|------:|---------:|-----------------:|-------------------:|-------:|--------:|--------------:|
-| 2015-12-28 00:00:00+01:00 |         1.356 |         6 |    10.567 |       13.247 |       3.437 | 0.19  | 2.338 |    0.15  |            0.154 |              0.013 |  8.156 |       0 |        -3.923 |
-| 2015-12-28 01:00:00+01:00 |         1.348 |         6 |    10.611 |       13.744 |       3.109 | 0.191 | 2.533 |    0.124 |            0.157 |              0.012 |  7.059 |       0 |        -4.139 |</div>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Hydro Power</th>
+      <th>Biomass</th>
+      <th>Uranium</th>
+      <th>Brown Coal</th>
+      <th>Hard Coal</th>
+      <th>Oil</th>
+      <th>Gas</th>
+      <th>Others</th>
+      <th>Pumped Storage</th>
+      <th>Seasonal Storage</th>
+      <th>Wind</th>
+      <th>Solar</th>
+      <th>net_balance</th>
+    </tr>
+    <tr>
+      <th>datetime</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2015-12-28 00:00:00+01:00</th>
+      <td>1.356</td>
+      <td>6</td>
+      <td>10.567</td>
+      <td>13.247</td>
+      <td>3.437</td>
+      <td>0.190</td>
+      <td>2.338</td>
+      <td>0.150</td>
+      <td>0.154</td>
+      <td>0.013</td>
+      <td>8.156</td>
+      <td>0.0</td>
+      <td>-3.923</td>
+    </tr>
+    <tr>
+      <th>2015-12-28 01:00:00+01:00</th>
+      <td>1.348</td>
+      <td>6</td>
+      <td>10.611</td>
+      <td>13.744</td>
+      <td>3.109</td>
+      <td>0.191</td>
+      <td>2.533</td>
+      <td>0.124</td>
+      <td>0.157</td>
+      <td>0.012</td>
+      <td>7.059</td>
+      <td>0.0</td>
+      <td>-4.139</td>
+    </tr>
+  </tbody>
+</table>
+</div>
 
 
 
@@ -727,11 +1688,124 @@ df_fuels.head(3)
 
 
 
-| Unnamed: 0                |   Biomass |   Biomass planned |   Brown Coal |   Brown Coal planned |   Gas |   Gas planned |   Hard Coal |   Hard Coal planned |   Hydro Power |   Hydro Power planned | ...   |   Residual load forecast |   Seasonal Storage |   Seasonal Storage ante |   Solar |   Solar forecast |   Uranium |   Uranium planned |   Wind |   Wind forecast |   net_balance |
-|:--------------------------|----------:|------------------:|-------------:|---------------------:|------:|--------------:|------------:|--------------------:|--------------:|----------------------:|:------|-------------------------:|-------------------:|------------------------:|--------:|-----------------:|----------:|------------------:|-------:|----------------:|--------------:|
-| 2010-01-04 00:00:00+01:00 |     3.637 |               nan |       16.533 |                  nan | 4.726 |           nan |      10.078 |                 nan |         2.331 |                   nan | ...   |                      nan |              0.068 |                     nan |       0 |              nan |    16.826 |               nan |  0.635 |             nan |        -1.229 |
-| 2010-01-04 01:00:00+01:00 |     3.637 |               nan |       16.544 |                  nan | 4.856 |           nan |       8.816 |                 nan |         2.293 |                   nan | ...   |                      nan |              0.003 |                     nan |       0 |              nan |    16.841 |               nan |  0.528 |             nan |        -1.593 |
-| 2010-01-04 02:00:00+01:00 |     3.637 |               nan |       16.368 |                  nan | 5.275 |           nan |       7.954 |                 nan |         2.299 |                   nan | ...   |                      nan |              0     |                     nan |       0 |              nan |    16.846 |               nan |  0.616 |             nan |        -1.378 |</div>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Biomass</th>
+      <th>Biomass planned</th>
+      <th>Brown Coal</th>
+      <th>Brown Coal planned</th>
+      <th>Gas</th>
+      <th>Gas planned</th>
+      <th>Hard Coal</th>
+      <th>Hard Coal planned</th>
+      <th>Hydro Power</th>
+      <th>Hydro Power planned</th>
+      <th>...</th>
+      <th>Residual load forecast</th>
+      <th>Seasonal Storage</th>
+      <th>Seasonal Storage ante</th>
+      <th>Solar</th>
+      <th>Solar forecast</th>
+      <th>Uranium</th>
+      <th>Uranium planned</th>
+      <th>Wind</th>
+      <th>Wind forecast</th>
+      <th>net_balance</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2010-01-04 00:00:00+01:00</th>
+      <td>3.637</td>
+      <td>NaN</td>
+      <td>16.533</td>
+      <td>NaN</td>
+      <td>4.726</td>
+      <td>NaN</td>
+      <td>10.078</td>
+      <td>NaN</td>
+      <td>2.331</td>
+      <td>NaN</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>0.068</td>
+      <td>NaN</td>
+      <td>0.0</td>
+      <td>NaN</td>
+      <td>16.826</td>
+      <td>NaN</td>
+      <td>0.635</td>
+      <td>NaN</td>
+      <td>-1.229</td>
+    </tr>
+    <tr>
+      <th>2010-01-04 01:00:00+01:00</th>
+      <td>3.637</td>
+      <td>NaN</td>
+      <td>16.544</td>
+      <td>NaN</td>
+      <td>4.856</td>
+      <td>NaN</td>
+      <td>8.816</td>
+      <td>NaN</td>
+      <td>2.293</td>
+      <td>NaN</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>0.003</td>
+      <td>NaN</td>
+      <td>0.0</td>
+      <td>NaN</td>
+      <td>16.841</td>
+      <td>NaN</td>
+      <td>0.528</td>
+      <td>NaN</td>
+      <td>-1.593</td>
+    </tr>
+    <tr>
+      <th>2010-01-04 02:00:00+01:00</th>
+      <td>3.637</td>
+      <td>NaN</td>
+      <td>16.368</td>
+      <td>NaN</td>
+      <td>5.275</td>
+      <td>NaN</td>
+      <td>7.954</td>
+      <td>NaN</td>
+      <td>2.299</td>
+      <td>NaN</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>0.000</td>
+      <td>NaN</td>
+      <td>0.0</td>
+      <td>NaN</td>
+      <td>16.846</td>
+      <td>NaN</td>
+      <td>0.616</td>
+      <td>NaN</td>
+      <td>-1.378</td>
+    </tr>
+  </tbody>
+</table>
+<p>3 rows × 32 columns</p>
+</div>
 
 
 
@@ -758,13 +1832,123 @@ df_fuels_clean.head()
 
 
 
-| Unnamed: 0                |   Biomass |   Brown Coal |   Gas |   Hard Coal |   Hydro Power |   Oil |   Others |   Pumped Storage |   Seasonal Storage |   Solar |   Uranium |   Wind |   net_balance |
-|:--------------------------|----------:|-------------:|------:|------------:|--------------:|------:|---------:|-----------------:|-------------------:|--------:|----------:|-------:|--------------:|
-| 2010-01-04 00:00:00+01:00 |     3.637 |       16.533 | 4.726 |      10.078 |         2.331 | 0     |        0 |            0.052 |              0.068 |       0 |    16.826 |  0.635 |        -1.229 |
-| 2010-01-04 01:00:00+01:00 |     3.637 |       16.544 | 4.856 |       8.816 |         2.293 | 0     |        0 |            0.038 |              0.003 |       0 |    16.841 |  0.528 |        -1.593 |
-| 2010-01-04 02:00:00+01:00 |     3.637 |       16.368 | 5.275 |       7.954 |         2.299 | 0     |        0 |            0.032 |              0     |       0 |    16.846 |  0.616 |        -1.378 |
-| 2010-01-04 03:00:00+01:00 |     3.637 |       15.837 | 5.354 |       7.681 |         2.299 | 0     |        0 |            0.027 |              0     |       0 |    16.699 |  0.63  |        -1.624 |
-| 2010-01-04 04:00:00+01:00 |     3.637 |       15.452 | 5.918 |       7.498 |         2.301 | 0.003 |        0 |            0.02  |              0     |       0 |    16.635 |  0.713 |        -0.731 |</div>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Biomass</th>
+      <th>Brown Coal</th>
+      <th>Gas</th>
+      <th>Hard Coal</th>
+      <th>Hydro Power</th>
+      <th>Oil</th>
+      <th>Others</th>
+      <th>Pumped Storage</th>
+      <th>Seasonal Storage</th>
+      <th>Solar</th>
+      <th>Uranium</th>
+      <th>Wind</th>
+      <th>net_balance</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2010-01-04 00:00:00+01:00</th>
+      <td>3.637</td>
+      <td>16.533</td>
+      <td>4.726</td>
+      <td>10.078</td>
+      <td>2.331</td>
+      <td>0.000</td>
+      <td>0.0</td>
+      <td>0.052</td>
+      <td>0.068</td>
+      <td>0.0</td>
+      <td>16.826</td>
+      <td>0.635</td>
+      <td>-1.229</td>
+    </tr>
+    <tr>
+      <th>2010-01-04 01:00:00+01:00</th>
+      <td>3.637</td>
+      <td>16.544</td>
+      <td>4.856</td>
+      <td>8.816</td>
+      <td>2.293</td>
+      <td>0.000</td>
+      <td>0.0</td>
+      <td>0.038</td>
+      <td>0.003</td>
+      <td>0.0</td>
+      <td>16.841</td>
+      <td>0.528</td>
+      <td>-1.593</td>
+    </tr>
+    <tr>
+      <th>2010-01-04 02:00:00+01:00</th>
+      <td>3.637</td>
+      <td>16.368</td>
+      <td>5.275</td>
+      <td>7.954</td>
+      <td>2.299</td>
+      <td>0.000</td>
+      <td>0.0</td>
+      <td>0.032</td>
+      <td>0.000</td>
+      <td>0.0</td>
+      <td>16.846</td>
+      <td>0.616</td>
+      <td>-1.378</td>
+    </tr>
+    <tr>
+      <th>2010-01-04 03:00:00+01:00</th>
+      <td>3.637</td>
+      <td>15.837</td>
+      <td>5.354</td>
+      <td>7.681</td>
+      <td>2.299</td>
+      <td>0.000</td>
+      <td>0.0</td>
+      <td>0.027</td>
+      <td>0.000</td>
+      <td>0.0</td>
+      <td>16.699</td>
+      <td>0.630</td>
+      <td>-1.624</td>
+    </tr>
+    <tr>
+      <th>2010-01-04 04:00:00+01:00</th>
+      <td>3.637</td>
+      <td>15.452</td>
+      <td>5.918</td>
+      <td>7.498</td>
+      <td>2.301</td>
+      <td>0.003</td>
+      <td>0.0</td>
+      <td>0.020</td>
+      <td>0.000</td>
+      <td>0.0</td>
+      <td>16.635</td>
+      <td>0.713</td>
+      <td>-0.731</td>
+    </tr>
+  </tbody>
+</table>
+</div>
 
 
 
@@ -1177,13 +2361,153 @@ df_production.head()
 
 
 
-| Unnamed: 0                |   Biomass |   Fossil Brown coal/Lignite |   Fossil Coal-derived gas |   Fossil Gas |   Fossil Hard coal |   Fossil Oil |   Geothermal |   Hydro Pumped Storage |   Hydro Run-of-river and poundage |   Hydro Water Reservoir |   Nuclear |   Other renewable |   Solar |   Waste |   Wind Offshore |   Wind Onshore |   Other |   Marine |
-|:--------------------------|----------:|----------------------------:|--------------------------:|-------------:|-------------------:|-------------:|-------------:|-----------------------:|----------------------------------:|------------------------:|----------:|------------------:|--------:|--------:|----------------:|---------------:|--------:|---------:|
-| 2015-01-01 23:00:00+00:00 |       nan |                         nan |                       nan |          nan |                nan |            5 |          nan |                    nan |                               nan |                       0 |       nan |               nan |     nan |     nan |             391 |              0 |     nan |      nan |
-| 2015-01-01 23:15:00+00:00 |       nan |                         nan |                       nan |          nan |                nan |            5 |          nan |                    nan |                               nan |                       0 |       nan |               nan |     nan |     nan |             292 |              0 |     nan |      nan |
-| 2015-01-01 23:30:00+00:00 |       nan |                         nan |                       nan |          nan |                nan |            5 |          nan |                    nan |                               nan |                       0 |       nan |               nan |     nan |     nan |             271 |              0 |     nan |      nan |
-| 2015-01-01 23:45:00+00:00 |       nan |                         nan |                       nan |          nan |                nan |            5 |          nan |                    nan |                               nan |                       0 |       nan |               nan |     nan |     nan |             266 |              0 |     nan |      nan |
-| 2015-01-02 00:00:00+00:00 |       nan |                         nan |                       nan |          nan |                nan |            5 |          nan |                    nan |                               nan |                       0 |       nan |               nan |     nan |     nan |             268 |              0 |     nan |      nan |</div>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Biomass</th>
+      <th>Fossil Brown coal/Lignite</th>
+      <th>Fossil Coal-derived gas</th>
+      <th>Fossil Gas</th>
+      <th>Fossil Hard coal</th>
+      <th>Fossil Oil</th>
+      <th>Geothermal</th>
+      <th>Hydro Pumped Storage</th>
+      <th>Hydro Run-of-river and poundage</th>
+      <th>Hydro Water Reservoir</th>
+      <th>Nuclear</th>
+      <th>Other renewable</th>
+      <th>Solar</th>
+      <th>Waste</th>
+      <th>Wind Offshore</th>
+      <th>Wind Onshore</th>
+      <th>Other</th>
+      <th>Marine</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2015-01-01 23:00:00+00:00</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>5.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>0.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>391.0</td>
+      <td>0.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2015-01-01 23:15:00+00:00</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>5.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>0.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>292.0</td>
+      <td>0.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2015-01-01 23:30:00+00:00</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>5.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>0.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>271.0</td>
+      <td>0.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2015-01-01 23:45:00+00:00</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>5.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>0.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>266.0</td>
+      <td>0.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2015-01-02 00:00:00+00:00</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>5.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>0.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>268.0</td>
+      <td>0.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+</div>
 
 
 

@@ -40,13 +40,62 @@ df_portugal_hydro.head()
 
 
 
-| datetime   |   average_power_MW |   day_of_the_year |
-|:-----------|-------------------:|------------------:|
-| 2015-01-01 |            698.5   |                 1 |
-| 2015-01-02 |           1065.75  |                 2 |
-| 2015-01-03 |            905.125 |                 3 |
-| 2015-01-04 |            795.708 |                 4 |
-| 2015-01-05 |           1141.62  |                 5 |</div>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>average_power_MW</th>
+      <th>day_of_the_year</th>
+    </tr>
+    <tr>
+      <th>datetime</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2015-01-01</th>
+      <td>698.500000</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>2015-01-02</th>
+      <td>1065.750000</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>2015-01-03</th>
+      <td>905.125000</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>2015-01-04</th>
+      <td>795.708333</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>2015-01-05</th>
+      <td>1141.625000</td>
+      <td>5</td>
+    </tr>
+  </tbody>
+</table>
+</div>
 
 
 
@@ -80,13 +129,111 @@ df_quantiles.head()
 
 
 
-|   x |     p90 |     p80 |     p70 |     p60 |     p50 |     p40 |     p30 |     p20 |     p10 |
-|----:|--------:|--------:|--------:|--------:|--------:|--------:|--------:|--------:|--------:|
-|   1 | 1885.08 | 1400.78 | 1006.97 | 910.769 | 795.475 | 693.001 | 604.221 | 498.096 | 407.17  |
-|   2 | 1885.93 | 1406.29 | 1015.76 | 917.074 | 800.255 | 697.121 | 607.521 | 500.673 | 409.021 |
-|   3 | 1886.8  | 1411.81 | 1024.54 | 923.37  | 805.008 | 701.225 | 610.814 | 503.239 | 410.866 |
-|   4 | 1887.68 | 1417.32 | 1033.31 | 929.659 | 809.738 | 705.317 | 614.105 | 505.797 | 412.695 |
-|   5 | 1888.57 | 1422.84 | 1042.08 | 935.952 | 814.456 | 709.409 | 617.404 | 508.359 | 414.485 |</div>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>p90</th>
+      <th>p80</th>
+      <th>p70</th>
+      <th>p60</th>
+      <th>p50</th>
+      <th>p40</th>
+      <th>p30</th>
+      <th>p20</th>
+      <th>p10</th>
+    </tr>
+    <tr>
+      <th>x</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1</th>
+      <td>1885.079172</td>
+      <td>1400.781601</td>
+      <td>1006.972631</td>
+      <td>910.768786</td>
+      <td>795.474566</td>
+      <td>693.000758</td>
+      <td>604.221026</td>
+      <td>498.095705</td>
+      <td>407.170002</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1885.932585</td>
+      <td>1406.291952</td>
+      <td>1015.762933</td>
+      <td>917.073552</td>
+      <td>800.254803</td>
+      <td>697.120909</td>
+      <td>607.520973</td>
+      <td>500.673220</td>
+      <td>409.021489</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>1886.799899</td>
+      <td>1411.805229</td>
+      <td>1024.541485</td>
+      <td>923.369568</td>
+      <td>805.008381</td>
+      <td>701.225043</td>
+      <td>610.814367</td>
+      <td>503.239239</td>
+      <td>410.866080</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>1887.680853</td>
+      <td>1417.321378</td>
+      <td>1033.310416</td>
+      <td>929.659353</td>
+      <td>809.738103</td>
+      <td>705.316516</td>
+      <td>614.104565</td>
+      <td>505.797108</td>
+      <td>412.694541</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>1888.568977</td>
+      <td>1422.837956</td>
+      <td>1042.075556</td>
+      <td>935.951679</td>
+      <td>814.455951</td>
+      <td>709.409014</td>
+      <td>617.404051</td>
+      <td>508.358906</td>
+      <td>414.485478</td>
+    </tr>
+  </tbody>
+</table>
+</div>
 
 
 
@@ -116,7 +263,7 @@ ax.set_ylim(0)
 
 
 
-![png](./img/nbs/output_7_1.png)
+![png](./img/nbs/ug-01-quantile_cell_8_output_1.png)
 
 
 <br>
@@ -164,5 +311,5 @@ ax.set_ylim(0)
 
 
 
-![png](./img/nbs/output_11_2.png)
+![png](./img/nbs/ug-01-quantile_cell_12_output_2.png)
 
