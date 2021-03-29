@@ -34,6 +34,11 @@ extra_javascript:
   - javascripts/config.js
   - https://polyfill.io/v3/polyfill.min.js?features=es6
   - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
+  - https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-AMS-MML_HTMLorMML-full,Safe&amp;delayStartupUntil=configured
+  - https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/config/TeX-AMS-MML_HTMLorMML-full.js
+  - https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/config/Safe.js?V=2.7.9
+  - https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/extensions/Safe.js?V=2.7.9
+  - https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/jax/output/HTML-CSS/fonts/STIX-Web/fontdata.js?V=2.7.9
   
 plugins:
   - search

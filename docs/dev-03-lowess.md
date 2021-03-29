@@ -1791,6 +1791,8 @@ def get_confidence_interval(df_bootstrap, conf_pct=0.95):
     df_conf_intvl['min'] = df_bootstrap.quantile(conf_margin, axis=1)
     df_conf_intvl['max'] = df_bootstrap.quantile(1-conf_margin, axis=1)
     
+    df_conf_intvl = df_conf_intvl.sort_index()
+    
     return df_conf_intvl
 ```
 

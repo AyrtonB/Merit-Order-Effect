@@ -1,10 +1,10 @@
-# Quantile LOWESS for Data Cleaning
+# Power Curves
 
 
 
 [![Binder](https://notebooks.gesis.org/binder/badge_logo.svg)](https://notebooks.gesis.org/binder/v2/gh/AyrtonB/Merit-Order-Effect/main?filepath=nbs%2Fug-03-power-curve.ipynb)
 
-In this notebook we'll look at how we can use our LOWESS methods to process wind turbine SCADA data and fit a clean power curve that doesn't include under-powered periods.
+In this notebook we'll look at how we can use our LOWESS methods to first fit a power curve for a wind turbine, then estimate the uncertainty in our results. We'll then utilise a feature of the quantile LOWESS fits to demonstrate how these techniques can also be used for cleaning raw turbine data.
 
 <br>
 
@@ -21,63 +21,43 @@ from moepy import lowess, eda
 
 <br>
 
-### Loading Data
+### Power Curve Fitting
 
-We'll start by loading the SCADA data in
+We'll start by loading in some clean turbine output and wind speed data, this was sourced from the [Power Curve Working Group Analysis](https://github.com/PCWG/PCWG) example data repository.
 
 ```python
-df_SCADA = pd.read_csv('../data/lowess_examples/turbine_SCADA.csv')
+df_pcwga = (pd
+            .read_csv('../data/lowess_examples/turbine_power_wind_speed_clean.csv')
+            [['TimeStamp', 'Turbine Wind Speed Mean', 'Turbine Power']]
+            .replace(-99.99, np.nan)
+            .dropna()
+           )
 
-df_SCADA.head(3)
+df_pcwga.head()
 ```
 
 
 
 
-|   Unnamed: 0 | UTC                 |   T01_active_power |   T01_blade_pitch |   T01_generator_speed |   T01_wind_speed |   T02_active_power |   T02_blade_pitch |   T02_generator_speed |   T02_wind_speed |   T03_active_power | ...   |   T09_theoretical_power |   T10_theoretical_power |   T11_theoretical_power |   T12_theoretical_power |   T13_theoretical_power |   T14_theoretical_power |   T15_theoretical_power |   T16_theoretical_power |   pc_error |   wind_angle_rad |
-|-------------:|:--------------------|-------------------:|------------------:|----------------------:|-----------------:|-------------------:|------------------:|----------------------:|-----------------:|-------------------:|:------|------------------------:|------------------------:|------------------------:|------------------------:|------------------------:|------------------------:|------------------------:|------------------------:|-----------:|-----------------:|
-|            0 | 2017-09-30 18:26:40 |                 56 |              -0.4 |                   573 |             4.51 |                 -4 |               5.2 |                   682 |             2.21 |                -41 | ...   |                     163 |                       0 |                   23.32 |                  101.26 |                  121.42 |                   32.33 |                   54.88 |                   93.42 |    838.636 |              nan |
-|            1 | 2017-09-30 18:56:40 |                 56 |              -0.4 |                   573 |             4.51 |                 -4 |               5.2 |                   682 |             2.21 |                -41 | ...   |                     163 |                       0 |                   23.32 |                  101.26 |                  121.42 |                   32.33 |                   54.88 |                   93.42 |    838.636 |              nan |
-|            2 | 2017-09-30 19:26:40 |                 56 |              -0.4 |                   573 |             4.51 |                 -4 |               5.2 |                   682 |             2.21 |                -41 | ...   |                     163 |                       0 |                   23.32 |                  101.26 |                  121.42 |                   32.33 |                   54.88 |                   93.42 |    838.636 |              nan |</div>
+|   Unnamed: 0 | TimeStamp        |   Turbine Wind Speed Mean |   Turbine Power |
+|-------------:|:-----------------|--------------------------:|----------------:|
+|            0 | 07/10/2011 12:50 |                   15.51   |         1996.91 |
+|            1 | 07/10/2011 13:00 |                   15.7101 |         1987.74 |
+|            2 | 07/10/2011 13:10 |                   16.6708 |         1991.9  |
+|            3 | 07/10/2011 13:20 |                   15.2098 |         1987.7  |
+|            4 | 07/10/2011 13:30 |                   15.44   |         1991.03 |</div>
 
 
 
 <br>
 
-We'll extract data for a single turbine
-
-```python
-filter_for_turbine = lambda df, turbine=1: df[['UTC', f'T{str(turbine).zfill(2)}_active_power', f'T{str(turbine).zfill(2)}_wind_speed', 'wind_angle_rad']].pipe(lambda df: df.rename(columns=dict(zip(df.columns, df.columns.str.replace(f'T{str(turbine).zfill(2)}_', '')))))
-
-df_turbine = filter_for_turbine(df_SCADA, 15).dropna()
-
-df_turbine.head()
-```
-
-
-
-
-|   Unnamed: 0 | UTC                 |   active_power |   wind_speed |   wind_angle_rad |
-|-------------:|:--------------------|---------------:|-------------:|-----------------:|
-|           12 | 2017-10-01 00:26:40 |           68   |      4.39667 |        -1.03557  |
-|           13 | 2017-10-01 00:56:40 |          112.5 |      3.69    |        -0.969684 |
-|           14 | 2017-10-01 01:26:40 |          238   |      4.67    |         0.395575 |
-|           15 | 2017-10-01 01:56:40 |          494   |      7.14    |        -1.46098  |
-|           16 | 2017-10-01 02:26:40 |          562   |      5.37    |         0.493009 |</div>
-
-
-
-<br>
-
-### Power Curve Cleaning
-
-We'll then try and fit a Lowess estimate for the power curve.
+We'll then fit a standard LOWESS and visualise the results
 
 ```python
 %%time
 
-x = df_turbine['wind_speed'].values
-y = df_turbine['active_power'].values
+x = df_pcwga['Turbine Wind Speed Mean'].values
+y = df_pcwga['Turbine Power'].values
 
 lowess_model = lowess.Lowess()
 lowess_model.fit(x, y, frac=0.2, num_fits=100)
@@ -86,33 +66,244 @@ x_pred = np.linspace(0, 25, 101)
 y_pred = lowess_model.predict(x_pred)
 
 # Plotting
-plt.plot(x_pred, y_pred, '--', label='Robust LOESS', color='k', zorder=3)
-plt.scatter(x, y, label='With Noise', color='C1', s=1, zorder=1)
-plt.legend(frameon=False)
+fig, ax = plt.subplots(dpi=150)
+
+ax.plot(x_pred, y_pred, label='Robust LOWESS', color='r', linewidth=1)
+ax.scatter(x, y, label='Observations', s=0.5, color='k', linewidth=0, alpha=1)
+
+eda.hide_spines(ax)
+ax.set_xlabel('Wind Speed (m/s)')
+ax.set_ylabel('Power Output (MW)')
+ax.set_xlim(0, 26)
+ax.set_ylim(-25)
+
+lgnd = ax.legend(frameon=False) 
+lgnd.legendHandles[1]._sizes = [10]
+lgnd.legendHandles[1].set_alpha(1)
 ```
 
-    c:\users\ayrto\desktop\phd\analysis\merit-order-effect\moepy\lowess.py:145: FutureWarning: `rcond` parameter will change to the default of machine precision times ``max(M, N)`` where M and N are the input matrix dimensions.
-    To use the future default and silence this warning we advise to pass `rcond=None`, to keep using the old, explicitly pass `rcond=-1`.
-      betas = np.linalg.lstsq(A, b)[0]
-    
-
-    Wall time: 585 ms
+    Wall time: 512 ms
     
 
 
-
-
-    <matplotlib.legend.Legend at 0x1d5af4428e0>
-
-
-
-
-![png](./img/nbs/output_7_3.png)
+![png](./img/nbs/output_5_1.png)
 
 
 <br>
 
-Unfortunately the fit is thrown by the large number of occurences where the farm is under-powered or set to output 0, we want to remove these so that we can estimate the 'standard' power curve. We'll create a quantile Lowess fit to see if that helps us understand the data any better.
+This looks good but we can do more. In this next step we'll estimate the upper and lower quantiles of the power curve fit that represent a prediction interval of 68%.
+
+```python
+# Estimating the quantiles
+df_quantiles = lowess.quantile_model(x, y, frac=0.2, qs=[0.16, 0.84], num_fits=40)
+
+# Cleaning names and sorting for plotting
+df_quantiles.columns = [f'p{int(col*100)}' for col in df_quantiles.columns]
+df_quantiles = df_quantiles[df_quantiles.columns[::-1]]
+
+df_quantiles.head()
+```
+
+
+<div><span class="Text-label" style="display:inline-block; overflow:hidden; white-space:nowrap; text-overflow:ellipsis; min-width:0; max-width:15ex; vertical-align:middle; text-align:right"></span>
+<progress style="width:60ex" max="2" value="2" class="Progress-main"/></progress>
+<span class="Progress-label"><strong>100%</strong></span>
+<span class="Iteration-label">2/2</span>
+<span class="Time-label">[00:06<00:03, 3.19s/it]</span></div>
+
+
+
+
+
+|        x |      p84 |      p16 |
+|---------:|---------:|---------:|
+| 0.323938 | -16.2569 | -8.34796 |
+| 0.463498 | -14.4719 | -8.53898 |
+| 0.475784 | -14.3153 | -8.55634 |
+| 0.503802 | -13.9573 | -8.59603 |
+| 0.546645 | -13.4059 | -8.65677 |</div>
+
+
+
+<br>
+
+We'll visualise this fit within the domain where the quantiles do not cross
+
+```python
+valid_pred_intvl_idx = (df_quantiles['p84']-df_quantiles['p16']).pipe(lambda s: s[s>0]).index
+
+# Plotting
+fig, ax = plt.subplots(dpi=150)
+
+ax.scatter(x, y, s=0.5, color='k', linewidth=0, alpha=1, label='Observations')
+ax.fill_between(valid_pred_intvl_idx, df_quantiles.loc[valid_pred_intvl_idx, 'p16'], df_quantiles.loc[valid_pred_intvl_idx, 'p84'], color='r', alpha=0.25, label='68% Prediction Interval')
+
+eda.hide_spines(ax)
+ax.legend(frameon=False)
+ax.set_xlabel('Wind Speed (m/s)')
+ax.set_ylabel('Power Output (MW)')
+ax.set_xlim(0, 25)
+ax.set_ylim(0)
+
+lgnd = ax.legend(frameon=False) 
+lgnd.legendHandles[0]._sizes = [20]
+lgnd.legendHandles[0].set_alpha(1)
+```
+
+
+![png](./img/nbs/output_9_0.png)
+
+
+<br>
+
+With the prediction interval we've looked at the likely range of power output for given wind speeds, but what if instead of the range of the underlying values we wanted to know the range in our estimate of the average power curve? For this we can use confidence intervals, which express the certainty we have in the particular statistical parameter we're calculating.
+
+In order to estimate this uncertainty we'll first bootstrap our model.
+
+```python
+df_bootstrap = lowess.bootstrap_model(x, y, num_runs=500, frac=0.2, num_fits=30)
+
+df_bootstrap.head()
+```
+
+
+<div><span class="Text-label" style="display:inline-block; overflow:hidden; white-space:nowrap; text-overflow:ellipsis; min-width:0; max-width:15ex; vertical-align:middle; text-align:right"></span>
+<progress style="width:60ex" max="500" value="500" class="Progress-main"/></progress>
+<span class="Progress-label"><strong>100%</strong></span>
+<span class="Iteration-label">500/500</span>
+<span class="Time-label">[00:55<00:00, 0.11s/it]</span></div>
+
+
+
+
+
+|       x |       0 |       1 |       2 |       3 |       4 |       5 |       6 |       7 |       8 |       9 | ...   |     490 |     491 |     492 |     493 |     494 |     495 |     496 |     497 |     498 |     499 |
+|--------:|--------:|--------:|--------:|--------:|--------:|--------:|--------:|--------:|--------:|--------:|:------|--------:|--------:|--------:|--------:|--------:|--------:|--------:|--------:|--------:|--------:|
+| 15.51   | 1977.78 | 1978.05 | 1978.95 | 1978.33 | 1979.43 | 1978.33 | 1978.78 | 1979.79 | 1979.47 | 1979    | ...   | 1978.14 | 1978.5  | 1977.23 | 1977.66 | 1976.37 | 1976.28 | 1978.61 | 1978.84 | 1977.94 | 1977.22 |
+| 15.7101 | 1978.48 | 1978.6  | 1979.52 | 1979.05 | 1979.96 | 1979.06 | 1979.39 | 1980.34 | 1980.1  | 1979.74 | ...   | 1978.92 | 1979.14 | 1977.82 | 1978.38 | 1977.14 | 1977.14 | 1979.45 | 1979.56 | 1978.61 | 1977.96 |
+| 16.6708 | 1981.24 | 1981.17 | 1981.83 | 1981.57 | 1981.87 | 1981.95 | 1981.61 | 1982.23 | 1982.3  | 1982.31 | ...   | 1981.98 | 1981.56 | 1980.13 | 1981.42 | 1980.3  | 1980.6  | 1982.85 | 1981.93 | 1981.15 | 1980.83 |
+| 15.2098 | 1976.43 | 1977.04 | 1977.8  | 1977.1  | 1978.41 | 1976.9  | 1977.58 | 1978.67 | 1978.21 | 1977.58 | ...   | 1976.64 | 1977.27 | 1976.05 | 1976.45 | 1974.94 | 1974.57 | 1977.02 | 1977.52 | 1976.61 | 1975.82 |
+| 15.44   | 1977.49 | 1977.84 | 1978.72 | 1978.03 | 1979.21 | 1978.03 | 1978.52 | 1979.56 | 1979.2  | 1978.69 | ...   | 1977.83 | 1978.23 | 1976.99 | 1977.4  | 1976.06 | 1975.93 | 1978.28 | 1978.54 | 1977.66 | 1976.92 |</div>
+
+
+
+<br>
+
+From the bootstrapped results we can then extract the confidence intervals, in our case we'll look at the range covering 95% of our estimates.
+
+```python
+df_conf_intvl = lowess.get_confidence_interval(df_bootstrap, conf_pct=0.95)
+
+# Plotting
+fig, ax = plt.subplots(dpi=150)
+
+ax.scatter(x, y, s=0.5, color='k', linewidth=0, alpha=1, label='Observations')
+ax.fill_between(df_conf_intvl.index, df_conf_intvl['min'], df_conf_intvl['max'], color='r', alpha=1, label='95% Confidence')
+
+eda.hide_spines(ax)
+ax.legend(frameon=False)
+ax.set_xlabel('Wind Speed (m/s)')
+ax.set_ylabel('Power Output (MW)')
+ax.set_xlim(0, 25)
+ax.set_ylim(0)
+
+lgnd = ax.legend(frameon=False) 
+lgnd.legendHandles[0]._sizes = [20]
+lgnd.legendHandles[0].set_alpha(1)
+```
+
+
+![png](./img/nbs/output_13_0.png)
+
+
+<br>
+
+We'll now visualise how the width of the confidence interval changes with wind speed. Interestingly the two troughs in the confidence interval width appear to correspond to the cut-in and start of the rated power wind speeds.
+
+```python
+fig, ax = plt.subplots(dpi=150)
+
+df_conf_intvl.diff(axis=1)['max'].plot(ax=ax, color='r', linewidth=1)
+
+eda.hide_spines(ax)
+ax.legend(frameon=False)
+ax.set_xlabel('Wind Speed (m/s)')
+ax.set_ylabel('95% Confidence\nInterval Width (MW)')
+ax.set_xlim(0, 25)
+ax.set_ylim(0)
+ax.get_legend().remove()
+```
+
+
+![png](./img/nbs/output_15_0.png)
+
+
+<br>
+
+### Power Curve Cleaning
+
+We'll start by loading the raw turbine wind speed and output data in
+
+```python
+df_raw_pc = pd.read_csv('../data/lowess_examples/turbine_power_wind_speed_raw.csv')
+
+df_raw_pc.head(3)
+```
+
+
+
+
+|   Unnamed: 0 | UTC              |   active_power |   wind_speed |
+|-------------:|:-----------------|---------------:|-------------:|
+|            0 | 30/09/2017 18:26 |             14 |         4.02 |
+|            1 | 30/09/2017 18:56 |             14 |         4.02 |
+|            2 | 30/09/2017 19:26 |             14 |         4.02 |</div>
+
+
+
+<br>
+
+We'll then try and fit a LOWESS estimate for the power curve.
+
+```python
+%%time
+
+x = df_raw_pc['wind_speed'].values
+y = df_raw_pc['active_power'].values
+
+lowess_model = lowess.Lowess()
+lowess_model.fit(x, y, frac=0.2, num_fits=100)
+
+x_pred = np.linspace(0, 25, 101)
+y_pred = lowess_model.predict(x_pred)
+
+# Plotting
+fig, ax = plt.subplots(dpi=150)
+
+ax.plot(x_pred, y_pred, label='Robust LOWESS', color='r', linewidth=1)
+ax.scatter(x, y, label='Observations', s=0.5, color='k', linewidth=0, alpha=1)
+
+eda.hide_spines(ax)
+ax.set_xlabel('Wind Speed (m/s)')
+ax.set_ylabel('Power Output (MW)')
+ax.set_xlim(0, 26)
+ax.set_ylim(-25)
+
+lgnd = ax.legend(frameon=False) 
+lgnd.legendHandles[1]._sizes = [10]
+lgnd.legendHandles[1].set_alpha(1)
+```
+
+    Wall time: 788 ms
+    
+
+
+![png](./img/nbs/output_19_1.png)
+
+
+<br>
+
+Unfortunately the fit is thrown by the large number of occurences where the farm is under-powered or set to output 0, we want to remove these so that we can estimate the 'standard' power curve. We'll create a quantile LOWESS fit to see if that helps us understand the data any better.
 
 ```python
 # Estimating the quantiles
@@ -130,19 +321,19 @@ df_quantiles.head()
 <progress style="width:60ex" max="41" value="41" class="Progress-main"/></progress>
 <span class="Progress-label"><strong>100%</strong></span>
 <span class="Iteration-label">41/41</span>
-<span class="Time-label">[02:08<00:03, 3.12s/it]</span></div>
+<span class="Time-label">[02:52<00:05, 4.20s/it]</span></div>
 
 
 
 
 
-|    x |       p97 |      p95 |      p92 |      p90 |      p88 |      p85 |      p83 |      p80 |      p78 |      p76 | ...   |      p23 |      p21 |      p19 |      p16 |      p14 |      p12 |       p9 |       p7 |       p4 |       p2 |
-|-----:|----------:|---------:|---------:|---------:|---------:|---------:|---------:|---------:|---------:|---------:|:------|---------:|---------:|---------:|---------:|---------:|---------:|---------:|---------:|---------:|---------:|
-| 0.25 | -31.8607  | -36.669  | -49.5917 | -50.8011 | -54.8979 | -62.4346 | -65.6697 | -68.2331 | -68.9789 | -69.7274 | ...   | -79.5962 | -74.3463 | -69.0825 | -62.7053 | -58.362  | -53.9233 | -50.0939 | -49.134  | -50.205  | -51.815  |
-| 0.33 | -25.204   | -31.2919 | -44.4735 | -46.1838 | -50.4993 | -58.1508 | -61.4824 | -64.1785 | -65.0755 | -65.9571 | ...   | -78.2436 | -73.3799 | -68.4272 | -62.3658 | -58.1436 | -53.8781 | -50.0808 | -49.0606 | -49.9814 | -51.5724 |
-| 0.41 | -18.6577  | -25.9899 | -39.441  | -41.6317 | -46.1561 | -53.9169 | -57.3385 | -60.163  | -61.2086 | -62.2258 | ...   | -76.897  | -72.4143 | -67.7797 | -62.0494 | -57.9512 | -53.8512 | -50.0791 | -49.0013 | -49.7576 | -51.3317 |
-| 0.49 | -12.1758  | -20.7247 | -34.4592 | -37.1132 | -41.8401 | -49.7063 | -53.2149 | -56.1647 | -57.3571 | -58.5129 | ...   | -75.5433 | -71.4351 | -67.1239 | -61.7374 | -57.7682 | -53.8289 | -50.0794 | -48.9493 | -49.5327 | -51.0921 |
-| 0.57 |  -5.71114 | -15.4572 | -29.4922 | -32.596  | -37.5225 | -45.4924 | -49.0885 | -52.1612 | -53.4996 | -54.7973 | ...   | -74.1691 | -70.4282 | -66.4441 | -61.4111 | -57.5778 | -53.7971 | -50.0722 | -48.8973 | -49.3056 | -50.853  |</div>
+|    x |      p97 |      p95 |      p92 |      p90 |      p88 |      p85 |      p83 |      p80 |      p78 |      p76 | ...   |      p23 |      p21 |      p19 |      p16 |      p14 |      p12 |       p9 |       p7 |       p4 |       p2 |
+|-----:|---------:|---------:|---------:|---------:|---------:|---------:|---------:|---------:|---------:|---------:|:------|---------:|---------:|---------:|---------:|---------:|---------:|---------:|---------:|---------:|---------:|
+| 0.25 | -31.1389 | -36.0637 | -48.7875 | -50.2252 | -54.3752 | -61.8818 | -64.9263 | -67.3705 | -68.176  | -69.0324 | ...   | -78.7881 | -73.9447 | -69.322  | -63.1938 | -58.9408 | -54.0337 | -50.6578 | -49.2366 | -50.801  | -51.8248 |
+| 0.33 | -24.4137 | -30.6108 | -43.6044 | -45.5205 | -49.913  | -57.5452 | -60.7292 | -63.275  | -64.2354 | -65.2338 | ...   | -77.3919 | -72.8946 | -68.5794 | -62.7402 | -58.6804 | -53.9613 | -50.6087 | -49.1445 | -50.546  | -51.5789 |
+| 0.41 | -17.8378 | -25.26   | -38.5274 | -40.8969 | -45.5215 | -53.2747 | -56.5928 | -59.2317 | -60.3441 | -61.4871 | ...   | -76.014  | -71.8585 | -67.8522 | -62.3073 | -58.4534 | -53.9134 | -50.5746 | -49.0702 | -50.2914 | -51.3353 |
+| 0.49 | -11.3659 | -19.9748 | -33.5237 | -36.3257 | -41.1744 | -49.0455 | -52.4947 | -55.22   | -56.4821 | -57.7727 | ...   | -74.6419 | -70.8232 | -67.1261 | -61.8803 | -58.2436 | -53.8769 | -50.5466 | -49.0072 | -50.0365 | -51.0934 |
+| 0.57 |  -4.9476 | -14.7154 | -28.557  | -31.7751 | -36.8429 | -44.8302 | -48.4098 | -51.2177 | -52.6278 | -54.069  | ...   | -73.2619 | -69.7745 | -66.3859 | -61.4438 | -58.0338 | -53.8375 | -50.5151 | -48.9481 | -49.7806 | -50.8524 |</div>
 
 
 
@@ -158,7 +349,7 @@ df_quantiles.plot(cmap='viridis', legend=False, ax=ax)
 
 eda.hide_spines(ax)
 ax.set_xlabel('Wind Speed (m/s)')
-ax.set_ylabel('Active Power (MW)')
+ax.set_ylabel('Power Output (MW)')
 ax.set_xlim(0, 26)
 ax.set_ylim(0)
 ```
@@ -166,12 +357,12 @@ ax.set_ylim(0)
 
 
 
-    (0.0, 2715.0737814101485)
+    (0.0, 2557.302509884304)
 
 
 
 
-![png](./img/nbs/output_11_1.png)
+![png](./img/nbs/output_23_1.png)
 
 
 <br>
@@ -219,16 +410,16 @@ axs[1].set_title('Cleaned')
 for ax in axs:
     eda.hide_spines(ax)
     ax.set_xlabel('Wind Speed (m/s)')
-    ax.set_ylabel('Active Power (MW)')
+    ax.set_ylabel('Power Output (MW)')
 ```
 
 
-![png](./img/nbs/output_15_0.png)
+![png](./img/nbs/output_27_0.png)
 
 
 <br>
 
-We're now ready to make our power curve lowess estimate again
+We're now ready to make our power curve LOWESS estimate again
 
 ```python
 %%time
@@ -242,42 +433,23 @@ y_pred = lowess_model.predict(x_pred)
 # Plotting
 fig, ax = plt.subplots(dpi=150)
 
-ax.plot(x_pred, y_pred, '--', label='Robust LOESS', color='k', zorder=3)
-ax.scatter(cleaned_x, cleaned_y, label='Observed', color='C1', s=0.5, zorder=1)
+ax.plot(x_pred, y_pred, label='Robust LOWESS', color='r', linewidth=1)
+ax.scatter(cleaned_x, cleaned_y, label='Observations', s=0.5, color='k', linewidth=0, alpha=1)
 
-ax.legend(frameon=False)
 eda.hide_spines(ax)
-ax.set_xlim(0)
-ax.set_ylim(0)
 ax.set_xlabel('Wind Speed (m/s)')
-ax.set_ylabel('Active Power (MW)')
+ax.set_ylabel('Power Output (MW)')
+ax.set_xlim(0, 26)
+ax.set_ylim(-25)
+
+lgnd = ax.legend(frameon=False) 
+lgnd.legendHandles[1]._sizes = [10]
+lgnd.legendHandles[1].set_alpha(1)
 ```
 
-    c:\users\ayrto\desktop\phd\analysis\merit-order-effect\moepy\lowess.py:145: FutureWarning: `rcond` parameter will change to the default of machine precision times ``max(M, N)`` where M and N are the input matrix dimensions.
-    To use the future default and silence this warning we advise to pass `rcond=None`, to keep using the old, explicitly pass `rcond=-1`.
-      betas = np.linalg.lstsq(A, b)[0]
-    
-
-    Wall time: 550 ms
+    Wall time: 728 ms
     
 
 
+![png](./img/nbs/output_29_1.png)
 
-
-    Text(0, 0.5, 'Active Power (MW)')
-
-
-
-
-![png](./img/nbs/output_17_3.png)
-
-
-<br>
-
-Potential areas for future exploration:
-* Clip y to something like 0.01, just needs to be marginally above 0
-* Should check what happens to the lower part though, because of frac the neg values may be helping
-* What happens if I fit for data where power<2250 and speed<14
-* Could then have a seperate distribution fit for the period after
-* Could then use weights to transition between them
-* Inspecting the active power spikes for the removed values should identify set-points

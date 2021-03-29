@@ -31,7 +31,7 @@ from moepy import eda, lowess
 We'll first load in the DE data
 
 ```python
-df_DE = eda.load_DE_df('../data/energy_charts.csv', '../data/ENTSOE_DE_price.csv')
+df_DE = eda.load_DE_df('../data/raw/energy_charts.csv', '../data/raw/ENTSOE_DE_price.csv')
 
 df_DE.head()
 ```
@@ -124,7 +124,7 @@ We'll do the same for GB
 
 ```python
 # Loading in
-df_EI = pd.read_csv('../data/electric_insights.csv')
+df_EI = pd.read_csv('../data/raw/electric_insights.csv')
 
 df_EI = df_EI.set_index('local_datetime')
 df_EI.index = pd.to_datetime(df_EI.index, utc=True)
@@ -836,7 +836,7 @@ df_lit_results = df_lit_results.sort_values(['Method', 'Study Year', 'Study']).d
 df_lit_results.head()
 ```
 
-    <ipython-input-18-9abcc44159e6>:237: FutureWarning: The default value of regex will change from True to False in a future version. In addition, single character regular expressions will*not* be treated as literal strings when regex=True.
+    <ipython-input-20-15bc63a4c27e>:237: FutureWarning: The default value of regex will change from True to False in a future version. In addition, single character regular expressions will*not* be treated as literal strings when regex=True.
       df_lit_results['Study Year'] = df_lit_results['Study'].str.split('(').str[1].str.replace(')', '').astype(int)
     
 

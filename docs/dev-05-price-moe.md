@@ -544,7 +544,7 @@ _ = plt.xlim(-75, 75)
 
 <br>
 
-We'll quickly calculate the r2 score for this model, for context the UK day-ahead price multiple linear regression model from the Staffell/Green group achieved an adjusted r2 of <b>0.451<b>
+We'll quickly calculate the r2 score for this model, for context the UK day-ahead price multiple linear regression model from the Staffell/Green group achieved an adjusted r2 of <b>0.451</b>
 
 ```python
 r2_score(s_price.loc[s_pred_ts.index], s_pred_ts)

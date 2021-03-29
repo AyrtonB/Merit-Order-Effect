@@ -17,7 +17,7 @@ import numpy as np
 import seaborn as sns
 import matplotlib.pyplot as plt
 
-from moepy import surface, moe
+from moepy import surface, moe, eda
 
 import pickle
 from sklearn.metrics import r2_score
@@ -120,25 +120,25 @@ df_DE = pd.DataFrame({
 # Plotting
 fig, ax = plt.subplots(dpi=150)
 
-ax.scatter(df_DE.loc['2010-09':'2011-03', 'dispatchable'], df_DE.loc['2010-09':'2011-03', 'emissions'], s=0.1, alpha=0.25)
-ax.scatter(df_DE.loc['2019-09':'2020-03', 'dispatchable'], df_DE.loc['2019-09':'2020-03', 'emissions'], s=0.1, alpha=0.25)
+ax.scatter(df_DE.loc['2010-09':'2011-03', 'dispatchable'], df_DE.loc['2010-09':'2011-03', 'emissions'], s=0.1, alpha=0.25, label='Winter 10/11')
+ax.scatter(df_DE.loc['2019-09':'2020-03', 'dispatchable'], df_DE.loc['2019-09':'2020-03', 'emissions'], s=0.1, alpha=0.25, label='Winter 19/20')
 
 eda.hide_spines(ax)
 ax.set_xlim(10, 80)
 ax.set_ylim(3000, 20000)
 ax.set_xlabel('Demand - [Wind + Solar] (GW)')
 ax.set_ylabel('CO2 Emissions (Tonnes)')
+
+lgnd = ax.legend(frameon=False) # Need to increase the legend marker size
+lgnd.legendHandles[0]._sizes = [30]
+lgnd.legendHandles[1]._sizes = [30]
+
+for lh in lgnd.legendHandles: 
+    lh.set_alpha(1)
 ```
 
 
-
-
-    Text(0, 0.5, 'CO2 Emissions (Tonnes)')
-
-
-
-
-![png](./img/nbs/output_9_1.png)
+![png](./img/nbs/output_9_0.png)
 
 
 <br>

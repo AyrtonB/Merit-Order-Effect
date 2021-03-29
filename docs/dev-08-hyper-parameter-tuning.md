@@ -299,7 +299,7 @@ opt = BayesSearchCV(
     optimizer_kwargs={
         'random_state': 42
     },
-    n_iter=30,
+    n_iter=20,
     verbose=0,
     cv=4, # 8 works well for me as that's how many concurrent workers I can use
     fit_params=fit_params,
@@ -315,109 +315,18 @@ if fit_BayesSearchCV == True:
     print(f'\nBest params: \n{opt.best_params_}')
 ```
 
-    Fitting 4 folds for each of 1 candidates, totalling 4 fits
-    
-
-    [Parallel(n_jobs=5)]: Using backend LokyBackend with 5 concurrent workers.
-    [Parallel(n_jobs=5)]: Done   4 out of   4 | elapsed:  4.1min finished
-    [Parallel(n_jobs=5)]: Using backend LokyBackend with 5 concurrent workers.
-    
-
-    Fitting 4 folds for each of 1 candidates, totalling 4 fits
-    
-
-    [Parallel(n_jobs=5)]: Done   4 out of   4 | elapsed:  4.5min finished
-    [Parallel(n_jobs=5)]: Using backend LokyBackend with 5 concurrent workers.
-    
-
-    Fitting 4 folds for each of 1 candidates, totalling 4 fits
-    
-
-    [Parallel(n_jobs=5)]: Done   4 out of   4 | elapsed:  4.5min finished
-    [Parallel(n_jobs=5)]: Using backend LokyBackend with 5 concurrent workers.
-    
-
-    Fitting 4 folds for each of 1 candidates, totalling 4 fits
-    
-
-    [Parallel(n_jobs=5)]: Done   4 out of   4 | elapsed:  4.7min finished
-    [Parallel(n_jobs=5)]: Using backend LokyBackend with 5 concurrent workers.
-    
-
-    Fitting 4 folds for each of 1 candidates, totalling 4 fits
-    
-
-    [Parallel(n_jobs=5)]: Done   4 out of   4 | elapsed:  4.5min finished
-    [Parallel(n_jobs=5)]: Using backend LokyBackend with 5 concurrent workers.
-    
-
-    Fitting 4 folds for each of 1 candidates, totalling 4 fits
-    
-
-    [Parallel(n_jobs=5)]: Done   4 out of   4 | elapsed:  3.8min finished
-    [Parallel(n_jobs=5)]: Using backend LokyBackend with 5 concurrent workers.
-    
-
-    Fitting 4 folds for each of 1 candidates, totalling 4 fits
-    
-
-    [Parallel(n_jobs=5)]: Done   4 out of   4 | elapsed:  3.4min finished
-    [Parallel(n_jobs=5)]: Using backend LokyBackend with 5 concurrent workers.
-    
-
-    Fitting 4 folds for each of 1 candidates, totalling 4 fits
-    
-
-    [Parallel(n_jobs=5)]: Done   4 out of   4 | elapsed:  3.5min finished
-    [Parallel(n_jobs=5)]: Using backend LokyBackend with 5 concurrent workers.
-    
-
-    Fitting 4 folds for each of 1 candidates, totalling 4 fits
-    
-
-    [Parallel(n_jobs=5)]: Done   4 out of   4 | elapsed:  3.1min finished
-    
-
-    Fitting 4 folds for each of 1 candidates, totalling 4 fits
-    
-
-    [Parallel(n_jobs=5)]: Using backend LokyBackend with 5 concurrent workers.
-    [Parallel(n_jobs=5)]: Done   4 out of   4 | elapsed:  3.1min finished
-    
-
-    Fitting 4 folds for each of 1 candidates, totalling 4 fits
-    
-
-    [Parallel(n_jobs=5)]: Using backend LokyBackend with 5 concurrent workers.
-    [Parallel(n_jobs=5)]: Done   4 out of   4 | elapsed:  2.9min finished
-    
-
-    Fitting 4 folds for each of 1 candidates, totalling 4 fits
-    
-
-    [Parallel(n_jobs=5)]: Using backend LokyBackend with 5 concurrent workers.
-    [Parallel(n_jobs=5)]: Done   4 out of   4 | elapsed:  3.1min finished
-    
-
-    Fitting 4 folds for each of 1 candidates, totalling 4 fits
-    
-
-    [Parallel(n_jobs=5)]: Using backend LokyBackend with 5 concurrent workers.
-    [Parallel(n_jobs=5)]: Done   4 out of   4 | elapsed:  3.4min finished
-    
-
-    Fitting 4 folds for each of 1 candidates, totalling 4 fits
-    
-
-    [Parallel(n_jobs=5)]: Using backend LokyBackend with 5 concurrent workers.
-    [Parallel(n_jobs=5)]: Done   4 out of   4 | elapsed:  3.4min finished
-    
-
-    Fitting 4 folds for each of 1 candidates, totalling 4 fits
-    
-
-    [Parallel(n_jobs=5)]: Using backend LokyBackend with 5 concurrent workers.
-    [Parallel(n_jobs=5)]: Done   4 out of   4 | elapsed:  2.9min finished
+    C:\Users\Ayrto\anaconda3\envs\MOE\lib\site-packages\skopt\optimizer\optimizer.py:449: UserWarning: The objective has been evaluated at this point before.
+      warnings.warn("The objective has been evaluated "
+    C:\Users\Ayrto\anaconda3\envs\MOE\lib\site-packages\skopt\optimizer\optimizer.py:449: UserWarning: The objective has been evaluated at this point before.
+      warnings.warn("The objective has been evaluated "
+    C:\Users\Ayrto\anaconda3\envs\MOE\lib\site-packages\skopt\optimizer\optimizer.py:449: UserWarning: The objective has been evaluated at this point before.
+      warnings.warn("The objective has been evaluated "
+    C:\Users\Ayrto\anaconda3\envs\MOE\lib\site-packages\skopt\optimizer\optimizer.py:449: UserWarning: The objective has been evaluated at this point before.
+      warnings.warn("The objective has been evaluated "
+    C:\Users\Ayrto\anaconda3\envs\MOE\lib\site-packages\skopt\optimizer\optimizer.py:449: UserWarning: The objective has been evaluated at this point before.
+      warnings.warn("The objective has been evaluated "
+    C:\Users\Ayrto\anaconda3\envs\MOE\lib\site-packages\skopt\optimizer\optimizer.py:449: UserWarning: The objective has been evaluated at this point before.
+      warnings.warn("The objective has been evaluated "
     
 
 
@@ -425,19 +334,14 @@ if fit_BayesSearchCV == True:
 <progress style="width:60ex" max="15" value="15" class="Progress-main"/></progress>
 <span class="Progress-label"><strong>100%</strong></span>
 <span class="Iteration-label">15/15</span>
-<span class="Time-label">[02:25<00:10, 9.69s/it]</span></div>
+<span class="Time-label">[02:25<00:09, 9.69s/it]</span></div>
 
 
-    c:\users\ayrto\desktop\phd\analysis\merit-order-effect\moepy\lowess.py:145: FutureWarning: `rcond` parameter will change to the default of machine precision times ``max(M, N)`` where M and N are the input matrix dimensions.
-    To use the future default and silence this warning we advise to pass `rcond=None`, to keep using the old, explicitly pass `rcond=-1`.
-      betas = np.linalg.lstsq(A, b)[0]
-    
-
-    Cross-validation score: 0.39
+    Cross-validation score: 0.40
     
     Best params: 
-    OrderedDict([('frac', 0.35), ('threshold_value', 29)])
-    Wall time: 57min 11s
+    OrderedDict([('frac', 0.35), ('threshold_value', 21)])
+    Wall time: 1h 48min 47s
     
 
 <br>
