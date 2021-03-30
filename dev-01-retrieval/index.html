@@ -787,70 +787,54 @@
 
 <span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </code></pre></div>
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>start</th>
-      <th>end</th>
-      <th>value</th>
-      <th>valueSum</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>2019-01-01T00:00:00Z</td>
-      <td>2019-01-01T00:30:00Z</td>
-      <td>{'nuclear': 6.924, 'biomass': 1.116, 'coal': 0...</td>
-      <td>{'nuclear': 6.924, 'biomass': 1.116, 'coal': 0...</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>2019-01-01T00:30:00Z</td>
-      <td>2019-01-01T01:00:00Z</td>
-      <td>{'nuclear': 6.838, 'biomass': 1.103, 'coal': 0...</td>
-      <td>{'nuclear': 6.838, 'biomass': 1.103, 'coal': 0...</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>2019-01-01T01:00:00Z</td>
-      <td>2019-01-01T01:30:00Z</td>
-      <td>{'nuclear': 6.834, 'biomass': 1.09, 'coal': 0,...</td>
-      <td>{'nuclear': 6.834, 'biomass': 1.09, 'coal': 0,...</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>2019-01-01T01:30:00Z</td>
-      <td>2019-01-01T02:00:00Z</td>
-      <td>{'nuclear': 6.83, 'biomass': 1.085, 'coal': 0,...</td>
-      <td>{'nuclear': 6.83, 'biomass': 1.085, 'coal': 0,...</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>2019-01-01T02:00:00Z</td>
-      <td>2019-01-01T02:30:00Z</td>
-      <td>{'nuclear': 6.827, 'biomass': 1.081, 'coal': 0...</td>
-      <td>{'nuclear': 6.827, 'biomass': 1.081, 'coal': 0...</td>
-    </tr>
-  </tbody>
+<table>
+<thead>
+<tr>
+<th align="right">Unnamed: 0</th>
+<th align="left">start</th>
+<th align="left">end</th>
+<th align="left">value</th>
+<th align="left">valueSum</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="right">0</td>
+<td align="left">2019-01-01T00:00:00Z</td>
+<td align="left">2019-01-01T00:30:00Z</td>
+<td align="left">{'nuclear': 6.924, 'biomass': 1.116, 'coal': 0...</td>
+<td align="left">{'nuclear': 6.924, 'biomass': 1.116, 'coal': 0...</td>
+</tr>
+<tr>
+<td align="right">1</td>
+<td align="left">2019-01-01T00:30:00Z</td>
+<td align="left">2019-01-01T01:00:00Z</td>
+<td align="left">{'nuclear': 6.838, 'biomass': 1.103, 'coal': 0...</td>
+<td align="left">{'nuclear': 6.838, 'biomass': 1.103, 'coal': 0...</td>
+</tr>
+<tr>
+<td align="right">2</td>
+<td align="left">2019-01-01T01:00:00Z</td>
+<td align="left">2019-01-01T01:30:00Z</td>
+<td align="left">{'nuclear': 6.834, 'biomass': 1.09, 'coal': 0,...</td>
+<td align="left">{'nuclear': 6.834, 'biomass': 1.09, 'coal': 0,...</td>
+</tr>
+<tr>
+<td align="right">3</td>
+<td align="left">2019-01-01T01:30:00Z</td>
+<td align="left">2019-01-01T02:00:00Z</td>
+<td align="left">{'nuclear': 6.83, 'biomass': 1.085, 'coal': 0,...</td>
+<td align="left">{'nuclear': 6.83, 'biomass': 1.085, 'coal': 0,...</td>
+</tr>
+<tr>
+<td align="right">4</td>
+<td align="left">2019-01-01T02:00:00Z</td>
+<td align="left">2019-01-01T02:30:00Z</td>
+<td align="left">{'nuclear': 6.827, 'biomass': 1.081, 'coal': 0...</td>
+<td align="left">{'nuclear': 6.827, 'biomass': 1.081, 'coal': 0...</td>
+</tr>
+</tbody>
 </table>
-</div>
-
 <p><br></p>
 <p>We can create a function that will take a specified column and extract the nested dataframe</p>
 <div class="highlight"><pre><span></span><code><span class="c1">#exports</span>
@@ -872,104 +856,88 @@
 
 <span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
 </code></pre></div>
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>start</th>
-      <th>end</th>
-      <th>valueSum</th>
-      <th>nuclear</th>
-      <th>biomass</th>
-      <th>coal</th>
-      <th>gas</th>
-      <th>hydro</th>
-      <th>wind</th>
-      <th>windTotal</th>
-      <th>solar</th>
-      <th>demand</th>
-      <th>pumpedStorage</th>
-      <th>imports</th>
-      <th>exports</th>
-      <th>balance</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>2019-01-01T00:00:00Z</td>
-      <td>2019-01-01T00:30:00Z</td>
-      <td>{'nuclear': 6.924, 'biomass': 1.116, 'coal': 0...</td>
-      <td>6.924</td>
-      <td>1.116</td>
-      <td>0</td>
-      <td>5.853</td>
-      <td>0.405</td>
-      <td>11.304</td>
-      <td>{'windOnshore': 8.054581, 'windOffshore': 3.14...</td>
-      <td>0</td>
-      <td>27.336</td>
-      <td>0</td>
-      <td>{'belgian': 0, 'dutch': 0.182, 'french': 1.552...</td>
-      <td>{'french': 0, 'dutch': 0, 'irish': 0, 'pumpedS...</td>
-      <td>{'french': 1.552, 'dutch': 0.182, 'irish': -0....</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>2019-01-01T00:30:00Z</td>
-      <td>2019-01-01T01:00:00Z</td>
-      <td>{'nuclear': 6.838, 'biomass': 1.103, 'coal': 0...</td>
-      <td>6.838</td>
-      <td>1.103</td>
-      <td>0</td>
-      <td>6.292</td>
-      <td>0.388</td>
-      <td>11.327</td>
-      <td>{'windOnshore': 7.860487, 'windOffshore': 3.25...</td>
-      <td>0</td>
-      <td>27.722</td>
-      <td>0.024</td>
-      <td>{'belgian': 0, 'dutch': 0.196, 'french': 1.554...</td>
-      <td>{'french': 0, 'dutch': 0, 'irish': 0, 'pumpedS...</td>
-      <td>{'french': 1.554, 'dutch': 0.196, 'irish': -0....</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>2019-01-01T01:00:00Z</td>
-      <td>2019-01-01T01:30:00Z</td>
-      <td>{'nuclear': 6.834, 'biomass': 1.09, 'coal': 0,...</td>
-      <td>6.834</td>
-      <td>1.090</td>
-      <td>0</td>
-      <td>5.719</td>
-      <td>0.372</td>
-      <td>11.335</td>
-      <td>{'windOnshore': 7.879198000000001, 'windOffsho...</td>
-      <td>0</td>
-      <td>27.442</td>
-      <td>0</td>
-      <td>{'belgian': 0, 'dutch': 0.588, 'french': 1.504...</td>
-      <td>{'french': 0, 'dutch': 0, 'irish': 0, 'pumpedS...</td>
-      <td>{'french': 1.504, 'dutch': 0.588, 'irish': -0....</td>
-    </tr>
-  </tbody>
+<table>
+<thead>
+<tr>
+<th align="right">Unnamed: 0</th>
+<th align="left">start</th>
+<th align="left">end</th>
+<th align="left">valueSum</th>
+<th align="right">nuclear</th>
+<th align="right">biomass</th>
+<th align="right">coal</th>
+<th align="right">gas</th>
+<th align="right">hydro</th>
+<th align="right">wind</th>
+<th align="left">windTotal</th>
+<th align="right">solar</th>
+<th align="right">demand</th>
+<th align="right">pumpedStorage</th>
+<th align="left">imports</th>
+<th align="left">exports</th>
+<th align="left">balance</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="right">0</td>
+<td align="left">2019-01-01T00:00:00Z</td>
+<td align="left">2019-01-01T00:30:00Z</td>
+<td align="left">{'nuclear': 6.924, 'biomass': 1.116, 'coal': 0...</td>
+<td align="right">6.924</td>
+<td align="right">1.116</td>
+<td align="right">0</td>
+<td align="right">5.853</td>
+<td align="right">0.405</td>
+<td align="right">11.304</td>
+<td align="left">{'windOnshore': 8.054581, 'windOffshore': 3.14...</td>
+<td align="right">0</td>
+<td align="right">27.336</td>
+<td align="right">0</td>
+<td align="left">{'belgian': 0, 'dutch': 0.182, 'french': 1.552...</td>
+<td align="left">{'french': 0, 'dutch': 0, 'irish': 0, 'pumpedS...</td>
+<td align="left">{'french': 1.552, 'dutch': 0.182, 'irish': -0....</td>
+</tr>
+<tr>
+<td align="right">1</td>
+<td align="left">2019-01-01T00:30:00Z</td>
+<td align="left">2019-01-01T01:00:00Z</td>
+<td align="left">{'nuclear': 6.838, 'biomass': 1.103, 'coal': 0...</td>
+<td align="right">6.838</td>
+<td align="right">1.103</td>
+<td align="right">0</td>
+<td align="right">6.292</td>
+<td align="right">0.388</td>
+<td align="right">11.327</td>
+<td align="left">{'windOnshore': 7.860487, 'windOffshore': 3.25...</td>
+<td align="right">0</td>
+<td align="right">27.722</td>
+<td align="right">0.024</td>
+<td align="left">{'belgian': 0, 'dutch': 0.196, 'french': 1.554...</td>
+<td align="left">{'french': 0, 'dutch': 0, 'irish': 0, 'pumpedS...</td>
+<td align="left">{'french': 1.554, 'dutch': 0.196, 'irish': -0....</td>
+</tr>
+<tr>
+<td align="right">2</td>
+<td align="left">2019-01-01T01:00:00Z</td>
+<td align="left">2019-01-01T01:30:00Z</td>
+<td align="left">{'nuclear': 6.834, 'biomass': 1.09, 'coal': 0,...</td>
+<td align="right">6.834</td>
+<td align="right">1.09</td>
+<td align="right">0</td>
+<td align="right">5.719</td>
+<td align="right">0.372</td>
+<td align="right">11.335</td>
+<td align="left">{'windOnshore': 7.879198000000001, 'windOffsho...</td>
+<td align="right">0</td>
+<td align="right">27.442</td>
+<td align="right">0</td>
+<td align="left">{'belgian': 0, 'dutch': 0.588, 'french': 1.504...</td>
+<td align="left">{'french': 0, 'dutch': 0, 'irish': 0, 'pumpedS...</td>
+<td align="left">{'french': 1.504, 'dutch': 0.588, 'irish': -0....</td>
+</tr>
+</tbody>
 </table>
-</div>
-
 <p><br></p>
 <p>Unfortunately however this doesn't handle repeated nesting of dictionaries, we'll create a wrapper that does</p>
 <div class="highlight"><pre><span></span><code><span class="c1">#exports</span>
@@ -994,160 +962,144 @@
 
 <span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </code></pre></div>
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>start</th>
-      <th>end</th>
-      <th>nuclear</th>
-      <th>biomass</th>
-      <th>coal</th>
-      <th>gas</th>
-      <th>hydro</th>
-      <th>wind</th>
-      <th>solar</th>
-      <th>demand</th>
-      <th>pumpedStorage</th>
-      <th>windOnshore</th>
-      <th>windOffshore</th>
-      <th>belgian</th>
-      <th>dutch</th>
-      <th>french</th>
-      <th>ireland</th>
-      <th>northernIreland</th>
-      <th>irish</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>2019-01-01T00:00:00Z</td>
-      <td>2019-01-01T00:30:00Z</td>
-      <td>6.924</td>
-      <td>1.116</td>
-      <td>0</td>
-      <td>5.853</td>
-      <td>0.405</td>
-      <td>11.304</td>
-      <td>0</td>
-      <td>27.336</td>
-      <td>0.000</td>
-      <td>8.054581</td>
-      <td>3.141711</td>
-      <td>0.0</td>
-      <td>0.182</td>
-      <td>1.552</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>-0.702</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>2019-01-01T00:30:00Z</td>
-      <td>2019-01-01T01:00:00Z</td>
-      <td>6.838</td>
-      <td>1.103</td>
-      <td>0</td>
-      <td>6.292</td>
-      <td>0.388</td>
-      <td>11.327</td>
-      <td>0</td>
-      <td>27.722</td>
-      <td>0.024</td>
-      <td>7.860487</td>
-      <td>3.253887</td>
-      <td>0.0</td>
-      <td>0.196</td>
-      <td>1.554</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>-0.696</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>2019-01-01T01:00:00Z</td>
-      <td>2019-01-01T01:30:00Z</td>
-      <td>6.834</td>
-      <td>1.090</td>
-      <td>0</td>
-      <td>5.719</td>
-      <td>0.372</td>
-      <td>11.335</td>
-      <td>0</td>
-      <td>27.442</td>
-      <td>0.000</td>
-      <td>7.879198</td>
-      <td>3.340851</td>
-      <td>0.0</td>
-      <td>0.588</td>
-      <td>1.504</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>-0.722</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>2019-01-01T01:30:00Z</td>
-      <td>2019-01-01T02:00:00Z</td>
-      <td>6.830</td>
-      <td>1.085</td>
-      <td>0</td>
-      <td>5.020</td>
-      <td>0.368</td>
-      <td>11.063</td>
-      <td>0</td>
-      <td>26.470</td>
-      <td>0.000</td>
-      <td>7.708874</td>
-      <td>3.213702</td>
-      <td>0.0</td>
-      <td>0.600</td>
-      <td>1.504</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>-0.770</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>2019-01-01T02:00:00Z</td>
-      <td>2019-01-01T02:30:00Z</td>
-      <td>6.827</td>
-      <td>1.081</td>
-      <td>0</td>
-      <td>4.964</td>
-      <td>0.355</td>
-      <td>10.786</td>
-      <td>0</td>
-      <td>26.195</td>
-      <td>0.000</td>
-      <td>7.479429</td>
-      <td>3.122706</td>
-      <td>0.0</td>
-      <td>0.678</td>
-      <td>1.504</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>-0.910</td>
-    </tr>
-  </tbody>
+<table>
+<thead>
+<tr>
+<th align="right">Unnamed: 0</th>
+<th align="left">start</th>
+<th align="left">end</th>
+<th align="right">nuclear</th>
+<th align="right">biomass</th>
+<th align="right">coal</th>
+<th align="right">gas</th>
+<th align="right">hydro</th>
+<th align="right">wind</th>
+<th align="right">solar</th>
+<th align="right">demand</th>
+<th align="right">pumpedStorage</th>
+<th align="right">windOnshore</th>
+<th align="right">windOffshore</th>
+<th align="right">belgian</th>
+<th align="right">dutch</th>
+<th align="right">french</th>
+<th align="right">ireland</th>
+<th align="right">northernIreland</th>
+<th align="right">irish</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="right">0</td>
+<td align="left">2019-01-01T00:00:00Z</td>
+<td align="left">2019-01-01T00:30:00Z</td>
+<td align="right">6.924</td>
+<td align="right">1.116</td>
+<td align="right">0</td>
+<td align="right">5.853</td>
+<td align="right">0.405</td>
+<td align="right">11.304</td>
+<td align="right">0</td>
+<td align="right">27.336</td>
+<td align="right">0</td>
+<td align="right">8.05458</td>
+<td align="right">3.14171</td>
+<td align="right">0</td>
+<td align="right">0.182</td>
+<td align="right">1.552</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">-0.702</td>
+</tr>
+<tr>
+<td align="right">1</td>
+<td align="left">2019-01-01T00:30:00Z</td>
+<td align="left">2019-01-01T01:00:00Z</td>
+<td align="right">6.838</td>
+<td align="right">1.103</td>
+<td align="right">0</td>
+<td align="right">6.292</td>
+<td align="right">0.388</td>
+<td align="right">11.327</td>
+<td align="right">0</td>
+<td align="right">27.722</td>
+<td align="right">0.024</td>
+<td align="right">7.86049</td>
+<td align="right">3.25389</td>
+<td align="right">0</td>
+<td align="right">0.196</td>
+<td align="right">1.554</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">-0.696</td>
+</tr>
+<tr>
+<td align="right">2</td>
+<td align="left">2019-01-01T01:00:00Z</td>
+<td align="left">2019-01-01T01:30:00Z</td>
+<td align="right">6.834</td>
+<td align="right">1.09</td>
+<td align="right">0</td>
+<td align="right">5.719</td>
+<td align="right">0.372</td>
+<td align="right">11.335</td>
+<td align="right">0</td>
+<td align="right">27.442</td>
+<td align="right">0</td>
+<td align="right">7.8792</td>
+<td align="right">3.34085</td>
+<td align="right">0</td>
+<td align="right">0.588</td>
+<td align="right">1.504</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">-0.722</td>
+</tr>
+<tr>
+<td align="right">3</td>
+<td align="left">2019-01-01T01:30:00Z</td>
+<td align="left">2019-01-01T02:00:00Z</td>
+<td align="right">6.83</td>
+<td align="right">1.085</td>
+<td align="right">0</td>
+<td align="right">5.02</td>
+<td align="right">0.368</td>
+<td align="right">11.063</td>
+<td align="right">0</td>
+<td align="right">26.47</td>
+<td align="right">0</td>
+<td align="right">7.70887</td>
+<td align="right">3.2137</td>
+<td align="right">0</td>
+<td align="right">0.6</td>
+<td align="right">1.504</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">-0.77</td>
+</tr>
+<tr>
+<td align="right">4</td>
+<td align="left">2019-01-01T02:00:00Z</td>
+<td align="left">2019-01-01T02:30:00Z</td>
+<td align="right">6.827</td>
+<td align="right">1.081</td>
+<td align="right">0</td>
+<td align="right">4.964</td>
+<td align="right">0.355</td>
+<td align="right">10.786</td>
+<td align="right">0</td>
+<td align="right">26.195</td>
+<td align="right">0</td>
+<td align="right">7.47943</td>
+<td align="right">3.12271</td>
+<td align="right">0</td>
+<td align="right">0.678</td>
+<td align="right">1.504</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">-0.91</td>
+</tr>
+</tbody>
 </table>
-</div>
-
 <p><br></p>
 <p>Next we'll process the datetime index</p>
 <div class="highlight"><pre><span></span><code><span class="c1">#exports</span>
@@ -1204,175 +1156,138 @@
 
 <span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </code></pre></div>
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>nuclear</th>
-      <th>biomass</th>
-      <th>coal</th>
-      <th>gas</th>
-      <th>hydro</th>
-      <th>wind</th>
-      <th>solar</th>
-      <th>demand</th>
-      <th>pumpedStorage</th>
-      <th>windOnshore</th>
-      <th>windOffshore</th>
-      <th>belgian</th>
-      <th>dutch</th>
-      <th>french</th>
-      <th>ireland</th>
-      <th>northernIreland</th>
-      <th>irish</th>
-      <th>SP</th>
-    </tr>
-    <tr>
-      <th>local_datetime</th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>2019-01-01 00:00:00+00:00</th>
-      <td>6.924</td>
-      <td>1.116</td>
-      <td>0</td>
-      <td>5.853</td>
-      <td>0.405</td>
-      <td>11.304</td>
-      <td>0</td>
-      <td>27.336</td>
-      <td>0.000</td>
-      <td>8.054581</td>
-      <td>3.141711</td>
-      <td>0.0</td>
-      <td>0.182</td>
-      <td>1.552</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>-0.702</td>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th>2019-01-01 00:30:00+00:00</th>
-      <td>6.838</td>
-      <td>1.103</td>
-      <td>0</td>
-      <td>6.292</td>
-      <td>0.388</td>
-      <td>11.327</td>
-      <td>0</td>
-      <td>27.722</td>
-      <td>0.024</td>
-      <td>7.860487</td>
-      <td>3.253887</td>
-      <td>0.0</td>
-      <td>0.196</td>
-      <td>1.554</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>-0.696</td>
-      <td>2</td>
-    </tr>
-    <tr>
-      <th>2019-01-01 01:00:00+00:00</th>
-      <td>6.834</td>
-      <td>1.090</td>
-      <td>0</td>
-      <td>5.719</td>
-      <td>0.372</td>
-      <td>11.335</td>
-      <td>0</td>
-      <td>27.442</td>
-      <td>0.000</td>
-      <td>7.879198</td>
-      <td>3.340851</td>
-      <td>0.0</td>
-      <td>0.588</td>
-      <td>1.504</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>-0.722</td>
-      <td>3</td>
-    </tr>
-    <tr>
-      <th>2019-01-01 01:30:00+00:00</th>
-      <td>6.830</td>
-      <td>1.085</td>
-      <td>0</td>
-      <td>5.020</td>
-      <td>0.368</td>
-      <td>11.063</td>
-      <td>0</td>
-      <td>26.470</td>
-      <td>0.000</td>
-      <td>7.708874</td>
-      <td>3.213702</td>
-      <td>0.0</td>
-      <td>0.600</td>
-      <td>1.504</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>-0.770</td>
-      <td>4</td>
-    </tr>
-    <tr>
-      <th>2019-01-01 02:00:00+00:00</th>
-      <td>6.827</td>
-      <td>1.081</td>
-      <td>0</td>
-      <td>4.964</td>
-      <td>0.355</td>
-      <td>10.786</td>
-      <td>0</td>
-      <td>26.195</td>
-      <td>0.000</td>
-      <td>7.479429</td>
-      <td>3.122706</td>
-      <td>0.0</td>
-      <td>0.678</td>
-      <td>1.504</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>-0.910</td>
-      <td>5</td>
-    </tr>
-  </tbody>
+<table>
+<thead>
+<tr>
+<th align="left">local_datetime</th>
+<th align="right">nuclear</th>
+<th align="right">biomass</th>
+<th align="right">coal</th>
+<th align="right">gas</th>
+<th align="right">hydro</th>
+<th align="right">wind</th>
+<th align="right">solar</th>
+<th align="right">demand</th>
+<th align="right">pumpedStorage</th>
+<th align="right">windOnshore</th>
+<th align="right">windOffshore</th>
+<th align="right">belgian</th>
+<th align="right">dutch</th>
+<th align="right">french</th>
+<th align="right">ireland</th>
+<th align="right">northernIreland</th>
+<th align="right">irish</th>
+<th align="right">SP</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">2019-01-01 00:00:00+00:00</td>
+<td align="right">6.924</td>
+<td align="right">1.116</td>
+<td align="right">0</td>
+<td align="right">5.853</td>
+<td align="right">0.405</td>
+<td align="right">11.304</td>
+<td align="right">0</td>
+<td align="right">27.336</td>
+<td align="right">0</td>
+<td align="right">8.05458</td>
+<td align="right">3.14171</td>
+<td align="right">0</td>
+<td align="right">0.182</td>
+<td align="right">1.552</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">-0.702</td>
+<td align="right">1</td>
+</tr>
+<tr>
+<td align="left">2019-01-01 00:30:00+00:00</td>
+<td align="right">6.838</td>
+<td align="right">1.103</td>
+<td align="right">0</td>
+<td align="right">6.292</td>
+<td align="right">0.388</td>
+<td align="right">11.327</td>
+<td align="right">0</td>
+<td align="right">27.722</td>
+<td align="right">0.024</td>
+<td align="right">7.86049</td>
+<td align="right">3.25389</td>
+<td align="right">0</td>
+<td align="right">0.196</td>
+<td align="right">1.554</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">-0.696</td>
+<td align="right">2</td>
+</tr>
+<tr>
+<td align="left">2019-01-01 01:00:00+00:00</td>
+<td align="right">6.834</td>
+<td align="right">1.09</td>
+<td align="right">0</td>
+<td align="right">5.719</td>
+<td align="right">0.372</td>
+<td align="right">11.335</td>
+<td align="right">0</td>
+<td align="right">27.442</td>
+<td align="right">0</td>
+<td align="right">7.8792</td>
+<td align="right">3.34085</td>
+<td align="right">0</td>
+<td align="right">0.588</td>
+<td align="right">1.504</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">-0.722</td>
+<td align="right">3</td>
+</tr>
+<tr>
+<td align="left">2019-01-01 01:30:00+00:00</td>
+<td align="right">6.83</td>
+<td align="right">1.085</td>
+<td align="right">0</td>
+<td align="right">5.02</td>
+<td align="right">0.368</td>
+<td align="right">11.063</td>
+<td align="right">0</td>
+<td align="right">26.47</td>
+<td align="right">0</td>
+<td align="right">7.70887</td>
+<td align="right">3.2137</td>
+<td align="right">0</td>
+<td align="right">0.6</td>
+<td align="right">1.504</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">-0.77</td>
+<td align="right">4</td>
+</tr>
+<tr>
+<td align="left">2019-01-01 02:00:00+00:00</td>
+<td align="right">6.827</td>
+<td align="right">1.081</td>
+<td align="right">0</td>
+<td align="right">4.964</td>
+<td align="right">0.355</td>
+<td align="right">10.786</td>
+<td align="right">0</td>
+<td align="right">26.195</td>
+<td align="right">0</td>
+<td align="right">7.47943</td>
+<td align="right">3.12271</td>
+<td align="right">0</td>
+<td align="right">0.678</td>
+<td align="right">1.504</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">-0.91</td>
+<td align="right">5</td>
+</tr>
+</tbody>
 </table>
-</div>
-
 <p><br></p>
 <p>We'll now combine all of the previous steps and add some column renaming where we want to tidy them up a bit</p>
 <div class="highlight"><pre><span></span><code><span class="c1">#exports</span>
@@ -1424,175 +1339,138 @@
 
 <span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </code></pre></div>
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>nuclear</th>
-      <th>biomass</th>
-      <th>coal</th>
-      <th>gas</th>
-      <th>hydro</th>
-      <th>wind</th>
-      <th>solar</th>
-      <th>demand</th>
-      <th>pumped_storage</th>
-      <th>wind_onshore</th>
-      <th>wind_offshore</th>
-      <th>belgian</th>
-      <th>dutch</th>
-      <th>french</th>
-      <th>ireland</th>
-      <th>northern_ireland</th>
-      <th>irish</th>
-      <th>SP</th>
-    </tr>
-    <tr>
-      <th>local_datetime</th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>2019-01-01 00:00:00+00:00</th>
-      <td>6.924</td>
-      <td>1.116</td>
-      <td>0</td>
-      <td>5.853</td>
-      <td>0.405</td>
-      <td>11.304</td>
-      <td>0</td>
-      <td>27.336</td>
-      <td>0.000</td>
-      <td>8.054581</td>
-      <td>3.141711</td>
-      <td>0.0</td>
-      <td>0.182</td>
-      <td>1.552</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>-0.702</td>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th>2019-01-01 00:30:00+00:00</th>
-      <td>6.838</td>
-      <td>1.103</td>
-      <td>0</td>
-      <td>6.292</td>
-      <td>0.388</td>
-      <td>11.327</td>
-      <td>0</td>
-      <td>27.722</td>
-      <td>0.024</td>
-      <td>7.860487</td>
-      <td>3.253887</td>
-      <td>0.0</td>
-      <td>0.196</td>
-      <td>1.554</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>-0.696</td>
-      <td>2</td>
-    </tr>
-    <tr>
-      <th>2019-01-01 01:00:00+00:00</th>
-      <td>6.834</td>
-      <td>1.090</td>
-      <td>0</td>
-      <td>5.719</td>
-      <td>0.372</td>
-      <td>11.335</td>
-      <td>0</td>
-      <td>27.442</td>
-      <td>0.000</td>
-      <td>7.879198</td>
-      <td>3.340851</td>
-      <td>0.0</td>
-      <td>0.588</td>
-      <td>1.504</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>-0.722</td>
-      <td>3</td>
-    </tr>
-    <tr>
-      <th>2019-01-01 01:30:00+00:00</th>
-      <td>6.830</td>
-      <td>1.085</td>
-      <td>0</td>
-      <td>5.020</td>
-      <td>0.368</td>
-      <td>11.063</td>
-      <td>0</td>
-      <td>26.470</td>
-      <td>0.000</td>
-      <td>7.708874</td>
-      <td>3.213702</td>
-      <td>0.0</td>
-      <td>0.600</td>
-      <td>1.504</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>-0.770</td>
-      <td>4</td>
-    </tr>
-    <tr>
-      <th>2019-01-01 02:00:00+00:00</th>
-      <td>6.827</td>
-      <td>1.081</td>
-      <td>0</td>
-      <td>4.964</td>
-      <td>0.355</td>
-      <td>10.786</td>
-      <td>0</td>
-      <td>26.195</td>
-      <td>0.000</td>
-      <td>7.479429</td>
-      <td>3.122706</td>
-      <td>0.0</td>
-      <td>0.678</td>
-      <td>1.504</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>-0.910</td>
-      <td>5</td>
-    </tr>
-  </tbody>
+<table>
+<thead>
+<tr>
+<th align="left">local_datetime</th>
+<th align="right">nuclear</th>
+<th align="right">biomass</th>
+<th align="right">coal</th>
+<th align="right">gas</th>
+<th align="right">hydro</th>
+<th align="right">wind</th>
+<th align="right">solar</th>
+<th align="right">demand</th>
+<th align="right">pumped_storage</th>
+<th align="right">wind_onshore</th>
+<th align="right">wind_offshore</th>
+<th align="right">belgian</th>
+<th align="right">dutch</th>
+<th align="right">french</th>
+<th align="right">ireland</th>
+<th align="right">northern_ireland</th>
+<th align="right">irish</th>
+<th align="right">SP</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">2019-01-01 00:00:00+00:00</td>
+<td align="right">6.924</td>
+<td align="right">1.116</td>
+<td align="right">0</td>
+<td align="right">5.853</td>
+<td align="right">0.405</td>
+<td align="right">11.304</td>
+<td align="right">0</td>
+<td align="right">27.336</td>
+<td align="right">0</td>
+<td align="right">8.05458</td>
+<td align="right">3.14171</td>
+<td align="right">0</td>
+<td align="right">0.182</td>
+<td align="right">1.552</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">-0.702</td>
+<td align="right">1</td>
+</tr>
+<tr>
+<td align="left">2019-01-01 00:30:00+00:00</td>
+<td align="right">6.838</td>
+<td align="right">1.103</td>
+<td align="right">0</td>
+<td align="right">6.292</td>
+<td align="right">0.388</td>
+<td align="right">11.327</td>
+<td align="right">0</td>
+<td align="right">27.722</td>
+<td align="right">0.024</td>
+<td align="right">7.86049</td>
+<td align="right">3.25389</td>
+<td align="right">0</td>
+<td align="right">0.196</td>
+<td align="right">1.554</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">-0.696</td>
+<td align="right">2</td>
+</tr>
+<tr>
+<td align="left">2019-01-01 01:00:00+00:00</td>
+<td align="right">6.834</td>
+<td align="right">1.09</td>
+<td align="right">0</td>
+<td align="right">5.719</td>
+<td align="right">0.372</td>
+<td align="right">11.335</td>
+<td align="right">0</td>
+<td align="right">27.442</td>
+<td align="right">0</td>
+<td align="right">7.8792</td>
+<td align="right">3.34085</td>
+<td align="right">0</td>
+<td align="right">0.588</td>
+<td align="right">1.504</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">-0.722</td>
+<td align="right">3</td>
+</tr>
+<tr>
+<td align="left">2019-01-01 01:30:00+00:00</td>
+<td align="right">6.83</td>
+<td align="right">1.085</td>
+<td align="right">0</td>
+<td align="right">5.02</td>
+<td align="right">0.368</td>
+<td align="right">11.063</td>
+<td align="right">0</td>
+<td align="right">26.47</td>
+<td align="right">0</td>
+<td align="right">7.70887</td>
+<td align="right">3.2137</td>
+<td align="right">0</td>
+<td align="right">0.6</td>
+<td align="right">1.504</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">-0.77</td>
+<td align="right">4</td>
+</tr>
+<tr>
+<td align="left">2019-01-01 02:00:00+00:00</td>
+<td align="right">6.827</td>
+<td align="right">1.081</td>
+<td align="right">0</td>
+<td align="right">4.964</td>
+<td align="right">0.355</td>
+<td align="right">10.786</td>
+<td align="right">0</td>
+<td align="right">26.195</td>
+<td align="right">0</td>
+<td align="right">7.47943</td>
+<td align="right">3.12271</td>
+<td align="right">0</td>
+<td align="right">0.678</td>
+<td align="right">1.504</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">-0.91</td>
+<td align="right">5</td>
+</tr>
+</tbody>
 </table>
-</div>
-
 <p><br></p>
 <h4 id="multiple-streams">Multiple Streams<a class="headerlink" href="#multiple-streams" title="Permanent link">&para;</a></h4>
 <p>We'll now create further functionality for retrieving all of the streams and combining them, before doing so we'll create a helper function for checking the streams are allowed</p>
@@ -1685,197 +1563,156 @@ Streams &#39;not_a_stream&#39; could not be recognised, must be one of: prices_a
 
 <span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </code></pre></div>
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>day_ahead_price</th>
-      <th>SP</th>
-      <th>imbalance_price</th>
-      <th>valueSum</th>
-      <th>temperature</th>
-      <th>TCO2_per_h</th>
-      <th>gCO2_per_kWh</th>
-      <th>nuclear</th>
-      <th>biomass</th>
-      <th>coal</th>
-      <th>...</th>
-      <th>demand</th>
-      <th>pumped_storage</th>
-      <th>wind_onshore</th>
-      <th>wind_offshore</th>
-      <th>belgian</th>
-      <th>dutch</th>
-      <th>french</th>
-      <th>ireland</th>
-      <th>northern_ireland</th>
-      <th>irish</th>
-    </tr>
-    <tr>
-      <th>local_datetime</th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>2019-01-01 00:00:00+00:00</th>
-      <td>48.81</td>
-      <td>1</td>
-      <td>15.0</td>
-      <td>15.0</td>
-      <td>9.1</td>
-      <td>2287.010</td>
-      <td>83.662935</td>
-      <td>6.924</td>
-      <td>1.116</td>
-      <td>0</td>
-      <td>...</td>
-      <td>27.336</td>
-      <td>0.000</td>
-      <td>8.054581</td>
-      <td>3.141711</td>
-      <td>0.0</td>
-      <td>0.182</td>
-      <td>1.552</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>-0.702</td>
-    </tr>
-    <tr>
-      <th>2019-01-01 00:30:00+00:00</th>
-      <td>50.24</td>
-      <td>2</td>
-      <td>15.0</td>
-      <td>15.0</td>
-      <td>9.1</td>
-      <td>2467.906</td>
-      <td>89.023375</td>
-      <td>6.838</td>
-      <td>1.103</td>
-      <td>0</td>
-      <td>...</td>
-      <td>27.722</td>
-      <td>0.024</td>
-      <td>7.860487</td>
-      <td>3.253887</td>
-      <td>0.0</td>
-      <td>0.196</td>
-      <td>1.554</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>-0.696</td>
-    </tr>
-    <tr>
-      <th>2019-01-01 01:00:00+00:00</th>
-      <td>41.90</td>
-      <td>3</td>
-      <td>16.0</td>
-      <td>16.0</td>
-      <td>9.1</td>
-      <td>2411.834</td>
-      <td>87.888419</td>
-      <td>6.834</td>
-      <td>1.090</td>
-      <td>0</td>
-      <td>...</td>
-      <td>27.442</td>
-      <td>0.000</td>
-      <td>7.879198</td>
-      <td>3.340851</td>
-      <td>0.0</td>
-      <td>0.588</td>
-      <td>1.504</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>-0.722</td>
-    </tr>
-    <tr>
-      <th>2019-01-01 01:30:00+00:00</th>
-      <td>39.32</td>
-      <td>4</td>
-      <td>16.0</td>
-      <td>16.0</td>
-      <td>9.1</td>
-      <td>2119.532</td>
-      <td>80.072988</td>
-      <td>6.830</td>
-      <td>1.085</td>
-      <td>0</td>
-      <td>...</td>
-      <td>26.470</td>
-      <td>0.000</td>
-      <td>7.708874</td>
-      <td>3.213702</td>
-      <td>0.0</td>
-      <td>0.600</td>
-      <td>1.504</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>-0.770</td>
-    </tr>
-    <tr>
-      <th>2019-01-01 02:00:00+00:00</th>
-      <td>34.09</td>
-      <td>5</td>
-      <td>16.0</td>
-      <td>16.0</td>
-      <td>9.1</td>
-      <td>2069.840</td>
-      <td>79.016606</td>
-      <td>6.827</td>
-      <td>1.081</td>
-      <td>0</td>
-      <td>...</td>
-      <td>26.195</td>
-      <td>0.000</td>
-      <td>7.479429</td>
-      <td>3.122706</td>
-      <td>0.0</td>
-      <td>0.678</td>
-      <td>1.504</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>-0.910</td>
-    </tr>
-  </tbody>
+<table>
+<thead>
+<tr>
+<th align="left">local_datetime</th>
+<th align="right">day_ahead_price</th>
+<th align="right">SP</th>
+<th align="right">imbalance_price</th>
+<th align="right">valueSum</th>
+<th align="right">temperature</th>
+<th align="right">TCO2_per_h</th>
+<th align="right">gCO2_per_kWh</th>
+<th align="right">nuclear</th>
+<th align="right">biomass</th>
+<th align="right">coal</th>
+<th align="left">...</th>
+<th align="right">demand</th>
+<th align="right">pumped_storage</th>
+<th align="right">wind_onshore</th>
+<th align="right">wind_offshore</th>
+<th align="right">belgian</th>
+<th align="right">dutch</th>
+<th align="right">french</th>
+<th align="right">ireland</th>
+<th align="right">northern_ireland</th>
+<th align="right">irish</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">2019-01-01 00:00:00+00:00</td>
+<td align="right">48.81</td>
+<td align="right">1</td>
+<td align="right">15</td>
+<td align="right">15</td>
+<td align="right">9.1</td>
+<td align="right">2287.01</td>
+<td align="right">83.6629</td>
+<td align="right">6.924</td>
+<td align="right">1.116</td>
+<td align="right">0</td>
+<td align="left">...</td>
+<td align="right">27.336</td>
+<td align="right">0</td>
+<td align="right">8.05458</td>
+<td align="right">3.14171</td>
+<td align="right">0</td>
+<td align="right">0.182</td>
+<td align="right">1.552</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">-0.702</td>
+</tr>
+<tr>
+<td align="left">2019-01-01 00:30:00+00:00</td>
+<td align="right">50.24</td>
+<td align="right">2</td>
+<td align="right">15</td>
+<td align="right">15</td>
+<td align="right">9.1</td>
+<td align="right">2467.91</td>
+<td align="right">89.0234</td>
+<td align="right">6.838</td>
+<td align="right">1.103</td>
+<td align="right">0</td>
+<td align="left">...</td>
+<td align="right">27.722</td>
+<td align="right">0.024</td>
+<td align="right">7.86049</td>
+<td align="right">3.25389</td>
+<td align="right">0</td>
+<td align="right">0.196</td>
+<td align="right">1.554</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">-0.696</td>
+</tr>
+<tr>
+<td align="left">2019-01-01 01:00:00+00:00</td>
+<td align="right">41.9</td>
+<td align="right">3</td>
+<td align="right">16</td>
+<td align="right">16</td>
+<td align="right">9.1</td>
+<td align="right">2411.83</td>
+<td align="right">87.8884</td>
+<td align="right">6.834</td>
+<td align="right">1.09</td>
+<td align="right">0</td>
+<td align="left">...</td>
+<td align="right">27.442</td>
+<td align="right">0</td>
+<td align="right">7.8792</td>
+<td align="right">3.34085</td>
+<td align="right">0</td>
+<td align="right">0.588</td>
+<td align="right">1.504</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">-0.722</td>
+</tr>
+<tr>
+<td align="left">2019-01-01 01:30:00+00:00</td>
+<td align="right">39.32</td>
+<td align="right">4</td>
+<td align="right">16</td>
+<td align="right">16</td>
+<td align="right">9.1</td>
+<td align="right">2119.53</td>
+<td align="right">80.073</td>
+<td align="right">6.83</td>
+<td align="right">1.085</td>
+<td align="right">0</td>
+<td align="left">...</td>
+<td align="right">26.47</td>
+<td align="right">0</td>
+<td align="right">7.70887</td>
+<td align="right">3.2137</td>
+<td align="right">0</td>
+<td align="right">0.6</td>
+<td align="right">1.504</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">-0.77</td>
+</tr>
+<tr>
+<td align="left">2019-01-01 02:00:00+00:00</td>
+<td align="right">34.09</td>
+<td align="right">5</td>
+<td align="right">16</td>
+<td align="right">16</td>
+<td align="right">9.1</td>
+<td align="right">2069.84</td>
+<td align="right">79.0166</td>
+<td align="right">6.827</td>
+<td align="right">1.081</td>
+<td align="right">0</td>
+<td align="left">...</td>
+<td align="right">26.195</td>
+<td align="right">0</td>
+<td align="right">7.47943</td>
+<td align="right">3.12271</td>
+<td align="right">0</td>
+<td align="right">0.678</td>
+<td align="right">1.504</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">-0.91</td>
+</tr>
+</tbody>
 </table>
-<p>5 rows × 24 columns</p>
-</div>
-
 <p><br></p>
 <p>Now we're ready to retrieve all of the streams in one, which we'll do for all years that data is available, then we'll save the resulting DataFrame.</p>
 <div class="highlight"><pre><span></span><code><span class="o">%%</span><span class="n">time</span>
@@ -2018,92 +1855,60 @@ Name: value, Length: 167, dtype: float64
 
 <span class="n">df_fuels</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
 </code></pre></div>
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>Hydro Power</th>
-      <th>Biomass</th>
-      <th>Uranium</th>
-      <th>Brown Coal</th>
-      <th>Hard Coal</th>
-      <th>Oil</th>
-      <th>Gas</th>
-      <th>Others</th>
-      <th>Pumped Storage</th>
-      <th>Seasonal Storage</th>
-      <th>Wind</th>
-      <th>Solar</th>
-      <th>net_balance</th>
-    </tr>
-    <tr>
-      <th>datetime</th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>2018-03-19 00:00:00+01:00</th>
-      <td>2.292</td>
-      <td>5.82</td>
-      <td>7.721</td>
-      <td>14.499</td>
-      <td>8.508</td>
-      <td>0.180</td>
-      <td>3.207</td>
-      <td>0.068</td>
-      <td>0.420</td>
-      <td>0.078</td>
-      <td>20.754</td>
-      <td>0.0</td>
-      <td>-9.044</td>
-    </tr>
-    <tr>
-      <th>2018-03-19 01:00:00+01:00</th>
-      <td>2.291</td>
-      <td>5.82</td>
-      <td>7.829</td>
-      <td>14.490</td>
-      <td>8.941</td>
-      <td>0.179</td>
-      <td>3.287</td>
-      <td>0.068</td>
-      <td>0.245</td>
-      <td>0.064</td>
-      <td>19.012</td>
-      <td>0.0</td>
-      <td>-9.522</td>
-    </tr>
-  </tbody>
+<table>
+<thead>
+<tr>
+<th align="left">datetime</th>
+<th align="right">Hydro Power</th>
+<th align="right">Biomass</th>
+<th align="right">Uranium</th>
+<th align="right">Brown Coal</th>
+<th align="right">Hard Coal</th>
+<th align="right">Oil</th>
+<th align="right">Gas</th>
+<th align="right">Others</th>
+<th align="right">Pumped Storage</th>
+<th align="right">Seasonal Storage</th>
+<th align="right">Wind</th>
+<th align="right">Solar</th>
+<th align="right">net_balance</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">2018-03-19 00:00:00+01:00</td>
+<td align="right">2.292</td>
+<td align="right">5.82</td>
+<td align="right">7.721</td>
+<td align="right">14.499</td>
+<td align="right">8.508</td>
+<td align="right">0.18</td>
+<td align="right">3.207</td>
+<td align="right">0.068</td>
+<td align="right">0.42</td>
+<td align="right">0.078</td>
+<td align="right">20.754</td>
+<td align="right">0</td>
+<td align="right">-9.044</td>
+</tr>
+<tr>
+<td align="left">2018-03-19 01:00:00+01:00</td>
+<td align="right">2.291</td>
+<td align="right">5.82</td>
+<td align="right">7.829</td>
+<td align="right">14.49</td>
+<td align="right">8.941</td>
+<td align="right">0.179</td>
+<td align="right">3.287</td>
+<td align="right">0.068</td>
+<td align="right">0.245</td>
+<td align="right">0.064</td>
+<td align="right">19.012</td>
+<td align="right">0</td>
+<td align="right">-9.522</td>
+</tr>
+</tbody>
 </table>
-</div>
-
 <p><br></p>
 <p>And wrap them in a single function which can accept a year and week before returning the parsed dataframe</p>
 <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">year_week_2_fuel_df</span><span class="p">(</span><span class="n">year</span><span class="p">,</span> <span class="n">week</span><span class="p">):</span>
@@ -2128,92 +1933,60 @@ Name: value, Length: 167, dtype: float64
 
 <span class="n">df_fuels</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
 </code></pre></div>
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>Hydro Power</th>
-      <th>Biomass</th>
-      <th>Uranium</th>
-      <th>Brown Coal</th>
-      <th>Hard Coal</th>
-      <th>Oil</th>
-      <th>Gas</th>
-      <th>Others</th>
-      <th>Pumped Storage</th>
-      <th>Seasonal Storage</th>
-      <th>Wind</th>
-      <th>Solar</th>
-      <th>net_balance</th>
-    </tr>
-    <tr>
-      <th>datetime</th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>2015-12-28 00:00:00+01:00</th>
-      <td>1.356</td>
-      <td>6</td>
-      <td>10.567</td>
-      <td>13.247</td>
-      <td>3.437</td>
-      <td>0.190</td>
-      <td>2.338</td>
-      <td>0.150</td>
-      <td>0.154</td>
-      <td>0.013</td>
-      <td>8.156</td>
-      <td>0.0</td>
-      <td>-3.923</td>
-    </tr>
-    <tr>
-      <th>2015-12-28 01:00:00+01:00</th>
-      <td>1.348</td>
-      <td>6</td>
-      <td>10.611</td>
-      <td>13.744</td>
-      <td>3.109</td>
-      <td>0.191</td>
-      <td>2.533</td>
-      <td>0.124</td>
-      <td>0.157</td>
-      <td>0.012</td>
-      <td>7.059</td>
-      <td>0.0</td>
-      <td>-4.139</td>
-    </tr>
-  </tbody>
+<table>
+<thead>
+<tr>
+<th align="left">datetime</th>
+<th align="right">Hydro Power</th>
+<th align="right">Biomass</th>
+<th align="right">Uranium</th>
+<th align="right">Brown Coal</th>
+<th align="right">Hard Coal</th>
+<th align="right">Oil</th>
+<th align="right">Gas</th>
+<th align="right">Others</th>
+<th align="right">Pumped Storage</th>
+<th align="right">Seasonal Storage</th>
+<th align="right">Wind</th>
+<th align="right">Solar</th>
+<th align="right">net_balance</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">2015-12-28 00:00:00+01:00</td>
+<td align="right">1.356</td>
+<td align="right">6</td>
+<td align="right">10.567</td>
+<td align="right">13.247</td>
+<td align="right">3.437</td>
+<td align="right">0.19</td>
+<td align="right">2.338</td>
+<td align="right">0.15</td>
+<td align="right">0.154</td>
+<td align="right">0.013</td>
+<td align="right">8.156</td>
+<td align="right">0</td>
+<td align="right">-3.923</td>
+</tr>
+<tr>
+<td align="left">2015-12-28 01:00:00+01:00</td>
+<td align="right">1.348</td>
+<td align="right">6</td>
+<td align="right">10.611</td>
+<td align="right">13.744</td>
+<td align="right">3.109</td>
+<td align="right">0.191</td>
+<td align="right">2.533</td>
+<td align="right">0.124</td>
+<td align="right">0.157</td>
+<td align="right">0.012</td>
+<td align="right">7.059</td>
+<td align="right">0</td>
+<td align="right">-4.139</td>
+</tr>
+</tbody>
 </table>
-</div>
-
 <p><br></p>
 <p>Now we can iterate over all year and week pairs to retrieve the full dataset</p>
 <div class="highlight"><pre><span></span><code><span class="n">years</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">2010</span><span class="p">,</span> <span class="mi">2021</span><span class="p">))</span>
@@ -2236,125 +2009,108 @@ Name: value, Length: 167, dtype: float64
 <span class="Iteration-label">580/583</span>
 <span class="Time-label">[03:16<00:00, 0.34s/it]</span></div>
 
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>Biomass</th>
-      <th>Biomass planned</th>
-      <th>Brown Coal</th>
-      <th>Brown Coal planned</th>
-      <th>Gas</th>
-      <th>Gas planned</th>
-      <th>Hard Coal</th>
-      <th>Hard Coal planned</th>
-      <th>Hydro Power</th>
-      <th>Hydro Power planned</th>
-      <th>...</th>
-      <th>Residual load forecast</th>
-      <th>Seasonal Storage</th>
-      <th>Seasonal Storage ante</th>
-      <th>Solar</th>
-      <th>Solar forecast</th>
-      <th>Uranium</th>
-      <th>Uranium planned</th>
-      <th>Wind</th>
-      <th>Wind forecast</th>
-      <th>net_balance</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>2010-01-04 00:00:00+01:00</th>
-      <td>3.637</td>
-      <td>NaN</td>
-      <td>16.533</td>
-      <td>NaN</td>
-      <td>4.726</td>
-      <td>NaN</td>
-      <td>10.078</td>
-      <td>NaN</td>
-      <td>2.331</td>
-      <td>NaN</td>
-      <td>...</td>
-      <td>NaN</td>
-      <td>0.068</td>
-      <td>NaN</td>
-      <td>0.0</td>
-      <td>NaN</td>
-      <td>16.826</td>
-      <td>NaN</td>
-      <td>0.635</td>
-      <td>NaN</td>
-      <td>-1.229</td>
-    </tr>
-    <tr>
-      <th>2010-01-04 01:00:00+01:00</th>
-      <td>3.637</td>
-      <td>NaN</td>
-      <td>16.544</td>
-      <td>NaN</td>
-      <td>4.856</td>
-      <td>NaN</td>
-      <td>8.816</td>
-      <td>NaN</td>
-      <td>2.293</td>
-      <td>NaN</td>
-      <td>...</td>
-      <td>NaN</td>
-      <td>0.003</td>
-      <td>NaN</td>
-      <td>0.0</td>
-      <td>NaN</td>
-      <td>16.841</td>
-      <td>NaN</td>
-      <td>0.528</td>
-      <td>NaN</td>
-      <td>-1.593</td>
-    </tr>
-    <tr>
-      <th>2010-01-04 02:00:00+01:00</th>
-      <td>3.637</td>
-      <td>NaN</td>
-      <td>16.368</td>
-      <td>NaN</td>
-      <td>5.275</td>
-      <td>NaN</td>
-      <td>7.954</td>
-      <td>NaN</td>
-      <td>2.299</td>
-      <td>NaN</td>
-      <td>...</td>
-      <td>NaN</td>
-      <td>0.000</td>
-      <td>NaN</td>
-      <td>0.0</td>
-      <td>NaN</td>
-      <td>16.846</td>
-      <td>NaN</td>
-      <td>0.616</td>
-      <td>NaN</td>
-      <td>-1.378</td>
-    </tr>
-  </tbody>
+<table>
+<thead>
+<tr>
+<th align="left">Unnamed: 0</th>
+<th align="right">Biomass</th>
+<th align="right">Biomass planned</th>
+<th align="right">Brown Coal</th>
+<th align="right">Brown Coal planned</th>
+<th align="right">Gas</th>
+<th align="right">Gas planned</th>
+<th align="right">Hard Coal</th>
+<th align="right">Hard Coal planned</th>
+<th align="right">Hydro Power</th>
+<th align="right">Hydro Power planned</th>
+<th align="left">...</th>
+<th align="right">Residual load forecast</th>
+<th align="right">Seasonal Storage</th>
+<th align="right">Seasonal Storage ante</th>
+<th align="right">Solar</th>
+<th align="right">Solar forecast</th>
+<th align="right">Uranium</th>
+<th align="right">Uranium planned</th>
+<th align="right">Wind</th>
+<th align="right">Wind forecast</th>
+<th align="right">net_balance</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">2010-01-04 00:00:00+01:00</td>
+<td align="right">3.637</td>
+<td align="right">nan</td>
+<td align="right">16.533</td>
+<td align="right">nan</td>
+<td align="right">4.726</td>
+<td align="right">nan</td>
+<td align="right">10.078</td>
+<td align="right">nan</td>
+<td align="right">2.331</td>
+<td align="right">nan</td>
+<td align="left">...</td>
+<td align="right">nan</td>
+<td align="right">0.068</td>
+<td align="right">nan</td>
+<td align="right">0</td>
+<td align="right">nan</td>
+<td align="right">16.826</td>
+<td align="right">nan</td>
+<td align="right">0.635</td>
+<td align="right">nan</td>
+<td align="right">-1.229</td>
+</tr>
+<tr>
+<td align="left">2010-01-04 01:00:00+01:00</td>
+<td align="right">3.637</td>
+<td align="right">nan</td>
+<td align="right">16.544</td>
+<td align="right">nan</td>
+<td align="right">4.856</td>
+<td align="right">nan</td>
+<td align="right">8.816</td>
+<td align="right">nan</td>
+<td align="right">2.293</td>
+<td align="right">nan</td>
+<td align="left">...</td>
+<td align="right">nan</td>
+<td align="right">0.003</td>
+<td align="right">nan</td>
+<td align="right">0</td>
+<td align="right">nan</td>
+<td align="right">16.841</td>
+<td align="right">nan</td>
+<td align="right">0.528</td>
+<td align="right">nan</td>
+<td align="right">-1.593</td>
+</tr>
+<tr>
+<td align="left">2010-01-04 02:00:00+01:00</td>
+<td align="right">3.637</td>
+<td align="right">nan</td>
+<td align="right">16.368</td>
+<td align="right">nan</td>
+<td align="right">5.275</td>
+<td align="right">nan</td>
+<td align="right">7.954</td>
+<td align="right">nan</td>
+<td align="right">2.299</td>
+<td align="right">nan</td>
+<td align="left">...</td>
+<td align="right">nan</td>
+<td align="right">0</td>
+<td align="right">nan</td>
+<td align="right">0</td>
+<td align="right">nan</td>
+<td align="right">16.846</td>
+<td align="right">nan</td>
+<td align="right">0.616</td>
+<td align="right">nan</td>
+<td align="right">-1.378</td>
+</tr>
+</tbody>
 </table>
-<p>3 rows × 32 columns</p>
-</div>
-
 <p><br></p>
 <p>We'll remove the null columns and reorder the remaining ones to clean it up a little bit</p>
 <div class="highlight"><pre><span></span><code><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Biomass&#39;</span><span class="p">,</span> <span class="s1">&#39;Brown Coal&#39;</span><span class="p">,</span> <span class="s1">&#39;Gas&#39;</span><span class="p">,</span> <span class="s1">&#39;Hard Coal&#39;</span><span class="p">,</span> <span class="s1">&#39;Hydro Power&#39;</span><span class="p">,</span>
@@ -2371,124 +2127,108 @@ Name: value, Length: 167, dtype: float64
 
 <span class="n">df_fuels_clean</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </code></pre></div>
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>Biomass</th>
-      <th>Brown Coal</th>
-      <th>Gas</th>
-      <th>Hard Coal</th>
-      <th>Hydro Power</th>
-      <th>Oil</th>
-      <th>Others</th>
-      <th>Pumped Storage</th>
-      <th>Seasonal Storage</th>
-      <th>Solar</th>
-      <th>Uranium</th>
-      <th>Wind</th>
-      <th>net_balance</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>2010-01-04 00:00:00+01:00</th>
-      <td>3.637</td>
-      <td>16.533</td>
-      <td>4.726</td>
-      <td>10.078</td>
-      <td>2.331</td>
-      <td>0.000</td>
-      <td>0.0</td>
-      <td>0.052</td>
-      <td>0.068</td>
-      <td>0.0</td>
-      <td>16.826</td>
-      <td>0.635</td>
-      <td>-1.229</td>
-    </tr>
-    <tr>
-      <th>2010-01-04 01:00:00+01:00</th>
-      <td>3.637</td>
-      <td>16.544</td>
-      <td>4.856</td>
-      <td>8.816</td>
-      <td>2.293</td>
-      <td>0.000</td>
-      <td>0.0</td>
-      <td>0.038</td>
-      <td>0.003</td>
-      <td>0.0</td>
-      <td>16.841</td>
-      <td>0.528</td>
-      <td>-1.593</td>
-    </tr>
-    <tr>
-      <th>2010-01-04 02:00:00+01:00</th>
-      <td>3.637</td>
-      <td>16.368</td>
-      <td>5.275</td>
-      <td>7.954</td>
-      <td>2.299</td>
-      <td>0.000</td>
-      <td>0.0</td>
-      <td>0.032</td>
-      <td>0.000</td>
-      <td>0.0</td>
-      <td>16.846</td>
-      <td>0.616</td>
-      <td>-1.378</td>
-    </tr>
-    <tr>
-      <th>2010-01-04 03:00:00+01:00</th>
-      <td>3.637</td>
-      <td>15.837</td>
-      <td>5.354</td>
-      <td>7.681</td>
-      <td>2.299</td>
-      <td>0.000</td>
-      <td>0.0</td>
-      <td>0.027</td>
-      <td>0.000</td>
-      <td>0.0</td>
-      <td>16.699</td>
-      <td>0.630</td>
-      <td>-1.624</td>
-    </tr>
-    <tr>
-      <th>2010-01-04 04:00:00+01:00</th>
-      <td>3.637</td>
-      <td>15.452</td>
-      <td>5.918</td>
-      <td>7.498</td>
-      <td>2.301</td>
-      <td>0.003</td>
-      <td>0.0</td>
-      <td>0.020</td>
-      <td>0.000</td>
-      <td>0.0</td>
-      <td>16.635</td>
-      <td>0.713</td>
-      <td>-0.731</td>
-    </tr>
-  </tbody>
+<table>
+<thead>
+<tr>
+<th align="left">Unnamed: 0</th>
+<th align="right">Biomass</th>
+<th align="right">Brown Coal</th>
+<th align="right">Gas</th>
+<th align="right">Hard Coal</th>
+<th align="right">Hydro Power</th>
+<th align="right">Oil</th>
+<th align="right">Others</th>
+<th align="right">Pumped Storage</th>
+<th align="right">Seasonal Storage</th>
+<th align="right">Solar</th>
+<th align="right">Uranium</th>
+<th align="right">Wind</th>
+<th align="right">net_balance</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">2010-01-04 00:00:00+01:00</td>
+<td align="right">3.637</td>
+<td align="right">16.533</td>
+<td align="right">4.726</td>
+<td align="right">10.078</td>
+<td align="right">2.331</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0.052</td>
+<td align="right">0.068</td>
+<td align="right">0</td>
+<td align="right">16.826</td>
+<td align="right">0.635</td>
+<td align="right">-1.229</td>
+</tr>
+<tr>
+<td align="left">2010-01-04 01:00:00+01:00</td>
+<td align="right">3.637</td>
+<td align="right">16.544</td>
+<td align="right">4.856</td>
+<td align="right">8.816</td>
+<td align="right">2.293</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0.038</td>
+<td align="right">0.003</td>
+<td align="right">0</td>
+<td align="right">16.841</td>
+<td align="right">0.528</td>
+<td align="right">-1.593</td>
+</tr>
+<tr>
+<td align="left">2010-01-04 02:00:00+01:00</td>
+<td align="right">3.637</td>
+<td align="right">16.368</td>
+<td align="right">5.275</td>
+<td align="right">7.954</td>
+<td align="right">2.299</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0.032</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">16.846</td>
+<td align="right">0.616</td>
+<td align="right">-1.378</td>
+</tr>
+<tr>
+<td align="left">2010-01-04 03:00:00+01:00</td>
+<td align="right">3.637</td>
+<td align="right">15.837</td>
+<td align="right">5.354</td>
+<td align="right">7.681</td>
+<td align="right">2.299</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0.027</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">16.699</td>
+<td align="right">0.63</td>
+<td align="right">-1.624</td>
+</tr>
+<tr>
+<td align="left">2010-01-04 04:00:00+01:00</td>
+<td align="right">3.637</td>
+<td align="right">15.452</td>
+<td align="right">5.918</td>
+<td align="right">7.498</td>
+<td align="right">2.301</td>
+<td align="right">0.003</td>
+<td align="right">0</td>
+<td align="right">0.02</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">16.635</td>
+<td align="right">0.713</td>
+<td align="right">-0.731</td>
+</tr>
+</tbody>
 </table>
-</div>
-
 <p><br></p>
 <p>We'll quickly confirm that there are no duplicates</p>
 <div class="highlight"><pre><span></span><code><span class="k">assert</span> <span class="n">df_fuels_clean</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">duplicated</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">==</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;There are multiple entries for a datetime&#39;</span>
@@ -2784,154 +2524,138 @@ dtype: float64
 <span class="Iteration-label">9/9</span>
 <span class="Time-label">[02:37<00:14, 17.45s/it]</span></div>
 
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>Biomass</th>
-      <th>Fossil Brown coal/Lignite</th>
-      <th>Fossil Coal-derived gas</th>
-      <th>Fossil Gas</th>
-      <th>Fossil Hard coal</th>
-      <th>Fossil Oil</th>
-      <th>Geothermal</th>
-      <th>Hydro Pumped Storage</th>
-      <th>Hydro Run-of-river and poundage</th>
-      <th>Hydro Water Reservoir</th>
-      <th>Nuclear</th>
-      <th>Other renewable</th>
-      <th>Solar</th>
-      <th>Waste</th>
-      <th>Wind Offshore</th>
-      <th>Wind Onshore</th>
-      <th>Other</th>
-      <th>Marine</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>2015-01-01 23:00:00+00:00</th>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>5.0</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>0.0</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>391.0</td>
-      <td>0.0</td>
-      <td>NaN</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>2015-01-01 23:15:00+00:00</th>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>5.0</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>0.0</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>292.0</td>
-      <td>0.0</td>
-      <td>NaN</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>2015-01-01 23:30:00+00:00</th>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>5.0</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>0.0</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>271.0</td>
-      <td>0.0</td>
-      <td>NaN</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>2015-01-01 23:45:00+00:00</th>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>5.0</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>0.0</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>266.0</td>
-      <td>0.0</td>
-      <td>NaN</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>2015-01-02 00:00:00+00:00</th>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>5.0</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>0.0</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>268.0</td>
-      <td>0.0</td>
-      <td>NaN</td>
-      <td>NaN</td>
-    </tr>
-  </tbody>
+<table>
+<thead>
+<tr>
+<th align="left">Unnamed: 0</th>
+<th align="right">Biomass</th>
+<th align="right">Fossil Brown coal/Lignite</th>
+<th align="right">Fossil Coal-derived gas</th>
+<th align="right">Fossil Gas</th>
+<th align="right">Fossil Hard coal</th>
+<th align="right">Fossil Oil</th>
+<th align="right">Geothermal</th>
+<th align="right">Hydro Pumped Storage</th>
+<th align="right">Hydro Run-of-river and poundage</th>
+<th align="right">Hydro Water Reservoir</th>
+<th align="right">Nuclear</th>
+<th align="right">Other renewable</th>
+<th align="right">Solar</th>
+<th align="right">Waste</th>
+<th align="right">Wind Offshore</th>
+<th align="right">Wind Onshore</th>
+<th align="right">Other</th>
+<th align="right">Marine</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">2015-01-01 23:00:00+00:00</td>
+<td align="right">nan</td>
+<td align="right">nan</td>
+<td align="right">nan</td>
+<td align="right">nan</td>
+<td align="right">nan</td>
+<td align="right">5</td>
+<td align="right">nan</td>
+<td align="right">nan</td>
+<td align="right">nan</td>
+<td align="right">0</td>
+<td align="right">nan</td>
+<td align="right">nan</td>
+<td align="right">nan</td>
+<td align="right">nan</td>
+<td align="right">391</td>
+<td align="right">0</td>
+<td align="right">nan</td>
+<td align="right">nan</td>
+</tr>
+<tr>
+<td align="left">2015-01-01 23:15:00+00:00</td>
+<td align="right">nan</td>
+<td align="right">nan</td>
+<td align="right">nan</td>
+<td align="right">nan</td>
+<td align="right">nan</td>
+<td align="right">5</td>
+<td align="right">nan</td>
+<td align="right">nan</td>
+<td align="right">nan</td>
+<td align="right">0</td>
+<td align="right">nan</td>
+<td align="right">nan</td>
+<td align="right">nan</td>
+<td align="right">nan</td>
+<td align="right">292</td>
+<td align="right">0</td>
+<td align="right">nan</td>
+<td align="right">nan</td>
+</tr>
+<tr>
+<td align="left">2015-01-01 23:30:00+00:00</td>
+<td align="right">nan</td>
+<td align="right">nan</td>
+<td align="right">nan</td>
+<td align="right">nan</td>
+<td align="right">nan</td>
+<td align="right">5</td>
+<td align="right">nan</td>
+<td align="right">nan</td>
+<td align="right">nan</td>
+<td align="right">0</td>
+<td align="right">nan</td>
+<td align="right">nan</td>
+<td align="right">nan</td>
+<td align="right">nan</td>
+<td align="right">271</td>
+<td align="right">0</td>
+<td align="right">nan</td>
+<td align="right">nan</td>
+</tr>
+<tr>
+<td align="left">2015-01-01 23:45:00+00:00</td>
+<td align="right">nan</td>
+<td align="right">nan</td>
+<td align="right">nan</td>
+<td align="right">nan</td>
+<td align="right">nan</td>
+<td align="right">5</td>
+<td align="right">nan</td>
+<td align="right">nan</td>
+<td align="right">nan</td>
+<td align="right">0</td>
+<td align="right">nan</td>
+<td align="right">nan</td>
+<td align="right">nan</td>
+<td align="right">nan</td>
+<td align="right">266</td>
+<td align="right">0</td>
+<td align="right">nan</td>
+<td align="right">nan</td>
+</tr>
+<tr>
+<td align="left">2015-01-02 00:00:00+00:00</td>
+<td align="right">nan</td>
+<td align="right">nan</td>
+<td align="right">nan</td>
+<td align="right">nan</td>
+<td align="right">nan</td>
+<td align="right">5</td>
+<td align="right">nan</td>
+<td align="right">nan</td>
+<td align="right">nan</td>
+<td align="right">0</td>
+<td align="right">nan</td>
+<td align="right">nan</td>
+<td align="right">nan</td>
+<td align="right">nan</td>
+<td align="right">268</td>
+<td align="right">0</td>
+<td align="right">nan</td>
+<td align="right">nan</td>
+</tr>
+</tbody>
 </table>
-</div>
-
 <p><br></p>
 <p>We'll quickly inspect for the presence of null values, due to the large number found we'll use the energy-charts data when it comes to fuel generation</p>
 <div class="highlight"><pre><span></span><code><span class="n">df_production</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>

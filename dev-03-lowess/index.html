@@ -1386,197 +1386,156 @@ Text(69.58333333333334, 0.5, &#39;Regression Nodes&#39;)
 </code></pre></div>
 <div class="highlight"><pre><span></span><code>Wall time: 1.86 s
 </code></pre></div>
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>day_ahead_price</th>
-      <th>SP</th>
-      <th>imbalance_price</th>
-      <th>valueSum</th>
-      <th>temperature</th>
-      <th>TCO2_per_h</th>
-      <th>gCO2_per_kWh</th>
-      <th>nuclear</th>
-      <th>biomass</th>
-      <th>coal</th>
-      <th>...</th>
-      <th>demand</th>
-      <th>pumped_storage</th>
-      <th>wind_onshore</th>
-      <th>wind_offshore</th>
-      <th>belgian</th>
-      <th>dutch</th>
-      <th>french</th>
-      <th>ireland</th>
-      <th>northern_ireland</th>
-      <th>irish</th>
-    </tr>
-    <tr>
-      <th>local_datetime</th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>2009-01-01 00:00:00+00:00</th>
-      <td>58.05</td>
-      <td>1</td>
-      <td>74.74</td>
-      <td>74.74</td>
-      <td>-0.6</td>
-      <td>21278.0</td>
-      <td>555.0</td>
-      <td>6.973</td>
-      <td>0.0</td>
-      <td>17.650</td>
-      <td>...</td>
-      <td>38.329</td>
-      <td>-0.404</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>1.977</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>-0.161</td>
-    </tr>
-    <tr>
-      <th>2009-01-01 00:30:00+00:00</th>
-      <td>56.33</td>
-      <td>2</td>
-      <td>74.89</td>
-      <td>74.89</td>
-      <td>-0.6</td>
-      <td>21442.0</td>
-      <td>558.0</td>
-      <td>6.968</td>
-      <td>0.0</td>
-      <td>17.770</td>
-      <td>...</td>
-      <td>38.461</td>
-      <td>-0.527</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>1.977</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>-0.160</td>
-    </tr>
-    <tr>
-      <th>2009-01-01 01:00:00+00:00</th>
-      <td>52.98</td>
-      <td>3</td>
-      <td>76.41</td>
-      <td>76.41</td>
-      <td>-0.6</td>
-      <td>21614.0</td>
-      <td>569.0</td>
-      <td>6.970</td>
-      <td>0.0</td>
-      <td>18.070</td>
-      <td>...</td>
-      <td>37.986</td>
-      <td>-1.018</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>1.977</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>-0.160</td>
-    </tr>
-    <tr>
-      <th>2009-01-01 01:30:00+00:00</th>
-      <td>50.39</td>
-      <td>4</td>
-      <td>37.73</td>
-      <td>37.73</td>
-      <td>-0.6</td>
-      <td>21320.0</td>
-      <td>578.0</td>
-      <td>6.969</td>
-      <td>0.0</td>
-      <td>18.022</td>
-      <td>...</td>
-      <td>36.864</td>
-      <td>-1.269</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>1.746</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>-0.160</td>
-    </tr>
-    <tr>
-      <th>2009-01-01 02:00:00+00:00</th>
-      <td>48.70</td>
-      <td>5</td>
-      <td>59.00</td>
-      <td>59.00</td>
-      <td>-0.6</td>
-      <td>21160.0</td>
-      <td>585.0</td>
-      <td>6.960</td>
-      <td>0.0</td>
-      <td>17.998</td>
-      <td>...</td>
-      <td>36.180</td>
-      <td>-1.566</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>1.730</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>-0.160</td>
-    </tr>
-  </tbody>
+<table>
+<thead>
+<tr>
+<th align="left">local_datetime</th>
+<th align="right">day_ahead_price</th>
+<th align="right">SP</th>
+<th align="right">imbalance_price</th>
+<th align="right">valueSum</th>
+<th align="right">temperature</th>
+<th align="right">TCO2_per_h</th>
+<th align="right">gCO2_per_kWh</th>
+<th align="right">nuclear</th>
+<th align="right">biomass</th>
+<th align="right">coal</th>
+<th align="left">...</th>
+<th align="right">demand</th>
+<th align="right">pumped_storage</th>
+<th align="right">wind_onshore</th>
+<th align="right">wind_offshore</th>
+<th align="right">belgian</th>
+<th align="right">dutch</th>
+<th align="right">french</th>
+<th align="right">ireland</th>
+<th align="right">northern_ireland</th>
+<th align="right">irish</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">2009-01-01 00:00:00+00:00</td>
+<td align="right">58.05</td>
+<td align="right">1</td>
+<td align="right">74.74</td>
+<td align="right">74.74</td>
+<td align="right">-0.6</td>
+<td align="right">21278</td>
+<td align="right">555</td>
+<td align="right">6.973</td>
+<td align="right">0</td>
+<td align="right">17.65</td>
+<td align="left">...</td>
+<td align="right">38.329</td>
+<td align="right">-0.404</td>
+<td align="right">nan</td>
+<td align="right">nan</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">1.977</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">-0.161</td>
+</tr>
+<tr>
+<td align="left">2009-01-01 00:30:00+00:00</td>
+<td align="right">56.33</td>
+<td align="right">2</td>
+<td align="right">74.89</td>
+<td align="right">74.89</td>
+<td align="right">-0.6</td>
+<td align="right">21442</td>
+<td align="right">558</td>
+<td align="right">6.968</td>
+<td align="right">0</td>
+<td align="right">17.77</td>
+<td align="left">...</td>
+<td align="right">38.461</td>
+<td align="right">-0.527</td>
+<td align="right">nan</td>
+<td align="right">nan</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">1.977</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">-0.16</td>
+</tr>
+<tr>
+<td align="left">2009-01-01 01:00:00+00:00</td>
+<td align="right">52.98</td>
+<td align="right">3</td>
+<td align="right">76.41</td>
+<td align="right">76.41</td>
+<td align="right">-0.6</td>
+<td align="right">21614</td>
+<td align="right">569</td>
+<td align="right">6.97</td>
+<td align="right">0</td>
+<td align="right">18.07</td>
+<td align="left">...</td>
+<td align="right">37.986</td>
+<td align="right">-1.018</td>
+<td align="right">nan</td>
+<td align="right">nan</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">1.977</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">-0.16</td>
+</tr>
+<tr>
+<td align="left">2009-01-01 01:30:00+00:00</td>
+<td align="right">50.39</td>
+<td align="right">4</td>
+<td align="right">37.73</td>
+<td align="right">37.73</td>
+<td align="right">-0.6</td>
+<td align="right">21320</td>
+<td align="right">578</td>
+<td align="right">6.969</td>
+<td align="right">0</td>
+<td align="right">18.022</td>
+<td align="left">...</td>
+<td align="right">36.864</td>
+<td align="right">-1.269</td>
+<td align="right">nan</td>
+<td align="right">nan</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">1.746</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">-0.16</td>
+</tr>
+<tr>
+<td align="left">2009-01-01 02:00:00+00:00</td>
+<td align="right">48.7</td>
+<td align="right">5</td>
+<td align="right">59</td>
+<td align="right">59</td>
+<td align="right">-0.6</td>
+<td align="right">21160</td>
+<td align="right">585</td>
+<td align="right">6.96</td>
+<td align="right">0</td>
+<td align="right">17.998</td>
+<td align="left">...</td>
+<td align="right">36.18</td>
+<td align="right">-1.566</td>
+<td align="right">nan</td>
+<td align="right">nan</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">1.73</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">-0.16</td>
+</tr>
+</tbody>
 </table>
-<p>5 rows × 24 columns</p>
-</div>
-
 <p><br></p>
 <p>We'll start by extracting the X and y data</p>
 <div class="highlight"><pre><span></span><code><span class="n">y_col</span> <span class="o">=</span> <span class="s1">&#39;day_ahead_price&#39;</span>
@@ -2098,197 +2057,156 @@ We'll start by creating a slightly noiser and longer sin curve than used previou
 <span class="Iteration-label">1000/1000</span>
 <span class="Time-label">[00:25<00:00, 0.03s/it]</span></div>
 
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th>bootstrap_run</th>
-      <th>0</th>
-      <th>1</th>
-      <th>2</th>
-      <th>3</th>
-      <th>4</th>
-      <th>5</th>
-      <th>6</th>
-      <th>7</th>
-      <th>8</th>
-      <th>9</th>
-      <th>...</th>
-      <th>990</th>
-      <th>991</th>
-      <th>992</th>
-      <th>993</th>
-      <th>994</th>
-      <th>995</th>
-      <th>996</th>
-      <th>997</th>
-      <th>998</th>
-      <th>999</th>
-    </tr>
-    <tr>
-      <th>x</th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0.00000</th>
-      <td>0.123240</td>
-      <td>0.100568</td>
-      <td>0.034607</td>
-      <td>0.062935</td>
-      <td>0.037283</td>
-      <td>0.024595</td>
-      <td>0.077896</td>
-      <td>0.071517</td>
-      <td>0.154899</td>
-      <td>0.104609</td>
-      <td>...</td>
-      <td>0.106006</td>
-      <td>0.022008</td>
-      <td>0.117897</td>
-      <td>0.042924</td>
-      <td>0.094948</td>
-      <td>0.095224</td>
-      <td>0.109828</td>
-      <td>0.097625</td>
-      <td>0.096894</td>
-      <td>0.102314</td>
-    </tr>
-    <tr>
-      <th>0.02004</th>
-      <td>0.135523</td>
-      <td>0.114414</td>
-      <td>0.048940</td>
-      <td>0.077258</td>
-      <td>0.051836</td>
-      <td>0.039222</td>
-      <td>0.091694</td>
-      <td>0.086137</td>
-      <td>0.166246</td>
-      <td>0.116779</td>
-      <td>...</td>
-      <td>0.119922</td>
-      <td>0.037429</td>
-      <td>0.131267</td>
-      <td>0.057019</td>
-      <td>0.109155</td>
-      <td>0.107799</td>
-      <td>0.122830</td>
-      <td>0.111439</td>
-      <td>0.109543</td>
-      <td>0.115580</td>
-    </tr>
-    <tr>
-      <th>0.04008</th>
-      <td>0.147791</td>
-      <td>0.128252</td>
-      <td>0.063258</td>
-      <td>0.091566</td>
-      <td>0.066380</td>
-      <td>0.053843</td>
-      <td>0.105484</td>
-      <td>0.100748</td>
-      <td>0.177581</td>
-      <td>0.128936</td>
-      <td>...</td>
-      <td>0.133827</td>
-      <td>0.052831</td>
-      <td>0.144617</td>
-      <td>0.071105</td>
-      <td>0.123350</td>
-      <td>0.120364</td>
-      <td>0.135816</td>
-      <td>0.125241</td>
-      <td>0.122177</td>
-      <td>0.128832</td>
-    </tr>
-    <tr>
-      <th>0.06012</th>
-      <td>0.160044</td>
-      <td>0.142084</td>
-      <td>0.077562</td>
-      <td>0.105860</td>
-      <td>0.080914</td>
-      <td>0.068458</td>
-      <td>0.119268</td>
-      <td>0.115353</td>
-      <td>0.188904</td>
-      <td>0.141083</td>
-      <td>...</td>
-      <td>0.147722</td>
-      <td>0.068217</td>
-      <td>0.157946</td>
-      <td>0.085199</td>
-      <td>0.137534</td>
-      <td>0.132918</td>
-      <td>0.148786</td>
-      <td>0.139030</td>
-      <td>0.134797</td>
-      <td>0.142070</td>
-    </tr>
-    <tr>
-      <th>0.08016</th>
-      <td>0.172286</td>
-      <td>0.155927</td>
-      <td>0.091852</td>
-      <td>0.120165</td>
-      <td>0.095440</td>
-      <td>0.083068</td>
-      <td>0.133063</td>
-      <td>0.129976</td>
-      <td>0.200216</td>
-      <td>0.153222</td>
-      <td>...</td>
-      <td>0.161608</td>
-      <td>0.083587</td>
-      <td>0.171256</td>
-      <td>0.099382</td>
-      <td>0.151709</td>
-      <td>0.145480</td>
-      <td>0.161742</td>
-      <td>0.152810</td>
-      <td>0.147405</td>
-      <td>0.155300</td>
-    </tr>
-  </tbody>
+<table>
+<thead>
+<tr>
+<th align="right">x</th>
+<th align="right">0</th>
+<th align="right">1</th>
+<th align="right">2</th>
+<th align="right">3</th>
+<th align="right">4</th>
+<th align="right">5</th>
+<th align="right">6</th>
+<th align="right">7</th>
+<th align="right">8</th>
+<th align="right">9</th>
+<th align="left">...</th>
+<th align="right">990</th>
+<th align="right">991</th>
+<th align="right">992</th>
+<th align="right">993</th>
+<th align="right">994</th>
+<th align="right">995</th>
+<th align="right">996</th>
+<th align="right">997</th>
+<th align="right">998</th>
+<th align="right">999</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="right">0</td>
+<td align="right">0.12324</td>
+<td align="right">0.100568</td>
+<td align="right">0.034607</td>
+<td align="right">0.062935</td>
+<td align="right">0.037283</td>
+<td align="right">0.024595</td>
+<td align="right">0.077896</td>
+<td align="right">0.071517</td>
+<td align="right">0.154899</td>
+<td align="right">0.104609</td>
+<td align="left">...</td>
+<td align="right">0.106006</td>
+<td align="right">0.022008</td>
+<td align="right">0.117897</td>
+<td align="right">0.042924</td>
+<td align="right">0.094948</td>
+<td align="right">0.095224</td>
+<td align="right">0.109828</td>
+<td align="right">0.097625</td>
+<td align="right">0.096894</td>
+<td align="right">0.102314</td>
+</tr>
+<tr>
+<td align="right">0.02004</td>
+<td align="right">0.135523</td>
+<td align="right">0.114414</td>
+<td align="right">0.04894</td>
+<td align="right">0.077258</td>
+<td align="right">0.051836</td>
+<td align="right">0.039222</td>
+<td align="right">0.091694</td>
+<td align="right">0.086137</td>
+<td align="right">0.166246</td>
+<td align="right">0.116779</td>
+<td align="left">...</td>
+<td align="right">0.119922</td>
+<td align="right">0.037429</td>
+<td align="right">0.131267</td>
+<td align="right">0.057019</td>
+<td align="right">0.109155</td>
+<td align="right">0.107799</td>
+<td align="right">0.12283</td>
+<td align="right">0.111439</td>
+<td align="right">0.109543</td>
+<td align="right">0.11558</td>
+</tr>
+<tr>
+<td align="right">0.04008</td>
+<td align="right">0.147791</td>
+<td align="right">0.128252</td>
+<td align="right">0.063258</td>
+<td align="right">0.091566</td>
+<td align="right">0.06638</td>
+<td align="right">0.053843</td>
+<td align="right">0.105484</td>
+<td align="right">0.100748</td>
+<td align="right">0.177581</td>
+<td align="right">0.128936</td>
+<td align="left">...</td>
+<td align="right">0.133827</td>
+<td align="right">0.052831</td>
+<td align="right">0.144617</td>
+<td align="right">0.071105</td>
+<td align="right">0.12335</td>
+<td align="right">0.120364</td>
+<td align="right">0.135816</td>
+<td align="right">0.125241</td>
+<td align="right">0.122177</td>
+<td align="right">0.128832</td>
+</tr>
+<tr>
+<td align="right">0.06012</td>
+<td align="right">0.160044</td>
+<td align="right">0.142084</td>
+<td align="right">0.077562</td>
+<td align="right">0.10586</td>
+<td align="right">0.080914</td>
+<td align="right">0.068458</td>
+<td align="right">0.119268</td>
+<td align="right">0.115353</td>
+<td align="right">0.188904</td>
+<td align="right">0.141083</td>
+<td align="left">...</td>
+<td align="right">0.147722</td>
+<td align="right">0.068217</td>
+<td align="right">0.157946</td>
+<td align="right">0.085199</td>
+<td align="right">0.137534</td>
+<td align="right">0.132918</td>
+<td align="right">0.148786</td>
+<td align="right">0.13903</td>
+<td align="right">0.134797</td>
+<td align="right">0.14207</td>
+</tr>
+<tr>
+<td align="right">0.08016</td>
+<td align="right">0.172286</td>
+<td align="right">0.155927</td>
+<td align="right">0.091852</td>
+<td align="right">0.120165</td>
+<td align="right">0.09544</td>
+<td align="right">0.083068</td>
+<td align="right">0.133063</td>
+<td align="right">0.129976</td>
+<td align="right">0.200216</td>
+<td align="right">0.153222</td>
+<td align="left">...</td>
+<td align="right">0.161608</td>
+<td align="right">0.083587</td>
+<td align="right">0.171256</td>
+<td align="right">0.099382</td>
+<td align="right">0.151709</td>
+<td align="right">0.14548</td>
+<td align="right">0.161742</td>
+<td align="right">0.15281</td>
+<td align="right">0.147405</td>
+<td align="right">0.1553</td>
+</tr>
+</tbody>
 </table>
-<p>5 rows × 1000 columns</p>
-</div>
-
 <p><br></p>
 <p>Using <code>df_bootstrap</code> we can calculate the confidence interval of our predictions, the Pandas DataFrame <code>quantile</code> method makes this particularly simple.</p>
 <div class="highlight"><pre><span></span><code><span class="c1">#exports</span>
@@ -2383,112 +2301,84 @@ We'll start by creating a slightly noiser and longer sin curve than used previou
 
 <div class="highlight"><pre><span></span><code>Wall time: 10.6 s
 </code></pre></div>
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th>quantiles</th>
-      <th>0.1</th>
-      <th>0.2</th>
-      <th>0.3</th>
-      <th>0.4</th>
-      <th>0.5</th>
-      <th>0.6</th>
-      <th>0.7</th>
-      <th>0.8</th>
-      <th>0.9</th>
-    </tr>
-    <tr>
-      <th>x</th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0.00000</th>
-      <td>-0.071164</td>
-      <td>-0.004352</td>
-      <td>0.011374</td>
-      <td>0.025166</td>
-      <td>0.080732</td>
-      <td>0.091657</td>
-      <td>0.144884</td>
-      <td>0.163482</td>
-      <td>0.192227</td>
-    </tr>
-    <tr>
-      <th>0.02004</th>
-      <td>-0.056877</td>
-      <td>0.009553</td>
-      <td>0.025934</td>
-      <td>0.040718</td>
-      <td>0.095134</td>
-      <td>0.106431</td>
-      <td>0.158797</td>
-      <td>0.178013</td>
-      <td>0.207308</td>
-    </tr>
-    <tr>
-      <th>0.04008</th>
-      <td>-0.042584</td>
-      <td>0.023455</td>
-      <td>0.040493</td>
-      <td>0.056241</td>
-      <td>0.109531</td>
-      <td>0.121194</td>
-      <td>0.172707</td>
-      <td>0.192542</td>
-      <td>0.222345</td>
-    </tr>
-    <tr>
-      <th>0.06012</th>
-      <td>-0.028267</td>
-      <td>0.037368</td>
-      <td>0.055069</td>
-      <td>0.071750</td>
-      <td>0.123931</td>
-      <td>0.135959</td>
-      <td>0.186627</td>
-      <td>0.207077</td>
-      <td>0.237343</td>
-    </tr>
-    <tr>
-      <th>0.08016</th>
-      <td>-0.013915</td>
-      <td>0.051300</td>
-      <td>0.069668</td>
-      <td>0.087256</td>
-      <td>0.138339</td>
-      <td>0.150735</td>
-      <td>0.200564</td>
-      <td>0.221624</td>
-      <td>0.252307</td>
-    </tr>
-  </tbody>
+<table>
+<thead>
+<tr>
+<th align="right">x</th>
+<th align="right">0.1</th>
+<th align="right">0.2</th>
+<th align="right">0.3</th>
+<th align="right">0.4</th>
+<th align="right">0.5</th>
+<th align="right">0.6</th>
+<th align="right">0.7</th>
+<th align="right">0.8</th>
+<th align="right">0.9</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="right">0</td>
+<td align="right">-0.071164</td>
+<td align="right">-0.004352</td>
+<td align="right">0.011374</td>
+<td align="right">0.025166</td>
+<td align="right">0.080732</td>
+<td align="right">0.091657</td>
+<td align="right">0.144884</td>
+<td align="right">0.163482</td>
+<td align="right">0.192227</td>
+</tr>
+<tr>
+<td align="right">0.02004</td>
+<td align="right">-0.056877</td>
+<td align="right">0.009553</td>
+<td align="right">0.025934</td>
+<td align="right">0.040718</td>
+<td align="right">0.095134</td>
+<td align="right">0.106431</td>
+<td align="right">0.158797</td>
+<td align="right">0.178013</td>
+<td align="right">0.207308</td>
+</tr>
+<tr>
+<td align="right">0.04008</td>
+<td align="right">-0.042584</td>
+<td align="right">0.023455</td>
+<td align="right">0.040493</td>
+<td align="right">0.056241</td>
+<td align="right">0.109531</td>
+<td align="right">0.121194</td>
+<td align="right">0.172707</td>
+<td align="right">0.192542</td>
+<td align="right">0.222345</td>
+</tr>
+<tr>
+<td align="right">0.06012</td>
+<td align="right">-0.028267</td>
+<td align="right">0.037368</td>
+<td align="right">0.055069</td>
+<td align="right">0.07175</td>
+<td align="right">0.123931</td>
+<td align="right">0.135959</td>
+<td align="right">0.186627</td>
+<td align="right">0.207077</td>
+<td align="right">0.237343</td>
+</tr>
+<tr>
+<td align="right">0.08016</td>
+<td align="right">-0.013915</td>
+<td align="right">0.0513</td>
+<td align="right">0.069668</td>
+<td align="right">0.087256</td>
+<td align="right">0.138339</td>
+<td align="right">0.150735</td>
+<td align="right">0.200564</td>
+<td align="right">0.221624</td>
+<td align="right">0.252307</td>
+</tr>
+</tbody>
 </table>
-</div>
-
 <p><br></p>
 <p>We can visualise the range of our predictions</p>
 <div class="highlight"><pre><span></span><code><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">dpi</span><span class="o">=</span><span class="mi">150</span><span class="p">)</span>
@@ -2773,173 +2663,156 @@ We'll start by creating a slightly noiser and longer sin curve than used previou
 </code></pre></div>
 <div class="highlight"><pre><span></span><code>Wall time: 206 ms
 </code></pre></div>
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>8.0</th>
-      <th>9.0</th>
-      <th>10.0</th>
-      <th>11.0</th>
-      <th>12.0</th>
-      <th>13.0</th>
-      <th>14.0</th>
-      <th>15.0</th>
-      <th>16.0</th>
-      <th>17.0</th>
-      <th>...</th>
-      <th>51.0</th>
-      <th>52.0</th>
-      <th>53.0</th>
-      <th>54.0</th>
-      <th>55.0</th>
-      <th>56.0</th>
-      <th>57.0</th>
-      <th>58.0</th>
-      <th>59.0</th>
-      <th>60.0</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>2009-01-04</th>
-      <td>-25.197904</td>
-      <td>-19.697833</td>
-      <td>-14.198458</td>
-      <td>-8.701850</td>
-      <td>-3.207986</td>
-      <td>2.279579</td>
-      <td>7.766803</td>
-      <td>13.257105</td>
-      <td>18.771209</td>
-      <td>24.339723</td>
-      <td>...</td>
-      <td>191.519825</td>
-      <td>199.994426</td>
-      <td>208.404577</td>
-      <td>216.829275</td>
-      <td>225.204056</td>
-      <td>233.599836</td>
-      <td>241.959057</td>
-      <td>250.321802</td>
-      <td>258.639183</td>
-      <td>267.001854</td>
-    </tr>
-    <tr>
-      <th>2009-04-05</th>
-      <td>-35.897568</td>
-      <td>-28.431147</td>
-      <td>-20.966206</td>
-      <td>-13.509113</td>
-      <td>-6.057171</td>
-      <td>1.382573</td>
-      <td>8.824444</td>
-      <td>16.274388</td>
-      <td>23.769274</td>
-      <td>31.357876</td>
-      <td>...</td>
-      <td>241.977105</td>
-      <td>251.959247</td>
-      <td>261.859975</td>
-      <td>271.776585</td>
-      <td>281.632207</td>
-      <td>291.513745</td>
-      <td>301.352921</td>
-      <td>311.197930</td>
-      <td>320.989457</td>
-      <td>330.837097</td>
-    </tr>
-    <tr>
-      <th>2009-07-05</th>
-      <td>-36.788636</td>
-      <td>-28.224829</td>
-      <td>-19.663715</td>
-      <td>-11.117691</td>
-      <td>-2.580427</td>
-      <td>5.936043</td>
-      <td>14.457608</td>
-      <td>22.993449</td>
-      <td>31.601400</td>
-      <td>40.352223</td>
-      <td>...</td>
-      <td>267.245741</td>
-      <td>277.279409</td>
-      <td>287.218735</td>
-      <td>297.170748</td>
-      <td>307.058118</td>
-      <td>316.973593</td>
-      <td>326.847585</td>
-      <td>336.730016</td>
-      <td>346.558220</td>
-      <td>356.447006</td>
-    </tr>
-    <tr>
-      <th>2009-10-04</th>
-      <td>-18.874849</td>
-      <td>-10.755134</td>
-      <td>-2.638993</td>
-      <td>5.457812</td>
-      <td>13.543526</td>
-      <td>21.603363</td>
-      <td>29.671536</td>
-      <td>37.762505</td>
-      <td>45.947349</td>
-      <td>54.314240</td>
-      <td>...</td>
-      <td>258.997653</td>
-      <td>267.470967</td>
-      <td>275.842164</td>
-      <td>284.218523</td>
-      <td>292.535411</td>
-      <td>300.879809</td>
-      <td>309.190859</td>
-      <td>317.513073</td>
-      <td>325.788247</td>
-      <td>334.121138</td>
-    </tr>
-    <tr>
-      <th>2010-01-03</th>
-      <td>10.954660</td>
-      <td>17.853995</td>
-      <td>24.749555</td>
-      <td>31.626960</td>
-      <td>38.492805</td>
-      <td>45.332537</td>
-      <td>52.179803</td>
-      <td>59.051623</td>
-      <td>66.018531</td>
-      <td>73.171976</td>
-      <td>...</td>
-      <td>244.871834</td>
-      <td>251.738222</td>
-      <td>258.495341</td>
-      <td>265.250429</td>
-      <td>271.950819</td>
-      <td>278.677803</td>
-      <td>285.379434</td>
-      <td>292.094949</td>
-      <td>298.771121</td>
-      <td>305.502093</td>
-    </tr>
-  </tbody>
+<table>
+<thead>
+<tr>
+<th align="left">Unnamed: 0</th>
+<th align="right">8.0</th>
+<th align="right">9.0</th>
+<th align="right">10.0</th>
+<th align="right">11.0</th>
+<th align="right">12.0</th>
+<th align="right">13.0</th>
+<th align="right">14.0</th>
+<th align="right">15.0</th>
+<th align="right">16.0</th>
+<th align="right">17.0</th>
+<th align="left">...</th>
+<th align="right">51.0</th>
+<th align="right">52.0</th>
+<th align="right">53.0</th>
+<th align="right">54.0</th>
+<th align="right">55.0</th>
+<th align="right">56.0</th>
+<th align="right">57.0</th>
+<th align="right">58.0</th>
+<th align="right">59.0</th>
+<th align="right">60.0</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">2009-01-04</td>
+<td align="right">-25.1979</td>
+<td align="right">-19.6978</td>
+<td align="right">-14.1985</td>
+<td align="right">-8.70185</td>
+<td align="right">-3.20799</td>
+<td align="right">2.27958</td>
+<td align="right">7.7668</td>
+<td align="right">13.2571</td>
+<td align="right">18.7712</td>
+<td align="right">24.3397</td>
+<td align="left">...</td>
+<td align="right">191.52</td>
+<td align="right">199.994</td>
+<td align="right">208.405</td>
+<td align="right">216.829</td>
+<td align="right">225.204</td>
+<td align="right">233.6</td>
+<td align="right">241.959</td>
+<td align="right">250.322</td>
+<td align="right">258.639</td>
+<td align="right">267.002</td>
+</tr>
+<tr>
+<td align="left">2009-04-05</td>
+<td align="right">-35.8976</td>
+<td align="right">-28.4311</td>
+<td align="right">-20.9662</td>
+<td align="right">-13.5091</td>
+<td align="right">-6.05717</td>
+<td align="right">1.38257</td>
+<td align="right">8.82444</td>
+<td align="right">16.2744</td>
+<td align="right">23.7693</td>
+<td align="right">31.3579</td>
+<td align="left">...</td>
+<td align="right">241.977</td>
+<td align="right">251.959</td>
+<td align="right">261.86</td>
+<td align="right">271.777</td>
+<td align="right">281.632</td>
+<td align="right">291.514</td>
+<td align="right">301.353</td>
+<td align="right">311.198</td>
+<td align="right">320.989</td>
+<td align="right">330.837</td>
+</tr>
+<tr>
+<td align="left">2009-07-05</td>
+<td align="right">-36.7886</td>
+<td align="right">-28.2248</td>
+<td align="right">-19.6637</td>
+<td align="right">-11.1177</td>
+<td align="right">-2.58043</td>
+<td align="right">5.93604</td>
+<td align="right">14.4576</td>
+<td align="right">22.9934</td>
+<td align="right">31.6014</td>
+<td align="right">40.3522</td>
+<td align="left">...</td>
+<td align="right">267.246</td>
+<td align="right">277.279</td>
+<td align="right">287.219</td>
+<td align="right">297.171</td>
+<td align="right">307.058</td>
+<td align="right">316.974</td>
+<td align="right">326.848</td>
+<td align="right">336.73</td>
+<td align="right">346.558</td>
+<td align="right">356.447</td>
+</tr>
+<tr>
+<td align="left">2009-10-04</td>
+<td align="right">-18.8748</td>
+<td align="right">-10.7551</td>
+<td align="right">-2.63899</td>
+<td align="right">5.45781</td>
+<td align="right">13.5435</td>
+<td align="right">21.6034</td>
+<td align="right">29.6715</td>
+<td align="right">37.7625</td>
+<td align="right">45.9473</td>
+<td align="right">54.3142</td>
+<td align="left">...</td>
+<td align="right">258.998</td>
+<td align="right">267.471</td>
+<td align="right">275.842</td>
+<td align="right">284.219</td>
+<td align="right">292.535</td>
+<td align="right">300.88</td>
+<td align="right">309.191</td>
+<td align="right">317.513</td>
+<td align="right">325.788</td>
+<td align="right">334.121</td>
+</tr>
+<tr>
+<td align="left">2010-01-03</td>
+<td align="right">10.9547</td>
+<td align="right">17.854</td>
+<td align="right">24.7496</td>
+<td align="right">31.627</td>
+<td align="right">38.4928</td>
+<td align="right">45.3325</td>
+<td align="right">52.1798</td>
+<td align="right">59.0516</td>
+<td align="right">66.0185</td>
+<td align="right">73.172</td>
+<td align="left">...</td>
+<td align="right">244.872</td>
+<td align="right">251.738</td>
+<td align="right">258.495</td>
+<td align="right">265.25</td>
+<td align="right">271.951</td>
+<td align="right">278.678</td>
+<td align="right">285.379</td>
+<td align="right">292.095</td>
+<td align="right">298.771</td>
+<td align="right">305.502</td>
+</tr>
+</tbody>
 </table>
-<p>5 rows × 53 columns</p>
-</div>
-
 <p><br></p>
 <p>We'll visualise our surface estimate as a wire-plot, where the darker colours denote price curve estimates from longer ago.</p>
 <div class="highlight"><pre><span></span><code><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">dpi</span><span class="o">=</span><span class="mi">150</span><span class="p">)</span>
