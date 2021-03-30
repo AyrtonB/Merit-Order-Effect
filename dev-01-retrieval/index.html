@@ -2258,7 +2258,9 @@ There are 7 days with missing data, totalling 157 hours of individual missing ho
 <p><br></p>
 <h5 id="prices">Prices<a class="headerlink" href="#prices" title="Permanent link">&para;</a></h5>
 <p>We'll begin by initialising our client API for ENTSOE</p>
-<div class="highlight"><pre><span></span><code><span class="n">api_key</span> <span class="o">=</span> <span class="s1">&#39;3ce8c447-2be7-47e8-9440-af8994617ec1&#39;</span>
+<p><strong>You will need to supply your own API key, we recommend you store it in a <code>.env</code> file</strong></p>
+<div class="highlight"><pre><span></span><code><span class="n">load_dotenv</span><span class="p">()</span>
+<span class="n">ENTSOE_API_KEY</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;ENTSOE_API_KEY&#39;</span><span class="p">]</span>
 
 <span class="n">client</span> <span class="o">=</span> <span class="n">EntsoePandasClient</span><span class="p">(</span><span class="n">api_key</span><span class="o">=</span><span class="n">api_key</span><span class="p">)</span>
 
