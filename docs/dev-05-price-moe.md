@@ -97,7 +97,7 @@ ax.set_ylabel('Day-Ahead Price\nMonthly Average (£/MWh)')
 
 
 
-![png](./img/nbs/output_7_1.png)
+![png](./img/nbs/dev-05-price-moe_cell_8_output_1.png)
 
 
 <br>
@@ -131,7 +131,7 @@ ax.set_ylabel('Price (£/MWh)')
 
 
 
-![png](./img/nbs/output_9_1.png)
+![png](./img/nbs/dev-05-price-moe_cell_10_output_1.png)
 
 
 <br>
@@ -223,7 +223,7 @@ ax.set_title('Day-Ahead Market Average Price Curve')
 
 
 
-![png](./img/nbs/output_15_1.png)
+![png](./img/nbs/dev-05-price-moe_cell_16_output_1.png)
 
 
 <br>
@@ -276,7 +276,7 @@ sns.heatmap(df_pred.where(df_pred_mask, np.nan).iloc[::-1])
 
 
 
-![png](./img/nbs/output_18_1.png)
+![png](./img/nbs/dev-05-price-moe_cell_19_output_1.png)
 
 
 <br>
@@ -381,7 +381,7 @@ ax.set_ylabel('Demand - [Solar + Wind] (GW)')
 
 
 
-![png](./img/nbs/output_21_3.png)
+![png](./img/nbs/dev-05-price-moe_cell_22_output_3.png)
 
 
 <br>
@@ -431,7 +431,7 @@ ax.set_ylabel('Day-Ahead Price (£/MWh)')
 
 
 
-![png](./img/nbs/output_23_3.png)
+![png](./img/nbs/dev-05-price-moe_cell_24_output_3.png)
 
 
 <br>
@@ -539,7 +539,7 @@ _ = plt.xlim(-75, 75)
     
 
 
-![png](./img/nbs/output_31_1.png)
+![png](./img/nbs/dev-05-price-moe_cell_32_output_1.png)
 
 
 <br>
@@ -827,7 +827,7 @@ s_GB_MOE.plot()
 
 
 
-![png](./img/nbs/output_49_1.png)
+![png](./img/nbs/dev-05-price-moe_cell_50_output_1.png)
 
 
 <br>
@@ -866,7 +866,7 @@ eda.hide_spines(ax)
 ```
 
 
-![png](./img/nbs/output_53_0.png)
+![png](./img/nbs/dev-05-price-moe_cell_54_output_0.png)
 
 
 <br>
@@ -885,7 +885,7 @@ s_GB_err.groupby(s_GB_err.index.hour+s_GB_err.index.minute/60).mean().plot.bar()
 
 
 
-![png](./img/nbs/output_55_1.png)
+![png](./img/nbs/dev-05-price-moe_cell_56_output_1.png)
 
 
 <br>
@@ -906,7 +906,7 @@ s_GB_saving.resample('2W').mean().plot()
 
 
 
-![png](./img/nbs/output_57_1.png)
+![png](./img/nbs/dev-05-price-moe_cell_58_output_1.png)
 
 
 <br>
@@ -920,7 +920,7 @@ eda.hide_spines(plt.gca())
 ```
 
 
-![png](./img/nbs/output_59_0.png)
+![png](./img/nbs/dev-05-price-moe_cell_60_output_0.png)
 
 
 <br>
@@ -995,7 +995,7 @@ s_GB_MOE_pct_reduction.plot()
 
 
 
-![png](./img/nbs/output_67_1.png)
+![png](./img/nbs/dev-05-price-moe_cell_68_output_1.png)
 
 
 <br>
@@ -1033,7 +1033,7 @@ ax.set_ylabel('Average MOE Price Reduction (%)')
 
 
 
-![png](./img/nbs/output_69_2.png)
+![png](./img/nbs/dev-05-price-moe_cell_70_output_2.png)
 
 
 <br>
@@ -1097,7 +1097,7 @@ ax.legend(frameon=False)
 
 
 
-![png](./img/nbs/output_75_1.png)
+![png](./img/nbs/dev-05-price-moe_cell_76_output_1.png)
 
 
 <br>
@@ -1126,7 +1126,7 @@ eda.hide_spines(ax)
 ```
 
 
-![png](./img/nbs/output_77_0.png)
+![png](./img/nbs/dev-05-price-moe_cell_78_output_0.png)
 
 
 <br>
@@ -1180,7 +1180,7 @@ axs[0].set_ylabel('Price (£/MWh)')
 
 
 
-![png](./img/nbs/output_79_1.png)
+![png](./img/nbs/dev-05-price-moe_cell_80_output_1.png)
 
 
 <br>
@@ -1275,7 +1275,7 @@ s_wind_capture_prices.plot()
 
 
 
-![png](./img/nbs/output_88_2.png)
+![png](./img/nbs/dev-05-price-moe_cell_89_output_2.png)
 
 
 <br>
@@ -1300,7 +1300,7 @@ sns.histplot(s_wind_capture_value_ratio)
 
 
 
-![png](./img/nbs/output_90_2.png)
+![png](./img/nbs/dev-05-price-moe_cell_91_output_2.png)
 
 
 <br>
@@ -1324,7 +1324,7 @@ ax.set_ylabel('Wind Capture Price Suppression (%)')
 
 
 
-![png](./img/nbs/output_92_1.png)
+![png](./img/nbs/dev-05-price-moe_cell_93_output_1.png)
 
 
 <br>
@@ -1391,7 +1391,7 @@ ax.set_ylabel('Price (EUR/MWh)')
 
 
 
-![png](./img/nbs/output_97_1.png)
+![png](./img/nbs/dev-05-price-moe_cell_98_output_1.png)
 
 
 <br>
@@ -1446,7 +1446,7 @@ fig.tight_layout()
     
 
 
-![png](./img/nbs/output_99_1.png)
+![png](./img/nbs/dev-05-price-moe_cell_100_output_1.png)
 
 
 <br>
@@ -1540,7 +1540,7 @@ ax.set_ylabel('Demand - [Solar + Wind] (GW)')
 
 
 
-![png](./img/nbs/output_105_2.png)
+![png](./img/nbs/dev-05-price-moe_cell_106_output_2.png)
 
 
 <br>
@@ -1645,7 +1645,7 @@ s_DE_MOE_pct_reduction.plot()
 
 
 
-![png](./img/nbs/output_115_1.png)
+![png](./img/nbs/dev-05-price-moe_cell_116_output_1.png)
 
 
 <br>
@@ -1689,7 +1689,7 @@ ax.legend(frameon=False)
 
 
 
-![png](./img/nbs/output_119_1.png)
+![png](./img/nbs/dev-05-price-moe_cell_120_output_1.png)
 
 
 <br>
@@ -1734,7 +1734,7 @@ eda.hide_spines(ax)
 ```
 
 
-![png](./img/nbs/output_123_0.png)
+![png](./img/nbs/dev-05-price-moe_cell_124_output_0.png)
 
 
 <br>
@@ -1790,7 +1790,7 @@ axs[0].set_ylabel('Price (EUR/MWh)')
 
 
 
-![png](./img/nbs/output_125_1.png)
+![png](./img/nbs/dev-05-price-moe_cell_126_output_1.png)
 
 
 <br>
@@ -1814,7 +1814,7 @@ eda.hide_spines(ax)
 ```
 
 
-![png](./img/nbs/output_127_0.png)
+![png](./img/nbs/dev-05-price-moe_cell_128_output_0.png)
 
 
 <br>
@@ -1841,7 +1841,7 @@ plt.scatter(s_DE_MOE_annual_avg, s_DE_RES_pct_annual_avg)
 
 
 
-![png](./img/nbs/output_129_2.png)
+![png](./img/nbs/dev-05-price-moe_cell_130_output_2.png)
 
 
 <br>
@@ -1927,7 +1927,7 @@ fig.tight_layout()
     
 
 
-![png](./img/nbs/output_135_1.png)
+![png](./img/nbs/dev-05-price-moe_cell_136_output_1.png)
 
 
 <br>
@@ -1972,7 +1972,7 @@ ax.legend(frameon=False)
 
 
 
-![png](./img/nbs/output_137_1.png)
+![png](./img/nbs/dev-05-price-moe_cell_138_output_1.png)
 
 
 <br>

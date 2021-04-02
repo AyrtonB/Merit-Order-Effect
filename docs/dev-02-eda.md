@@ -201,7 +201,7 @@ sns.palplot(fuel_colour_dict_plt.values())
 ```
 
 
-![png](./img/nbs/output_15_0.png)
+![png](./img/nbs/dev-02-eda_cell_16_output_0.png)
 
 
 <br>
@@ -259,5 +259,5 @@ stacked_fuel_plot(df_plot, fuel_colour_dict_plt, dpi=250)
 
 
 
-![png](./img/nbs/output_18_1.png)
+![png](./img/nbs/dev-02-eda_cell_19_output_1.png)
 

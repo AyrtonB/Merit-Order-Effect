@@ -97,7 +97,7 @@ ax.set_ylabel('Price (£/MWh)')
 
 
 
-![png](./img/nbs/output_7_1.png)
+![png](./img/nbs/dev-04-price-surface-estimation_cell_8_output_1.png)
 
 
 <br>
@@ -134,7 +134,7 @@ ax.set_ylabel('Price (£/MWh)')
 
 
 
-![png](./img/nbs/output_9_1.png)
+![png](./img/nbs/dev-04-price-surface-estimation_cell_10_output_1.png)
 
 
 <br>

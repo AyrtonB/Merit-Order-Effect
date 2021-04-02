@@ -16,6 +16,7 @@ import json
 import numpy as np
 import pandas as pd
 
+import os
 import requests
 import xmltodict
 from datetime import date
@@ -820,13 +821,13 @@ We'll use ENTSOE as the source for our German price data, we'll also have to use
 
 We'll begin by initialising our client API for ENTSOE
 
-**You will need to supply your own API key, we recommend you store it in a `.env` file**
+**You will need to supply your own API key**
 
 ```python
 load_dotenv()
 ENTSOE_API_KEY = os.environ['ENTSOE_API_KEY']
 
-client = EntsoePandasClient(api_key=api_key)
+client = EntsoePandasClient(api_key=ENTSOE_API_KEY)
 
 client
 ```
@@ -834,7 +835,7 @@ client
 
 
 
-    <entsoe.entsoe.EntsoePandasClient at 0x216d1b88d60>
+    <entsoe.entsoe.EntsoePandasClient at 0x2cdcd105ca0>
 
 
 
@@ -1041,7 +1042,7 @@ s_price.plot()
 
 
 
-![png](./img/nbs/output_67_1.png)
+![png](./img/nbs/dev-01-retrieval_cell_68_output_1.png)
 
 
 <br>

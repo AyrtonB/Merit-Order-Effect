@@ -238,6 +238,11 @@ ax.get_legend().remove()
 ![png](./img/nbs/ug-03-power-curve_cell_16_output_0.png)
 
 
+```python
+# take the peak, then get the troughs on either side and print some info
+# would be interesting to compare against these fits - https://www.hindawi.com/journals/jen/2016/8519785/tab1/
+```
+
 <br>
 
 ### Power Curve Cleaning
@@ -298,7 +303,7 @@ lgnd.legendHandles[1].set_alpha(1)
     
 
 
-![png](./img/nbs/ug-03-power-curve_cell_20_output_1.png)
+![png](./img/nbs/ug-03-power-curve_cell_21_output_1.png)
 
 
 <br>
@@ -362,7 +367,7 @@ ax.set_ylim(0)
 
 
 
-![png](./img/nbs/ug-03-power-curve_cell_24_output_1.png)
+![png](./img/nbs/ug-03-power-curve_cell_25_output_1.png)
 
 
 <br>
@@ -414,7 +419,7 @@ for ax in axs:
 ```
 
 
-![png](./img/nbs/ug-03-power-curve_cell_28_output_0.png)
+![png](./img/nbs/ug-03-power-curve_cell_29_output_0.png)
 
 
 <br>
@@ -451,5 +456,5 @@ lgnd.legendHandles[1].set_alpha(1)
     
 
 
-![png](./img/nbs/ug-03-power-curve_cell_30_output_1.png)
+![png](./img/nbs/ug-03-power-curve_cell_31_output_1.png)
 

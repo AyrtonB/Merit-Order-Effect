@@ -15,6 +15,7 @@ import json
 import numpy as np
 import pandas as pd
 
+import seaborn as sns
 import matplotlib.pyplot as plt
 
 from IPython.display import Latex, JSON
@@ -63,6 +64,8 @@ s_DE_RES_pct = s_DE_RES_output/s_DE_demand
 DE_2020_RES_pct = s_DE_RES_pct['2020'].mean()
 DE_2020_demand_avg = s_DE_demand['2020'].mean()
 DE_2020_price_avg = s_DE_price['2020'].mean()
+DE_2020_price_min = s_DE_price['2020'].min()
+DE_2020_price_max = s_DE_price['2020'].max()
 
 DE_2020_RES_pct, DE_2020_demand_avg, DE_2020_price_avg
 ```
@@ -167,6 +170,8 @@ GB_2020_ci_avg = s_GB_carbon_intensity['2020'].mean()
 GB_2020_RES_pct = (s_GB_RES['2020']/s_GB_demand['2020']).mean()
 GB_2020_demand_avg = s_GB_demand['2020'].mean()
 GB_2020_price_avg = s_GB_price['2020'].mean()
+GB_2020_price_min = s_GB_price['2020'].min()
+GB_2020_price_max = s_GB_price['2020'].max()
 ```
 
 <br>
@@ -179,17 +184,21 @@ system_overview_data = {
         'Average Solar/Wind Generation (%)': round(100*DE_2020_RES_pct, 2),
         'Average Demand (GW)': round(DE_2020_demand_avg, 2),
         'Average Price ([EUR,GBP]/MWh)': round(DE_2020_price_avg, 2),
+        'Minimum Price ([EUR,GBP]/MWh)': round(DE_2020_price_min, 2),
+        'Maximum Price ([EUR,GBP]/MWh)': round(DE_2020_price_max, 2),
         'Average Carbon Intensity  (gCO2/kWh)': round(DE_2020_ci_avg, 2),
     },
     'Great Britain': {
         'Average Solar/Wind Generation (%)': round(100*GB_2020_RES_pct, 2),
         'Average Demand (GW)': round(GB_2020_demand_avg, 2),
         'Average Price ([EUR,GBP]/MWh)': round(GB_2020_price_avg, 2),
+        'Minimum Price ([EUR,GBP]/MWh)': round(GB_2020_price_min, 2),
+        'Maximum Price ([EUR,GBP]/MWh)': round(GB_2020_price_max, 2),
         'Average Carbon Intensity  (gCO2/kWh)': round(GB_2020_ci_avg, 2),
     }
 }
 
-df_system_overview = pd.DataFrame(system_overview_data).T
+df_system_overview = pd.DataFrame(system_overview_data)
 
 df_system_overview.head()
 ```
@@ -197,10 +206,13 @@ df_system_overview.head()
 
 
 
-| Unnamed: 0    |   Average Solar/Wind Generation (%) |   Average Demand (GW) |   Average Price ([EUR,GBP]/MWh) |   Average Carbon Intensity (gCO2/kWh) |
-|:--------------|------------------------------------:|----------------------:|--------------------------------:|--------------------------------------:|
-| Germany       |                               35.93 |                 55.96 |                           30.47 |                                153.8  |
-| Great Britain |                               29.83 |                 30.61 |                           33.77 |                                101.17 |</div>
+| Unnamed: 0                        |   Germany |   Great Britain |
+|:----------------------------------|----------:|----------------:|
+| Average Solar/Wind Generation (%) |     35.93 |           29.83 |
+| Average Demand (GW)               |     55.96 |           30.61 |
+| Average Price ([EUR,GBP]/MWh)     |     30.47 |           33.77 |
+| Minimum Price ([EUR,GBP]/MWh)     |    -83.94 |          -53.02 |
+| Maximum Price ([EUR,GBP]/MWh)     |    200.04 |          510.88 |</div>
 
 
 
@@ -212,7 +224,7 @@ Which we'll then output as a LaTeX table
 get_lined_column_format = lambda n_cols:''.join(n_cols*['|l']) + '|'
 
 caption = 'Systems overview for 2020'
-label = 'overview_table'
+label = 'table:overview_table'
 column_format = get_lined_column_format(df_system_overview.shape[1]+1)
 
 latex_str = df_system_overview.to_latex(column_format=column_format, caption=caption, label=label)
@@ -240,11 +252,15 @@ Latex(latex_str)
 \centering
 \caption{Systems overview for 2020}
 \label{overview_table}
-\begin{tabular}{|l|l|l|l|l|}
+\begin{tabular}{|l|l|l|}
 \hline
-{} &  Average Solar/Wind Generation (\%) &  Average Demand (GW) &  Average Price ([EUR,GBP]/MWh) &  Average Carbon Intensity  (gCO\textsubscript{2}/kWh) \\ \hline
-Germany       &                              35.93 &                55.96 &                          30.47 &                                153.80 \\ \hline
-Great Britain &                              29.83 &                30.61 &                          33.77 &                                101.17 \\ \hline
+{} &  Germany &  Great Britain \\ \hline
+Average Solar/Wind Generation (\%)    &    35.93 &          29.83 \\ \hline
+Average Demand (GW)                  &    55.96 &          30.61 \\ \hline
+Average Price ([EUR,GBP]/MWh)        &    30.47 &          33.77 \\ \hline
+Minimum Price ([EUR,GBP]/MWh)        &   -83.94 &         -53.02 \\ \hline
+Maximum Price ([EUR,GBP]/MWh)        &   200.04 &         510.88 \\ \hline
+Average Carbon Intensity  (gCO\textsubscript{2}/kWh) &   153.80 &         101.17 \\ \hline
 \end{tabular}
 \end{table}
 
@@ -293,7 +309,7 @@ And output them as a LaTeX table
 
 ```python
 caption = 'Carbon intensity factors for fuel-types and interconnection on the GB power system'
-label = 'GB_co2_intensity_table'
+label = 'table:GB_co2_intensity_table'
 column_format = get_lined_column_format(df_GB_non0_co2_intensity.shape[1]+1)
 
 latex_str = df_GB_non0_co2_intensity.to_latex(column_format=column_format, caption=caption, label=label)
@@ -363,7 +379,7 @@ df_DE_non0_co2_intensity
 
 ```python
 caption = 'Carbon intensity factors for fuel-types and interconnection on the DE power system'
-label = 'DE_co2_intensity_table'
+label = 'table:DE_co2_intensity_table'
 column_format = get_lined_column_format(df_DE_non0_co2_intensity.shape[1]+1)
 
 latex_str = df_DE_non0_co2_intensity.to_latex(column_format=column_format, caption=caption, label=label)
@@ -448,7 +464,7 @@ Which we'll output as a LaTeX table
 
 ```python
 caption = 'Price forecasting model accuracy when regressing against dispatchable and total load for GB and DE.'
-label = 'model_accuracy_table'
+label = 'table:model_accuracy_table'
 column_format = get_lined_column_format(df_model_accuracy.shape[1]+1)
 
 latex_str = df_model_accuracy.to_latex(column_format=column_format, caption=caption, label=label)
@@ -511,6 +527,17 @@ df_GB_price_results_ts.head()
 
 
 
+```python
+df_GB_price_results_ts['moe'].max()
+```
+
+
+
+
+    116.41833297065492
+
+
+
 <br>
 
 We'll then calculate their summary statistics
@@ -519,15 +546,15 @@ We'll then calculate their summary statistics
 MOE_results_data = {
     'Germany': {
         'Price ([EUR,GBP]/MWh)': round(df_DE_price_results_ts.loc['2020', 'moe'].mean(), 2),
-        'Price (%)': round(100*(df_DE_price_results_ts.loc['2020', 'moe']*df_DE['demand']).sum()/((df_DE_price_results_ts.loc['2020', 'observed']+df_DE_price_results_ts.loc['2020', 'moe'])*df_DE['demand']).sum(), 2),
+        'Price Reduction (%)': round(100*(df_DE_price_results_ts.loc['2020', 'moe']*df_DE['demand']).sum()/((df_DE_price_results_ts.loc['2020', 'observed']+df_DE_price_results_ts.loc['2020', 'moe'])*df_DE['demand']).sum(), 2),
         'Carbon (Tonnes/h)': round(df_DE_carbon_results_ts.loc['2020', 'moe'].mean(), 2),
-        'Carbon (%)': round(100*(df_DE_carbon_results_ts.loc['2020', 'moe'].sum()/(df_DE_carbon_results_ts.loc['2020', 'observed']+df_DE_carbon_results_ts.loc['2020', 'moe']).sum()).mean(), 2)
+        'Carbon Reduction (%)': round(100*(df_DE_carbon_results_ts.loc['2020', 'moe'].sum()/(df_DE_carbon_results_ts.loc['2020', 'observed']+df_DE_carbon_results_ts.loc['2020', 'moe']).sum()).mean(), 2)
     },
     'Great Britain': {
         'Price ([EUR,GBP]/MWh)': round(df_GB_price_results_ts.loc['2020', 'moe'].mean(), 2),
-        'Price (%)': round(100*(df_GB_price_results_ts.loc['2020', 'moe']*df_EI['demand']).sum()/((df_GB_price_results_ts.loc['2020', 'observed']+df_GB_price_results_ts.loc['2020', 'moe'])*df_EI['demand']).sum(), 2),
+        'Price Reduction (%)': round(100*(df_GB_price_results_ts.loc['2020', 'moe']*df_EI['demand']).sum()/((df_GB_price_results_ts.loc['2020', 'observed']+df_GB_price_results_ts.loc['2020', 'moe'])*df_EI['demand']).sum(), 2),
         'Carbon (Tonnes/h)': round(df_GB_carbon_results_ts.loc['2020', 'moe'].mean(), 2), # doubled to make it the same hourly rate as DE
-        'Carbon (%)': round(100*(df_GB_carbon_results_ts.loc['2020', 'moe'].sum()/(df_GB_carbon_results_ts.loc['2020', 'observed']+df_GB_carbon_results_ts.loc['2020', 'moe']).sum()).mean(), 2)
+        'Carbon Reduction (%)': round(100*(df_GB_carbon_results_ts.loc['2020', 'moe'].sum()/(df_GB_carbon_results_ts.loc['2020', 'observed']+df_GB_carbon_results_ts.loc['2020', 'moe']).sum()).mean(), 2)
     }
 }
 
@@ -544,9 +571,9 @@ df_MOE_results.head()
 | Unnamed: 0            |   Germany |   Great Britain |
 |:----------------------|----------:|----------------:|
 | Price ([EUR,GBP]/MWh) |     22.17 |           13.89 |
-| Price (%)             |     43.43 |           29.66 |
+| Price Reduction (%)   |     43.43 |           29.66 |
 | Carbon (Tonnes/h)     |   5563.22 |         1657.88 |
-| Carbon (%)            |     39.7  |           37.89 |</div>
+| Carbon Reduction (%)  |     39.7  |           37.89 |</div>
 
 
 
@@ -555,8 +582,8 @@ df_MOE_results.head()
 And export the output as a LaTeX table
 
 ```python
-caption = '2020 Merit Order Effect results overview (weighted by volume).'
-label = 'moe_results_table'
+caption = 'Merit Order Effect results overview for 2020 (weighted by volume). Price reduction is expressed in terms of the percentage decrease relative to the counter-factual price that would have occurred with RES generation'
+label = 'table:moe_results_table'
 column_format = get_lined_column_format(df_MOE_results.shape[1]+1)
 
 latex_str = df_MOE_results.to_latex(column_format=column_format, caption=caption, label=label)
@@ -572,15 +599,15 @@ Latex(latex_str)
 
 \begin{table}
 \centering
-\caption{2020 Merit Order Effect results overview (weighted by volume).}
+\caption{Merit Order Effect results overview for 2020 (weighted by volume). Price reduction is expressed in terms of the percentage decrease relative to the counter-factual price that would have occurred with RES generation}
 \label{moe_results_table}
 \begin{tabular}{|l|l|l|}
 \hline
 {} &  Germany &  Great Britain \\ \hline
 Price ([EUR,GBP]/MWh) &    22.17 &          13.89 \\ \hline
-Price (\%)             &    43.43 &          29.66 \\ \hline
+Price Reduction (\%)   &    43.43 &          29.66 \\ \hline
 Carbon (Tonnes/h)     &  5563.22 &        1657.88 \\ \hline
-Carbon (\%)            &    39.70 &          37.89 \\ \hline
+Carbon Reduction (\%)  &    39.70 &          37.89 \\ \hline
 \end{tabular}
 \end{table}
 
@@ -618,7 +645,7 @@ lit_results_data = [
     },
     {
         'Study': 'Mulder and Scholtens (2013)',
-        'MOE': '0.03% price decrease per p.p increase in wind speeds',
+        'MOE': '0.03% (per p.p increase in wind speeds)',
         'Period': '2006–2011',
         'Region': 'Germany',
         'Method': 'RPR',
@@ -632,7 +659,7 @@ lit_results_data = [
     },
     {
         'Study': 'Wurzburg et al. (2013)',
-        'MOE': '2% price decrease',
+        'MOE': '2%',
         'Period': '2010-2012',
         'Region': 'Germany & Austria',
         'Method': 'RPR',
@@ -646,25 +673,25 @@ lit_results_data = [
     },
     {
         'Study': 'Ketterer (2014)',
-        'MOE': '0.1-1.46% price decrease per p.p increase in wind generation',
-        'Period': '2006-2012',
+        'MOE': '1.46% (per p.p increase in wind generation)',
+        'Period': '2012',
         'Region': 'Germany',
         'Method': 'RPR',
     },
     {
         'Study': 'Ederer (2015)',
-        'MOE': '1.3% price decrease per annual TWh of wind',
+        'MOE': '1.3% (per annual TWh of wind)',
         'Period': '2006-2014',
         'Region': 'Germany',
         'Method': 'MSS',
     },
-    {
-        'Study': 'Kyritsis et al. (2017)',
-        'MOE': '-',
-        'Period': '2010-2015',
-        'Region': 'Germany',
-        'Method': 'RPR',
-    },
+#     {
+#         'Study': 'Kyritsis et al. (2017)',
+#         'MOE': '-',
+#         'Period': '2010-2015',
+#         'Region': 'Germany',
+#         'Method': 'RPR',
+#     },
     {
         'Study': 'Bublitz et al. (2017)',
         'MOE': '5.40 €/MWh',
@@ -681,22 +708,22 @@ lit_results_data = [
     },
     {
         'Study': 'de Miera et al. (2008)',
-        'MOE': '8.6-25.1% price decrease',
-        'Period': '2005-2007',
+        'MOE': '25.1%',
+        'Period': '2007',
         'Region': 'Spain',
         'Method': 'ESS',
     },
     {
         'Study': 'Gelabert et al. (2011)',
-        'MOE': '3.7% price decrease',
+        'MOE': '3.7%',
         'Period': '2005-2012',
         'Region': 'Spain',
         'Method': 'RPR',
     },
     {
         'Study': 'Ciarreta et al. (2014)',
-        'MOE': '25-45 €/MWh',
-        'Period': '2008–2012',
+        'MOE': '45 €/MWh',
+        'Period': '2012',
         'Region': 'Spain',
         'Method': 'ESS',
     },
@@ -709,28 +736,28 @@ lit_results_data = [
     },
     {
         'Study': 'Munksgaard and Morthorst (2008)',
-        'MOE': '1-4 €/MWh',
-        'Period': '2004-2006',
+        'MOE': '4 €/MWh',
+        'Period': '2006',
         'Region': 'Denmark',
         'Method': 'RPR',
     },
-    {
-        'Study': 'Jonsson et al. (2010)',
-        'MOE': '-',
-        'Period': '2006-2007',
-        'Region': 'Denmark',
-        'Method': 'RPR',
-    },
+#     {
+#         'Study': 'Jonsson et al. (2010)',
+#         'MOE': '-',
+#         'Period': '2006-2007',
+#         'Region': 'Denmark',
+#         'Method': 'RPR',
+#     },
     {
         'Study': 'Denny et al. (2017)',
-        'MOE': '3.40 €/MWh per GWh (wind)',
+        'MOE': '3.40 €/MWh (per GWh of wind)',
         'Period': '2009',
         'Region': 'Ireland',
         'Method': 'RPR',
     },
     {
         'Study': 'Lunackova et al. (2017)',
-        'MOE': '1.2% price decrease per 10% increase in RES',
+        'MOE': '1.2% (per 10% increase in RES)',
         'Period': '2010-2015',
         'Region': 'Czech Republic',
         'Method': 'RPR',
@@ -744,57 +771,57 @@ lit_results_data = [
     },
     {
         'Study': 'McConnell et al. (2013)',
-        'MOE': '8.6% price decrease',
+        'MOE': '8.6%',
         'Period': '2009-2010',
         'Region': 'Australia',
         'Method': 'MSS',
     },
     {
         'Study': 'Moreno et al. (2012)',
-        'MOE': '0.018% price increase per p.p. increase in RES penetration',
+        'MOE': '-0.018% (per p.p. increase in RES)',
         'Period': '1998–2009',
         'Region': 'EU-27',
         'Method': 'RPR',
     },
     {
         'Study': 'Woo et al. (2011)',
-        'MOE': '0.32-1.53 $/MWh',
-        'Period': '2007-2010',
+        'MOE': '1.53 $/MWh',
+        'Period': '2010',
         'Region': 'Texas',
         'Method': 'RPR',
     },
     {
         'Study': 'Kaufmann and Vaid (2016)',
-        'MOE': '0.26-1.86 $/MWh (solar)',
-        'Period': '2010-2012',
+        'MOE': '1.86 $/MWh (solar)',
+        'Period': '2012',
         'Region': 'Massachusetts',
         'Method': 'RPR',
     },
     {
         'Study': 'Woo et al. (2016)',
-        'MOE': '5.3 \$/MWh (solar) and 3.3 \$/MWh (wind) per GWh of RES',
+        'MOE': '5.3 $/MWh (solar) and 3.3 $/MWh (wind) per GWh of RES',
         'Period': '2012-2015',
         'Region': 'California',
         'Method': 'RPR',
     },
     {
         'Study': 'Paraschiv et al. (2014)',
-        'MOE': '0.15% price decrease per MWh of RES',
+        'MOE': '0.15% (per MWh of RES)',
         'Period': '2010-2013',
         'Region': 'Germany',
         'Method': 'RPR',
     },
     {
         'Study': 'O\'Mahoney and Denny (2011)',
-        'MOE': '12% price decrease',
+        'MOE': '12%',
         'Period': '2009',
         'Region': 'Ireland',
         'Method': 'RPR',
     },
     {
         'Study': 'Hildmann et al. (2015)',
-        'MOE': '13.4-18.6 €/MWh',
-        'Period': '2011-2013',
+        'MOE': '18.6 €/MWh',
+        'Period': '2013',
         'Region': 'Germany and Austria',
         'Method': 'MSS',
     },
@@ -814,14 +841,14 @@ lit_results_data = [
 #     },
     {
         'Study': 'Halttunen et al. (2021)',
-        'MOE': '0.631 €/MWh per p.p. increase in RES penetration',
+        'MOE': '0.631 €/MWh (per p.p. increase in RES)',
         'Period': '2012-2019',
         'Region': 'Germany',
         'Method': 'RPR',
     },
     {
         'Study': 'Halttunen et al. (2021)',
-        'MOE': '0.482 €/MWh per p.p. increase in RES penetration',
+        'MOE': '0.482 €/MWh (per p.p. increase in RES)',
         'Period': '2010-2019',
         'Region': 'Germany',
         'Method': 'RPR',
@@ -836,20 +863,20 @@ df_lit_results = df_lit_results.sort_values(['Method', 'Study Year', 'Study']).d
 df_lit_results.head()
 ```
 
-    <ipython-input-20-15bc63a4c27e>:237: FutureWarning: The default value of regex will change from True to False in a future version. In addition, single character regular expressions will*not* be treated as literal strings when regex=True.
+    <ipython-input-35-79dbc1b60908>:237: FutureWarning: The default value of regex will change from True to False in a future version. In addition, single character regular expressions will*not* be treated as literal strings when regex=True.
       df_lit_results['Study Year'] = df_lit_results['Study'].str.split('(').str[1].str.replace(')', '').astype(int)
     
 
 
 
 
-|   Unnamed: 0 | Study                  | MOE                      | Period      | Region   | Method   |
-|-------------:|:-----------------------|:-------------------------|:------------|:---------|:---------|
-|            0 | Sensfuss et al. (2008) | 7.83 €/MWh             | 2006        | Germany  | ESS      |
-|            1 | de Miera et al. (2008) | 8.6-25.1% price decrease | 2005-2007   | Spain    | ESS      |
-|            2 | Weigt (2009)           | 10 €/MWh               | 2006-2008   | Germany  | ESS      |
-|            3 | Ciarreta et al. (2014) | 25-45 €/MWh            | 2008–2012 | Spain    | ESS      |
-|            4 | Bublitz et al. (2017)  | 5.40 €/MWh             | 2011-2015   | Germany  | ESS      |</div>
+|   Unnamed: 0 | Study                  | MOE          | Period    | Region   | Method   |
+|-------------:|:-----------------------|:-------------|:----------|:---------|:---------|
+|            0 | Sensfuss et al. (2008) | 7.83 €/MWh | 2006      | Germany  | ESS      |
+|            1 | de Miera et al. (2008) | 25.1%        | 2007      | Spain    | ESS      |
+|            2 | Weigt (2009)           | 10 €/MWh   | 2006-2008 | Germany  | ESS      |
+|            3 | Ciarreta et al. (2014) | 45 €/MWh   | 2012      | Spain    | ESS      |
+|            4 | Bublitz et al. (2017)  | 5.40 €/MWh | 2011-2015 | Germany  | ESS      |</div>
 
 
 
@@ -858,8 +885,8 @@ df_lit_results.head()
 We'll also export this as a LaTeX table
 
 ```python
-caption = 'Results overview from the MOE literature'
-label = 'lit_results_table'
+caption = 'Results overview from the MOE literature. All MOE percentages are expressed in terms of the reduction in prices relative to if renewables had not been present on the system.'
+label = 'table:lit_results_table'
 column_format = get_lined_column_format(df_lit_results.shape[1]+1)
 
 latex_str = df_lit_results.to_latex(column_format=column_format, caption=caption, label=label, index=False)
@@ -881,37 +908,35 @@ Latex(latex_str)
 \hline
                           Study &                                                MOE &    Period &              Region & Method \\ \hline
          Sensfuss et al. (2008) &                                         7.83 €/MWh &      2006 &             Germany &    ESS \\ \hline
-         de Miera et al. (2008) &                           8.6-25.1\% price decrease & 2005-2007 &               Spain &    ESS \\ \hline
+         de Miera et al. (2008) &                                              25.1\% &      2007 &               Spain &    ESS \\ \hline
                    Weigt (2009) &                                           10 €/MWh & 2006-2008 &             Germany &    ESS \\ \hline
-         Ciarreta et al. (2014) &                                        25-45 €/MWh & 2008–2012 &               Spain &    ESS \\ \hline
+         Ciarreta et al. (2014) &                                           45 €/MWh &      2012 &               Spain &    ESS \\ \hline
           Bublitz et al. (2017) &                                         5.40 €/MWh & 2011-2015 &             Germany &    ESS \\ \hline
-        McConnell et al. (2013) &                                8.6\% price decrease & 2009-2010 &           Australia &    MSS \\ \hline
-                  Ederer (2015) &         1.3\% price decrease per annual TWh of wind & 2006-2014 &             Germany &    MSS \\ \hline
-         Hildmann et al. (2015) &                                    13.4-18.6 €/MWh & 2011-2013 & Germany and Austria &    MSS \\ \hline
+        McConnell et al. (2013) &                                               8.6\% & 2009-2010 &           Australia &    MSS \\ \hline
+                  Ederer (2015) &                      1.3\% (per annual TWh of wind) & 2006-2014 &             Germany &    MSS \\ \hline
+         Hildmann et al. (2015) &                                         18.6 €/MWh &      2013 & Germany and Austria &    MSS \\ \hline
            Dillig et al. (2016) &                                        50.29 €/MWh & 2011-2013 &             Germany &    MSS \\ \hline
-Munksgaard and Morthorst (2008) &                                          1-4 €/MWh & 2004-2006 &             Denmark &    RPR \\ \hline
-          Jonsson et al. (2010) &                                                  - & 2006-2007 &             Denmark &    RPR \\ \hline
-         Gelabert et al. (2011) &                                3.7\% price decrease & 2005-2012 &               Spain &    RPR \\ \hline
-     O'Mahoney and Denny (2011) &                                 12\% price decrease &      2009 &             Ireland &    RPR \\ \hline
-              Woo et al. (2011) &                                    0.32-1.53 \$/MWh & 2007-2010 &               Texas &    RPR \\ \hline
+Munksgaard and Morthorst (2008) &                                            4 €/MWh &      2006 &             Denmark &    RPR \\ \hline
+         Gelabert et al. (2011) &                                               3.7\% & 2005-2012 &               Spain &    RPR \\ \hline
+     O'Mahoney and Denny (2011) &                                                12\% &      2009 &             Ireland &    RPR \\ \hline
+              Woo et al. (2011) &                                         1.53 \$/MWh &      2010 &               Texas &    RPR \\ \hline
               Gil et al. (2012) &                                         9.72 €/MWh & 2007-2010 &               Spain &    RPR \\ \hline
-           Moreno et al. (2012) & 0.018\% price increase per p.p. increase in RES ... & 1998–2009 &               EU-27 &    RPR \\ \hline
+           Moreno et al. (2012) &                 -0.018\% (per p.p. increase in RES) & 1998–2009 &               EU-27 &    RPR \\ \hline
             Keles et al. (2013) &                                         5.90 €/MWh & 2006–2009 &             Germany &    RPR \\ \hline
-    Mulder and Scholtens (2013) & 0.03\% price decrease per p.p increase in wind s... & 2006–2011 &             Germany &    RPR \\ \hline
+    Mulder and Scholtens (2013) &            0.03\% (per p.p increase in wind speeds) & 2006–2011 &             Germany &    RPR \\ \hline
            Tveten et al. (2013) &                                 5.25 €/MWh (solar) & 2006-2011 &             Germany &    RPR \\ \hline
-         Wurzburg et al. (2013) &                                  2\% price decrease & 2010-2012 &   Germany \& Austria &    RPR \\ \hline
+         Wurzburg et al. (2013) &                                                 2\% & 2010-2012 &   Germany \& Austria &    RPR \\ \hline
           Cludius et al. (2014) &                                            8 €/MWh & 2010-2012 &             Germany &    RPR \\ \hline
-                Ketterer (2014) & 0.1-1.46\% price decrease per p.p increase in wi... & 2006-2012 &             Germany &    RPR \\ \hline
-        Paraschiv et al. (2014) &                0.15\% price decrease per MWh of RES & 2010-2013 &             Germany &    RPR \\ \hline
+                Ketterer (2014) &        1.46\% (per p.p increase in wind generation) &      2012 &             Germany &    RPR \\ \hline
+        Paraschiv et al. (2014) &                             0.15\% (per MWh of RES) & 2010-2013 &             Germany &    RPR \\ \hline
               Clo et al. (2015) &                2.3 €/MWh (solar), 4.2 €/MWh (wind) & 2005–2013 &               Italy &    RPR \\ \hline
-       Kaufmann and Vaid (2016) &                            0.26-1.86 \$/MWh (solar) & 2010-2012 &       Massachusetts &    RPR \\ \hline
-              Woo et al. (2016) & 5.3 \textbackslash \$/MWh (solar) and 3.3 \textbackslash \$/MWh (wind) per GW... & 2012-2015 &          California &    RPR \\ \hline
+       Kaufmann and Vaid (2016) &                                 1.86 \$/MWh (solar) &      2012 &       Massachusetts &    RPR \\ \hline
+              Woo et al. (2016) & 5.3 \$/MWh (solar) and 3.3 \$/MWh (wind) per GWh ... & 2012-2015 &          California &    RPR \\ \hline
           Bublitz et al. (2017) &                                         6.80 €/MWh & 2011-2015 &             Germany &    RPR \\ \hline
-            Denny et al. (2017) &                          3.40 €/MWh per GWh (wind) &      2009 &             Ireland &    RPR \\ \hline
-         Kyritsis et al. (2017) &                                                  - & 2010-2015 &             Germany &    RPR \\ \hline
-        Lunackova et al. (2017) &        1.2\% price decrease per 10\% increase in RES & 2010-2015 &      Czech Republic &    RPR \\ \hline
-        Halttunen et al. (2021) &   0.631 €/MWh per p.p. increase in RES penetration & 2012-2019 &             Germany &    RPR \\ \hline
-        Halttunen et al. (2021) &   0.482 €/MWh per p.p. increase in RES penetration & 2010-2019 &             Germany &    RPR \\ \hline
+            Denny et al. (2017) &                       3.40 €/MWh (per GWh of wind) &      2009 &             Ireland &    RPR \\ \hline
+        Lunackova et al. (2017) &                     1.2\% (per 10\% increase in RES) & 2010-2015 &      Czech Republic &    RPR \\ \hline
+        Halttunen et al. (2021) &             0.631 €/MWh (per p.p. increase in RES) & 2012-2019 &             Germany &    RPR \\ \hline
+        Halttunen et al. (2021) &             0.482 €/MWh (per p.p. increase in RES) & 2010-2019 &             Germany &    RPR \\ \hline
 \end{tabular}
 \end{table}
 
@@ -967,5 +992,110 @@ ax.set_ylabel('Relative Weighting')
 
 
 
-![png](./img/nbs/output_38_1.png)
+![png](./img/nbs/dev-09-tables-and-figures_cell_40_output_1.png)
+
+
+<br>
+
+##### Merit Order Effect Diagram
+
+We'll start by pre-processing the data and filtering for the 16/17 winter
+
+```python
+df_EI_model = df_EI.loc['2016-12':'2017-01', ['day_ahead_price', 'demand', 'solar', 'wind']].dropna()
+
+s_demand = df_EI_model['demand']
+s_price = df_EI_model['day_ahead_price']
+s_dispatchable = df_EI_model['demand'] - df_EI_model[['solar', 'wind']].sum(axis=1)
+```
+
+<br>
+
+We'll now fit our model
+
+```python
+x_pred = np.linspace(17.5, 50, 326)
+
+y_pred = lowess.lowess_fit_and_predict(s_dispatchable.values, 
+                                       s_price.values, 
+                                       frac=0.3, 
+                                       num_fits=30, 
+                                       x_pred=x_pred)
+
+s_pred = pd.Series(y_pred, index=x_pred)
+s_pred.index = pd.Series(s_pred.index).round(1).values
+
+s_pred.plot()
+```
+
+
+
+
+    <AxesSubplot:>
+
+
+
+
+![png](./img/nbs/dev-09-tables-and-figures_cell_44_output_1.png)
+
+
+<br>
+
+Next we can simulate how the price would change from a demand of 45 GW using the average RES output
+
+```python
+residual_demand_without_RES =  45
+residual_demand_with_RES = residual_demand_without_RES - (s_demand-s_dispatchable).mean()
+
+price_with_RES = s_pred.loc[round(residual_demand_with_RES, 1)]
+price_without_RES = s_pred.loc[round(residual_demand_without_RES, 1)]
+
+round(price_with_RES, 2), round(price_without_RES, 2)
+```
+
+
+
+
+    (54.13, 71.22)
+
+
+
+<br>
+
+We're now ready to plot how the intersection between supply and residual demand changes, with annotations explaining the drivers and effects
+
+```python
+ylim = (0, 100)
+xlim = (17.5, 50)
+intersection_linestyle = 'k--'
+linewidth = 0.5
+
+# Plotting
+fig, ax = plt.subplots(dpi=250)
+
+s_pred.plot(linewidth=1.5, color='r', ax=ax, zorder=3)
+ax.plot([residual_demand_without_RES, residual_demand_without_RES], [ylim[0], price_without_RES], intersection_linestyle, linewidth=linewidth)
+ax.plot([residual_demand_with_RES, residual_demand_with_RES], [ylim[0], price_with_RES], intersection_linestyle, linewidth=linewidth)
+ax.plot([xlim[0], residual_demand_without_RES], [price_without_RES, price_without_RES], intersection_linestyle, linewidth=linewidth)
+ax.plot([xlim[0], residual_demand_with_RES], [price_with_RES, price_with_RES], intersection_linestyle, linewidth=linewidth)
+
+ax.set_xlim(*xlim)
+ax.set_ylim(*ylim)
+eda.hide_spines(ax)
+ax.set_xlabel('Demand - [Solar + Wind] (GW)')
+ax.set_ylabel('Day-Ahead Price (£/MWh)')
+
+ax.annotate('Marginal Cost Curve', xy=(44, 95), ha='center', size=8)
+
+ax.annotate('Renewable\nGeneration', xy=((residual_demand_without_RES+residual_demand_with_RES)/2, 25), ha='center', size=8)
+ax.annotate('', xy=(residual_demand_with_RES, 20), xytext=(residual_demand_without_RES, 20), arrowprops={'arrowstyle': '-|>', 'color': 'k'}, xycoords=('data'))
+
+ax.annotate('Merit\nOrder\nEffect', xy=(26, (price_with_RES+price_without_RES)/2), va='center', size=8)
+ax.annotate('', xy=(25, price_with_RES), xytext=(25, price_without_RES), arrowprops={'arrowstyle': '-|>', 'color': 'k'}, xycoords=('data'))
+
+fig.savefig('../img/MOE_diagram.png', dpi=250)
+```
+
+
+![png](./img/nbs/dev-09-tables-and-figures_cell_48_output_0.png)
 

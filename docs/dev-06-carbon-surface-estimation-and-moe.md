@@ -103,7 +103,7 @@ sns.histplot(s_DE_emissions_tonnes)
 
 
 
-![png](./img/nbs/output_7_1.png)
+![png](./img/nbs/dev-06-carbon-surface-estimation-and-moe_cell_8_output_1.png)
 
 
 <br>
@@ -138,7 +138,7 @@ for lh in lgnd.legendHandles:
 ```
 
 
-![png](./img/nbs/output_9_0.png)
+![png](./img/nbs/dev-06-carbon-surface-estimation-and-moe_cell_10_output_0.png)
 
 
 <br>
@@ -210,7 +210,7 @@ sns.histplot(s_GB_emissions_tonnes)
 
 
 
-![png](./img/nbs/output_13_1.png)
+![png](./img/nbs/dev-06-carbon-surface-estimation-and-moe_cell_14_output_1.png)
 
 
 <br>
@@ -247,7 +247,7 @@ for lh in lgnd.legendHandles:
 ```
 
 
-![png](./img/nbs/output_15_0.png)
+![png](./img/nbs/dev-06-carbon-surface-estimation-and-moe_cell_16_output_0.png)
 
 
 <br>
@@ -326,7 +326,7 @@ df_DE_pred.index = np.round(df_DE_pred.index, 1)
 df_DE_pred.head()
 ```
 
-    Wall time: 2.94 s
+    Wall time: 3.22 s
     
 
 
@@ -379,7 +379,7 @@ ax.set_ylabel('Demand - [Solar + Wind] (GW)')
 
 
 
-![png](./img/nbs/output_21_2.png)
+![png](./img/nbs/dev-06-carbon-surface-estimation-and-moe_cell_22_output_2.png)
 
 
 <br>
@@ -402,8 +402,8 @@ metrics
 <div><span class="Text-label" style="display:inline-block; overflow:hidden; white-space:nowrap; text-overflow:ellipsis; min-width:0; max-width:15ex; vertical-align:middle; text-align:right"></span>
 <progress style="width:60ex" max="96191" value="96191" class="Progress-main"/></progress>
 <span class="Progress-label"><strong>100%</strong></span>
-<span class="Iteration-label">0/96191</span>
-<span class="Time-label">[01:24<00:00, 0.00s/it]</span></div>
+<span class="Iteration-label">48050/96191</span>
+<span class="Time-label">[01:28<00:00, 0.00s/it]</span></div>
 
 
 
@@ -411,7 +411,7 @@ metrics
 <progress style="width:60ex" max="96191" value="96191" class="Progress-main"/></progress>
 <span class="Progress-label"><strong>100%</strong></span>
 <span class="Iteration-label">0/96191</span>
-<span class="Time-label">[01:15<00:00, 0.00s/it]</span></div>
+<span class="Time-label">[01:20<00:00, 0.00s/it]</span></div>
 
 
 
@@ -513,7 +513,7 @@ s_DE_MOE_pct_reduction.plot()
 
 
 
-![png](./img/nbs/output_33_1.png)
+![png](./img/nbs/dev-06-carbon-surface-estimation-and-moe_cell_34_output_1.png)
 
 
 <br>
@@ -540,7 +540,7 @@ df_GB_pred.index = np.round(df_GB_pred.index, 1)
 df_GB_pred.head()
 ```
 
-    Wall time: 3.42 s
+    Wall time: 3.73 s
     
 
 
@@ -593,7 +593,7 @@ ax.set_ylabel('Demand - [Solar + Wind] (GW)')
 
 
 
-![png](./img/nbs/output_37_2.png)
+![png](./img/nbs/dev-06-carbon-surface-estimation-and-moe_cell_38_output_2.png)
 
 
 <br>
@@ -614,10 +614,27 @@ metrics
 
 
 <div><span class="Text-label" style="display:inline-block; overflow:hidden; white-space:nowrap; text-overflow:ellipsis; min-width:0; max-width:15ex; vertical-align:middle; text-align:right"></span>
-<progress style="width:60ex" max="192336" value="75555" class="Progress-main"/></progress>
-<span class="Progress-label"><strong>39%</strong></span>
+<progress style="width:60ex" max="192336" value="192336" class="Progress-main"/></progress>
+<span class="Progress-label"><strong>100%</strong></span>
+<span class="Iteration-label">130764/192336</span>
+<span class="Time-label">[02:32<00:00, 0.00s/it]</span></div>
+
+
+
+<div><span class="Text-label" style="display:inline-block; overflow:hidden; white-space:nowrap; text-overflow:ellipsis; min-width:0; max-width:15ex; vertical-align:middle; text-align:right"></span>
+<progress style="width:60ex" max="192336" value="192336" class="Progress-main"/></progress>
+<span class="Progress-label"><strong>100%</strong></span>
 <span class="Iteration-label">0/192336</span>
-<span class="Time-label">[01:00<00:00, 0.00s/it]</span></div>
+<span class="Time-label">[02:11<00:00, 0.00s/it]</span></div>
+
+
+
+
+
+    {'median_abs_err': 330.24369388573996,
+     'mean_abs_err': 476.21722650533655,
+     'root_mean_square_error': 661.7182203091455}
+
 
 
 <br>
@@ -707,7 +724,7 @@ s_GB_MOE_pct_reduction.plot()
 
 
 
-![png](./img/nbs/output_49_1.png)
+![png](./img/nbs/dev-06-carbon-surface-estimation-and-moe_cell_50_output_1.png)
 
 
 <br>
@@ -761,7 +778,7 @@ fig.tight_layout()
     
 
 
-![png](./img/nbs/output_51_1.png)
+![png](./img/nbs/dev-06-carbon-surface-estimation-and-moe_cell_52_output_1.png)
 
 
 <br>
@@ -800,12 +817,54 @@ ax.legend(frameon=False)
 
 
 
-    <matplotlib.legend.Legend at 0x1fc9fa1f130>
+    <matplotlib.legend.Legend at 0x181ff7c1af0>
 
 
 
 
-![png](./img/nbs/output_53_1.png)
+![png](./img/nbs/dev-06-carbon-surface-estimation-and-moe_cell_54_output_1.png)
+
+
+<br>
+
+Finally we'll visualise the changing emissions from dispatchable generation between the two countries
+
+```python
+fig, axs = plt.subplots(dpi=250, ncols=2, figsize=(12, 5))
+
+# GB
+ax = axs[0]
+ax.scatter(df_GB.loc['2010-09':'2011-03', 'dispatchable'], df_GB.loc['2010-09':'2011-03', 'emissions'], s=0.25, linewidth=0, alpha=1, label='Winter 10/11')
+ax.scatter(df_GB.loc['2019-09':'2020-03', 'dispatchable'], df_GB.loc['2019-09':'2020-03', 'emissions'], s=0.25, linewidth=0, alpha=1, label='Winter 19/20')
+
+eda.hide_spines(ax)
+ax.set_xlim(5, 60)
+ax.set_xlabel('Demand - [Wind + Solar] (GW) in Britain')
+ax.set_ylabel('CO2 Emissions (Tonnes)')
+    
+# DE
+ax = axs[1]
+ax.scatter(df_DE.loc['2010-09':'2011-03', 'dispatchable'], df_DE.loc['2010-09':'2011-03', 'emissions'], s=0.5, linewidth=0, alpha=1, label='Winter 10/11')
+ax.scatter(df_DE.loc['2019-09':'2020-03', 'dispatchable'], df_DE.loc['2019-09':'2020-03', 'emissions'], s=0.5, linewidth=0, alpha=1, label='Winter 19/20')
+
+eda.hide_spines(ax, positions=['top', 'left', 'right'])
+ax.set_yticks([])
+ax.set_xlim(10, 80)
+ax.set_xlabel('Demand - [Wind + Solar] (GW) in Germany')
+
+lgnd = ax.legend(frameon=False, bbox_to_anchor=(0.2, 0.95)) 
+lgnd.legendHandles[0]._sizes = [30]
+lgnd.legendHandles[1]._sizes = [30]
+
+for lh in lgnd.legendHandles: 
+    lh.set_alpha(1)
+
+for ax in axs:
+    ax.set_ylim(0, 20000)
+```
+
+
+![png](./img/nbs/dev-06-carbon-surface-estimation-and-moe_cell_56_output_0.png)
 
 
 <br>

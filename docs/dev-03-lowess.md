@@ -6,6 +6,8 @@
 
 Outlines the development of the Scikit-Learn compatible `Lowess` model, as well as its extension `LowessDates` used for time-adaptive LOWESS regression. Included are functions for extending both models to generate prediction and confidence intervals. 
 
+The original LOWESS code written by W. S. Cleveland can be found [here](https://www.netlib.org/go/lowess)
+
 <br>
 
 ### Imports
@@ -59,7 +61,7 @@ plt.plot(x, y)
 
 
 
-![png](./img/nbs/output_5_1.png)
+![png](./img/nbs/dev-03-lowess_cell_6_output_1.png)
 
 
 <br>
@@ -157,7 +159,7 @@ plt.ylim(0, 1.1)
 
 
 
-![png](./img/nbs/output_14_1.png)
+![png](./img/nbs/dev-03-lowess_cell_15_output_1.png)
 
 
 <br>
@@ -275,7 +277,7 @@ ax.set_ylabel('Regression Nodes')
 
 
 
-![png](./img/nbs/output_25_1.png)
+![png](./img/nbs/dev-03-lowess_cell_26_output_1.png)
 
 
 <br>
@@ -591,7 +593,7 @@ ax.set_ylabel('Regression Nodes')
 
 
 
-![png](./img/nbs/output_57_1.png)
+![png](./img/nbs/dev-03-lowess_cell_58_output_1.png)
 
 
 <br>
@@ -622,7 +624,7 @@ ax.set_ylabel('Regression Nodes')
 
 
 
-![png](./img/nbs/output_59_1.png)
+![png](./img/nbs/dev-03-lowess_cell_60_output_1.png)
 
 
 <br>
@@ -653,7 +655,7 @@ ax.set_ylabel('Regression Nodes')
 
 
 
-![png](./img/nbs/output_61_1.png)
+![png](./img/nbs/dev-03-lowess_cell_62_output_1.png)
 
 
 <br>
@@ -697,7 +699,7 @@ ax.set_ylabel('Regression Nodes')
 
 
 
-![png](./img/nbs/output_64_1.png)
+![png](./img/nbs/dev-03-lowess_cell_65_output_1.png)
 
 
 <br>
@@ -729,7 +731,7 @@ ax.set_ylabel('Regression Nodes')
 
 
 
-![png](./img/nbs/output_66_2.png)
+![png](./img/nbs/dev-03-lowess_cell_67_output_2.png)
 
 
 <br>
@@ -770,7 +772,7 @@ eda.hide_spines(ax)
 ```
 
 
-![png](./img/nbs/output_69_0.png)
+![png](./img/nbs/dev-03-lowess_cell_70_output_0.png)
 
 
 <br>
@@ -803,7 +805,7 @@ fig.savefig('../img/LOWESS_single_regression_example.png', dpi=250)
 ```
 
 
-![png](./img/nbs/output_71_0.png)
+![png](./img/nbs/dev-03-lowess_cell_72_output_0.png)
 
 
 <br>
@@ -840,7 +842,7 @@ plt.legend(frameon=False)
 
 
 
-![png](./img/nbs/output_73_1.png)
+![png](./img/nbs/dev-03-lowess_cell_74_output_1.png)
 
 
 <br>
@@ -874,7 +876,7 @@ plt.legend(frameon=False)
 
 
 
-![png](./img/nbs/output_75_1.png)
+![png](./img/nbs/dev-03-lowess_cell_76_output_1.png)
 
 
 <br>
@@ -968,7 +970,7 @@ plt.legend(frameon=False)
 
 
 
-![png](./img/nbs/output_81_1.png)
+![png](./img/nbs/dev-03-lowess_cell_82_output_1.png)
 
 
 <br>
@@ -992,7 +994,7 @@ plt.legend(frameon=False)
 
 
 
-![png](./img/nbs/output_83_1.png)
+![png](./img/nbs/dev-03-lowess_cell_84_output_1.png)
 
 
 <br>
@@ -1138,7 +1140,7 @@ ax.set_ylabel('Day-Ahead Price (£/MWh)')
 
 
 
-![png](./img/nbs/output_99_1.png)
+![png](./img/nbs/dev-03-lowess_cell_100_output_1.png)
 
 
 <br>
@@ -1166,7 +1168,7 @@ plt.plot(x_pred, y_pred, '--')
 
 
 
-![png](./img/nbs/output_101_1.png)
+![png](./img/nbs/dev-03-lowess_cell_102_output_1.png)
 
 
 <br>
@@ -1197,7 +1199,7 @@ plt.legend(frameon=False)
 
 
 
-![png](./img/nbs/output_103_1.png)
+![png](./img/nbs/dev-03-lowess_cell_104_output_1.png)
 
 
 <br>
@@ -1221,7 +1223,7 @@ plt.legend(frameon=False)
 
 
 
-![png](./img/nbs/output_105_1.png)
+![png](./img/nbs/dev-03-lowess_cell_106_output_1.png)
 
 
 <br>
@@ -1272,7 +1274,7 @@ for ax in axs:
 ```
 
 
-![png](./img/nbs/output_109_0.png)
+![png](./img/nbs/dev-03-lowess_cell_110_output_0.png)
 
 
 <br>
@@ -1292,7 +1294,7 @@ eda.hide_spines(ax)
 ```
 
 
-![png](./img/nbs/output_111_0.png)
+![png](./img/nbs/dev-03-lowess_cell_112_output_0.png)
 
 
 <br>
@@ -1373,7 +1375,7 @@ plt.legend(frameon=False)
 
 
 
-![png](./img/nbs/output_116_1.png)
+![png](./img/nbs/dev-03-lowess_cell_117_output_1.png)
 
 
 <br>
@@ -1546,7 +1548,7 @@ plt.legend(frameon=False)
 
 
 
-![png](./img/nbs/output_119_1.png)
+![png](./img/nbs/dev-03-lowess_cell_120_output_1.png)
 
 
 <br>
@@ -1580,7 +1582,7 @@ plt.legend(frameon=False)
 
 
 
-![png](./img/nbs/output_121_1.png)
+![png](./img/nbs/dev-03-lowess_cell_122_output_1.png)
 
 
 <br>
@@ -1706,7 +1708,7 @@ ax.set_xlabel('Residual\'s Standard Deviation')
 
 
 
-![png](./img/nbs/output_129_2.png)
+![png](./img/nbs/dev-03-lowess_cell_130_output_2.png)
 
 
 <br>
@@ -1812,7 +1814,7 @@ eda.hide_spines(ax)
 ```
 
 
-![png](./img/nbs/output_135_0.png)
+![png](./img/nbs/dev-03-lowess_cell_136_output_0.png)
 
 
 <br>
@@ -1925,7 +1927,7 @@ eda.hide_spines(ax)
 ```
 
 
-![png](./img/nbs/output_142_0.png)
+![png](./img/nbs/dev-03-lowess_cell_143_output_0.png)
 
 
 <br>
@@ -1963,7 +1965,7 @@ ax.set_ylabel('Price (£/MWh)')
 
 
 
-![png](./img/nbs/output_144_1.png)
+![png](./img/nbs/dev-03-lowess_cell_145_output_1.png)
 
 
 <br>
@@ -2019,7 +2021,7 @@ ax.set_ylabel('Price (£/MWh)')
 
 
 
-![png](./img/nbs/output_148_1.png)
+![png](./img/nbs/dev-03-lowess_cell_149_output_1.png)
 
 
 <br>
@@ -2053,7 +2055,7 @@ plt.plot(df_EI.index, weights)
 
 
 
-![png](./img/nbs/output_151_1.png)
+![png](./img/nbs/dev-03-lowess_cell_152_output_1.png)
 
 
 <br>
@@ -2092,7 +2094,7 @@ sns.heatmap(pd.DataFrame(dt_to_weights, index=df_EI_model.index))
 
 
 
-![png](./img/nbs/output_154_2.png)
+![png](./img/nbs/dev-03-lowess_cell_155_output_2.png)
 
 
 <br>
@@ -2302,7 +2304,7 @@ ax.set_ylim(0, 400)
 
 
 
-![png](./img/nbs/output_161_1.png)
+![png](./img/nbs/dev-03-lowess_cell_162_output_1.png)
 
 
 <br>

@@ -370,5 +370,5 @@ ax.set_ylabel('Date Smoothing\nBandwidth (Weeks)')
 
 
 
-![png](./img/nbs/output_15_1.png)
+![png](./img/nbs/dev-08-hyper-parameter-tuning_cell_16_output_1.png)
 
