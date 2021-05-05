@@ -14,19 +14,12 @@ __all__ = ['get_dist', 'get_dist_threshold', 'dist_to_weights', 'get_all_weights
 import pandas as pd
 import numpy as np
 
-import seaborn as sns
-import matplotlib.pyplot as plt
 from collections.abc import Iterable
 from sklearn import linear_model
 
 from sklearn.base import BaseEstimator, RegressorMixin
 from scipy.optimize import minimize
 from scipy import linalg
-
-from timeit import timeit
-from ipypb import track
-
-from moepy import eda
 
 # Cell
 get_dist = lambda X, x: np.abs(X - x)
@@ -438,7 +431,7 @@ def bootstrap_model(x, y, bag_size=0.5, model=Lowess(), x_pred=None, num_runs=10
     # Creating the ensemble predictions
     preds = []
 
-    for bootstrap_run in track(range(num_runs)):
+    for bootstrap_run in range(num_runs):
         y_pred = run_model(x, y, bag_size, model=model, x_pred=x_pred, **model_kwargs)
         preds += [y_pred]
 
@@ -497,7 +490,7 @@ def quantile_model(x, y, model=Lowess(calc_quant_reg_betas),
 
     q_to_preds = dict()
 
-    for q in track(qs):
+    for q in qs:
         model.fit(x, y, q=q, **model_kwargs)
         q_to_preds[q] = model.predict(x_pred)
 
@@ -531,7 +524,7 @@ def fit_external_weighted_ensemble(x, y, ensemble_member_to_weights, lowess_kwar
     """Fits an ensemble of LOWESS models which have varying relevance for each subset of data over time"""
     ensemble_member_to_models = dict()
 
-    for ensemble_member, ensemble_weights in track(ensemble_member_to_weights.items()):
+    for ensemble_member, ensemble_weights in ensemble_member_to_weights.items():
         ensemble_member_to_models[ensemble_member] = Lowess(**lowess_kwargs)
         ensemble_member_to_models[ensemble_member].fit(x, y, external_weights=ensemble_weights, **fit_kwargs)
 
@@ -668,7 +661,7 @@ def construct_pred_ts(s, df_pred, rounding_dec=1):
     """Uses the time-adaptive LOWESS surface to generate time-series prediction"""
     vals = []
 
-    for dt_idx, val in track(s.iteritems(), total=s.size):
+    for dt_idx, val in s.iteritems():
         vals += [df_pred.loc[round(val, rounding_dec), dt_idx.strftime('%Y-%m-%d')]]
 
     s_pred_ts = pd.Series(vals, index=s.index)
