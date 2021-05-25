@@ -6,13 +6,9 @@ __all__ = ['PicklableFunction', 'get_fit_kwarg_sets', 'fit_models']
 import pandas as pd
 import numpy as np
 
-import seaborn as sns
-import matplotlib.pyplot as plt
-
 import os
 import pickle
-import FEAutils as hlp
-from ipypb import track
+from tqdm import tqdm
 
 from moepy import lowess, eda
 
@@ -64,7 +60,7 @@ def get_fit_kwarg_sets(qs=np.linspace(0.1, 0.9, 9)):
 def fit_models(model_definitions, models_dir):
     """Fits LOWESS variants using the specified model definitions"""
     for model_parent_name, model_spec in model_definitions.items():
-        for fit_kwarg_set in track(model_spec['fit_kwarg_sets'], label=model_parent_name):
+        for fit_kwarg_set in tqdm(model_spec['fit_kwarg_sets'], desc=model_parent_name):
             run_name = fit_kwarg_set.pop('name')
             model_name = f'{model_parent_name}_{run_name}'
 
