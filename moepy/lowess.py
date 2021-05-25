@@ -21,6 +21,8 @@ from sklearn.base import BaseEstimator, RegressorMixin
 from scipy.optimize import minimize
 from scipy import linalg
 
+from tqdm import tqdm
+
 # Cell
 get_dist = lambda X, x: np.abs(X - x)
 
@@ -431,7 +433,7 @@ def bootstrap_model(x, y, bag_size=0.5, model=Lowess(), x_pred=None, num_runs=10
     # Creating the ensemble predictions
     preds = []
 
-    for bootstrap_run in range(num_runs):
+    for bootstrap_run in tqdm(range(num_runs)):
         y_pred = run_model(x, y, bag_size, model=model, x_pred=x_pred, **model_kwargs)
         preds += [y_pred]
 
@@ -490,7 +492,7 @@ def quantile_model(x, y, model=Lowess(calc_quant_reg_betas),
 
     q_to_preds = dict()
 
-    for q in qs:
+    for q in tqdm(qs):
         model.fit(x, y, q=q, **model_kwargs)
         q_to_preds[q] = model.predict(x_pred)
 
@@ -524,7 +526,7 @@ def fit_external_weighted_ensemble(x, y, ensemble_member_to_weights, lowess_kwar
     """Fits an ensemble of LOWESS models which have varying relevance for each subset of data over time"""
     ensemble_member_to_models = dict()
 
-    for ensemble_member, ensemble_weights in ensemble_member_to_weights.items():
+    for ensemble_member, ensemble_weights in tqdm(ensemble_member_to_weights.items()):
         ensemble_member_to_models[ensemble_member] = Lowess(**lowess_kwargs)
         ensemble_member_to_models[ensemble_member].fit(x, y, external_weights=ensemble_weights, **fit_kwargs)
 
@@ -607,6 +609,11 @@ class SmoothDates(BaseEstimator, RegressorMixin):
             robust_iters: Number of robustifying iterations to carry out
         """
 
+        for attr_name in ['threshold_value', 'threshold_units', 'frac']:
+            if attr_name in fit_kwargs.keys():
+                attr_value = fit_kwargs.pop(attr_name)
+                setattr(self, attr_name, attr_value)
+
         x, y, dt_idx, reg_dates = process_smooth_dates_fit_inputs(x, y, dt_idx, reg_dates)
         self.ensemble_member_to_weights = construct_dt_weights(dt_idx, reg_dates,
                                                                threshold_value=self.threshold_value,
@@ -661,7 +668,7 @@ def construct_pred_ts(s, df_pred, rounding_dec=1):
     """Uses the time-adaptive LOWESS surface to generate time-series prediction"""
     vals = []
 
-    for dt_idx, val in s.iteritems():
+    for dt_idx, val in tqdm(s.iteritems(), total=s.size):
         vals += [df_pred.loc[round(val, rounding_dec), dt_idx.strftime('%Y-%m-%d')]]
 
     s_pred_ts = pd.Series(vals, index=s.index)
@@ -719,6 +726,11 @@ class LowessDates(BaseEstimator, RegressorMixin):
             robust_weights: Robustifying weights to remove the influence of outliers
             robust_iters: Number of robustifying iterations to carry out
         """
+
+        for attr_name in ['threshold_value', 'threshold_units', 'frac']:
+            if attr_name in fit_kwargs.keys():
+                attr_value = fit_kwargs.pop(attr_name)
+                setattr(self, attr_name, attr_value)
 
         x, y, dt_idx, reg_dates = process_smooth_dates_fit_inputs(x, y, dt_idx, reg_dates)
         self.ensemble_member_to_weights = construct_dt_weights(dt_idx, reg_dates,

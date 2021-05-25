@@ -22,11 +22,11 @@ dependencies:
   - scikit-learn
   - scikit-optimize
   - typer
+  - tqdm
   - pip
   
   - pip:
       - -e .
-      - ipypb
       - mkdocs-material-extensions
       - mkdocstrings
       - configparser
