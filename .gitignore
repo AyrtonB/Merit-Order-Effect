@@ -1,5 +1,6 @@
 # Project specific
 data/models/**
+data/ug/**
 write-up/**
 
 *.bak
