@@ -46,10 +46,15 @@ plugins:
 nav:
   - Home: index.md
   - User Guide:
-    - Quantile Predictions: ug-01-quantile.md
-    - Confidence Intervals: ug-02-confidence.md
-    - Power Curve Fitting: ug-03-power-curve.md
-    - Marginal Cost Curve: ug-04-gb-mcc.md
+    - LOWESS Quick-Start: ug-08-lowess-quick-start.md
+    - Data Retrieval: ug-05-data-retrieval.md
+    - Surface Estimation: ug-06-surface-estimation.md
+    - MOE Quantification: ug-07-moe-quantification.md
+  - Examples:
+    - Hydro Seasonality: ug-01-hydro-seasonality.md
+    - LIGO: ug-02-ligo.md
+    - Power Curve: ug-03-power-curve.md
+    - Electricity Prices: ug-04-electricity-prices.md
   - Development:
     - Data Retrieval: dev-01-retrieval.md
     - Exploratory Data Analysis: dev-02-eda.md
