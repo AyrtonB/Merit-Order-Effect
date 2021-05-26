@@ -14,13 +14,7 @@ from sklearn import linear_model
 from sklearn.metrics import r2_score
 from collections.abc import Iterable
 
-import seaborn as sns
-import matplotlib as mpl
-import matplotlib.pyplot as plt
-import matplotlib.dates as mdates
-
-from ipypb import track
-from IPython.display import JSON
+from tqdm import tqdm
 
 from moepy import lowess, eda
 from .surface import PicklableFunction
@@ -132,7 +126,7 @@ def construct_pred_ts(s, df_pred):
     """Uses the time-adaptive LOWESS surface to generate time-series prediction"""
     s_pred_ts = pd.Series(index=s.index, dtype='float64')
 
-    for dt_idx, val in track(s.iteritems(), total=s.size):
+    for dt_idx, val in tqdm(s.iteritems(), total=s.size):
         s_pred_ts.loc[dt_idx] = df_pred.loc[round(val, 1), dt_idx.strftime('%Y-%m-%d')]
 
     return s_pred_ts
