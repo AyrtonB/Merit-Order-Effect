@@ -74,10 +74,10 @@ More complex methods are detailed in the [Quick-Start notebook](https://ayrtonb.
 
 Several notebooks have been created to show examples of how LOWESS estimations can be made using various data sources and for different analysis purposes, these include:
 
-* Quantile estimation of hydro-power production in Portgual
-* Confidence interval estimation of gravitational wave observations
-* Cleaning of wind power curves
-* Estimation of electricity price curves
+* [Quantile estimation of hydro-power production in Portgual](https://ayrtonb.github.io/Merit-Order-Effect/ug-01-hydro-seasonality/)
+* [Confidence interval estimation of gravitational wave observations](https://ayrtonb.github.io/Merit-Order-Effect/ug-02-ligo/)
+* [Cleaning of wind power curves](https://ayrtonb.github.io/Merit-Order-Effect/ug-03-power-curve/)
+* [Estimation of electricity price curves](https://ayrtonb.github.io/Merit-Order-Effect/ug-04-electricity-prices/)
 
 Key plots from each of these can be seen below.
 
