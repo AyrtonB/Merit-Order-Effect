@@ -24,7 +24,7 @@ setuptools.setup(
     description=setup_kwargs['description'],
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url=setup_kwargs['git_url'],
+    url=setup_kwargs['doc_baseurl'],
     packages=setuptools.find_packages(),
     install_requires=setup_kwargs['requirements'].split(' '),
     extras_require=extra_requirements,
