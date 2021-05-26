@@ -16,9 +16,6 @@ dependencies:
   - mkdocs-material
   - nbdev
   - python-dotenv
-  - dagster
-  - dagit
-  - statsmodels
   - scikit-learn
   - scikit-optimize
   - typer
