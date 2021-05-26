@@ -26,7 +26,7 @@ dependencies:
   - pip
   
   - pip:
-      - -e .
+      - -e .[cicd,research]
       - mkdocs-material-extensions
       - mkdocstrings
       - configparser
