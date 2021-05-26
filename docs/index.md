@@ -10,7 +10,7 @@ To reduce dependency bloat the `moepy` library can be installed in two ways. If 
 pip install moepy
 ```
 
-If you wish to reproduce the analysis used for estimation of the Merit Order Effect in [this paper](https://ayrtonb.github.io/Merit-Order-Effect/assets/Quantifying%20the%20MOE%20in%20Britain%20&%20Germany.pdf) please run :
+If you wish to reproduce the analysis used for estimation of the Merit Order Effect in [this paper](https://github.com/AyrtonB/Merit-Order-Effect/blob/main/paper/Quantifying%20the%20Merit%20Order%20Effect%20of%20Renewables%20on%20Price%20and%20Carbon%20Intensity%20of%20the%20British%20and%20Germany%20Energy%20Systems.pdf) please run :
 
 ```bash
 pip install moepy[research]
@@ -39,6 +39,7 @@ The library also includes the option to ensemble LOWESS models together (very me
 ### Examples
 
 Several notebooks have been created to show examples of how LOWESS estimations can be made using various data sources and for different analysis purposes, these include:
+
 * Quantile estimation of hydro-power production in Portgual
 * Confidence interval estimation of gravitational wave observations
 * Cleaning of wind power curves
@@ -60,7 +61,7 @@ LOWESS implementation in Python is relatively sparse compared to most regression
 
 ### Paper
 
-The `moepy` library was developed to enable new research into the Merit-Order-Effect of renewables in the British and German power systems. The full paper can be found [here](https://ayrtonb.github.io/Merit-Order-Effect/assets/Quantifying%20the%20MOE%20in%20Britain%20&%20Germany.pdf), the abstract is shown below:
+The `moepy` library was developed to enable new research into the Merit-Order-Effect of renewables in the British and German power systems. The full paper can be found [here](https://github.com/AyrtonB/Merit-Order-Effect/blob/main/paper/Quantifying%20the%20Merit%20Order%20Effect%20of%20Renewables%20on%20Price%20and%20Carbon%20Intensity%20of%20the%20British%20and%20Germany%20Energy%20Systems.pdf), the abstract is shown below:
 
 > This paper presents an empirical analysis of the reduction in day-ahead market prices and CO<sub>2</sub> emissions due to increased renewable generation on both the British and German electricity markets. This Merit Order Effect is becoming more important as markets evolve to incorporate greater shares of renewable energy sources, driving renewable capture price cannibilisation and market volatility. However, explicitly determining its magnitude can be challenging due to the confidential nature of the data required. Existing statistical methods for inferring this effect have focused on linear parametric approaches. However, these have a number of disadvantages. In this work we propose a flexible non-parametric blended Locally Weighted Scatterplot Smoothing approach  that captures the non-linear relationship between electricity price and dispatchable generation. This is the first application of this method in this context. We found the accuracy of this approach comparable to methods used in modern price back-casting literature. Our results indicate that the Merit Order Effect has increased dramatically over the time period analysed, with a sharp and continuing increase from 2016 in Britain. We found that renewables delivered total reductions equal to 318M and 442M tonnes of CO<sub>2</sub>  and savings of €56B and £17B in Germany and Britain respectively.
 
