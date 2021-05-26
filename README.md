@@ -24,7 +24,7 @@ This repository outlines the development and usage of code and analysis used in 
 
 The original LOWESS model was developed by W. S. Cleveland in 1979 and the FORTRAN code for it can be found [here](https://www.netlib.org/go/lowess). LOWESS is an acronym for Locally Weighted Scatterplot Smoothing, whereby multiple regressions are fitted over different regions of the data domain and then combined based on weightings linked to the distance between the prediction point and the data used to fit each of the local regressions.
 
-`moepy` exposes several variants on the traditional LOWESS,  including estimation of confidence and prediction intervals, as well as the robust LOWESS proposed by Cleveland in 1988. Examples  of how to use each of these are shown in the [Quick-Start notebook](#). An example of a LOWESS curve estimated by `moepy` can be seen below, the code to generate the plot can be found [here](https://ayrtonb.github.io/Merit-Order-Effect/ug-04-gb-mcc/).
+`moepy` exposes several variants on the traditional LOWESS,  including estimation of confidence and prediction intervals, as well as the robust LOWESS proposed by Cleveland in 1988. Examples  of how to use each of these are shown in the [Quick-Start notebook](https://ayrtonb.github.io/Merit-Order-Effect/ug-08-lowess-quick-start/). An example of a LOWESS curve estimated by `moepy` can be seen below, the code to generate the plot can be found [here](https://ayrtonb.github.io/Merit-Order-Effect/ug-04-electricity-prices/).
 
 ![](img/latest_gb_mcc.png)
 
@@ -39,6 +39,7 @@ The library also includes the option to ensemble LOWESS models together (very me
 ### Examples
 
 Several notebooks have been created to show examples of how LOWESS estimations can be made using various data sources and for different analysis purposes, these include:
+
 * Quantile estimation of hydro-power production in Portgual
 * Confidence interval estimation of gravitational wave observations
 * Cleaning of wind power curves
@@ -60,7 +61,7 @@ LOWESS implementation in Python is relatively sparse compared to most regression
 
 ### Paper
 
-The `moepy` library was developed to enable new research into the Merit-Order-Effect of renewables in the British and German power systems. The full paper can be found [here](https://ayrtonb.github.io/Merit-Order-Effect/assets/Quantifying%20the%20MOE%20in%20Britain%20&%20Germany.pdf), the abstract is shown below:
+The `moepy` library was developed to enable new research into the Merit-Order-Effect of renewables in the British and German power systems. The full paper can be found [here](https://github.com/AyrtonB/Merit-Order-Effect/blob/main/paper/Quantifying%20the%20Merit%20Order%20Effect%20of%20Renewables%20on%20Price%20and%20Carbon%20Intensity%20of%20the%20British%20and%20Germany%20Energy%20Systems.pdf), the abstract is shown below:
 
 > This paper presents an empirical analysis of the reduction in day-ahead market prices and CO<sub>2</sub> emissions due to increased renewable generation on both the British and German electricity markets. This Merit Order Effect is becoming more important as markets evolve to incorporate greater shares of renewable energy sources, driving renewable capture price cannibilisation and market volatility. However, explicitly determining its magnitude can be challenging due to the confidential nature of the data required. Existing statistical methods for inferring this effect have focused on linear parametric approaches. However, these have a number of disadvantages. In this work we propose a flexible non-parametric blended Locally Weighted Scatterplot Smoothing approach  that captures the non-linear relationship between electricity price and dispatchable generation. This is the first application of this method in this context. We found the accuracy of this approach comparable to methods used in modern price back-casting literature. Our results indicate that the Merit Order Effect has increased dramatically over the time period analysed, with a sharp and continuing increase from 2016 in Britain. We found that renewables delivered total reductions equal to 318M and 442M tonnes of CO<sub>2</sub>  and savings of €56B and £17B in Germany and Britain respectively.
 

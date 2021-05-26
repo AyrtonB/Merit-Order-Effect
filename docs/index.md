@@ -24,7 +24,7 @@ This site outlines the development and usage of code and analysis used in calcul
 
 The original LOWESS model was developed by W. S. Cleveland in 1979 and the FORTRAN code for it can be found [here](https://www.netlib.org/go/lowess). LOWESS is an acronym for Locally Weighted Scatterplot Smoothing, whereby multiple regressions are fitted over different regions of the data domain and then combined based on weightings linked to the distance between the prediction point and the data used to fit each of the local regressions.
 
-`moepy` exposes several variants on the traditional LOWESS,  including estimation of confidence and prediction intervals, as well as the robust LOWESS proposed by Cleveland in 1988. Examples  of how to use each of these are shown in the [Quick-Start notebook](#). An example of a LOWESS curve estimated by `moepy` can be seen below, the code to generate the plot can be found [here](https://ayrtonb.github.io/Merit-Order-Effect/ug-04-gb-mcc/).
+`moepy` exposes several variants on the traditional LOWESS,  including estimation of confidence and prediction intervals, as well as the robust LOWESS proposed by Cleveland in 1988. Examples  of how to use each of these are shown in the [Quick-Start notebook](https://ayrtonb.github.io/Merit-Order-Effect/ug-08-lowess-quick-start/). An example of a LOWESS curve estimated by `moepy` can be seen below, the code to generate the plot can be found [here](https://ayrtonb.github.io/Merit-Order-Effect/ug-04-electricity-prices/).
 
 ![](img/latest_gb_mcc.png)
 
