@@ -36,6 +36,40 @@ The library also includes the option to ensemble LOWESS models together (very me
 
 <br>
 
+### Usage
+
+In this minimalist example we'll create some dummy data for a noisy sin wave, then fit it using the standard LOWESS model.
+
+```python
+# Imports
+import numpy as np
+import matplotlib.pyplot as plt
+from moepy import lowess, eda
+
+# Data generation
+x = np.linspace(0, 5, num=150)
+y = np.sin(x) + (np.random.normal(size=len(x)))/10
+
+# Model fitting
+lowess_model = lowess.Lowess()
+lowess_model.fit(x, y)
+
+# Model prediction
+x_pred = np.linspace(0, 5, 26)
+y_pred = lowess_model.predict(x_pred)
+
+# Plotting
+plt.plot(x_pred, y_pred, '--', label='LOWESS', color='k', zorder=3)
+plt.scatter(x, y, label='Noisy Sin Wave', color='C1', s=5, zorder=1)
+plt.legend(frameon=False)
+```
+
+![](img/usage-example.png)
+
+More complex methods are detailed in the [Quick-Start notebook](https://ayrtonb.github.io/Merit-Order-Effect/ug-08-lowess-quick-start/).
+
+<br>
+
 ### Examples
 
 Several notebooks have been created to show examples of how LOWESS estimations can be made using various data sources and for different analysis purposes, these include:
