@@ -11,6 +11,11 @@ config = ConfigParser(delimiters=['='])
 config.read('settings.ini')
 setup_kwargs = dict(config['DEFAULT'])
 
+extra_requirements = {
+   'cicd': setup_kwargs['extra_cicd_requirements'].split(' '),
+   'research': setup_kwargs['extra_research_requirements'].split(' ')
+}
+
 setuptools.setup(
     name=setup_kwargs['lib_name'],
     version=setup_kwargs['version'],
@@ -22,6 +27,7 @@ setuptools.setup(
     url=setup_kwargs['git_url'],
     packages=setuptools.find_packages(),
     install_requires=setup_kwargs['requirements'].split(' '),
+    extras_require=extra_requirements,
     classifiers=[
         "Programming Language :: Python :: 3",
     ],
