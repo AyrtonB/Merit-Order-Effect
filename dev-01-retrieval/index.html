@@ -178,8 +178,24 @@
   
   
     <li class="md-tabs__item">
-      <a href="../ug-01-quantile/" class="md-tabs__link">
+      <a href="../ug-08-lowess-quick-start/" class="md-tabs__link">
         User Guide
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../ug-01-hydro-seasonality/" class="md-tabs__link">
+        Examples
       </a>
     </li>
   
@@ -293,8 +309,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../ug-01-quantile/" class="md-nav__link">
-      Quantile Predictions
+    <a href="../ug-08-lowess-quick-start/" class="md-nav__link">
+      LOWESS Quick-Start
     </a>
   </li>
 
@@ -306,8 +322,89 @@
 
 
   <li class="md-nav__item">
-    <a href="../ug-02-confidence/" class="md-nav__link">
-      Confidence Intervals
+    <a href="../ug-05-data-retrieval/" class="md-nav__link">
+      Data Retrieval
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="../ug-06-surface-estimation/" class="md-nav__link">
+      Surface Estimation
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="../ug-07-moe-quantification/" class="md-nav__link">
+      MOE Quantification
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+
+  
+  <li class="md-nav__item md-nav__item--nested">
+    
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3" >
+    
+    <label class="md-nav__link" for="nav-3">
+      Examples
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Examples" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        <span class="md-nav__icon md-icon"></span>
+        Examples
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="../ug-01-hydro-seasonality/" class="md-nav__link">
+      Hydro Seasonality
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="../ug-02-ligo/" class="md-nav__link">
+      LIGO
     </a>
   </li>
 
@@ -320,7 +417,7 @@
 
   <li class="md-nav__item">
     <a href="../ug-03-power-curve/" class="md-nav__link">
-      Power Curve Fitting
+      Power Curve
     </a>
   </li>
 
@@ -332,8 +429,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../ug-04-gb-mcc/" class="md-nav__link">
-      Marginal Cost Curve
+    <a href="../ug-04-electricity-prices/" class="md-nav__link">
+      Electricity Prices
     </a>
   </li>
 
@@ -355,14 +452,14 @@
   <li class="md-nav__item md-nav__item--active md-nav__item--nested">
     
     
-      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3" checked>
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4" checked>
     
-    <label class="md-nav__link" for="nav-3">
+    <label class="md-nav__link" for="nav-4">
       Development
       <span class="md-nav__icon md-icon"></span>
     </label>
     <nav class="md-nav" aria-label="Development" data-md-level="1">
-      <label class="md-nav__title" for="nav-3">
+      <label class="md-nav__title" for="nav-4">
         <span class="md-nav__icon md-icon"></span>
         Development
       </label>
@@ -724,19 +821,19 @@
 
 <span class="kn">import</span> <span class="nn">requests</span>
 <span class="kn">import</span> <span class="nn">xmltodict</span>
+<span class="kn">from</span> <span class="nn">tqdm</span> <span class="kn">import</span> <span class="n">tqdm</span>
 <span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">date</span>
 <span class="kn">from</span> <span class="nn">warnings</span> <span class="kn">import</span> <span class="n">warn</span>
-<span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">product</span>
 
 <span class="kn">from</span> <span class="nn">dotenv</span> <span class="kn">import</span> <span class="n">load_dotenv</span>
 <span class="kn">from</span> <span class="nn">entsoe</span> <span class="kn">import</span> <span class="n">EntsoePandasClient</span><span class="p">,</span> <span class="n">EntsoeRawClient</span>
 </code></pre></div>
-<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">ipypb</span> <span class="kn">import</span> <span class="n">track</span>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">JSON</span>
 </code></pre></div>
 <p><br></p>
 <h3 id="electric-insights">Electric Insights<a class="headerlink" href="#electric-insights" title="Permanent link">&para;</a></h3>
-<p>Electric Insights provides a site to "Take a closer look at the supply, demand, price and environmental impact of Britain’s electricity", it also exposes an API that contains the data we require for this analysis</p>
+<p>Electric Insights provides a site to "Take a closer look at the supply, demand, price and environmental impact of Britainâ€™s electricity", it also exposes an API that contains the data we require for this analysis</p>
 <p><br></p>
 <h4 id="single-stream">Single Stream<a class="headerlink" href="#single-stream" title="Permanent link">&para;</a></h4>
 <p>We'll being by retrieving data for a single stream only, starting with just the raw JSON response</p>
@@ -770,16 +867,6 @@
     <span class="n">r_json</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
 
     <span class="k">return</span> <span class="n">r_json</span>
-</code></pre></div>
-<div class="highlight"><pre><span></span><code><span class="n">start_date</span> <span class="o">=</span> <span class="s1">&#39;2019-01-01&#39;</span>
-<span class="n">end_date</span> <span class="o">=</span> <span class="s1">&#39;2019-01-31&#39;</span>
-<span class="n">stream</span> <span class="o">=</span> <span class="s1">&#39;generation-mix&#39;</span>
-
-<span class="n">r_json</span> <span class="o">=</span> <span class="n">query_API</span><span class="p">(</span><span class="n">start_date</span><span class="p">,</span> <span class="n">end_date</span><span class="p">,</span> <span class="n">stream</span><span class="p">)</span>
-
-<span class="n">JSON</span><span class="p">([</span><span class="n">r_json</span><span class="p">])</span>
-</code></pre></div>
-<div class="highlight"><pre><span></span><code>&lt;IPython.core.display.JSON object&gt;
 </code></pre></div>
 <p><br></p>
 <p>We can convert this response to a dataframe, however this doesn't handle the nested columns well</p>
@@ -838,7 +925,7 @@
 <p><br></p>
 <p>We can create a function that will take a specified column and extract the nested dataframe</p>
 <div class="highlight"><pre><span></span><code><span class="c1">#exports</span>
-<span class="k">def</span> <span class="nf">dict_col_2_cols</span><span class="p">(</span><span class="n">df</span><span class="p">:</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span> <span class="n">value_col</span><span class="o">=</span><span class="s1">&#39;value&#39;</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">dict_col_to_cols</span><span class="p">(</span><span class="n">df</span><span class="p">:</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span> <span class="n">value_col</span><span class="o">=</span><span class="s1">&#39;value&#39;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Checks the `value_col`, if it contains dictionaries these are transformed into new columns which then replace it&quot;&quot;&quot;</span>
 
     <span class="c1">## Checks the value col is found in the dataframe</span>
@@ -852,7 +939,7 @@
 
     <span class="k">return</span> <span class="n">df</span>
 </code></pre></div>
-<div class="highlight"><pre><span></span><code><span class="n">df</span> <span class="o">=</span> <span class="n">dict_col_2_cols</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><span class="n">df</span> <span class="o">=</span> <span class="n">dict_col_to_cols</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
 
 <span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
 </code></pre></div>
@@ -950,7 +1037,7 @@
     <span class="k">while</span> <span class="nb">len</span><span class="p">(</span><span class="n">cols_with_dicts</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
         <span class="k">for</span> <span class="n">col_with_dicts</span> <span class="ow">in</span> <span class="n">cols_with_dicts</span><span class="p">:</span>
             <span class="c1"># Extracting dataframes from dictionary columns</span>
-            <span class="n">df</span> <span class="o">=</span> <span class="n">dict_col_2_cols</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">col_with_dicts</span><span class="p">)</span>
+            <span class="n">df</span> <span class="o">=</span> <span class="n">dict_col_to_cols</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">col_with_dicts</span><span class="p">)</span>
 
             <span class="c1"># Recalculating columns that are still dictionaries</span>
             <span class="n">s_types</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">val</span><span class="p">:</span> <span class="nb">type</span><span class="p">(</span><span class="n">val</span><span class="p">))</span>
@@ -1324,8 +1411,8 @@
 
     <span class="k">return</span> <span class="n">df</span>
 </code></pre></div>
-<div class="highlight"><pre><span></span><code><span class="n">start_date</span> <span class="o">=</span> <span class="s1">&#39;2019-01-01&#39;</span>
-<span class="n">end_date</span> <span class="o">=</span> <span class="s1">&#39;2019-01-31&#39;</span>
+<div class="highlight"><pre><span></span><code><span class="n">start_date</span> <span class="o">=</span> <span class="s1">&#39;2009-01-01&#39;</span>
+<span class="n">end_date</span> <span class="o">=</span> <span class="s1">&#39;2009-01-02&#39;</span>
 <span class="n">stream</span> <span class="o">=</span> <span class="s1">&#39;generation-mix&#39;</span>
 
 <span class="n">renaming_dict</span> <span class="o">=</span> <span class="p">{</span>
@@ -1352,8 +1439,8 @@
 <th align="right">solar</th>
 <th align="right">demand</th>
 <th align="right">pumped_storage</th>
-<th align="right">wind_onshore</th>
-<th align="right">wind_offshore</th>
+<th align="left">wind_onshore</th>
+<th align="left">wind_offshore</th>
 <th align="right">belgian</th>
 <th align="right">dutch</th>
 <th align="right">french</th>
@@ -1365,108 +1452,108 @@
 </thead>
 <tbody>
 <tr>
-<td align="left">2019-01-01 00:00:00+00:00</td>
-<td align="right">6.924</td>
-<td align="right">1.116</td>
+<td align="left">2009-01-01 00:00:00+00:00</td>
+<td align="right">6.973</td>
 <td align="right">0</td>
-<td align="right">5.853</td>
-<td align="right">0.405</td>
-<td align="right">11.304</td>
+<td align="right">17.65</td>
+<td align="right">11.9</td>
+<td align="right">0.246</td>
+<td align="right">0.148</td>
 <td align="right">0</td>
-<td align="right">27.336</td>
-<td align="right">0</td>
-<td align="right">8.05458</td>
-<td align="right">3.14171</td>
-<td align="right">0</td>
-<td align="right">0.182</td>
-<td align="right">1.552</td>
+<td align="right">38.329</td>
+<td align="right">-0.404</td>
+<td align="left">None</td>
+<td align="left">None</td>
 <td align="right">0</td>
 <td align="right">0</td>
-<td align="right">-0.702</td>
+<td align="right">1.977</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">-0.161</td>
 <td align="right">1</td>
 </tr>
 <tr>
-<td align="left">2019-01-01 00:30:00+00:00</td>
-<td align="right">6.838</td>
-<td align="right">1.103</td>
+<td align="left">2009-01-01 00:30:00+00:00</td>
+<td align="right">6.968</td>
 <td align="right">0</td>
-<td align="right">6.292</td>
-<td align="right">0.388</td>
-<td align="right">11.327</td>
+<td align="right">17.77</td>
+<td align="right">12.031</td>
+<td align="right">0.245</td>
+<td align="right">0.157</td>
 <td align="right">0</td>
-<td align="right">27.722</td>
-<td align="right">0.024</td>
-<td align="right">7.86049</td>
-<td align="right">3.25389</td>
-<td align="right">0</td>
-<td align="right">0.196</td>
-<td align="right">1.554</td>
+<td align="right">38.461</td>
+<td align="right">-0.527</td>
+<td align="left">None</td>
+<td align="left">None</td>
 <td align="right">0</td>
 <td align="right">0</td>
-<td align="right">-0.696</td>
+<td align="right">1.977</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">-0.16</td>
 <td align="right">2</td>
 </tr>
 <tr>
-<td align="left">2019-01-01 01:00:00+00:00</td>
-<td align="right">6.834</td>
-<td align="right">1.09</td>
+<td align="left">2009-01-01 01:00:00+00:00</td>
+<td align="right">6.97</td>
 <td align="right">0</td>
-<td align="right">5.719</td>
-<td align="right">0.372</td>
-<td align="right">11.335</td>
+<td align="right">18.07</td>
+<td align="right">11.754</td>
+<td align="right">0.246</td>
+<td align="right">0.147</td>
 <td align="right">0</td>
-<td align="right">27.442</td>
-<td align="right">0</td>
-<td align="right">7.8792</td>
-<td align="right">3.34085</td>
-<td align="right">0</td>
-<td align="right">0.588</td>
-<td align="right">1.504</td>
+<td align="right">37.986</td>
+<td align="right">-1.018</td>
+<td align="left">None</td>
+<td align="left">None</td>
 <td align="right">0</td>
 <td align="right">0</td>
-<td align="right">-0.722</td>
+<td align="right">1.977</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">-0.16</td>
 <td align="right">3</td>
 </tr>
 <tr>
-<td align="left">2019-01-01 01:30:00+00:00</td>
-<td align="right">6.83</td>
-<td align="right">1.085</td>
+<td align="left">2009-01-01 01:30:00+00:00</td>
+<td align="right">6.969</td>
 <td align="right">0</td>
-<td align="right">5.02</td>
-<td align="right">0.368</td>
-<td align="right">11.063</td>
+<td align="right">18.022</td>
+<td align="right">11.162</td>
+<td align="right">0.246</td>
+<td align="right">0.148</td>
 <td align="right">0</td>
-<td align="right">26.47</td>
-<td align="right">0</td>
-<td align="right">7.70887</td>
-<td align="right">3.2137</td>
-<td align="right">0</td>
-<td align="right">0.6</td>
-<td align="right">1.504</td>
+<td align="right">36.864</td>
+<td align="right">-1.269</td>
+<td align="left">None</td>
+<td align="left">None</td>
 <td align="right">0</td>
 <td align="right">0</td>
-<td align="right">-0.77</td>
+<td align="right">1.746</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">-0.16</td>
 <td align="right">4</td>
 </tr>
 <tr>
-<td align="left">2019-01-01 02:00:00+00:00</td>
-<td align="right">6.827</td>
-<td align="right">1.081</td>
+<td align="left">2009-01-01 02:00:00+00:00</td>
+<td align="right">6.96</td>
 <td align="right">0</td>
-<td align="right">4.964</td>
-<td align="right">0.355</td>
-<td align="right">10.786</td>
+<td align="right">17.998</td>
+<td align="right">10.812</td>
+<td align="right">0.246</td>
+<td align="right">0.16</td>
 <td align="right">0</td>
-<td align="right">26.195</td>
-<td align="right">0</td>
-<td align="right">7.47943</td>
-<td align="right">3.12271</td>
-<td align="right">0</td>
-<td align="right">0.678</td>
-<td align="right">1.504</td>
+<td align="right">36.18</td>
+<td align="right">-1.566</td>
+<td align="left">None</td>
+<td align="left">None</td>
 <td align="right">0</td>
 <td align="right">0</td>
-<td align="right">-0.91</td>
+<td align="right">1.73</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">-0.16</td>
 <td align="right">5</td>
 </tr>
 </tbody>
@@ -1488,8 +1575,8 @@
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">unrecognised_streams</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">streams</span> 
         <span class="k">else</span><span class="p">:</span>
-            <span class="n">unrecognised_streams_2_print</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="s2">&quot;&#39;&quot;</span><span class="o">+</span><span class="n">stream</span><span class="o">+</span><span class="s2">&quot;&#39;, &quot;</span> <span class="k">for</span> <span class="n">stream</span> <span class="ow">in</span> <span class="n">unrecognised_streams</span><span class="p">])[:</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Streams </span><span class="si">{</span><span class="n">unrecognised_streams_2_print</span><span class="si">}</span><span class="s2"> could not be recognised, must be one of: </span><span class="si">{</span><span class="s1">&#39;, &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">possible_streams</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="n">unrecognised_streams_to_print</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="s2">&quot;&#39;&quot;</span><span class="o">+</span><span class="n">stream</span><span class="o">+</span><span class="s2">&quot;&#39;, &quot;</span> <span class="k">for</span> <span class="n">stream</span> <span class="ow">in</span> <span class="n">unrecognised_streams</span><span class="p">])[:</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Streams </span><span class="si">{</span><span class="n">unrecognised_streams_to_print</span><span class="si">}</span><span class="s2"> could not be recognised, must be one of: </span><span class="si">{</span><span class="s1">&#39;, &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">possible_streams</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 
     <span class="k">elif</span> <span class="n">streams</span><span class="o">==</span><span class="s1">&#39;*&#39;</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">possible_streams</span> 
@@ -1715,41 +1802,216 @@ Streams &#39;not_a_stream&#39; could not be recognised, must be one of: prices_a
 </table>
 <p><br></p>
 <p>Now we're ready to retrieve all of the streams in one, which we'll do for all years that data is available, then we'll save the resulting DataFrame.</p>
-<div class="highlight"><pre><span></span><code><span class="o">%%</span><span class="n">time</span>
+<div class="highlight"><pre><span></span><code><span class="c1">#exports</span>
+<span class="k">def</span> <span class="nf">get_EI_data</span><span class="p">(</span>
+    <span class="n">start_date</span><span class="p">,</span>
+    <span class="n">end_date</span><span class="p">,</span>
+    <span class="n">streams</span><span class="o">=</span><span class="s1">&#39;*&#39;</span><span class="p">,</span>
+    <span class="n">batch_freq</span><span class="o">=</span><span class="s1">&#39;3M&#39;</span><span class="p">,</span>
+    <span class="n">renaming_dict</span><span class="o">=</span><span class="p">{</span>
+        <span class="s1">&#39;pumpedStorage&#39;</span> <span class="p">:</span> <span class="s1">&#39;pumped_storage&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;northernIreland&#39;</span> <span class="p">:</span> <span class="s1">&#39;northern_ireland&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;windOnshore&#39;</span><span class="p">:</span> <span class="s1">&#39;wind_onshore&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;windOffshore&#39;</span><span class="p">:</span> <span class="s1">&#39;wind_offshore&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;prices_ahead&#39;</span> <span class="p">:</span> <span class="s1">&#39;day_ahead_price&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;prices&#39;</span> <span class="p">:</span> <span class="s1">&#39;imbalance_price&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;temperatures&#39;</span> <span class="p">:</span> <span class="s1">&#39;temperature&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;totalInGperkWh&#39;</span> <span class="p">:</span> <span class="s1">&#39;gCO2_per_kWh&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;totalInTperh&#39;</span> <span class="p">:</span> <span class="s1">&#39;TCO2_per_h&#39;</span>
+    <span class="p">}</span>
+<span class="p">):</span>
+    <span class="c1"># Preparing batch dates</span>
+    <span class="o">*</span><span class="n">batch_start_dates</span><span class="p">,</span> <span class="n">post_batch_start_date</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="n">start_date</span><span class="p">,</span> <span class="n">end_date</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">batch_freq</span><span class="si">}</span><span class="s1">S&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%Y-%m-</span><span class="si">%d</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="n">pre_batch_end_date</span><span class="p">,</span> <span class="o">*</span><span class="n">batch_end_dates</span> <span class="o">=</span> <span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="n">start_date</span><span class="p">,</span> <span class="n">end_date</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="n">batch_freq</span><span class="p">)</span><span class="o">+</span><span class="n">pd</span><span class="o">.</span><span class="n">Timedelta</span><span class="p">(</span><span class="n">days</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%Y-%m-</span><span class="si">%d</span><span class="s1">&#39;</span><span class="p">)</span>
 
-<span class="n">streams</span> <span class="o">=</span> <span class="s1">&#39;*&#39;</span>
-<span class="n">renaming_dict</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s1">&#39;pumpedStorage&#39;</span> <span class="p">:</span> <span class="s1">&#39;pumped_storage&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;northernIreland&#39;</span> <span class="p">:</span> <span class="s1">&#39;northern_ireland&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;windOnshore&#39;</span><span class="p">:</span> <span class="s1">&#39;wind_onshore&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;windOffshore&#39;</span><span class="p">:</span> <span class="s1">&#39;wind_offshore&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;prices_ahead&#39;</span> <span class="p">:</span> <span class="s1">&#39;day_ahead_price&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;prices&#39;</span> <span class="p">:</span> <span class="s1">&#39;imbalance_price&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;temperatures&#39;</span> <span class="p">:</span> <span class="s1">&#39;temperature&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;totalInGperkWh&#39;</span> <span class="p">:</span> <span class="s1">&#39;gCO2_per_kWh&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;totalInTperh&#39;</span> <span class="p">:</span> <span class="s1">&#39;TCO2_per_h&#39;</span>
-<span class="p">}</span>
+    <span class="n">batch_date_pairs</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">batch_start_dates</span><span class="p">,</span> <span class="n">batch_end_dates</span><span class="p">))</span>
+
+    <span class="k">if</span> <span class="n">start_date</span> <span class="o">!=</span> <span class="n">pre_batch_end_date</span><span class="p">:</span>
+        <span class="n">batch_date_pairs</span> <span class="o">=</span> <span class="p">[(</span><span class="n">start_date</span><span class="p">,</span> <span class="n">pre_batch_end_date</span><span class="p">)]</span> <span class="o">+</span> <span class="n">batch_date_pairs</span>
+
+    <span class="k">if</span> <span class="n">end_date</span> <span class="o">!=</span> <span class="n">post_batch_start_date</span><span class="p">:</span>
+        <span class="n">end_date</span> <span class="o">=</span> <span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">end_date</span><span class="p">)</span> <span class="o">+</span> <span class="n">pd</span><span class="o">.</span><span class="n">Timedelta</span><span class="p">(</span><span class="n">days</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%Y-%m-</span><span class="si">%d</span><span class="s1">&#39;</span><span class="p">)</span>
+        <span class="n">batch_date_pairs</span> <span class="o">=</span> <span class="n">batch_date_pairs</span> <span class="o">+</span> <span class="p">[(</span><span class="n">post_batch_start_date</span><span class="p">,</span> <span class="n">end_date</span><span class="p">)]</span>
+
+    <span class="c1"># Retrieving data</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
+
+    <span class="k">for</span> <span class="n">batch_start_date</span><span class="p">,</span> <span class="n">batch_end_date</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="n">batch_date_pairs</span><span class="p">):</span>
+        <span class="n">df_batch</span> <span class="o">=</span> <span class="n">retrieve_streams_df</span><span class="p">(</span><span class="n">batch_start_date</span><span class="p">,</span> <span class="n">batch_end_date</span><span class="p">,</span> <span class="n">streams</span><span class="p">,</span> <span class="n">renaming_dict</span><span class="o">=</span><span class="n">renaming_dict</span><span class="p">)</span>
+        <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">df_batch</span><span class="p">)</span>  
+
+    <span class="k">return</span> <span class="n">df</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="n">start_date</span> <span class="o">=</span> <span class="s1">&#39;2010-01-01&#39;</span>
+<span class="n">end_date</span> <span class="o">=</span> <span class="s1">&#39;2020-12-31&#39;</span>
+
+<span class="n">data_dir</span> <span class="o">=</span> <span class="s1">&#39;../data/raw&#39;</span>
 
 <span class="n">retrieve_save_EI_data</span> <span class="o">=</span> <span class="kc">False</span>
 
 <span class="k">if</span> <span class="n">retrieve_save_EI_data</span> <span class="o">==</span> <span class="kc">True</span><span class="p">:</span>
-    <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">get_EI_data</span><span class="p">(</span><span class="n">start_date</span><span class="p">,</span> <span class="n">end_date</span><span class="p">)</span>
+    <span class="n">df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">data_dir</span><span class="si">}</span><span class="s1">/electric_insights.csv&#39;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">data_dir</span><span class="si">}</span><span class="s1">/electric_insights.csv&#39;</span><span class="p">,</span> <span class="n">parse_dates</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;local_datetime&#39;</span><span class="p">],</span> <span class="n">index_col</span><span class="o">=</span><span class="s1">&#39;local_datetime&#39;</span><span class="p">)</span>
 
-    <span class="k">for</span> <span class="n">year</span> <span class="ow">in</span> <span class="n">track</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">2010</span><span class="p">,</span> <span class="mi">2021</span><span class="p">)):</span>
-        <span class="n">start_date</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">year</span><span class="si">}</span><span class="s1">-01-01&#39;</span>
-        <span class="n">end_date</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">year</span><span class="si">}</span><span class="s1">-12-31&#39;</span>
-
-        <span class="n">df_year</span> <span class="o">=</span> <span class="n">retrieve_streams_df</span><span class="p">(</span><span class="n">start_date</span><span class="p">,</span> <span class="n">end_date</span><span class="p">,</span> <span class="n">streams</span><span class="p">,</span> <span class="n">renaming_dict</span><span class="o">=</span><span class="n">renaming_dict</span><span class="p">)</span>
-        <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">df_year</span><span class="p">)</span>
-
-    <span class="n">df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;../data/raw/electric_insights.csv&#39;</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </code></pre></div>
-<div class="highlight"><pre><span></span><code>Wall time: 0 ns
-</code></pre></div>
+<table>
+<thead>
+<tr>
+<th align="left">local_datetime</th>
+<th align="right">day_ahead_price</th>
+<th align="right">SP</th>
+<th align="right">imbalance_price</th>
+<th align="right">valueSum</th>
+<th align="right">temperature</th>
+<th align="right">TCO2_per_h</th>
+<th align="right">gCO2_per_kWh</th>
+<th align="right">nuclear</th>
+<th align="right">biomass</th>
+<th align="right">coal</th>
+<th align="left">...</th>
+<th align="right">demand</th>
+<th align="right">pumped_storage</th>
+<th align="right">wind_onshore</th>
+<th align="right">wind_offshore</th>
+<th align="right">belgian</th>
+<th align="right">dutch</th>
+<th align="right">french</th>
+<th align="right">ireland</th>
+<th align="right">northern_ireland</th>
+<th align="right">irish</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">2009-01-01 00:00:00+00:00</td>
+<td align="right">58.05</td>
+<td align="right">1</td>
+<td align="right">74.74</td>
+<td align="right">74.74</td>
+<td align="right">-0.6</td>
+<td align="right">21278</td>
+<td align="right">555</td>
+<td align="right">6.973</td>
+<td align="right">0</td>
+<td align="right">17.65</td>
+<td align="left">...</td>
+<td align="right">38.329</td>
+<td align="right">-0.404</td>
+<td align="right">nan</td>
+<td align="right">nan</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">1.977</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">-0.161</td>
+</tr>
+<tr>
+<td align="left">2009-01-01 00:30:00+00:00</td>
+<td align="right">56.33</td>
+<td align="right">2</td>
+<td align="right">74.89</td>
+<td align="right">74.89</td>
+<td align="right">-0.6</td>
+<td align="right">21442</td>
+<td align="right">558</td>
+<td align="right">6.968</td>
+<td align="right">0</td>
+<td align="right">17.77</td>
+<td align="left">...</td>
+<td align="right">38.461</td>
+<td align="right">-0.527</td>
+<td align="right">nan</td>
+<td align="right">nan</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">1.977</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">-0.16</td>
+</tr>
+<tr>
+<td align="left">2009-01-01 01:00:00+00:00</td>
+<td align="right">52.98</td>
+<td align="right">3</td>
+<td align="right">76.41</td>
+<td align="right">76.41</td>
+<td align="right">-0.6</td>
+<td align="right">21614</td>
+<td align="right">569</td>
+<td align="right">6.97</td>
+<td align="right">0</td>
+<td align="right">18.07</td>
+<td align="left">...</td>
+<td align="right">37.986</td>
+<td align="right">-1.018</td>
+<td align="right">nan</td>
+<td align="right">nan</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">1.977</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">-0.16</td>
+</tr>
+<tr>
+<td align="left">2009-01-01 01:30:00+00:00</td>
+<td align="right">50.39</td>
+<td align="right">4</td>
+<td align="right">37.73</td>
+<td align="right">37.73</td>
+<td align="right">-0.6</td>
+<td align="right">21320</td>
+<td align="right">578</td>
+<td align="right">6.969</td>
+<td align="right">0</td>
+<td align="right">18.022</td>
+<td align="left">...</td>
+<td align="right">36.864</td>
+<td align="right">-1.269</td>
+<td align="right">nan</td>
+<td align="right">nan</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">1.746</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">-0.16</td>
+</tr>
+<tr>
+<td align="left">2009-01-01 02:00:00+00:00</td>
+<td align="right">48.7</td>
+<td align="right">5</td>
+<td align="right">59</td>
+<td align="right">59</td>
+<td align="right">-0.6</td>
+<td align="right">21160</td>
+<td align="right">585</td>
+<td align="right">6.96</td>
+<td align="right">0</td>
+<td align="right">17.998</td>
+<td align="left">...</td>
+<td align="right">36.18</td>
+<td align="right">-1.566</td>
+<td align="right">nan</td>
+<td align="right">nan</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">1.73</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">-0.16</td>
+</tr>
+</tbody>
+</table>
 <p><br></p>
 <h3 id="energy-charts">Energy-Charts<a class="headerlink" href="#energy-charts" title="Permanent link">&para;</a></h3>
 <p>We'll start by requesting the JSON that is used to populate the fuel-type output chart on the <a href="https://energy-charts.info/">website</a></p>
-<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">year_week_2_prod_url</span><span class="p">(</span><span class="n">year</span><span class="p">,</span> <span class="n">week</span><span class="p">,</span> <span class="n">data_prefix</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">):</span> 
+<div class="highlight"><pre><span></span><code><span class="c1">#exports</span>
+<span class="k">def</span> <span class="nf">year_week_to_prod_url</span><span class="p">(</span><span class="n">year</span><span class="p">,</span> <span class="n">week</span><span class="p">,</span> <span class="n">data_prefix</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">):</span> 
     <span class="sd">&quot;&quot;&quot;Given a specified year and week the relevant `production_url` for energy-charts is returned&quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">year</span> <span class="o">&lt;</span> <span class="mi">2019</span><span class="p">:</span>
         <span class="n">data_prefix</span> <span class="o">=</span> <span class="s1">&#39;raw_&#39;</span>
@@ -1757,11 +2019,11 @@ Streams &#39;not_a_stream&#39; could not be recognised, must be one of: prices_a
     <span class="n">production_url</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;https://energy-charts.info/charts/power/</span><span class="si">{</span><span class="n">data_prefix</span><span class="si">}</span><span class="s1">data/de/week_</span><span class="si">{</span><span class="n">year</span><span class="si">}</span><span class="s1">_</span><span class="si">{</span><span class="nb">str</span><span class="p">(</span><span class="n">week</span><span class="p">)</span><span class="o">.</span><span class="n">zfill</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="si">}</span><span class="s1">.json&#39;</span>
 
     <span class="k">return</span> <span class="n">production_url</span>
-
-<span class="n">year</span> <span class="o">=</span> <span class="mi">2018</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="n">year</span> <span class="o">=</span> <span class="mi">2018</span>
 <span class="n">week</span> <span class="o">=</span> <span class="mi">12</span>
 
-<span class="n">production_url</span> <span class="o">=</span> <span class="n">year_week_2_prod_url</span><span class="p">(</span><span class="n">year</span><span class="p">,</span> <span class="n">week</span><span class="p">)</span>
+<span class="n">production_url</span> <span class="o">=</span> <span class="n">year_week_to_prod_url</span><span class="p">(</span><span class="n">year</span><span class="p">,</span> <span class="n">week</span><span class="p">)</span>
 
 <span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">production_url</span><span class="p">)</span>
 
@@ -1771,7 +2033,8 @@ Streams &#39;not_a_stream&#39; could not be recognised, must be one of: prices_a
 </code></pre></div>
 <p><br></p>
 <p>Next we focus on parsing the only non-uniform column which relates to the balancing required on the system</p>
-<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">fuel_json_2_net_balance</span><span class="p">(</span><span class="n">r_json</span><span class="p">):</span>
+<div class="highlight"><pre><span></span><code><span class="c1">#exports</span>
+<span class="k">def</span> <span class="nf">fuel_json_to_net_balance</span><span class="p">(</span><span class="n">r_json</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Extracts the balance time-series&quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="s1">&#39;values&#39;</span> <span class="ow">in</span> <span class="n">r_json</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span> <span class="c1"># pre-2019 format</span>
         <span class="n">df_balance</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">r_json</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;values&#39;</span><span class="p">])</span>
@@ -1792,10 +2055,10 @@ Streams &#39;not_a_stream&#39; could not be recognised, must be one of: prices_a
     <span class="n">s_balance</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="n">s_balance</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">tz_convert</span><span class="p">(</span><span class="s1">&#39;Europe/Berlin&#39;</span><span class="p">)</span>
 
     <span class="k">return</span> <span class="n">s_balance</span>
-
-<span class="c1"># Retrieving net balance data</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="c1"># Retrieving net balance data</span>
 <span class="n">r_json</span> <span class="o">=</span> <span class="n">r</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
-<span class="n">s_balance</span> <span class="o">=</span> <span class="n">fuel_json_2_net_balance</span><span class="p">(</span><span class="n">r_json</span><span class="p">)</span>
+<span class="n">s_balance</span> <span class="o">=</span> <span class="n">fuel_json_to_net_balance</span><span class="p">(</span><span class="n">r_json</span><span class="p">)</span>
 
 <span class="c1"># Getting comments</span>
 <span class="n">data_src</span> <span class="o">=</span> <span class="n">r_json</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;datasource&#39;</span><span class="p">]</span>
@@ -1828,11 +2091,12 @@ datetime
 Name: value, Length: 167, dtype: float64
 </code></pre></div>
 <p><br></p>
-<p>We combine this with a parser for the main columns</p>
-<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">response_2_df</span><span class="p">(</span><span class="n">r</span><span class="p">):</span>
+<p>We can then combine this with a parser for the main columns</p>
+<div class="highlight"><pre><span></span><code><span class="c1">#exports</span>
+<span class="k">def</span> <span class="nf">response_to_df</span><span class="p">(</span><span class="n">r</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Parses the json response to a DataFrame&quot;&quot;&quot;</span>
     <span class="n">r_json</span> <span class="o">=</span> <span class="n">r</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
-    <span class="n">s_balance</span> <span class="o">=</span> <span class="n">fuel_json_2_net_balance</span><span class="p">(</span><span class="n">r_json</span><span class="p">)</span>
+    <span class="n">s_balance</span> <span class="o">=</span> <span class="n">fuel_json_to_net_balance</span><span class="p">(</span><span class="n">r_json</span><span class="p">)</span>
 
     <span class="k">if</span> <span class="s1">&#39;key&#39;</span> <span class="ow">in</span> <span class="n">r_json</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span> <span class="c1"># pre-2019</span>
         <span class="n">keys</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span><span class="p">[</span><span class="s1">&#39;key&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;en&#39;</span><span class="p">]</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">r_json</span><span class="p">[</span><span class="mi">1</span><span class="p">:]]</span>
@@ -1841,17 +2105,18 @@ Name: value, Length: 167, dtype: float64
         <span class="n">df_fuels</span> <span class="o">=</span> <span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">keys</span><span class="p">,</span> <span class="n">values</span><span class="p">)),</span> <span class="n">index</span><span class="o">=</span><span class="n">s_balance</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
                     <span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">s</span><span class="p">:</span> <span class="n">s</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]))</span>
                     <span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">net_balance</span><span class="o">=</span><span class="n">s_balance</span><span class="p">)</span>
+                    <span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;net_balance&#39;</span><span class="p">:</span> <span class="s1">&#39;Net Balance&#39;</span><span class="p">})</span>
                    <span class="p">)</span>
 
     <span class="k">else</span><span class="p">:</span>
         <span class="n">cols</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;en&#39;</span><span class="p">]</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">r_json</span><span class="p">[</span><span class="mi">1</span><span class="p">:]]</span>
         <span class="n">data</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">]</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">r_json</span><span class="p">[</span><span class="mi">1</span><span class="p">:]]</span>
 
-        <span class="n">df_fuels</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">data</span><span class="p">)</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">cols</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">s_balance</span><span class="o">.</span><span class="n">index</span><span class="p">)</span><span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">net_balance</span><span class="o">=</span><span class="n">s_balance</span><span class="p">)</span>
+        <span class="n">df_fuels</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">data</span><span class="p">)</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">cols</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">s_balance</span><span class="o">.</span><span class="n">index</span><span class="p">)</span><span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">net_balance</span><span class="o">=</span><span class="n">s_balance</span><span class="p">)</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;net_balance&#39;</span><span class="p">:</span> <span class="s1">&#39;Net Balance&#39;</span><span class="p">})</span>
 
     <span class="k">return</span> <span class="n">df_fuels</span>
-
-<span class="n">df_fuels</span> <span class="o">=</span> <span class="n">response_2_df</span><span class="p">(</span><span class="n">r</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="n">df_fuels</span> <span class="o">=</span> <span class="n">response_to_df</span><span class="p">(</span><span class="n">r</span><span class="p">)</span>
 
 <span class="n">df_fuels</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
 </code></pre></div>
@@ -1871,7 +2136,7 @@ Name: value, Length: 167, dtype: float64
 <th align="right">Seasonal Storage</th>
 <th align="right">Wind</th>
 <th align="right">Solar</th>
-<th align="right">net_balance</th>
+<th align="right">Net Balance</th>
 </tr>
 </thead>
 <tbody>
@@ -1911,9 +2176,10 @@ Name: value, Length: 167, dtype: float64
 </table>
 <p><br></p>
 <p>And wrap them in a single function which can accept a year and week before returning the parsed dataframe</p>
-<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">year_week_2_fuel_df</span><span class="p">(</span><span class="n">year</span><span class="p">,</span> <span class="n">week</span><span class="p">):</span>
+<div class="highlight"><pre><span></span><code><span class="c1">#exports</span>
+<span class="k">def</span> <span class="nf">year_week_to_fuel_df</span><span class="p">(</span><span class="n">year</span><span class="p">,</span> <span class="n">week</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Given a specified year and week the relevant `df_fuels` dataset for energy-charts is returned&quot;&quot;&quot;</span>
-    <span class="n">production_url</span> <span class="o">=</span> <span class="n">year_week_2_prod_url</span><span class="p">(</span><span class="n">year</span><span class="p">,</span> <span class="n">week</span><span class="p">)</span>
+    <span class="n">production_url</span> <span class="o">=</span> <span class="n">year_week_to_prod_url</span><span class="p">(</span><span class="n">year</span><span class="p">,</span> <span class="n">week</span><span class="p">)</span>
 
     <span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">production_url</span><span class="p">)</span>
 
@@ -1922,14 +2188,14 @@ Name: value, Length: 167, dtype: float64
     <span class="k">if</span> <span class="n">r</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">404</span><span class="p">:</span>
         <span class="n">df_fuels</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="n">df_fuels</span> <span class="o">=</span> <span class="n">response_2_df</span><span class="p">(</span><span class="n">r</span><span class="p">)</span>
+        <span class="n">df_fuels</span> <span class="o">=</span> <span class="n">response_to_df</span><span class="p">(</span><span class="n">r</span><span class="p">)</span>
 
     <span class="k">return</span> <span class="n">df_fuels</span>
-
-<span class="n">year</span> <span class="o">=</span> <span class="mi">2015</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="n">year</span> <span class="o">=</span> <span class="mi">2015</span>
 <span class="n">week</span> <span class="o">=</span> <span class="mi">53</span>
 
-<span class="n">df_fuels</span> <span class="o">=</span> <span class="n">year_week_2_fuel_df</span><span class="p">(</span><span class="n">year</span><span class="p">,</span> <span class="n">week</span><span class="p">)</span>
+<span class="n">df_fuels</span> <span class="o">=</span> <span class="n">year_week_to_fuel_df</span><span class="p">(</span><span class="n">year</span><span class="p">,</span> <span class="n">week</span><span class="p">)</span>
 
 <span class="n">df_fuels</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
 </code></pre></div>
@@ -1989,148 +2255,169 @@ Name: value, Length: 167, dtype: float64
 </table>
 <p><br></p>
 <p>Now we can iterate over all year and week pairs to retrieve the full dataset</p>
-<div class="highlight"><pre><span></span><code><span class="n">years</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">2010</span><span class="p">,</span> <span class="mi">2021</span><span class="p">))</span>
-<span class="n">weeks</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">54</span><span class="p">))</span>
+<div class="highlight"><pre><span></span><code><span class="c1">#exports</span>
+<span class="k">def</span> <span class="nf">get_EC_data</span><span class="p">(</span>
+    <span class="n">start_date</span><span class="p">,</span> 
+    <span class="n">end_date</span><span class="p">,</span>
+    <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Biomass&#39;</span><span class="p">,</span> <span class="s1">&#39;Brown Coal&#39;</span><span class="p">,</span> <span class="s1">&#39;Gas&#39;</span><span class="p">,</span> <span class="s1">&#39;Hard Coal&#39;</span><span class="p">,</span> <span class="s1">&#39;Hydro Power&#39;</span><span class="p">,</span>
+             <span class="s1">&#39;Oil&#39;</span><span class="p">,</span> <span class="s1">&#39;Others&#39;</span><span class="p">,</span> <span class="s1">&#39;Pumped Storage&#39;</span><span class="p">,</span> <span class="s1">&#39;Seasonal Storage&#39;</span><span class="p">,</span> 
+             <span class="s1">&#39;Solar&#39;</span><span class="p">,</span> <span class="s1">&#39;Uranium&#39;</span><span class="p">,</span> <span class="s1">&#39;Wind&#39;</span><span class="p">,</span> <span class="s1">&#39;Net Balance&#39;</span><span class="p">],</span>
+    <span class="n">new_api_rename_map</span><span class="o">=</span><span class="p">{</span>
+        <span class="s1">&#39;Fossil Hard Coal&#39;</span><span class="p">:</span> <span class="s1">&#39;Hard Coal&#39;</span><span class="p">,</span> 
+        <span class="s1">&#39;Hydro Run-of-River&#39;</span><span class="p">:</span> <span class="s1">&#39;Hydro Power&#39;</span><span class="p">,</span> 
+        <span class="s1">&#39;Fossil Gas&#39;</span><span class="p">:</span> <span class="s1">&#39;Gas&#39;</span><span class="p">,</span> 
+        <span class="s1">&#39;Hydro Water Reservoir&#39;</span><span class="p">:</span> <span class="s1">&#39;Seasonal Storage&#39;</span><span class="p">,</span> 
+        <span class="s1">&#39;Hydro Pumped Storage&#39;</span><span class="p">:</span> <span class="s1">&#39;Pumped Storage&#39;</span><span class="p">,</span> 
+        <span class="s1">&#39;Fossil Brown Coal&#39;</span><span class="p">:</span> <span class="s1">&#39;Brown Coal&#39;</span><span class="p">,</span> 
+        <span class="s1">&#39;Fossil Oil&#39;</span><span class="p">:</span> <span class="s1">&#39;Oil&#39;</span><span class="p">,</span> 
+        <span class="s1">&#39;Nuclear&#39;</span><span class="p">:</span> <span class="s1">&#39;Uranium&#39;</span>
+    <span class="p">}</span>
+<span class="p">):</span>
+    <span class="c1"># Preparing batches</span>
+    <span class="n">adj_start_date</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">start_date</span><span class="p">)</span> <span class="o">-</span> <span class="n">pd</span><span class="o">.</span><span class="n">Timedelta</span><span class="p">(</span><span class="n">weeks</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">adj_end_date</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">end_date</span><span class="p">)</span> <span class="o">+</span> <span class="n">pd</span><span class="o">.</span><span class="n">Timedelta</span><span class="p">(</span><span class="n">weeks</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 
-<span class="n">df_fuels</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
+    <span class="n">dt_rng</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="n">adj_start_date</span><span class="p">,</span> <span class="n">adj_end_date</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="s1">&#39;W&#39;</span><span class="p">)</span>
+    <span class="n">year_week_pairs</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">dt_rng</span><span class="o">.</span><span class="n">year</span><span class="p">,</span> <span class="n">dt_rng</span><span class="o">.</span><span class="n">isocalendar</span><span class="p">()</span><span class="o">.</span><span class="n">week</span><span class="p">))</span>
 
-<span class="k">for</span> <span class="n">year</span><span class="p">,</span> <span class="n">week</span> <span class="ow">in</span> <span class="n">track</span><span class="p">(</span><span class="n">product</span><span class="p">(</span><span class="n">years</span><span class="p">,</span> <span class="n">weeks</span><span class="p">),</span> <span class="n">total</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">years</span><span class="p">)</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="n">weeks</span><span class="p">)):</span>
-    <span class="k">try</span><span class="p">:</span>
-        <span class="n">df_fuels_yr_wk</span> <span class="o">=</span> <span class="n">year_week_2_fuel_df</span><span class="p">(</span><span class="n">year</span><span class="p">,</span> <span class="n">week</span><span class="p">)</span>
-        <span class="n">df_fuels</span> <span class="o">=</span> <span class="n">df_fuels</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">df_fuels_yr_wk</span><span class="p">,</span> <span class="n">sort</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-    <span class="k">except</span><span class="p">:</span>
-        <span class="n">warn</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Failed to retrieve week </span><span class="si">{</span><span class="n">week</span><span class="si">}</span><span class="s1"> in </span><span class="si">{</span><span class="n">year</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="c1"># Retrieving</span>
+    <span class="n">df_fuels</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
 
-<span class="n">df_fuels</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">year</span><span class="p">,</span> <span class="n">week</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="n">year_week_pairs</span><span class="p">):</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">df_fuels_yr_wk</span> <span class="o">=</span> <span class="n">year_week_to_fuel_df</span><span class="p">(</span><span class="n">year</span><span class="p">,</span> <span class="n">week</span><span class="p">)</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="n">new_api_rename_map</span><span class="p">)</span>
+            <span class="n">df_fuels</span> <span class="o">=</span> <span class="n">df_fuels</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">df_fuels_yr_wk</span><span class="p">,</span> <span class="n">sort</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="k">except</span><span class="p">:</span>
+            <span class="n">warn</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Failed to retrieve week </span><span class="si">{</span><span class="n">week</span><span class="si">}</span><span class="s1"> in </span><span class="si">{</span><span class="n">year</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+
+    <span class="c1"># Cleaning</span>
+    <span class="n">df_fuels</span> <span class="o">=</span> <span class="p">(</span><span class="n">df_fuels</span>
+                <span class="p">[</span><span class="n">columns</span><span class="p">]</span>
+                <span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span>
+                <span class="o">.</span><span class="n">resample</span><span class="p">(</span><span class="s1">&#39;H&#39;</span><span class="p">)</span>
+                <span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+                <span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">how</span><span class="o">=</span><span class="s1">&#39;all&#39;</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+               <span class="p">)</span>
+
+    <span class="n">df_fuels</span> <span class="o">=</span> <span class="n">df_fuels</span><span class="p">[</span><span class="n">start_date</span><span class="p">:</span><span class="n">end_date</span><span class="p">]</span>
+    <span class="n">df_fuels</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;local_datetime&#39;</span>
+
+    <span class="k">return</span> <span class="n">df_fuels</span>
 </code></pre></div>
-<div><span class="Text-label" style="display:inline-block; overflow:hidden; white-space:nowrap; text-overflow:ellipsis; min-width:0; max-width:15ex; vertical-align:middle; text-align:right"></span>
-<progress style="width:60ex" max="583" value="583" class="Progress-main"/></progress>
-<span class="Progress-label"><strong>100%</strong></span>
-<span class="Iteration-label">580/583</span>
-<span class="Time-label">[03:16<00:00, 0.34s/it]</span></div>
+<div class="highlight"><pre><span></span><code><span class="n">start_date</span> <span class="o">=</span> <span class="s1">&#39;2021-05-01&#39;</span>
+<span class="n">end_date</span> <span class="o">=</span> <span class="s1">&#39;2021-05-25&#39;</span>
 
+<span class="n">df_EC</span> <span class="o">=</span> <span class="n">get_EC_data</span><span class="p">(</span><span class="n">start_date</span><span class="p">,</span> <span class="n">end_date</span><span class="p">)</span>
+
+<span class="n">df_EC</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>100%|â–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆ| 6/6 [00:03&lt;00:00,  1.60it/s]
+</code></pre></div>
 <table>
 <thead>
 <tr>
-<th align="left">Unnamed: 0</th>
+<th align="left">local_datetime</th>
 <th align="right">Biomass</th>
-<th align="right">Biomass planned</th>
 <th align="right">Brown Coal</th>
-<th align="right">Brown Coal planned</th>
 <th align="right">Gas</th>
-<th align="right">Gas planned</th>
 <th align="right">Hard Coal</th>
-<th align="right">Hard Coal planned</th>
 <th align="right">Hydro Power</th>
-<th align="right">Hydro Power planned</th>
-<th align="left">...</th>
-<th align="right">Residual load forecast</th>
+<th align="right">Oil</th>
+<th align="right">Others</th>
+<th align="right">Pumped Storage</th>
 <th align="right">Seasonal Storage</th>
-<th align="right">Seasonal Storage ante</th>
 <th align="right">Solar</th>
-<th align="right">Solar forecast</th>
 <th align="right">Uranium</th>
-<th align="right">Uranium planned</th>
 <th align="right">Wind</th>
-<th align="right">Wind forecast</th>
-<th align="right">net_balance</th>
+<th align="right">Net Balance</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td align="left">2010-01-04 00:00:00+01:00</td>
-<td align="right">3.637</td>
+<td align="left">2021-05-01 00:00:00+02:00</td>
+<td align="right">5.19675</td>
+<td align="right">12.5198</td>
+<td align="right">6.56375</td>
+<td align="right">4.039</td>
 <td align="right">nan</td>
-<td align="right">16.533</td>
-<td align="right">nan</td>
-<td align="right">4.726</td>
-<td align="right">nan</td>
-<td align="right">10.078</td>
-<td align="right">nan</td>
-<td align="right">2.331</td>
-<td align="right">nan</td>
-<td align="left">...</td>
-<td align="right">nan</td>
-<td align="right">0.068</td>
-<td align="right">nan</td>
+<td align="right">0.148</td>
+<td align="right">0.35625</td>
+<td align="right">0.9395</td>
+<td align="right">0.02075</td>
 <td align="right">0</td>
-<td align="right">nan</td>
-<td align="right">16.826</td>
-<td align="right">nan</td>
-<td align="right">0.635</td>
-<td align="right">nan</td>
-<td align="right">-1.229</td>
+<td align="right">6.72275</td>
+<td align="right">2.28525</td>
+<td align="right">-0.087</td>
 </tr>
 <tr>
-<td align="left">2010-01-04 01:00:00+01:00</td>
-<td align="right">3.637</td>
+<td align="left">2021-05-01 01:00:00+02:00</td>
+<td align="right">5.1945</td>
+<td align="right">12.4748</td>
+<td align="right">5.572</td>
+<td align="right">3.91175</td>
 <td align="right">nan</td>
-<td align="right">16.544</td>
-<td align="right">nan</td>
-<td align="right">4.856</td>
-<td align="right">nan</td>
-<td align="right">8.816</td>
-<td align="right">nan</td>
-<td align="right">2.293</td>
-<td align="right">nan</td>
-<td align="left">...</td>
-<td align="right">nan</td>
-<td align="right">0.003</td>
-<td align="right">nan</td>
+<td align="right">0.148</td>
+<td align="right">0.34825</td>
+<td align="right">0.84875</td>
+<td align="right">0.015</td>
 <td align="right">0</td>
-<td align="right">nan</td>
-<td align="right">16.841</td>
-<td align="right">nan</td>
-<td align="right">0.528</td>
-<td align="right">nan</td>
-<td align="right">-1.593</td>
+<td align="right">6.71075</td>
+<td align="right">2.28825</td>
+<td align="right">-0.093</td>
 </tr>
 <tr>
-<td align="left">2010-01-04 02:00:00+01:00</td>
-<td align="right">3.637</td>
+<td align="left">2021-05-01 02:00:00+02:00</td>
+<td align="right">5.20275</td>
+<td align="right">11.9185</td>
+<td align="right">5.102</td>
+<td align="right">3.75925</td>
 <td align="right">nan</td>
-<td align="right">16.368</td>
-<td align="right">nan</td>
-<td align="right">5.275</td>
-<td align="right">nan</td>
-<td align="right">7.954</td>
-<td align="right">nan</td>
-<td align="right">2.299</td>
-<td align="right">nan</td>
-<td align="left">...</td>
-<td align="right">nan</td>
+<td align="right">0.148</td>
+<td align="right">0.3515</td>
+<td align="right">0.6635</td>
+<td align="right">0.00275</td>
 <td align="right">0</td>
-<td align="right">nan</td>
-<td align="right">0</td>
-<td align="right">nan</td>
-<td align="right">16.846</td>
-<td align="right">nan</td>
-<td align="right">0.616</td>
-<td align="right">nan</td>
-<td align="right">-1.378</td>
+<td align="right">6.7095</td>
+<td align="right">2.146</td>
+<td align="right">-0.1435</td>
 </tr>
 </tbody>
 </table>
 <p><br></p>
-<p>We'll remove the null columns and reorder the remaining ones to clean it up a little bit</p>
-<div class="highlight"><pre><span></span><code><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Biomass&#39;</span><span class="p">,</span> <span class="s1">&#39;Brown Coal&#39;</span><span class="p">,</span> <span class="s1">&#39;Gas&#39;</span><span class="p">,</span> <span class="s1">&#39;Hard Coal&#39;</span><span class="p">,</span> <span class="s1">&#39;Hydro Power&#39;</span><span class="p">,</span>
-           <span class="s1">&#39;Oil&#39;</span><span class="p">,</span> <span class="s1">&#39;Others&#39;</span><span class="p">,</span> <span class="s1">&#39;Pumped Storage&#39;</span><span class="p">,</span> <span class="s1">&#39;Seasonal Storage&#39;</span><span class="p">,</span> <span class="c1">#&#39;Import Balance&#39;, </span>
-           <span class="s1">&#39;Solar&#39;</span><span class="p">,</span> <span class="s1">&#39;Uranium&#39;</span><span class="p">,</span> <span class="s1">&#39;Wind&#39;</span><span class="p">,</span> <span class="s1">&#39;net_balance&#39;</span><span class="p">]</span>
+<p>We'll quickly confirm that there are no duplicates</p>
+<div class="highlight"><pre><span></span><code><span class="k">assert</span> <span class="n">df_EC</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">duplicated</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">==</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;There are multiple entries for a datetime&#39;</span>
+</code></pre></div>
+<p><br></p>
+<p>Next we check for any missing datetimes, because there are only a few missing datetimes we'll choose to drop them from the dataset at a later step</p>
+<div class="highlight"><pre><span></span><code><span class="n">s_null_vals</span> <span class="o">=</span> <span class="n">df_EC</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">==</span><span class="n">df_EC</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
 
-<span class="n">df_fuels_clean</span> <span class="o">=</span> <span class="p">(</span><span class="n">df_fuels</span>
-                  <span class="p">[</span><span class="n">columns</span><span class="p">]</span>
-                  <span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span>
-                  <span class="o">.</span><span class="n">resample</span><span class="p">(</span><span class="s1">&#39;H&#39;</span><span class="p">)</span>
-                  <span class="o">.</span><span class="n">mean</span><span class="p">()</span>
-                  <span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">how</span><span class="o">=</span><span class="s1">&#39;all&#39;</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-                 <span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="nb">round</span><span class="p">(</span><span class="mi">100</span><span class="o">*</span><span class="n">s_null_vals</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span> <span class="mi">2</span><span class="p">)</span><span class="si">}</span><span class="s1">% of the datetimes are missing data&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;There are </span><span class="si">{</span><span class="p">(</span><span class="n">s_null_vals</span><span class="o">.</span><span class="n">resample</span><span class="p">(</span><span class="s1">&#39;D&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="si">}</span><span class="s2"> days with missing data, totalling </span><span class="si">{</span><span class="n">s_null_vals</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="si">}</span><span class="s2"> hours of individual missing hours&quot;</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>0.57% of the datetimes are missing data
+There are 1 days with missing data, totalling 24 hours of individual missing hours
+</code></pre></div>
+<p><br></p>
+<p>Finally we'll wrap these steps up and save the data</p>
+<div class="highlight"><pre><span></span><code><span class="n">start_date</span> <span class="o">=</span> <span class="s1">&#39;2010-01-01&#39;</span>
+<span class="n">end_date</span> <span class="o">=</span> <span class="s1">&#39;2020-12-31&#39;</span>
 
-<span class="n">df_fuels_clean</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+<span class="n">data_dir</span> <span class="o">=</span> <span class="s1">&#39;../data/raw&#39;</span>
+
+<span class="n">retrieve_save_EC_data</span> <span class="o">=</span> <span class="kc">False</span>
+
+<span class="k">if</span> <span class="n">retrieve_save_EC_data</span> <span class="o">==</span> <span class="kc">True</span><span class="p">:</span>
+    <span class="n">df_EC</span> <span class="o">=</span> <span class="n">get_EC_data</span><span class="p">(</span><span class="n">start_date</span><span class="p">,</span> <span class="n">end_date</span><span class="p">)</span>
+    <span class="n">df_EC</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">data_dir</span><span class="si">}</span><span class="s1">/energy_charts.csv&#39;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="n">df_EC</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">data_dir</span><span class="si">}</span><span class="s1">/energy_charts.csv&#39;</span><span class="p">,</span> <span class="n">parse_dates</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;local_datetime&#39;</span><span class="p">],</span> <span class="n">index_col</span><span class="o">=</span><span class="s1">&#39;local_datetime&#39;</span><span class="p">)</span>
+
+<span class="n">df_EC</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </code></pre></div>
 <table>
 <thead>
 <tr>
-<th align="left">Unnamed: 0</th>
+<th align="left">local_datetime</th>
 <th align="right">Biomass</th>
 <th align="right">Brown Coal</th>
 <th align="right">Gas</th>
@@ -2230,43 +2517,20 @@ Name: value, Length: 167, dtype: float64
 </tbody>
 </table>
 <p><br></p>
-<p>We'll quickly confirm that there are no duplicates</p>
-<div class="highlight"><pre><span></span><code><span class="k">assert</span> <span class="n">df_fuels_clean</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">duplicated</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">==</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;There are multiple entries for a datetime&#39;</span>
-</code></pre></div>
-<p><br></p>
-<p>Next we check for any missing datetimes</p>
-<div class="highlight"><pre><span></span><code><span class="n">s_null_vals</span> <span class="o">=</span> <span class="n">df_fuels_clean</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">==</span><span class="n">df_fuels_clean</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="nb">round</span><span class="p">(</span><span class="mi">100</span><span class="o">*</span><span class="n">s_null_vals</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span> <span class="mi">2</span><span class="p">)</span><span class="si">}</span><span class="s1">% of the datetimes are missing data&#39;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;There are </span><span class="si">{</span><span class="p">(</span><span class="n">s_null_vals</span><span class="o">.</span><span class="n">resample</span><span class="p">(</span><span class="s1">&#39;D&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="si">}</span><span class="s2"> days with missing data, totalling </span><span class="si">{</span><span class="n">s_null_vals</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="si">}</span><span class="s2"> hours of individual missing hours&quot;</span><span class="p">)</span>
-</code></pre></div>
-<div class="highlight"><pre><span></span><code>0.16% of the datetimes are missing data
-There are 7 days with missing data, totalling 157 hours of individual missing hours
-</code></pre></div>
-<p><br></p>
-<p>Because there are only a few missing datetimes we'll choose to drop them from the dataset</p>
-<div class="highlight"><pre><span></span><code><span class="n">df_fuels_clean</span> <span class="o">=</span> <span class="n">df_fuels_clean</span><span class="p">[</span><span class="o">~</span><span class="n">s_null_vals</span><span class="p">]</span>
-</code></pre></div>
-<p><br></p>
-<p>Finally we'll save the cleaned dataframe</p>
-<div class="highlight"><pre><span></span><code><span class="n">df_fuels_clean</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;local_datetime&#39;</span>
-<span class="n">df_fuels_clean</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;../data/raw/energy_charts.csv&#39;</span><span class="p">)</span>
-</code></pre></div>
-<p><br></p>
 <h3 id="entsoe">ENTSOE<a class="headerlink" href="#entsoe" title="Permanent link">&para;</a></h3>
 <p>We'll use ENTSOE as the source for our German price data, we'll also have to use it to get the exact RES and demand volumes for the bidding zone that Germany is within. </p>
 <p><br></p>
 <h5 id="prices">Prices<a class="headerlink" href="#prices" title="Permanent link">&para;</a></h5>
 <p>We'll begin by initialising our client API for ENTSOE</p>
-<p><strong>You will need to supply your own API key, we recommend you store it in a <code>.env</code> file</strong></p>
+<p><strong>You will need to supply your own API key</strong></p>
 <div class="highlight"><pre><span></span><code><span class="n">load_dotenv</span><span class="p">()</span>
 <span class="n">ENTSOE_API_KEY</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;ENTSOE_API_KEY&#39;</span><span class="p">]</span>
 
-<span class="n">client</span> <span class="o">=</span> <span class="n">EntsoePandasClient</span><span class="p">(</span><span class="n">api_key</span><span class="o">=</span><span class="n">api_key</span><span class="p">)</span>
+<span class="n">client</span> <span class="o">=</span> <span class="n">EntsoePandasClient</span><span class="p">(</span><span class="n">api_key</span><span class="o">=</span><span class="n">ENTSOE_API_KEY</span><span class="p">)</span>
 
 <span class="n">client</span>
 </code></pre></div>
-<div class="highlight"><pre><span></span><code>&lt;entsoe.entsoe.EntsoePandasClient at 0x216d1b88d60&gt;
+<div class="highlight"><pre><span></span><code>&lt;entsoe.entsoe.EntsoePandasClient at 0x2cdcd105ca0&gt;
 </code></pre></div>
 <p><br></p>
 <p>We'll then make a test request for price data from the German market</p>
@@ -2343,7 +2607,7 @@ Freq: H, dtype: float64
 
     <span class="n">s_price</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
 
-    <span class="k">for</span> <span class="n">dt_pair</span> <span class="ow">in</span> <span class="n">track</span><span class="p">(</span><span class="n">dt_pairs</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">dt_pair</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="n">dt_pairs</span><span class="p">):</span>
         <span class="n">start</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Timestamp</span><span class="p">(</span><span class="n">dt_pair</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">tz</span><span class="o">=</span><span class="s1">&#39;UTC&#39;</span><span class="p">)</span>
         <span class="n">end</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Timestamp</span><span class="p">(</span><span class="n">dt_pair</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">tz</span><span class="o">=</span><span class="s1">&#39;UTC&#39;</span><span class="p">)</span>
 
@@ -2407,7 +2671,7 @@ dtype: float64
 </code></pre></div>
 <div class="highlight"><pre><span></span><code>&lt;AxesSubplot:&gt;
 </code></pre></div>
-<p><img alt="png" src="../img/nbs/output_67_1.png" /></p>
+<p><img alt="png" src="../img/nbs/dev-01-retrieval_cell_69_output_1.png" /></p>
 <p><br></p>
 <p>Before moving on we'll save this series as a csv</p>
 <div class="highlight"><pre><span></span><code><span class="n">s_price</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;DE_price&#39;</span>
@@ -2492,7 +2756,7 @@ dtype: float64
 
     <span class="n">df_production</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
 
-    <span class="k">for</span> <span class="n">dt_pair</span> <span class="ow">in</span> <span class="n">track</span><span class="p">(</span><span class="n">dt_pairs</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">dt_pair</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="n">dt_pairs</span><span class="p">):</span>
         <span class="n">start</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Timestamp</span><span class="p">(</span><span class="n">dt_pair</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">tz</span><span class="o">=</span><span class="s1">&#39;UTC&#39;</span><span class="p">)</span>
         <span class="n">end</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Timestamp</span><span class="p">(</span><span class="n">dt_pair</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">tz</span><span class="o">=</span><span class="s1">&#39;UTC&#39;</span><span class="p">)</span>
 
@@ -2700,7 +2964,7 @@ dtype: float64
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
         
-          <a href="../ug-04-gb-mcc/" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../ug-04-electricity-prices/" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-footer-nav__button md-icon">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
             </div>
@@ -2709,7 +2973,7 @@ dtype: float64
                 <span class="md-footer-nav__direction">
                   Previous
                 </span>
-                Marginal Cost Curve
+                Electricity Prices
               </div>
             </div>
           </a>

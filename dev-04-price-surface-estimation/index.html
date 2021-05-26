@@ -178,8 +178,24 @@
   
   
     <li class="md-tabs__item">
-      <a href="../ug-01-quantile/" class="md-tabs__link">
+      <a href="../ug-08-lowess-quick-start/" class="md-tabs__link">
         User Guide
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../ug-01-hydro-seasonality/" class="md-tabs__link">
+        Examples
       </a>
     </li>
   
@@ -293,8 +309,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../ug-01-quantile/" class="md-nav__link">
-      Quantile Predictions
+    <a href="../ug-08-lowess-quick-start/" class="md-nav__link">
+      LOWESS Quick-Start
     </a>
   </li>
 
@@ -306,8 +322,89 @@
 
 
   <li class="md-nav__item">
-    <a href="../ug-02-confidence/" class="md-nav__link">
-      Confidence Intervals
+    <a href="../ug-05-data-retrieval/" class="md-nav__link">
+      Data Retrieval
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="../ug-06-surface-estimation/" class="md-nav__link">
+      Surface Estimation
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="../ug-07-moe-quantification/" class="md-nav__link">
+      MOE Quantification
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+
+  
+  <li class="md-nav__item md-nav__item--nested">
+    
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3" >
+    
+    <label class="md-nav__link" for="nav-3">
+      Examples
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Examples" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        <span class="md-nav__icon md-icon"></span>
+        Examples
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="../ug-01-hydro-seasonality/" class="md-nav__link">
+      Hydro Seasonality
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="../ug-02-ligo/" class="md-nav__link">
+      LIGO
     </a>
   </li>
 
@@ -320,7 +417,7 @@
 
   <li class="md-nav__item">
     <a href="../ug-03-power-curve/" class="md-nav__link">
-      Power Curve Fitting
+      Power Curve
     </a>
   </li>
 
@@ -332,8 +429,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../ug-04-gb-mcc/" class="md-nav__link">
-      Marginal Cost Curve
+    <a href="../ug-04-electricity-prices/" class="md-nav__link">
+      Electricity Prices
     </a>
   </li>
 
@@ -355,14 +452,14 @@
   <li class="md-nav__item md-nav__item--active md-nav__item--nested">
     
     
-      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3" checked>
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4" checked>
     
-    <label class="md-nav__link" for="nav-3">
+    <label class="md-nav__link" for="nav-4">
       Development
       <span class="md-nav__icon md-icon"></span>
     </label>
     <nav class="md-nav" aria-label="Development" data-md-level="1">
-      <label class="md-nav__title" for="nav-3">
+      <label class="md-nav__title" for="nav-4">
         <span class="md-nav__icon md-icon"></span>
         Development
       </label>
@@ -641,15 +738,14 @@
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 
-<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-
 <span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">import</span> <span class="nn">pickle</span>
-<span class="kn">import</span> <span class="nn">FEAutils</span> <span class="k">as</span> <span class="nn">hlp</span>
-<span class="kn">from</span> <span class="nn">ipypb</span> <span class="kn">import</span> <span class="n">track</span>
+<span class="kn">from</span> <span class="nn">tqdm</span> <span class="kn">import</span> <span class="n">tqdm</span>
 
 <span class="kn">from</span> <span class="nn">moepy</span> <span class="kn">import</span> <span class="n">lowess</span><span class="p">,</span> <span class="n">eda</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 </code></pre></div>
 <p><br></p>
 <h3 id="user-inputs">User Inputs<a class="headerlink" href="#user-inputs" title="Permanent link">&para;</a></h3>
@@ -831,15 +927,15 @@
 <span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">s_dispatchable</span><span class="p">[</span><span class="s1">&#39;2010-09&#39;</span><span class="p">:</span><span class="s1">&#39;2011-03&#39;</span><span class="p">],</span> <span class="n">s_price</span><span class="p">[</span><span class="s1">&#39;2010-09&#39;</span><span class="p">:</span><span class="s1">&#39;2011-03&#39;</span><span class="p">],</span> <span class="n">s</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">s_dispatchable</span><span class="p">[</span><span class="s1">&#39;2020-03&#39;</span><span class="p">:</span><span class="s1">&#39;2020-09&#39;</span><span class="p">],</span> <span class="n">s_price</span><span class="p">[</span><span class="s1">&#39;2020-03&#39;</span><span class="p">:</span><span class="s1">&#39;2020-09&#39;</span><span class="p">],</span> <span class="n">s</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 
-<span class="n">hlp</span><span class="o">.</span><span class="n">hide_spines</span><span class="p">(</span><span class="n">ax</span><span class="p">)</span>
+<span class="n">eda</span><span class="o">.</span><span class="n">hide_spines</span><span class="p">(</span><span class="n">ax</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">60</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="o">-</span><span class="mi">25</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Demand - [Wind + Solar] (MW)&#39;</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Price (£/MWh)&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Price (Â£/MWh)&#39;</span><span class="p">)</span>
 </code></pre></div>
-<div class="highlight"><pre><span></span><code>Text(0, 0.5, &#39;Price (£/MWh)&#39;)
+<div class="highlight"><pre><span></span><code>Text(0, 0.5, &#39;Price (Â£/MWh)&#39;)
 </code></pre></div>
-<p><img alt="png" src="../img/nbs/output_7_1.png" /></p>
+<p><img alt="png" src="../img/nbs/dev-04-price-surface-estimation_cell_9_output_1.png" /></p>
 <p><br></p>
 <p>As well as the DE data</p>
 <div class="highlight"><pre><span></span><code><span class="n">df_DE</span> <span class="o">=</span> <span class="n">eda</span><span class="o">.</span><span class="n">load_DE_df</span><span class="p">(</span><span class="s1">&#39;../data/raw/energy_charts.csv&#39;</span><span class="p">,</span> <span class="s1">&#39;../data/raw/ENTSOE_DE_price.csv&#39;</span><span class="p">)</span>
@@ -856,15 +952,15 @@
 <span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">s_DE_dispatchable</span><span class="p">[</span><span class="s1">&#39;2015-09&#39;</span><span class="p">:</span><span class="s1">&#39;2016-03&#39;</span><span class="p">],</span> <span class="n">s_DE_price</span><span class="p">[</span><span class="s1">&#39;2015-09&#39;</span><span class="p">:</span><span class="s1">&#39;2016-03&#39;</span><span class="p">],</span> <span class="n">s</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">s_DE_dispatchable</span><span class="p">[</span><span class="s1">&#39;2020-03&#39;</span><span class="p">:</span><span class="s1">&#39;2020-09&#39;</span><span class="p">],</span> <span class="n">s_DE_price</span><span class="p">[</span><span class="s1">&#39;2020-03&#39;</span><span class="p">:</span><span class="s1">&#39;2020-09&#39;</span><span class="p">],</span> <span class="n">s</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 
-<span class="n">hlp</span><span class="o">.</span><span class="n">hide_spines</span><span class="p">(</span><span class="n">ax</span><span class="p">)</span>
+<span class="n">eda</span><span class="o">.</span><span class="n">hide_spines</span><span class="p">(</span><span class="n">ax</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">75</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="o">-</span><span class="mi">25</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Demand - [Wind + Solar] (MW)&#39;</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Price (£/MWh)&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Price (Â£/MWh)&#39;</span><span class="p">)</span>
 </code></pre></div>
-<div class="highlight"><pre><span></span><code>Text(0, 0.5, &#39;Price (£/MWh)&#39;)
+<div class="highlight"><pre><span></span><code>Text(0, 0.5, &#39;Price (Â£/MWh)&#39;)
 </code></pre></div>
-<p><img alt="png" src="../img/nbs/output_9_1.png" /></p>
+<p><img alt="png" src="../img/nbs/dev-04-price-surface-estimation_cell_11_output_1.png" /></p>
 <p><br></p>
 <h3 id="results-wrapper">Results Wrapper<a class="headerlink" href="#results-wrapper" title="Permanent link">&para;</a></h3>
 <p>We'll start defining each of the price models that we'll fit, using the <code>PicklableFunction</code> class to ensure that all of our models can be saved for later use.</p>
@@ -973,7 +1069,7 @@
 <span class="k">def</span> <span class="nf">fit_models</span><span class="p">(</span><span class="n">model_definitions</span><span class="p">,</span> <span class="n">models_dir</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Fits LOWESS variants using the specified model definitions&quot;&quot;&quot;</span>
     <span class="k">for</span> <span class="n">model_parent_name</span><span class="p">,</span> <span class="n">model_spec</span> <span class="ow">in</span> <span class="n">model_definitions</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-        <span class="k">for</span> <span class="n">fit_kwarg_set</span> <span class="ow">in</span> <span class="n">track</span><span class="p">(</span><span class="n">model_spec</span><span class="p">[</span><span class="s1">&#39;fit_kwarg_sets&#39;</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="n">model_parent_name</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">fit_kwarg_set</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="n">model_spec</span><span class="p">[</span><span class="s1">&#39;fit_kwarg_sets&#39;</span><span class="p">],</span> <span class="n">desc</span><span class="o">=</span><span class="n">model_parent_name</span><span class="p">):</span>
             <span class="n">run_name</span> <span class="o">=</span> <span class="n">fit_kwarg_set</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">)</span>
             <span class="n">model_name</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">model_parent_name</span><span class="si">}</span><span class="s1">_</span><span class="si">{</span><span class="n">run_name</span><span class="si">}</span><span class="s1">&#39;</span>
 

@@ -178,8 +178,24 @@
   
   
     <li class="md-tabs__item">
-      <a href="../ug-01-quantile/" class="md-tabs__link">
+      <a href="../ug-08-lowess-quick-start/" class="md-tabs__link">
         User Guide
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../ug-01-hydro-seasonality/" class="md-tabs__link">
+        Examples
       </a>
     </li>
   
@@ -293,8 +309,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../ug-01-quantile/" class="md-nav__link">
-      Quantile Predictions
+    <a href="../ug-08-lowess-quick-start/" class="md-nav__link">
+      LOWESS Quick-Start
     </a>
   </li>
 
@@ -306,8 +322,89 @@
 
 
   <li class="md-nav__item">
-    <a href="../ug-02-confidence/" class="md-nav__link">
-      Confidence Intervals
+    <a href="../ug-05-data-retrieval/" class="md-nav__link">
+      Data Retrieval
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="../ug-06-surface-estimation/" class="md-nav__link">
+      Surface Estimation
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="../ug-07-moe-quantification/" class="md-nav__link">
+      MOE Quantification
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+
+  
+  <li class="md-nav__item md-nav__item--nested">
+    
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3" >
+    
+    <label class="md-nav__link" for="nav-3">
+      Examples
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Examples" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        <span class="md-nav__icon md-icon"></span>
+        Examples
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="../ug-01-hydro-seasonality/" class="md-nav__link">
+      Hydro Seasonality
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="../ug-02-ligo/" class="md-nav__link">
+      LIGO
     </a>
   </li>
 
@@ -320,7 +417,7 @@
 
   <li class="md-nav__item">
     <a href="../ug-03-power-curve/" class="md-nav__link">
-      Power Curve Fitting
+      Power Curve
     </a>
   </li>
 
@@ -332,8 +429,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../ug-04-gb-mcc/" class="md-nav__link">
-      Marginal Cost Curve
+    <a href="../ug-04-electricity-prices/" class="md-nav__link">
+      Electricity Prices
     </a>
   </li>
 
@@ -355,14 +452,14 @@
   <li class="md-nav__item md-nav__item--active md-nav__item--nested">
     
     
-      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3" checked>
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4" checked>
     
-    <label class="md-nav__link" for="nav-3">
+    <label class="md-nav__link" for="nav-4">
       Development
       <span class="md-nav__icon md-icon"></span>
     </label>
     <nav class="md-nav" aria-label="Development" data-md-level="1">
-      <label class="md-nav__title" for="nav-3">
+      <label class="md-nav__title" for="nav-4">
         <span class="md-nav__icon md-icon"></span>
         Development
       </label>
@@ -717,14 +814,13 @@
                 <h1 id="lowess">Lowess<a class="headerlink" href="#lowess" title="Permanent link">&para;</a></h1>
 <p><a href="https://notebooks.gesis.org/binder/v2/gh/AyrtonB/Merit-Order-Effect/main?filepath=nbs%2Fdev-03-lowess.ipynb"><img alt="Binder" src="https://notebooks.gesis.org/binder/badge_logo.svg" /></a></p>
 <p>Outlines the development of the Scikit-Learn compatible <code>Lowess</code> model, as well as its extension <code>LowessDates</code> used for time-adaptive LOWESS regression. Included are functions for extending both models to generate prediction and confidence intervals. </p>
+<p>The original LOWESS code written by W. S. Cleveland can be found <a href="https://www.netlib.org/go/lowess">here</a></p>
 <p><br></p>
 <h3 id="imports">Imports<a class="headerlink" href="#imports" title="Permanent link">&para;</a></h3>
 <div class="highlight"><pre><span></span><code><span class="c1">#exports</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 
-<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="kn">from</span> <span class="nn">collections.abc</span> <span class="kn">import</span> <span class="n">Iterable</span>
 <span class="kn">from</span> <span class="nn">sklearn</span> <span class="kn">import</span> <span class="n">linear_model</span>
 
@@ -732,9 +828,13 @@
 <span class="kn">from</span> <span class="nn">scipy.optimize</span> <span class="kn">import</span> <span class="n">minimize</span>
 <span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">linalg</span>
 
-<span class="kn">from</span> <span class="nn">timeit</span> <span class="kn">import</span> <span class="n">timeit</span>
-<span class="kn">from</span> <span class="nn">ipypb</span> <span class="kn">import</span> <span class="n">track</span>
+<span class="kn">from</span> <span class="nn">tqdm</span> <span class="kn">import</span> <span class="n">tqdm</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="kn">import</span> <span class="nn">matplotlib</span> <span class="k">as</span> <span class="nn">mpl</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 
+<span class="kn">from</span> <span class="nn">timeit</span> <span class="kn">import</span> <span class="n">timeit</span>
 <span class="kn">from</span> <span class="nn">moepy</span> <span class="kn">import</span> <span class="n">eda</span>
 </code></pre></div>
 <p><br></p>
@@ -749,9 +849,9 @@
 <p>We can see that we've just created a simple sin curve</p>
 <div class="highlight"><pre><span></span><code><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
 </code></pre></div>
-<div class="highlight"><pre><span></span><code>[&lt;matplotlib.lines.Line2D at 0x1fd650f86d0&gt;]
+<div class="highlight"><pre><span></span><code>[&lt;matplotlib.lines.Line2D at 0x2bbf1599b50&gt;]
 </code></pre></div>
-<p><img alt="png" src="../img/nbs/output_5_1.png" /></p>
+<p><img alt="png" src="../img/nbs/dev-03-lowess_cell_7_output_1.png" /></p>
 <p><br></p>
 <h4 id="weights">Weights<a class="headerlink" href="#weights" title="Permanent link">&para;</a></h4>
 <p>In order to do localised regression we need to know what points are local, for this reason we'll start by creating a function for calculating the distance between one point and all of the other points</p>
@@ -812,7 +912,7 @@ We'll now define a function that will map from the distances to their relative w
 </code></pre></div>
 <div class="highlight"><pre><span></span><code>(0.0, 1.1)
 </code></pre></div>
-<p><img alt="png" src="../img/nbs/output_14_1.png" /></p>
+<p><img alt="png" src="../img/nbs/dev-03-lowess_cell_16_output_1.png" /></p>
 <p><br></p>
 <p>We can now use the distance matrix and threshold to create a vector of the relative weights of all data points for the local regression at a specified location</p>
 <div class="highlight"><pre><span></span><code><span class="n">weights</span> <span class="o">=</span> <span class="n">dist_to_weights</span><span class="p">(</span><span class="n">dist</span><span class="p">,</span> <span class="n">dist_threshold</span><span class="p">)</span>
@@ -839,7 +939,7 @@ We'll now define a function that will map from the distances to their relative w
 </code></pre></div>
 <div class="highlight"><pre><span></span><code><span class="n">timeit</span><span class="p">(</span><span class="k">lambda</span><span class="p">:</span> <span class="n">get_weights</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">x</span><span class="p">[</span><span class="mi">5</span><span class="p">]),</span> <span class="n">number</span><span class="o">=</span><span class="mi">10000</span><span class="p">)</span>
 </code></pre></div>
-<div class="highlight"><pre><span></span><code>0.6126709999999989
+<div class="highlight"><pre><span></span><code>0.3881793
 </code></pre></div>
 <p><br></p>
 <p>We've successfully calculated the weights with respect to a single point but we need to repeat this across each of value locations in our dataset.</p>
@@ -884,20 +984,20 @@ We'll now define a function that will map from the distances to their relative w
 </code></pre></div>
 <div class="highlight"><pre><span></span><code>Text(69.58333333333334, 0.5, &#39;Regression Nodes&#39;)
 </code></pre></div>
-<p><img alt="png" src="../img/nbs/output_25_1.png" /></p>
+<p><img alt="png" src="../img/nbs/dev-03-lowess_cell_27_output_1.png" /></p>
 <p><br></p>
 <p>This approach brings an order of magnitude speed-up to the operation</p>
 <div class="highlight"><pre><span></span><code><span class="o">%%</span><span class="n">timeit</span>
 
 <span class="n">timeit</span><span class="p">(</span><span class="k">lambda</span><span class="p">:</span> <span class="p">[</span><span class="n">get_dist</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">x</span><span class="p">[</span><span class="n">x_idx</span><span class="p">])</span> <span class="k">for</span> <span class="n">x_idx</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">))],</span> <span class="n">number</span><span class="o">=</span><span class="mi">10000</span><span class="p">)</span>
 </code></pre></div>
-<div class="highlight"><pre><span></span><code>825 ms ± 163 ms per loop (mean ± std. dev. of 7 runs, 1 loop each)
+<div class="highlight"><pre><span></span><code>885 ms Â± 107 ms per loop (mean Â± std. dev. of 7 runs, 1 loop each)
 </code></pre></div>
 <div class="highlight"><pre><span></span><code><span class="o">%%</span><span class="n">timeit</span>
 
 <span class="n">timeit</span><span class="p">(</span><span class="k">lambda</span><span class="p">:</span> <span class="n">vector_to_dist_matrix</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">number</span><span class="o">=</span><span class="mi">10000</span><span class="p">)</span>
 </code></pre></div>
-<div class="highlight"><pre><span></span><code>55.5 ms ± 3.06 ms per loop (mean ± std. dev. of 7 runs, 10 loops each)
+<div class="highlight"><pre><span></span><code>122 ms Â± 11.6 ms per loop (mean Â± std. dev. of 7 runs, 10 loops each)
 </code></pre></div>
 <p><br></p>
 <p>Now we need to calculate the distance threshold (max distance away from point of interest that is within the data fraction specified). </p>
@@ -911,7 +1011,7 @@ We'll now define a function that will map from the distances to their relative w
 
 <span class="n">timeit</span><span class="p">(</span><span class="k">lambda</span><span class="p">:</span> <span class="n">gramfort_get_dist_thresholds</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">frac_idx</span><span class="p">),</span> <span class="n">number</span><span class="o">=</span><span class="mi">10000</span><span class="p">)</span>
 </code></pre></div>
-<div class="highlight"><pre><span></span><code>1.7785535999999986
+<div class="highlight"><pre><span></span><code>2.5025440000000003
 </code></pre></div>
 <p><br></p>
 <p>Pretty quick, lets see if we could do better though. </p>
@@ -924,7 +1024,7 @@ We'll now define a function that will map from the distances to their relative w
 
 <span class="n">timeit</span><span class="p">(</span><span class="k">lambda</span><span class="p">:</span> <span class="n">get_dist_thresholds</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">frac_idx</span><span class="p">,</span> <span class="n">dist_matrix</span><span class="p">),</span> <span class="n">number</span><span class="o">=</span><span class="mi">10000</span><span class="p">)</span>
 </code></pre></div>
-<div class="highlight"><pre><span></span><code>0.10906620000000089
+<div class="highlight"><pre><span></span><code>0.12421600000000055
 </code></pre></div>
 <p><br></p>
 <p>Now we have both the distance matrix and thresholds we can start to calculate the weightings, the first step to this is scale and clip the distances based on their threshold values.</p>
@@ -942,21 +1042,21 @@ We'll now define a function that will map from the distances to their relative w
 <p>We can now calculate the tri-cubic weighting. We repeat this using both base Python and Numpy to see which is faster, surprisingly base Python comes out on top.</p>
 <div class="highlight"><pre><span></span><code><span class="n">timeit</span><span class="p">(</span><span class="k">lambda</span><span class="p">:</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">inv_linear_weights</span> <span class="o">**</span> <span class="mi">3</span><span class="p">)</span> <span class="o">**</span> <span class="mi">3</span><span class="p">,</span> <span class="n">number</span><span class="o">=</span><span class="mi">10000</span><span class="p">)</span>
 </code></pre></div>
-<div class="highlight"><pre><span></span><code>0.4310475999999994
+<div class="highlight"><pre><span></span><code>0.5055094999999987
 </code></pre></div>
 <div class="highlight"><pre><span></span><code><span class="n">timeit</span><span class="p">(</span><span class="k">lambda</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">power</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">power</span><span class="p">(</span><span class="n">inv_linear_weights</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="mi">3</span><span class="p">),</span> <span class="n">number</span><span class="o">=</span><span class="mi">10000</span><span class="p">)</span>
 </code></pre></div>
-<div class="highlight"><pre><span></span><code>0.44873660000000015
+<div class="highlight"><pre><span></span><code>0.6110422
 </code></pre></div>
 <p><br></p>
 <p>After a little more exploration it appears that Numpy's <i>power</i> function only offers improvements over base Python when the exponent is very high. For a good discussion on why this is the case you can read more <a href="">here</a>.</p>
 <div class="highlight"><pre><span></span><code><span class="n">timeit</span><span class="p">(</span><span class="k">lambda</span><span class="p">:</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">inv_linear_weights</span> <span class="o">**</span> <span class="mi">50000</span><span class="p">)</span> <span class="o">**</span> <span class="mi">50000</span><span class="p">,</span> <span class="n">number</span><span class="o">=</span><span class="mi">10000</span><span class="p">)</span>
 </code></pre></div>
-<div class="highlight"><pre><span></span><code>0.5387637000000005
+<div class="highlight"><pre><span></span><code>0.5175592999999985
 </code></pre></div>
 <div class="highlight"><pre><span></span><code><span class="n">timeit</span><span class="p">(</span><span class="k">lambda</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">power</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">power</span><span class="p">(</span><span class="n">inv_linear_weights</span><span class="p">,</span> <span class="mi">50000</span><span class="p">),</span> <span class="mi">50000</span><span class="p">),</span> <span class="n">number</span><span class="o">=</span><span class="mi">10000</span><span class="p">)</span>
 </code></pre></div>
-<div class="highlight"><pre><span></span><code>0.526861499999999
+<div class="highlight"><pre><span></span><code>0.5056613999999975
 </code></pre></div>
 <p><br></p>
 <p>We'll now wrap these two steps up into a single function</p>
@@ -1017,7 +1117,7 @@ We'll now define a function that will map from the distances to their relative w
 <p>Looks good, we'll also time it</p>
 <div class="highlight"><pre><span></span><code><span class="n">timeit</span><span class="p">(</span><span class="k">lambda</span><span class="p">:</span> <span class="n">get_full_dataset_weights_matrix</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">frac</span><span class="o">=</span><span class="n">frac</span><span class="p">),</span> <span class="n">number</span><span class="o">=</span><span class="mi">10000</span><span class="p">)</span>
 </code></pre></div>
-<div class="highlight"><pre><span></span><code>1.4529582999999988
+<div class="highlight"><pre><span></span><code>1.8022471000000024
 </code></pre></div>
 <p><br></p>
 <p>Currently we have created a weights matrix that scales in size as the square of the dataset length, this could quickly become prohibitively computationally expensive for large datasets.</p>
@@ -1067,7 +1167,7 @@ We'll now define a function that will map from the distances to their relative w
 </code></pre></div>
 <div class="highlight"><pre><span></span><code>Text(69.58333333333334, 0.5, &#39;Regression Nodes&#39;)
 </code></pre></div>
-<p><img alt="png" src="../img/nbs/output_57_1.png" /></p>
+<p><img alt="png" src="../img/nbs/dev-03-lowess_cell_59_output_1.png" /></p>
 <p><br></p>
 <p>However if we specify <code>num_fits</code> as 10 we can see that only 10 regression nodes are defined in the weights matrix</p>
 <div class="highlight"><pre><span></span><code><span class="n">num_fits</span> <span class="o">=</span> <span class="mi">10</span>
@@ -1086,7 +1186,7 @@ We'll now define a function that will map from the distances to their relative w
 </code></pre></div>
 <div class="highlight"><pre><span></span><code>Text(69.58333333333334, 0.5, &#39;Regression Nodes&#39;)
 </code></pre></div>
-<p><img alt="png" src="../img/nbs/output_59_1.png" /></p>
+<p><img alt="png" src="../img/nbs/dev-03-lowess_cell_61_output_1.png" /></p>
 <p><br></p>
 <p>But what about if you were only really interested in getting highly localised regressions for a specific part of your variable space? Using the reg_anchors variable we can now specify our own grid over which to carry out the regressions.</p>
 <div class="highlight"><pre><span></span><code><span class="n">reg_anchors</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.25</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.75</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mf">1.25</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">,</span> <span class="mf">1.75</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mf">2.5</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mf">3.5</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mf">4.5</span><span class="p">,</span> <span class="mi">5</span><span class="p">])</span>
@@ -1105,7 +1205,7 @@ We'll now define a function that will map from the distances to their relative w
 </code></pre></div>
 <div class="highlight"><pre><span></span><code>Text(69.58333333333334, 0.5, &#39;Regression Nodes&#39;)
 </code></pre></div>
-<p><img alt="png" src="../img/nbs/output_61_1.png" /></p>
+<p><img alt="png" src="../img/nbs/dev-03-lowess_cell_63_output_1.png" /></p>
 <p><br></p>
 <p>We'll wrap these steps up in a couple of functions and add in some syntactic sugar to allow the user to more flexibily specify the distance matrix kwargs</p>
 <div class="highlight"><pre><span></span><code><span class="c1">#exports</span>
@@ -1135,7 +1235,7 @@ We'll now define a function that will map from the distances to their relative w
 </code></pre></div>
 <div class="highlight"><pre><span></span><code>Text(69.58333333333334, 0.5, &#39;Regression Nodes&#39;)
 </code></pre></div>
-<p><img alt="png" src="../img/nbs/output_64_1.png" /></p>
+<p><img alt="png" src="../img/nbs/dev-03-lowess_cell_66_output_1.png" /></p>
 <p><br></p>
 <p>We'll check this still works when we want to carry out a LOWESS fit over all points</p>
 <div class="highlight"><pre><span></span><code><span class="n">weights</span> <span class="o">=</span> <span class="n">get_weights_matrix</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">frac</span><span class="o">=</span><span class="n">frac</span><span class="p">)</span>
@@ -1158,7 +1258,7 @@ We'll now define a function that will map from the distances to their relative w
 
 Text(69.58333333333334, 0.5, &#39;Regression Nodes&#39;)
 </code></pre></div>
-<p><img alt="png" src="../img/nbs/output_66_2.png" /></p>
+<p><img alt="png" src="../img/nbs/dev-03-lowess_cell_68_output_2.png" /></p>
 <p><br></p>
 <h4 id="regression">Regression<a class="headerlink" href="#regression" title="Permanent link">&para;</a></h4>
 <p>Now that we've calculated the weightings necessary for local regression we need to create the regression functions. We'll start by calculating the intercept and gradient of a linear regression fit with optional weighting.</p>
@@ -1188,7 +1288,7 @@ Text(69.58333333333334, 0.5, &#39;Regression Nodes&#39;)
 <span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">frameon</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 <span class="n">eda</span><span class="o">.</span><span class="n">hide_spines</span><span class="p">(</span><span class="n">ax</span><span class="p">)</span>
 </code></pre></div>
-<p><img alt="png" src="../img/nbs/output_69_0.png" /></p>
+<p><img alt="png" src="../img/nbs/dev-03-lowess_cell_71_output_0.png" /></p>
 <p><br></p>
 <p>We'll now repeat the regression calculation but will also specify a weighting for each data-point</p>
 <div class="highlight"><pre><span></span><code><span class="n">row_weights</span> <span class="o">=</span> <span class="n">weights</span><span class="p">[</span><span class="mi">14</span><span class="p">,</span> <span class="p">:]</span>
@@ -1214,7 +1314,7 @@ Text(69.58333333333334, 0.5, &#39;Regression Nodes&#39;)
 
 <span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s1">&#39;../img/LOWESS_single_regression_example.png&#39;</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">250</span><span class="p">)</span>
 </code></pre></div>
-<p><img alt="png" src="../img/nbs/output_71_0.png" /></p>
+<p><img alt="png" src="../img/nbs/dev-03-lowess_cell_73_output_0.png" /></p>
 <p><br></p>
 <p>We can repeat this for all data-points, the error being minimized across these regressions is shown in the equation below</p>
 <div class="arithmatex">\[
@@ -1236,9 +1336,9 @@ Text(69.58333333333334, 0.5, &#39;Regression Nodes&#39;)
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;LOWESS&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">frameon</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 </code></pre></div>
-<div class="highlight"><pre><span></span><code>&lt;matplotlib.legend.Legend at 0x1a4b3a23310&gt;
+<div class="highlight"><pre><span></span><code>&lt;matplotlib.legend.Legend at 0x2bbf235e490&gt;
 </code></pre></div>
-<p><img alt="png" src="../img/nbs/output_73_1.png" /></p>
+<p><img alt="png" src="../img/nbs/dev-03-lowess_cell_75_output_1.png" /></p>
 <p><br></p>
 <p>Whilst this fit doesn't look great remember we can reduce the fraction of data used in each fit to get a more localised regression, in this example we'll also make use of the <code>num_fits</code> parameter to reduce the number of computations that are run.</p>
 <div class="highlight"><pre><span></span><code><span class="n">num_fits</span> <span class="o">=</span> <span class="mi">10</span>
@@ -1258,9 +1358,9 @@ Text(69.58333333333334, 0.5, &#39;Regression Nodes&#39;)
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_pred</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;LOWESS&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">frameon</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 </code></pre></div>
-<div class="highlight"><pre><span></span><code>&lt;matplotlib.legend.Legend at 0x1a4b3a85760&gt;
+<div class="highlight"><pre><span></span><code>&lt;matplotlib.legend.Legend at 0x2bbf23c6280&gt;
 </code></pre></div>
-<p><img alt="png" src="../img/nbs/output_75_1.png" /></p>
+<p><img alt="png" src="../img/nbs/dev-03-lowess_cell_77_output_1.png" /></p>
 <p><br></p>
 <p>Rather than  carrying out the regression fitting and prediction together we'll seperate them to add some flexibility, for example we wouldnt be able to make predictions with a specified number of polynomial fits using the code we just wrote. </p>
 <p>For this fitting function we'll introduce a design matrix which will hold the coefficients for all of our regressions. We'll also make the function used for regression a parameter, this will allow us to replace it with other regression functions (e.g. polynomials) later on.</p>
@@ -1326,9 +1426,9 @@ Text(69.58333333333334, 0.5, &#39;Regression Nodes&#39;)
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;LOWESS&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">frameon</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 </code></pre></div>
-<div class="highlight"><pre><span></span><code>&lt;matplotlib.legend.Legend at 0x1a4b3aefd30&gt;
+<div class="highlight"><pre><span></span><code>&lt;matplotlib.legend.Legend at 0x2bbf242ae50&gt;
 </code></pre></div>
-<p><img alt="png" src="../img/nbs/output_81_1.png" /></p>
+<p><img alt="png" src="../img/nbs/dev-03-lowess_cell_83_output_1.png" /></p>
 <p><br></p>
 <p>If we pass an array to the <code>x_pred</code> parameter then those values will be used as the locations of the output predictions</p>
 <div class="highlight"><pre><span></span><code><span class="n">x_pred</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">])</span>
@@ -1338,9 +1438,9 @@ Text(69.58333333333334, 0.5, &#39;Regression Nodes&#39;)
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_pred</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;LOESS&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">frameon</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 </code></pre></div>
-<div class="highlight"><pre><span></span><code>&lt;matplotlib.legend.Legend at 0x1a4b3b48e80&gt;
+<div class="highlight"><pre><span></span><code>&lt;matplotlib.legend.Legend at 0x2bbf24905b0&gt;
 </code></pre></div>
-<p><img alt="png" src="../img/nbs/output_83_1.png" /></p>
+<p><img alt="png" src="../img/nbs/dev-03-lowess_cell_85_output_1.png" /></p>
 <p><br></p>
 <p>Lets do some time tests, starting with a small dataset</p>
 <div class="highlight"><pre><span></span><code><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="n">num</span><span class="o">=</span><span class="mi">26</span><span class="p">)</span>
@@ -1350,7 +1450,7 @@ Text(69.58333333333334, 0.5, &#39;Regression Nodes&#39;)
 
 <span class="n">y_pred</span> <span class="o">=</span> <span class="n">lowess_fit_and_predict</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
 </code></pre></div>
-<div class="highlight"><pre><span></span><code>2.02 ms ± 57.2 µs per loop (mean ± std. dev. of 7 runs, 100 loops each)
+<div class="highlight"><pre><span></span><code>3.2 ms Â± 398 Âµs per loop (mean Â± std. dev. of 7 runs, 100 loops each)
 </code></pre></div>
 <p><br></p>
 <p>Even with larger datasets it remains performant</p>
@@ -1364,7 +1464,7 @@ Text(69.58333333333334, 0.5, &#39;Regression Nodes&#39;)
 
 <span class="n">y_pred</span> <span class="o">=</span> <span class="n">lowess_fit_and_predict</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">frac</span><span class="o">=</span><span class="n">frac</span><span class="p">,</span> <span class="n">x_pred</span><span class="o">=</span><span class="n">x_pred</span><span class="p">)</span>
 </code></pre></div>
-<div class="highlight"><pre><span></span><code>989 ms ± 21.6 ms per loop (mean ± std. dev. of 7 runs, 1 loop each)
+<div class="highlight"><pre><span></span><code>1.39 s Â± 160 ms per loop (mean Â± std. dev. of 7 runs, 1 loop each)
 </code></pre></div>
 <p><br></p>
 <p>When making predictions with large datasets and low fractions we can achieve low error for the simple sin curve fitting example</p>
@@ -1384,7 +1484,7 @@ Text(69.58333333333334, 0.5, &#39;Regression Nodes&#39;)
 
 <span class="n">df_EI</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </code></pre></div>
-<div class="highlight"><pre><span></span><code>Wall time: 1.86 s
+<div class="highlight"><pre><span></span><code>Wall time: 3.12 s
 </code></pre></div>
 <table>
 <thead>
@@ -1559,7 +1659,7 @@ Text(69.58333333333334, 0.5, &#39;Regression Nodes&#39;)
 <span class="n">x_pred</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">55</span><span class="p">,</span> <span class="mi">41</span><span class="p">)</span>
 <span class="n">y_pred</span> <span class="o">=</span> <span class="n">lowess_fit_and_predict</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">frac</span><span class="o">=</span><span class="mf">0.4</span><span class="p">,</span> <span class="n">num_fits</span><span class="o">=</span><span class="mi">25</span><span class="p">,</span> <span class="n">x_pred</span><span class="o">=</span><span class="n">x_pred</span><span class="p">)</span>
 </code></pre></div>
-<div class="highlight"><pre><span></span><code>Wall time: 63 ms
+<div class="highlight"><pre><span></span><code>Wall time: 140 ms
 </code></pre></div>
 <p><br></p>
 <p>And now we can plot the results!</p>
@@ -1572,11 +1672,11 @@ Text(69.58333333333334, 0.5, &#39;Regression Nodes&#39;)
 <span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">55</span><span class="p">)</span>
 <span class="n">eda</span><span class="o">.</span><span class="n">hide_spines</span><span class="p">(</span><span class="n">ax</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Demand (GW)&#39;</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Day-Ahead Price (£/MWh)&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Day-Ahead Price (Â£/MWh)&#39;</span><span class="p">)</span>
 </code></pre></div>
-<div class="highlight"><pre><span></span><code>Text(0, 0.5, &#39;Day-Ahead Price (£/MWh)&#39;)
+<div class="highlight"><pre><span></span><code>Text(0, 0.5, &#39;Day-Ahead Price (Â£/MWh)&#39;)
 </code></pre></div>
-<p><img alt="png" src="../img/nbs/output_99_1.png" /></p>
+<p><img alt="png" src="../img/nbs/dev-03-lowess_cell_101_output_1.png" /></p>
 <p><br></p>
 <h4 id="robust-regression">Robust Regression<a class="headerlink" href="#robust-regression" title="Permanent link">&para;</a></h4>
 <p>What we've done so far is ultimately nothing more than an extension of linear regression, which has been achieved by fitting multiple regressions and manipulating the weighting of the data points used in each one.</p>
@@ -1589,9 +1689,9 @@ Text(69.58333333333334, 0.5, &#39;Regression Nodes&#39;)
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_pred</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="s1">&#39;--&#39;</span><span class="p">)</span>
 </code></pre></div>
-<div class="highlight"><pre><span></span><code>[&lt;matplotlib.lines.Line2D at 0x1a4b2f9e160&gt;]
+<div class="highlight"><pre><span></span><code>[&lt;matplotlib.lines.Line2D at 0x2bb804d4880&gt;]
 </code></pre></div>
-<p><img alt="png" src="../img/nbs/output_101_1.png" /></p>
+<p><img alt="png" src="../img/nbs/dev-03-lowess_cell_103_output_1.png" /></p>
 <p><br></p>
 <p>But we can also do much more with the weights, including adjusting them to make our regression more robust against outliers. First we'll create a new dataset which has some noise.</p>
 <div class="highlight"><pre><span></span><code><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="n">num</span><span class="o">=</span><span class="mi">150</span><span class="p">)</span>
@@ -1608,9 +1708,9 @@ Text(69.58333333333334, 0.5, &#39;Regression Nodes&#39;)
 <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y_noisy</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;With Noise&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;C1&#39;</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">frameon</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 </code></pre></div>
-<div class="highlight"><pre><span></span><code>&lt;matplotlib.legend.Legend at 0x1a4b39dc310&gt;
+<div class="highlight"><pre><span></span><code>&lt;matplotlib.legend.Legend at 0x2bbf17eda30&gt;
 </code></pre></div>
-<p><img alt="png" src="../img/nbs/output_103_1.png" /></p>
+<p><img alt="png" src="../img/nbs/dev-03-lowess_cell_105_output_1.png" /></p>
 <p><br></p>
 <p>We can use our <code>lowess_fit_and_predict</code> function to make a lowess model of this data</p>
 <div class="highlight"><pre><span></span><code><span class="n">y_pred</span> <span class="o">=</span> <span class="n">lowess_fit_and_predict</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y_noisy</span><span class="p">,</span> <span class="n">frac</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">num_fits</span><span class="o">=</span><span class="mi">25</span><span class="p">)</span> 
@@ -1620,9 +1720,9 @@ Text(69.58333333333334, 0.5, &#39;Regression Nodes&#39;)
 <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y_noisy</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;With Noise&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;C1&#39;</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">frameon</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 </code></pre></div>
-<div class="highlight"><pre><span></span><code>&lt;matplotlib.legend.Legend at 0x1a4b3a630d0&gt;
+<div class="highlight"><pre><span></span><code>&lt;matplotlib.legend.Legend at 0x2bbf164cd60&gt;
 </code></pre></div>
-<p><img alt="png" src="../img/nbs/output_105_1.png" /></p>
+<p><img alt="png" src="../img/nbs/dev-03-lowess_cell_107_output_1.png" /></p>
 <p><br></p>
 <p>The issue though is that our model is being highly skewed by the outliers present in the data, robust regression provides a method to handle this (some improvements can also be made by increasing the <code>frac</code> value). To carry it out we need to repeat the lowess fit, but when we do we must further weight the data-points to minimize the influence of outliers.</p>
 <blockquote>
@@ -1635,7 +1735,7 @@ Cleveland, W. S. (1979) in his paper 'Robust Locally Weighted Regression and Smo
 
 <span class="n">std_dev</span>
 </code></pre></div>
-<div class="highlight"><pre><span></span><code>0.13459575203567298
+<div class="highlight"><pre><span></span><code>0.11416089877901764
 </code></pre></div>
 <p><br></p>
 <p>We can then define a threshold, say 6 standard deviations, and clip any values outside of that. We're left with a cleaned version of the residuals.</p>
@@ -1658,7 +1758,7 @@ Cleveland, W. S. (1979) in his paper 'Robust Locally Weighted Regression and Smo
 <span class="k">for</span> <span class="n">ax</span> <span class="ow">in</span> <span class="n">axs</span><span class="p">:</span>
     <span class="n">eda</span><span class="o">.</span><span class="n">hide_spines</span><span class="p">(</span><span class="n">ax</span><span class="p">)</span>
 </code></pre></div>
-<p><img alt="png" src="../img/nbs/output_109_0.png" /></p>
+<p><img alt="png" src="../img/nbs/dev-03-lowess_cell_111_output_0.png" /></p>
 <p><br></p>
 <p>In the last step we clipped all of our values from -1 to +1, that means if we square our values and deduct them from 1 any outliers will go to 0. The returned vector we'll call the <code>robust_weights</code>. </p>
 <div class="highlight"><pre><span></span><code><span class="n">robust_weights</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">cleaned_residuals</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span>
@@ -1671,7 +1771,7 @@ Cleveland, W. S. (1979) in his paper 'Robust Locally Weighted Regression and Smo
 <span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
 <span class="n">eda</span><span class="o">.</span><span class="n">hide_spines</span><span class="p">(</span><span class="n">ax</span><span class="p">)</span>
 </code></pre></div>
-<p><img alt="png" src="../img/nbs/output_111_0.png" /></p>
+<p><img alt="png" src="../img/nbs/dev-03-lowess_cell_113_output_0.png" /></p>
 <p><br></p>
 <p>Before we move on we'll combine these into a single step for calculating the <code>robust_weights</code></p>
 <div class="highlight"><pre><span></span><code><span class="c1">#exports</span>
@@ -1732,9 +1832,9 @@ Cleveland, W. S. (1979) in his paper 'Robust Locally Weighted Regression and Smo
 <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y_noisy</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;With Noise&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;C1&#39;</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">frameon</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 </code></pre></div>
-<div class="highlight"><pre><span></span><code>&lt;matplotlib.legend.Legend at 0x1a4b329c7f0&gt;
+<div class="highlight"><pre><span></span><code>&lt;matplotlib.legend.Legend at 0x2bb8184ca60&gt;
 </code></pre></div>
-<p><img alt="png" src="../img/nbs/output_116_1.png" /></p>
+<p><img alt="png" src="../img/nbs/dev-03-lowess_cell_118_output_1.png" /></p>
 <p><br></p>
 <p>We've got everything working nicely but the current way we make predictions doesn't make it easy to plug-and-play with other Python libraries, to reduce this friction we'll refactor the code again and create a Scikit-Learn wrapper for our process.</p>
 <div class="highlight"><pre><span></span><code><span class="c1">#exports</span>
@@ -1891,9 +1991,9 @@ Cleveland, W. S. (1979) in his paper 'Robust Locally Weighted Regression and Smo
 <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y_noisy</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;With Noise&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;C1&#39;</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">frameon</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 </code></pre></div>
-<div class="highlight"><pre><span></span><code>&lt;matplotlib.legend.Legend at 0x1a4b45ad850&gt;
+<div class="highlight"><pre><span></span><code>&lt;matplotlib.legend.Legend at 0x2bb80607e50&gt;
 </code></pre></div>
-<p><img alt="png" src="../img/nbs/output_119_1.png" /></p>
+<p><img alt="png" src="../img/nbs/dev-03-lowess_cell_121_output_1.png" /></p>
 <p><br></p>
 <h3 id="confidence-intervals">Confidence Intervals<a class="headerlink" href="#confidence-intervals" title="Permanent link">&para;</a></h3>
 <ul>
@@ -1915,9 +2015,9 @@ We'll start by creating a slightly noiser and longer sin curve than used previou
 <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y_noisy</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;With Noise&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;C1&#39;</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">frameon</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 </code></pre></div>
-<div class="highlight"><pre><span></span><code>&lt;matplotlib.legend.Legend at 0x1a4b78d3ac0&gt;
+<div class="highlight"><pre><span></span><code>&lt;matplotlib.legend.Legend at 0x2bb806c9e80&gt;
 </code></pre></div>
-<p><img alt="png" src="../img/nbs/output_121_1.png" /></p>
+<p><img alt="png" src="../img/nbs/dev-03-lowess_cell_123_output_1.png" /></p>
 <p><br></p>
 <p>To determine the confidence in our estimate we want to know how the model will perform against previously unseen data-points. We can randomly separate our data, calculate the error, then repeat many times to obtain a set of possible errors along the curve - this is a specific use-case of the more general bootstrapping approach.</p>
 <p>To generate bootstrapped statistics we first need to split our data set, we'll begin by creating a function that returns the indexes for our in- and out-of-bag samples.</p>
@@ -1945,7 +2045,7 @@ We'll start by creating a slightly noiser and longer sin curve than used previou
 
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;in-bag: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">ib_idxs</span><span class="p">)</span><span class="si">}</span><span class="s1">, out-of-bag: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">oob_idxs</span><span class="p">)</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
 </code></pre></div>
-<div class="highlight"><pre><span></span><code>in-bag: 250, out-of-bag: 299
+<div class="highlight"><pre><span></span><code>in-bag: 250, out-of-bag: 305
 </code></pre></div>
 <p><br></p>
 <p>We'll now calculate the standard deviation of the in- and out-of-bag errors</p>
@@ -1976,7 +2076,7 @@ We'll start by creating a slightly noiser and longer sin curve than used previou
 </code></pre></div>
 <div class="highlight"><pre><span></span><code><span class="n">get_bootstrap_resid_std_devs</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">bag_size</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">frac</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">num_fits</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
 </code></pre></div>
-<div class="highlight"><pre><span></span><code>(0.020320708955639148, 0.024223597689702395)
+<div class="highlight"><pre><span></span><code>(0.006200435566114433, 0.015852790335401688)
 </code></pre></div>
 <p><br></p>
 <p>We'll quickly plot the distributions of the errors for each set</p>
@@ -1986,7 +2086,7 @@ We'll start by creating a slightly noiser and longer sin curve than used previou
 <span class="n">ib_resid_std_devs</span> <span class="o">=</span> <span class="p">[]</span>
 <span class="n">oob_resid_std_devs</span> <span class="o">=</span> <span class="p">[]</span>
 
-<span class="k">for</span> <span class="n">model_run</span> <span class="ow">in</span> <span class="n">track</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">num_runs</span><span class="p">)):</span>
+<span class="k">for</span> <span class="n">model_run</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">num_runs</span><span class="p">)):</span>
     <span class="n">ib_resid_std_dev</span><span class="p">,</span> <span class="n">oob_resid_std_dev</span> <span class="o">=</span> <span class="n">get_bootstrap_resid_std_devs</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y_noisy</span><span class="p">,</span> <span class="n">bag_size</span><span class="p">,</span> <span class="n">frac</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">num_fits</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
 
     <span class="n">ib_resid_std_devs</span> <span class="o">+=</span> <span class="p">[</span><span class="n">ib_resid_std_dev</span><span class="p">]</span>
@@ -2002,15 +2102,15 @@ We'll start by creating a slightly noiser and longer sin curve than used previou
 <span class="n">eda</span><span class="o">.</span><span class="n">hide_spines</span><span class="p">(</span><span class="n">ax</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Residual</span><span class="se">\&#39;</span><span class="s1">s Standard Deviation&#39;</span><span class="p">)</span>
 </code></pre></div>
-<div><span class="Text-label" style="display:inline-block; overflow:hidden; white-space:nowrap; text-overflow:ellipsis; min-width:0; max-width:15ex; vertical-align:middle; text-align:right"></span>
-<progress style="width:60ex" max="1000" value="1000" class="Progress-main"/></progress>
-<span class="Progress-label"><strong>100%</strong></span>
-<span class="Iteration-label">1000/1000</span>
-<span class="Time-label">[00:28<00:00, 0.03s/it]</span></div>
+<div class="highlight"><pre><span></span><code>100%|â–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆ| 1000/1000 [00:25&lt;00:00, 39.26it/s]
 
-<div class="highlight"><pre><span></span><code>Text(0.5, 0, &quot;Residual&#39;s Standard Deviation&quot;)
+
+
+
+
+Text(0.5, 0, &quot;Residual&#39;s Standard Deviation&quot;)
 </code></pre></div>
-<p><img alt="png" src="../img/nbs/output_129_2.png" /></p>
+<p><img alt="png" src="../img/nbs/dev-03-lowess_cell_131_output_2.png" /></p>
 <p><br></p>
 <p>We'll now create two wrapper functions, one for running models, the other for bootstrapping them. The returned <code>df_bootstrap</code> includes the predictions for each model run.</p>
 <p>N.b. the <code>bootstrap_model</code> is a generalisable function that will work with any Scikit-Learn compatible model.</p>
@@ -2035,7 +2135,7 @@ We'll start by creating a slightly noiser and longer sin curve than used previou
     <span class="c1"># Creating the ensemble predictions</span>
     <span class="n">preds</span> <span class="o">=</span> <span class="p">[]</span>
 
-    <span class="k">for</span> <span class="n">bootstrap_run</span> <span class="ow">in</span> <span class="n">track</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">num_runs</span><span class="p">)):</span>
+    <span class="k">for</span> <span class="n">bootstrap_run</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">num_runs</span><span class="p">)):</span>
         <span class="n">y_pred</span> <span class="o">=</span> <span class="n">run_model</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">bag_size</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="n">model</span><span class="p">,</span> <span class="n">x_pred</span><span class="o">=</span><span class="n">x_pred</span><span class="p">,</span> <span class="o">**</span><span class="n">model_kwargs</span><span class="p">)</span>
         <span class="n">preds</span> <span class="o">+=</span> <span class="p">[</span><span class="n">y_pred</span><span class="p">]</span>
 
@@ -2051,12 +2151,8 @@ We'll start by creating a slightly noiser and longer sin curve than used previou
 
 <span class="n">df_bootstrap</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </code></pre></div>
-<div><span class="Text-label" style="display:inline-block; overflow:hidden; white-space:nowrap; text-overflow:ellipsis; min-width:0; max-width:15ex; vertical-align:middle; text-align:right"></span>
-<progress style="width:60ex" max="1000" value="1000" class="Progress-main"/></progress>
-<span class="Progress-label"><strong>100%</strong></span>
-<span class="Iteration-label">1000/1000</span>
-<span class="Time-label">[00:25<00:00, 0.03s/it]</span></div>
-
+<div class="highlight"><pre><span></span><code>100%|â–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆ| 1000/1000 [00:20&lt;00:00, 48.74it/s]
+</code></pre></div>
 <table>
 <thead>
 <tr>
@@ -2087,123 +2183,123 @@ We'll start by creating a slightly noiser and longer sin curve than used previou
 <tbody>
 <tr>
 <td align="right">0</td>
-<td align="right">0.12324</td>
-<td align="right">0.100568</td>
-<td align="right">0.034607</td>
-<td align="right">0.062935</td>
-<td align="right">0.037283</td>
-<td align="right">0.024595</td>
-<td align="right">0.077896</td>
-<td align="right">0.071517</td>
-<td align="right">0.154899</td>
-<td align="right">0.104609</td>
+<td align="right">0.100492</td>
+<td align="right">0.285576</td>
+<td align="right">0.168229</td>
+<td align="right">0.081885</td>
+<td align="right">0.09317</td>
+<td align="right">0.126089</td>
+<td align="right">0.141063</td>
+<td align="right">0.136327</td>
+<td align="right">0.106476</td>
+<td align="right">0.143553</td>
 <td align="left">...</td>
-<td align="right">0.106006</td>
-<td align="right">0.022008</td>
-<td align="right">0.117897</td>
-<td align="right">0.042924</td>
-<td align="right">0.094948</td>
-<td align="right">0.095224</td>
-<td align="right">0.109828</td>
-<td align="right">0.097625</td>
-<td align="right">0.096894</td>
-<td align="right">0.102314</td>
+<td align="right">0.192997</td>
+<td align="right">0.128739</td>
+<td align="right">0.103581</td>
+<td align="right">-0.007503</td>
+<td align="right">0.150398</td>
+<td align="right">0.079978</td>
+<td align="right">0.091975</td>
+<td align="right">0.070497</td>
+<td align="right">0.159256</td>
+<td align="right">0.165584</td>
 </tr>
 <tr>
 <td align="right">0.02004</td>
-<td align="right">0.135523</td>
-<td align="right">0.114414</td>
-<td align="right">0.04894</td>
-<td align="right">0.077258</td>
-<td align="right">0.051836</td>
-<td align="right">0.039222</td>
-<td align="right">0.091694</td>
-<td align="right">0.086137</td>
-<td align="right">0.166246</td>
-<td align="right">0.116779</td>
+<td align="right">0.113847</td>
+<td align="right">0.294801</td>
+<td align="right">0.17931</td>
+<td align="right">0.095949</td>
+<td align="right">0.107318</td>
+<td align="right">0.139106</td>
+<td align="right">0.153485</td>
+<td align="right">0.147965</td>
+<td align="right">0.116911</td>
+<td align="right">0.155677</td>
 <td align="left">...</td>
-<td align="right">0.119922</td>
-<td align="right">0.037429</td>
-<td align="right">0.131267</td>
-<td align="right">0.057019</td>
-<td align="right">0.109155</td>
-<td align="right">0.107799</td>
-<td align="right">0.12283</td>
-<td align="right">0.111439</td>
-<td align="right">0.109543</td>
-<td align="right">0.11558</td>
+<td align="right">0.204612</td>
+<td align="right">0.142545</td>
+<td align="right">0.117383</td>
+<td align="right">0.009169</td>
+<td align="right">0.162007</td>
+<td align="right">0.095014</td>
+<td align="right">0.106273</td>
+<td align="right">0.0849</td>
+<td align="right">0.170189</td>
+<td align="right">0.176606</td>
 </tr>
 <tr>
 <td align="right">0.04008</td>
-<td align="right">0.147791</td>
-<td align="right">0.128252</td>
-<td align="right">0.063258</td>
-<td align="right">0.091566</td>
-<td align="right">0.06638</td>
-<td align="right">0.053843</td>
-<td align="right">0.105484</td>
-<td align="right">0.100748</td>
-<td align="right">0.177581</td>
-<td align="right">0.128936</td>
+<td align="right">0.12719</td>
+<td align="right">0.304004</td>
+<td align="right">0.190375</td>
+<td align="right">0.110005</td>
+<td align="right">0.121457</td>
+<td align="right">0.152109</td>
+<td align="right">0.165898</td>
+<td align="right">0.159591</td>
+<td align="right">0.127338</td>
+<td align="right">0.167791</td>
 <td align="left">...</td>
-<td align="right">0.133827</td>
-<td align="right">0.052831</td>
-<td align="right">0.144617</td>
-<td align="right">0.071105</td>
-<td align="right">0.12335</td>
-<td align="right">0.120364</td>
-<td align="right">0.135816</td>
-<td align="right">0.125241</td>
-<td align="right">0.122177</td>
-<td align="right">0.128832</td>
+<td align="right">0.21621</td>
+<td align="right">0.156338</td>
+<td align="right">0.131174</td>
+<td align="right">0.025814</td>
+<td align="right">0.173607</td>
+<td align="right">0.110028</td>
+<td align="right">0.120561</td>
+<td align="right">0.099295</td>
+<td align="right">0.181101</td>
+<td align="right">0.187611</td>
 </tr>
 <tr>
 <td align="right">0.06012</td>
-<td align="right">0.160044</td>
-<td align="right">0.142084</td>
-<td align="right">0.077562</td>
-<td align="right">0.10586</td>
-<td align="right">0.080914</td>
-<td align="right">0.068458</td>
-<td align="right">0.119268</td>
-<td align="right">0.115353</td>
-<td align="right">0.188904</td>
-<td align="right">0.141083</td>
+<td align="right">0.140522</td>
+<td align="right">0.313186</td>
+<td align="right">0.201427</td>
+<td align="right">0.124052</td>
+<td align="right">0.1356</td>
+<td align="right">0.165098</td>
+<td align="right">0.178302</td>
+<td align="right">0.171205</td>
+<td align="right">0.137758</td>
+<td align="right">0.179896</td>
 <td align="left">...</td>
-<td align="right">0.147722</td>
-<td align="right">0.068217</td>
-<td align="right">0.157946</td>
-<td align="right">0.085199</td>
-<td align="right">0.137534</td>
-<td align="right">0.132918</td>
-<td align="right">0.148786</td>
-<td align="right">0.13903</td>
-<td align="right">0.134797</td>
-<td align="right">0.14207</td>
+<td align="right">0.227794</td>
+<td align="right">0.170119</td>
+<td align="right">0.144954</td>
+<td align="right">0.042432</td>
+<td align="right">0.185199</td>
+<td align="right">0.125022</td>
+<td align="right">0.13484</td>
+<td align="right">0.113681</td>
+<td align="right">0.191995</td>
+<td align="right">0.198601</td>
 </tr>
 <tr>
 <td align="right">0.08016</td>
-<td align="right">0.172286</td>
-<td align="right">0.155927</td>
-<td align="right">0.091852</td>
-<td align="right">0.120165</td>
-<td align="right">0.09544</td>
-<td align="right">0.083068</td>
-<td align="right">0.133063</td>
-<td align="right">0.129976</td>
-<td align="right">0.200216</td>
-<td align="right">0.153222</td>
+<td align="right">0.153863</td>
+<td align="right">0.322348</td>
+<td align="right">0.212466</td>
+<td align="right">0.138132</td>
+<td align="right">0.149829</td>
+<td align="right">0.178098</td>
+<td align="right">0.190696</td>
+<td align="right">0.182827</td>
+<td align="right">0.148178</td>
+<td align="right">0.192006</td>
 <td align="left">...</td>
-<td align="right">0.161608</td>
-<td align="right">0.083587</td>
-<td align="right">0.171256</td>
-<td align="right">0.099382</td>
-<td align="right">0.151709</td>
-<td align="right">0.14548</td>
-<td align="right">0.161742</td>
-<td align="right">0.15281</td>
-<td align="right">0.147405</td>
-<td align="right">0.1553</td>
+<td align="right">0.239364</td>
+<td align="right">0.183889</td>
+<td align="right">0.158744</td>
+<td align="right">0.059027</td>
+<td align="right">0.196799</td>
+<td align="right">0.139998</td>
+<td align="right">0.149172</td>
+<td align="right">0.128065</td>
+<td align="right">0.202871</td>
+<td align="right">0.209576</td>
 </tr>
 </tbody>
 </table>
@@ -2235,7 +2331,7 @@ We'll start by creating a slightly noiser and longer sin curve than used previou
 <span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
 <span class="n">eda</span><span class="o">.</span><span class="n">hide_spines</span><span class="p">(</span><span class="n">ax</span><span class="p">)</span>
 </code></pre></div>
-<p><img alt="png" src="../img/nbs/output_135_0.png" /></p>
+<p><img alt="png" src="../img/nbs/dev-03-lowess_cell_137_output_0.png" /></p>
 <p><br></p>
 <h3 id="quantile-predictions">Quantile Predictions<a class="headerlink" href="#quantile-predictions" title="Permanent link">&para;</a></h3>
 <p>Earlier when creating our <code>Lowess</code> class we enabled the function used in calculating the design matrix betas to be specified at initialisation. We can now use this to pass a custom function that will calculate the design matrix for a local quantile regression.</p>
@@ -2276,7 +2372,7 @@ We'll start by creating a slightly noiser and longer sin curve than used previou
 
     <span class="n">q_to_preds</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
 
-    <span class="k">for</span> <span class="n">q</span> <span class="ow">in</span> <span class="n">track</span><span class="p">(</span><span class="n">qs</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">q</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="n">qs</span><span class="p">):</span>
         <span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">q</span><span class="o">=</span><span class="n">q</span><span class="p">,</span> <span class="o">**</span><span class="n">model_kwargs</span><span class="p">)</span>
         <span class="n">q_to_preds</span><span class="p">[</span><span class="n">q</span><span class="p">]</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">x_pred</span><span class="p">)</span>
 
@@ -2287,19 +2383,13 @@ We'll start by creating a slightly noiser and longer sin curve than used previou
 
     <span class="k">return</span> <span class="n">df_quantiles</span>
 </code></pre></div>
-<div class="highlight"><pre><span></span><code><span class="o">%%</span><span class="n">time</span>
-
-<span class="n">df_quantiles</span> <span class="o">=</span> <span class="n">quantile_model</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y_noisy</span><span class="p">,</span> <span class="n">frac</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">num_fits</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">robust_iters</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><span class="n">df_quantiles</span> <span class="o">=</span> <span class="n">quantile_model</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y_noisy</span><span class="p">,</span> <span class="n">frac</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">num_fits</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">robust_iters</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 
 <span class="n">df_quantiles</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </code></pre></div>
-<div><span class="Text-label" style="display:inline-block; overflow:hidden; white-space:nowrap; text-overflow:ellipsis; min-width:0; max-width:15ex; vertical-align:middle; text-align:right"></span>
-<progress style="width:60ex" max="9" value="9" class="Progress-main"/></progress>
-<span class="Progress-label"><strong>100%</strong></span>
-<span class="Iteration-label">9/9</span>
-<span class="Time-label">[00:11<00:01, 1.18s/it]</span></div>
+<div class="highlight"><pre><span></span><code>100%|â–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆ| 9/9 [00:09&lt;00:00,  1.11s/it]
 
-<div class="highlight"><pre><span></span><code>Wall time: 10.6 s
+Wall time: 9.96 s
 </code></pre></div>
 <table>
 <thead>
@@ -2319,63 +2409,63 @@ We'll start by creating a slightly noiser and longer sin curve than used previou
 <tbody>
 <tr>
 <td align="right">0</td>
-<td align="right">-0.071164</td>
-<td align="right">-0.004352</td>
-<td align="right">0.011374</td>
-<td align="right">0.025166</td>
-<td align="right">0.080732</td>
-<td align="right">0.091657</td>
-<td align="right">0.144884</td>
-<td align="right">0.163482</td>
-<td align="right">0.192227</td>
+<td align="right">0.001332</td>
+<td align="right">0.019899</td>
+<td align="right">0.040851</td>
+<td align="right">0.058275</td>
+<td align="right">0.079923</td>
+<td align="right">0.107117</td>
+<td align="right">0.12615</td>
+<td align="right">0.20098</td>
+<td align="right">0.198097</td>
 </tr>
 <tr>
 <td align="right">0.02004</td>
-<td align="right">-0.056877</td>
-<td align="right">0.009553</td>
-<td align="right">0.025934</td>
-<td align="right">0.040718</td>
-<td align="right">0.095134</td>
-<td align="right">0.106431</td>
-<td align="right">0.158797</td>
-<td align="right">0.178013</td>
-<td align="right">0.207308</td>
+<td align="right">0.013525</td>
+<td align="right">0.033523</td>
+<td align="right">0.055063</td>
+<td align="right">0.072684</td>
+<td align="right">0.094939</td>
+<td align="right">0.122101</td>
+<td align="right">0.141805</td>
+<td align="right">0.215066</td>
+<td align="right">0.214086</td>
 </tr>
 <tr>
 <td align="right">0.04008</td>
-<td align="right">-0.042584</td>
-<td align="right">0.023455</td>
-<td align="right">0.040493</td>
-<td align="right">0.056241</td>
-<td align="right">0.109531</td>
-<td align="right">0.121194</td>
-<td align="right">0.172707</td>
-<td align="right">0.192542</td>
-<td align="right">0.222345</td>
+<td align="right">0.025715</td>
+<td align="right">0.047141</td>
+<td align="right">0.069255</td>
+<td align="right">0.087094</td>
+<td align="right">0.109947</td>
+<td align="right">0.137091</td>
+<td align="right">0.157439</td>
+<td align="right">0.229147</td>
+<td align="right">0.230071</td>
 </tr>
 <tr>
 <td align="right">0.06012</td>
-<td align="right">-0.028267</td>
-<td align="right">0.037368</td>
-<td align="right">0.055069</td>
-<td align="right">0.07175</td>
-<td align="right">0.123931</td>
-<td align="right">0.135959</td>
-<td align="right">0.186627</td>
-<td align="right">0.207077</td>
-<td align="right">0.237343</td>
+<td align="right">0.037911</td>
+<td align="right">0.060761</td>
+<td align="right">0.083439</td>
+<td align="right">0.101519</td>
+<td align="right">0.124962</td>
+<td align="right">0.152102</td>
+<td align="right">0.173062</td>
+<td align="right">0.243235</td>
+<td align="right">0.246067</td>
 </tr>
 <tr>
 <td align="right">0.08016</td>
-<td align="right">-0.013915</td>
-<td align="right">0.0513</td>
-<td align="right">0.069668</td>
-<td align="right">0.087256</td>
-<td align="right">0.138339</td>
-<td align="right">0.150735</td>
-<td align="right">0.200564</td>
-<td align="right">0.221624</td>
-<td align="right">0.252307</td>
+<td align="right">0.050118</td>
+<td align="right">0.074387</td>
+<td align="right">0.097623</td>
+<td align="right">0.115969</td>
+<td align="right">0.139991</td>
+<td align="right">0.167139</td>
+<td align="right">0.188679</td>
+<td align="right">0.257339</td>
+<td align="right">0.26208</td>
 </tr>
 </tbody>
 </table>
@@ -2391,7 +2481,7 @@ We'll start by creating a slightly noiser and longer sin curve than used previou
 <span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
 <span class="n">eda</span><span class="o">.</span><span class="n">hide_spines</span><span class="p">(</span><span class="n">ax</span><span class="p">)</span>
 </code></pre></div>
-<p><img alt="png" src="../img/nbs/output_142_0.png" /></p>
+<p><img alt="png" src="../img/nbs/dev-03-lowess_cell_144_output_0.png" /></p>
 <p><br></p>
 <h3 id="external-weights">External Weights<a class="headerlink" href="#external-weights" title="Permanent link">&para;</a></h3>
 <p>When we made our <code>Lowess</code> class we included the option to specify <code>external_weights</code>, the reason for this is that it allows us to carry out further model smoothing using variables outside of the regression. This makes particular sense for variables such as time.</p>
@@ -2411,11 +2501,11 @@ We'll start by creating a slightly noiser and longer sin curve than used previou
 <span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">60</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="o">-</span><span class="mi">25</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Demand - [Wind + Solar] (MW)&#39;</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Price (£/MWh)&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Price (Â£/MWh)&#39;</span><span class="p">)</span>
 </code></pre></div>
-<div class="highlight"><pre><span></span><code>Text(0, 0.5, &#39;Price (£/MWh)&#39;)
+<div class="highlight"><pre><span></span><code>Text(0, 0.5, &#39;Price (Â£/MWh)&#39;)
 </code></pre></div>
-<p><img alt="png" src="../img/nbs/output_144_1.png" /></p>
+<p><img alt="png" src="../img/nbs/dev-03-lowess_cell_146_output_1.png" /></p>
 <p><br></p>
 <p>Lets start by adding some boolean filters that we'll then cast as integers to act as weights, for one we'll choose an early winter period from the dataset, for the other we'll take the latest summer</p>
 <div class="highlight"><pre><span></span><code><span class="n">model_to_dt_weights</span> <span class="o">=</span> <span class="p">{</span>
@@ -2451,11 +2541,11 @@ We'll start by creating a slightly noiser and longer sin curve than used previou
 <span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">60</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="o">-</span><span class="mi">25</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Demand - [Wind + Solar] (MW)&#39;</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Price (£/MWh)&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Price (Â£/MWh)&#39;</span><span class="p">)</span>
 </code></pre></div>
-<div class="highlight"><pre><span></span><code>Text(0, 0.5, &#39;Price (£/MWh)&#39;)
+<div class="highlight"><pre><span></span><code>Text(0, 0.5, &#39;Price (Â£/MWh)&#39;)
 </code></pre></div>
-<p><img alt="png" src="../img/nbs/output_148_1.png" /></p>
+<p><img alt="png" src="../img/nbs/dev-03-lowess_cell_150_output_1.png" /></p>
 <p><br></p>
 <p>Instead of just using a boolean value to indicate whether an observation belongs to a specific date period, we could instead assign weightings based on the distance from specific dates. This has the benefit that we can reuse existing functions that we wrote earlier.</p>
 <div class="highlight"><pre><span></span><code><span class="c1">#exports</span>
@@ -2473,9 +2563,9 @@ We'll start by creating a slightly noiser and longer sin curve than used previou
 
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">df_EI</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">weights</span><span class="p">)</span>
 </code></pre></div>
-<div class="highlight"><pre><span></span><code>[&lt;matplotlib.lines.Line2D at 0x1a4b3acd190&gt;]
+<div class="highlight"><pre><span></span><code>[&lt;matplotlib.lines.Line2D at 0x2bb8061df10&gt;]
 </code></pre></div>
-<p><img alt="png" src="../img/nbs/output_151_1.png" /></p>
+<p><img alt="png" src="../img/nbs/dev-03-lowess_cell_153_output_1.png" /></p>
 <p><br></p>
 <p>We'll create a wrapper that does this for all of the dates at which we wish to create a localised Lowess model</p>
 <div class="highlight"><pre><span></span><code><span class="c1">#exports</span>
@@ -2495,7 +2585,7 @@ We'll start by creating a slightly noiser and longer sin curve than used previou
 
 <span class="n">sns</span><span class="o">.</span><span class="n">heatmap</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">dt_to_weights</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">df_EI_model</span><span class="o">.</span><span class="n">index</span><span class="p">))</span>
 </code></pre></div>
-<div class="highlight"><pre><span></span><code>Wall time: 2.86 s
+<div class="highlight"><pre><span></span><code>Wall time: 1.77 s
 
 
 
@@ -2503,7 +2593,7 @@ We'll start by creating a slightly noiser and longer sin curve than used previou
 
 &lt;AxesSubplot:ylabel=&#39;local_datetime&#39;&gt;
 </code></pre></div>
-<p><img alt="png" src="../img/nbs/output_154_2.png" /></p>
+<p><img alt="png" src="../img/nbs/dev-03-lowess_cell_156_output_2.png" /></p>
 <p><br></p>
 <p>We'll create two wrapper functions for fitting the models and estimating using them as an ensemble. We'll also create a function that sanitises the inputs to the <code>SmoothDates</code> fitting method.</p>
 <div class="highlight"><pre><span></span><code><span class="c1">#exports</span>
@@ -2511,7 +2601,7 @@ We'll start by creating a slightly noiser and longer sin curve than used previou
     <span class="sd">&quot;&quot;&quot;Fits an ensemble of LOWESS models which have varying relevance for each subset of data over time&quot;&quot;&quot;</span>
     <span class="n">ensemble_member_to_models</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
 
-    <span class="k">for</span> <span class="n">ensemble_member</span><span class="p">,</span> <span class="n">ensemble_weights</span> <span class="ow">in</span> <span class="n">track</span><span class="p">(</span><span class="n">ensemble_member_to_weights</span><span class="o">.</span><span class="n">items</span><span class="p">()):</span>
+    <span class="k">for</span> <span class="n">ensemble_member</span><span class="p">,</span> <span class="n">ensemble_weights</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="n">ensemble_member_to_weights</span><span class="o">.</span><span class="n">items</span><span class="p">()):</span>
         <span class="n">ensemble_member_to_models</span><span class="p">[</span><span class="n">ensemble_member</span><span class="p">]</span> <span class="o">=</span> <span class="n">Lowess</span><span class="p">(</span><span class="o">**</span><span class="n">lowess_kwargs</span><span class="p">)</span>
         <span class="n">ensemble_member_to_models</span><span class="p">[</span><span class="n">ensemble_member</span><span class="p">]</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">external_weights</span><span class="o">=</span><span class="n">ensemble_weights</span><span class="p">,</span> <span class="o">**</span><span class="n">fit_kwargs</span><span class="p">)</span>
 
@@ -2596,6 +2686,11 @@ We'll start by creating a slightly noiser and longer sin curve than used previou
 <span class="sd">            robust_iters: Number of robustifying iterations to carry out</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
+        <span class="k">for</span> <span class="n">attr_name</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;threshold_value&#39;</span><span class="p">,</span> <span class="s1">&#39;threshold_units&#39;</span><span class="p">,</span> <span class="s1">&#39;frac&#39;</span><span class="p">]:</span>
+            <span class="k">if</span> <span class="n">attr_name</span> <span class="ow">in</span> <span class="n">fit_kwargs</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+                <span class="n">attr_value</span> <span class="o">=</span> <span class="n">fit_kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="n">attr_name</span><span class="p">)</span>
+                <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attr_name</span><span class="p">,</span> <span class="n">attr_value</span><span class="p">)</span>
+
         <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">dt_idx</span><span class="p">,</span> <span class="n">reg_dates</span> <span class="o">=</span> <span class="n">process_smooth_dates_fit_inputs</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">dt_idx</span><span class="p">,</span> <span class="n">reg_dates</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">ensemble_member_to_weights</span> <span class="o">=</span> <span class="n">construct_dt_weights</span><span class="p">(</span><span class="n">dt_idx</span><span class="p">,</span> <span class="n">reg_dates</span><span class="p">,</span> 
                                                                <span class="n">threshold_value</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">threshold_value</span><span class="p">,</span> 
@@ -2653,181 +2748,337 @@ We'll start by creating a slightly noiser and longer sin curve than used previou
 <span class="n">smooth_dates</span> <span class="o">=</span> <span class="n">SmoothDates</span><span class="p">()</span>
 <span class="n">smooth_dates</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">s_dispatchable</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">s_price</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">dt_idx</span><span class="o">=</span><span class="n">s_dispatchable</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> 
                  <span class="n">reg_dates</span><span class="o">=</span><span class="n">reg_dates</span><span class="p">,</span> <span class="n">frac</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">num_fits</span><span class="o">=</span><span class="mi">31</span><span class="p">,</span> <span class="n">threshold_value</span><span class="o">=</span><span class="mi">26</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>100%|â–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆ| 49/49 [05:34&lt;00:00,  6.82s/it]
 
-<span class="c1"># Prediction</span>
-<span class="n">x_pred</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">60</span><span class="p">,</span> <span class="mi">53</span><span class="p">)</span>
+
+Wall time: 5min 36s
+</code></pre></div>
+<table>
+<thead>
+<tr>
+<th align="right">Unnamed: 0</th>
+<th align="right">2009-01-04</th>
+<th align="right">2009-04-05</th>
+<th align="right">2009-07-05</th>
+<th align="right">2009-10-04</th>
+<th align="right">2010-01-03</th>
+<th align="right">2010-04-04</th>
+<th align="right">2010-07-04</th>
+<th align="right">2010-10-03</th>
+<th align="right">2011-01-02</th>
+<th align="right">2011-04-03</th>
+<th align="left">...</th>
+<th align="right">2018-09-23</th>
+<th align="right">2018-12-23</th>
+<th align="right">2019-03-24</th>
+<th align="right">2019-06-23</th>
+<th align="right">2019-09-22</th>
+<th align="right">2019-12-22</th>
+<th align="right">2020-03-22</th>
+<th align="right">2020-06-21</th>
+<th align="right">2020-09-20</th>
+<th align="right">2020-12-20</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="right">8</td>
+<td align="right">-8.94494</td>
+<td align="right">-9.51974</td>
+<td align="right">-8.28428</td>
+<td align="right">-4.07312</td>
+<td align="right">2.36397</td>
+<td align="right">9.20304</td>
+<td align="right">15.5523</td>
+<td align="right">19.952</td>
+<td align="right">21.5384</td>
+<td align="right">21.9928</td>
+<td align="left">...</td>
+<td align="right">28.3222</td>
+<td align="right">26.2734</td>
+<td align="right">22.3372</td>
+<td align="right">17.3046</td>
+<td align="right">12.547</td>
+<td align="right">8.98005</td>
+<td align="right">6.83905</td>
+<td align="right">6.27963</td>
+<td align="right">6.65813</td>
+<td align="right">7.26188</td>
+</tr>
+<tr>
+<td align="right">9</td>
+<td align="right">-6.99248</td>
+<td align="right">-7.53971</td>
+<td align="right">-6.35583</td>
+<td align="right">-2.32092</td>
+<td align="right">3.85282</td>
+<td align="right">10.4279</td>
+<td align="right">16.5652</td>
+<td align="right">20.8613</td>
+<td align="right">22.4654</td>
+<td align="right">22.9732</td>
+<td align="left">...</td>
+<td align="right">29.946</td>
+<td align="right">27.9123</td>
+<td align="right">24.0496</td>
+<td align="right">19.1683</td>
+<td align="right">14.5875</td>
+<td align="right">11.1863</td>
+<td align="right">9.19079</td>
+<td align="right">8.70926</td>
+<td align="right">9.10023</td>
+<td align="right">9.70888</td>
+</tr>
+<tr>
+<td align="right">10</td>
+<td align="right">-5.04027</td>
+<td align="right">-5.56007</td>
+<td align="right">-4.42799</td>
+<td align="right">-0.569485</td>
+<td align="right">5.34086</td>
+<td align="right">11.652</td>
+<td align="right">17.5774</td>
+<td align="right">21.77</td>
+<td align="right">23.3919</td>
+<td align="right">23.9533</td>
+<td align="left">...</td>
+<td align="right">31.579</td>
+<td align="right">29.5601</td>
+<td align="right">25.771</td>
+<td align="right">21.0399</td>
+<td align="right">16.6341</td>
+<td align="right">13.3969</td>
+<td align="right">11.5457</td>
+<td align="right">11.1418</td>
+<td align="right">11.5459</td>
+<td align="right">12.1605</td>
+</tr>
+<tr>
+<td align="right">11</td>
+<td align="right">-3.08905</td>
+<td align="right">-3.58251</td>
+<td align="right">-2.50355</td>
+<td align="right">1.17778</td>
+<td align="right">6.82498</td>
+<td align="right">12.8728</td>
+<td align="right">18.587</td>
+<td align="right">22.6767</td>
+<td align="right">24.316</td>
+<td align="right">24.9304</td>
+<td align="left">...</td>
+<td align="right">33.2324</td>
+<td align="right">31.2281</td>
+<td align="right">27.5125</td>
+<td align="right">22.9319</td>
+<td align="right">18.7011</td>
+<td align="right">15.628</td>
+<td align="right">13.922</td>
+<td align="right">13.5968</td>
+<td align="right">14.0149</td>
+<td align="right">14.6364</td>
+</tr>
+<tr>
+<td align="right">12</td>
+<td align="right">-1.1388</td>
+<td align="right">-1.60631</td>
+<td align="right">-0.581076</td>
+<td align="right">2.92264</td>
+<td align="right">8.3066</td>
+<td align="right">14.0911</td>
+<td align="right">19.5944</td>
+<td align="right">23.5817</td>
+<td align="right">25.239</td>
+<td align="right">25.907</td>
+<td align="left">...</td>
+<td align="right">34.9068</td>
+<td align="right">32.9172</td>
+<td align="right">29.2753</td>
+<td align="right">24.8442</td>
+<td align="right">20.7861</td>
+<td align="right">17.8751</td>
+<td align="right">16.313</td>
+<td align="right">16.0661</td>
+<td align="right">16.4993</td>
+<td align="right">17.1295</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight"><pre><span></span><code><span class="n">x_pred</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">60</span><span class="p">,</span> <span class="mi">521</span><span class="p">)</span>
 
 <span class="n">df_pred</span> <span class="o">=</span> <span class="n">smooth_dates</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">x_pred</span><span class="o">=</span><span class="n">x_pred</span><span class="p">)</span>
 
 <span class="n">df_pred</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </code></pre></div>
-<div class="highlight"><pre><span></span><code>Wall time: 206 ms
-</code></pre></div>
 <table>
 <thead>
 <tr>
-<th align="left">Unnamed: 0</th>
-<th align="right">8.0</th>
-<th align="right">9.0</th>
-<th align="right">10.0</th>
-<th align="right">11.0</th>
-<th align="right">12.0</th>
-<th align="right">13.0</th>
-<th align="right">14.0</th>
-<th align="right">15.0</th>
-<th align="right">16.0</th>
-<th align="right">17.0</th>
+<th align="right">Unnamed: 0</th>
+<th align="right">2009-01-04</th>
+<th align="right">2009-04-05</th>
+<th align="right">2009-07-05</th>
+<th align="right">2009-10-04</th>
+<th align="right">2010-01-03</th>
+<th align="right">2010-04-04</th>
+<th align="right">2010-07-04</th>
+<th align="right">2010-10-03</th>
+<th align="right">2011-01-02</th>
+<th align="right">2011-04-03</th>
 <th align="left">...</th>
-<th align="right">51.0</th>
-<th align="right">52.0</th>
-<th align="right">53.0</th>
-<th align="right">54.0</th>
-<th align="right">55.0</th>
-<th align="right">56.0</th>
-<th align="right">57.0</th>
-<th align="right">58.0</th>
-<th align="right">59.0</th>
-<th align="right">60.0</th>
+<th align="right">2018-09-23</th>
+<th align="right">2018-12-23</th>
+<th align="right">2019-03-24</th>
+<th align="right">2019-06-23</th>
+<th align="right">2019-09-22</th>
+<th align="right">2019-12-22</th>
+<th align="right">2020-03-22</th>
+<th align="right">2020-06-21</th>
+<th align="right">2020-09-20</th>
+<th align="right">2020-12-20</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td align="left">2009-01-04</td>
-<td align="right">-25.1979</td>
-<td align="right">-19.6978</td>
-<td align="right">-14.1985</td>
-<td align="right">-8.70185</td>
-<td align="right">-3.20799</td>
-<td align="right">2.27958</td>
-<td align="right">7.7668</td>
-<td align="right">13.2571</td>
-<td align="right">18.7712</td>
-<td align="right">24.3397</td>
+<td align="right">8</td>
+<td align="right">-8.94622</td>
+<td align="right">-9.52321</td>
+<td align="right">-8.29015</td>
+<td align="right">-4.08021</td>
+<td align="right">2.35777</td>
+<td align="right">9.19846</td>
+<td align="right">15.5493</td>
+<td align="right">19.9497</td>
+<td align="right">21.5345</td>
+<td align="right">21.9869</td>
 <td align="left">...</td>
-<td align="right">191.52</td>
-<td align="right">199.994</td>
-<td align="right">208.405</td>
-<td align="right">216.829</td>
-<td align="right">225.204</td>
-<td align="right">233.6</td>
-<td align="right">241.959</td>
-<td align="right">250.322</td>
-<td align="right">258.639</td>
-<td align="right">267.002</td>
+<td align="right">28.3311</td>
+<td align="right">26.2815</td>
+<td align="right">22.345</td>
+<td align="right">17.3149</td>
+<td align="right">12.5615</td>
+<td align="right">8.99827</td>
+<td align="right">6.8602</td>
+<td align="right">6.30183</td>
+<td align="right">6.67918</td>
+<td align="right">7.2812</td>
 </tr>
 <tr>
-<td align="left">2009-04-05</td>
-<td align="right">-35.8976</td>
-<td align="right">-28.4311</td>
-<td align="right">-20.9662</td>
-<td align="right">-13.5091</td>
-<td align="right">-6.05717</td>
-<td align="right">1.38257</td>
-<td align="right">8.82444</td>
-<td align="right">16.2744</td>
-<td align="right">23.7693</td>
-<td align="right">31.3579</td>
+<td align="right">8.1</td>
+<td align="right">-8.75097</td>
+<td align="right">-9.32519</td>
+<td align="right">-8.09729</td>
+<td align="right">-3.90497</td>
+<td align="right">2.50667</td>
+<td align="right">9.32096</td>
+<td align="right">15.6506</td>
+<td align="right">20.0406</td>
+<td align="right">21.6272</td>
+<td align="right">22.0849</td>
 <td align="left">...</td>
-<td align="right">241.977</td>
-<td align="right">251.959</td>
-<td align="right">261.86</td>
-<td align="right">271.777</td>
-<td align="right">281.632</td>
-<td align="right">291.514</td>
-<td align="right">301.353</td>
-<td align="right">311.198</td>
-<td align="right">320.989</td>
-<td align="right">330.837</td>
+<td align="right">28.4934</td>
+<td align="right">26.4453</td>
+<td align="right">22.5162</td>
+<td align="right">17.5013</td>
+<td align="right">12.7656</td>
+<td align="right">9.219</td>
+<td align="right">7.09552</td>
+<td align="right">6.54496</td>
+<td align="right">6.92356</td>
+<td align="right">7.52606</td>
 </tr>
 <tr>
-<td align="left">2009-07-05</td>
-<td align="right">-36.7886</td>
-<td align="right">-28.2248</td>
-<td align="right">-19.6637</td>
-<td align="right">-11.1177</td>
-<td align="right">-2.58043</td>
-<td align="right">5.93604</td>
-<td align="right">14.4576</td>
-<td align="right">22.9934</td>
-<td align="right">31.6014</td>
-<td align="right">40.3522</td>
+<td align="right">8.2</td>
+<td align="right">-8.55572</td>
+<td align="right">-9.12717</td>
+<td align="right">-7.90442</td>
+<td align="right">-3.72972</td>
+<td align="right">2.65559</td>
+<td align="right">9.44347</td>
+<td align="right">15.7519</td>
+<td align="right">20.1316</td>
+<td align="right">21.7199</td>
+<td align="right">22.183</td>
 <td align="left">...</td>
-<td align="right">267.246</td>
-<td align="right">277.279</td>
-<td align="right">287.219</td>
-<td align="right">297.171</td>
-<td align="right">307.058</td>
-<td align="right">316.974</td>
-<td align="right">326.848</td>
-<td align="right">336.73</td>
-<td align="right">346.558</td>
-<td align="right">356.447</td>
+<td align="right">28.6558</td>
+<td align="right">26.6092</td>
+<td align="right">22.6874</td>
+<td align="right">17.6877</td>
+<td align="right">12.9696</td>
+<td align="right">9.43967</td>
+<td align="right">7.33076</td>
+<td align="right">6.788</td>
+<td align="right">7.16784</td>
+<td align="right">7.77083</td>
 </tr>
 <tr>
-<td align="left">2009-10-04</td>
-<td align="right">-18.8748</td>
-<td align="right">-10.7551</td>
-<td align="right">-2.63899</td>
-<td align="right">5.45781</td>
-<td align="right">13.5435</td>
-<td align="right">21.6034</td>
-<td align="right">29.6715</td>
-<td align="right">37.7625</td>
-<td align="right">45.9473</td>
-<td align="right">54.3142</td>
+<td align="right">8.3</td>
+<td align="right">-8.36047</td>
+<td align="right">-8.92915</td>
+<td align="right">-7.71153</td>
+<td align="right">-3.55445</td>
+<td align="right">2.80452</td>
+<td align="right">9.56599</td>
+<td align="right">15.8532</td>
+<td align="right">20.2225</td>
+<td align="right">21.8127</td>
+<td align="right">22.2811</td>
 <td align="left">...</td>
-<td align="right">258.998</td>
-<td align="right">267.471</td>
-<td align="right">275.842</td>
-<td align="right">284.219</td>
-<td align="right">292.535</td>
-<td align="right">300.88</td>
-<td align="right">309.191</td>
-<td align="right">317.513</td>
-<td align="right">325.788</td>
-<td align="right">334.121</td>
+<td align="right">28.8182</td>
+<td align="right">26.7731</td>
+<td align="right">22.8587</td>
+<td align="right">17.874</td>
+<td align="right">13.1737</td>
+<td align="right">9.66026</td>
+<td align="right">7.56589</td>
+<td align="right">7.03092</td>
+<td align="right">7.41202</td>
+<td align="right">8.0155</td>
 </tr>
 <tr>
-<td align="left">2010-01-03</td>
-<td align="right">10.9547</td>
-<td align="right">17.854</td>
-<td align="right">24.7496</td>
-<td align="right">31.627</td>
-<td align="right">38.4928</td>
-<td align="right">45.3325</td>
-<td align="right">52.1798</td>
-<td align="right">59.0516</td>
-<td align="right">66.0185</td>
-<td align="right">73.172</td>
+<td align="right">8.4</td>
+<td align="right">-8.16521</td>
+<td align="right">-8.73111</td>
+<td align="right">-7.51863</td>
+<td align="right">-3.37915</td>
+<td align="right">2.95346</td>
+<td align="right">9.68853</td>
+<td align="right">15.9545</td>
+<td align="right">20.3134</td>
+<td align="right">21.9054</td>
+<td align="right">22.3792</td>
 <td align="left">...</td>
-<td align="right">244.872</td>
-<td align="right">251.738</td>
-<td align="right">258.495</td>
-<td align="right">265.25</td>
-<td align="right">271.951</td>
-<td align="right">278.678</td>
-<td align="right">285.379</td>
-<td align="right">292.095</td>
-<td align="right">298.771</td>
-<td align="right">305.502</td>
+<td align="right">28.9806</td>
+<td align="right">26.937</td>
+<td align="right">23.0299</td>
+<td align="right">18.0604</td>
+<td align="right">13.3777</td>
+<td align="right">9.88076</td>
+<td align="right">7.80091</td>
+<td align="right">7.2737</td>
+<td align="right">7.65606</td>
+<td align="right">8.26006</td>
 </tr>
 </tbody>
 </table>
 <p><br></p>
-<p>We'll visualise our surface estimate as a wire-plot, where the darker colours denote price curve estimates from longer ago.</p>
-<div class="highlight"><pre><span></span><code><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">dpi</span><span class="o">=</span><span class="mi">150</span><span class="p">)</span>
+<p>We'll now visualise our surface estimate as a wire-plot, showing how the average price of electricity has changed at different levels of residual demand (after RES) over time</p>
+<div class="highlight"><pre><span></span><code><span class="n">fig</span><span class="p">,</span> <span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">cax</span><span class="p">)</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">dpi</span><span class="o">=</span><span class="mi">150</span><span class="p">,</span> <span class="n">ncols</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">gridspec_kw</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;width_ratios&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">15</span><span class="p">,</span> <span class="mi">1</span><span class="p">]})</span>
 
 <span class="n">df_pred</span><span class="o">.</span><span class="n">T</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">legend</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;viridis&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
+<span class="n">mpl</span><span class="o">.</span><span class="n">colorbar</span><span class="o">.</span><span class="n">ColorbarBase</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">cax</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">mpl</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">viridis</span><span class="p">,</span> <span class="n">values</span><span class="o">=</span><span class="n">df_pred</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">orientation</span><span class="o">=</span><span class="s1">&#39;vertical&#39;</span><span class="p">)</span>
 
 <span class="n">eda</span><span class="o">.</span><span class="n">hide_spines</span><span class="p">(</span><span class="n">ax</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Demand - [Solar + Wind] (MW)&#39;</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Price (£/MWh)&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Price (Â£/MWh)&#39;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="n">df_pred</span><span class="o">.</span><span class="n">columns</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">400</span><span class="p">)</span>
+
+<span class="n">cax</span><span class="o">.</span><span class="n">get_yaxis</span><span class="p">()</span><span class="o">.</span><span class="n">labelpad</span> <span class="o">=</span> <span class="mi">15</span>
+<span class="n">cax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Demand - [Solar + Wind] (MW)&#39;</span><span class="p">,</span> <span class="n">rotation</span><span class="o">=</span><span class="mi">270</span><span class="p">)</span>
 </code></pre></div>
-<div class="highlight"><pre><span></span><code>(0.0, 400.0)
+<div class="highlight"><pre><span></span><code>Text(0, 0.5, &#39;Demand - [Solar + Wind] (MW)&#39;)
 </code></pre></div>
-<p><img alt="png" src="../img/nbs/output_161_1.png" /></p>
+<p><img alt="png" src="../img/nbs/dev-03-lowess_cell_164_output_1.png" /></p>
 <p><br></p>
 <p>Whilst <code>SmoothDates</code> accepts time-series of dispatchable generation and price as inputs to the <code>fit</code> method, <code>predict</code> doesn't accept a time-series of dispatchable generation or return a time-series of price estimates. Instead, <code>predict</code> returns a dataframe of the smoothed surface - unfortunately this is not what we need if we want to interface our work with the wider Python eco-system for sklearn based models. </p>
 <p>We'll create a further wrapper on top of <code>SmoothDates</code> that will accept a time-series of dispatchable generation and return the price estimate when the <code>predict</code> method is used. This will later be used for hyper-parameter tuning in, but could also be interfaced with tools such as TPOT for automated pipeline generation (perhaps the MOE estimate could be ensembled as an input to an ML model?).</p>
@@ -2836,7 +3087,7 @@ We'll start by creating a slightly noiser and longer sin curve than used previou
     <span class="sd">&quot;&quot;&quot;Uses the time-adaptive LOWESS surface to generate time-series prediction&quot;&quot;&quot;</span>
     <span class="n">vals</span> <span class="o">=</span> <span class="p">[]</span>
 
-    <span class="k">for</span> <span class="n">dt_idx</span><span class="p">,</span> <span class="n">val</span> <span class="ow">in</span> <span class="n">track</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">iteritems</span><span class="p">(),</span> <span class="n">total</span><span class="o">=</span><span class="n">s</span><span class="o">.</span><span class="n">size</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">dt_idx</span><span class="p">,</span> <span class="n">val</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">iteritems</span><span class="p">(),</span> <span class="n">total</span><span class="o">=</span><span class="n">s</span><span class="o">.</span><span class="n">size</span><span class="p">):</span>
         <span class="n">vals</span> <span class="o">+=</span> <span class="p">[</span><span class="n">df_pred</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="nb">round</span><span class="p">(</span><span class="n">val</span><span class="p">,</span> <span class="n">rounding_dec</span><span class="p">),</span> <span class="n">dt_idx</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%Y-%m-</span><span class="si">%d</span><span class="s1">&#39;</span><span class="p">)]]</span>
 
     <span class="n">s_pred_ts</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">vals</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">s</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
@@ -2894,6 +3145,11 @@ We'll start by creating a slightly noiser and longer sin curve than used previou
 <span class="sd">            robust_weights: Robustifying weights to remove the influence of outliers</span>
 <span class="sd">            robust_iters: Number of robustifying iterations to carry out</span>
 <span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">for</span> <span class="n">attr_name</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;threshold_value&#39;</span><span class="p">,</span> <span class="s1">&#39;threshold_units&#39;</span><span class="p">,</span> <span class="s1">&#39;frac&#39;</span><span class="p">]:</span>
+            <span class="k">if</span> <span class="n">attr_name</span> <span class="ow">in</span> <span class="n">fit_kwargs</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+                <span class="n">attr_value</span> <span class="o">=</span> <span class="n">fit_kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="n">attr_name</span><span class="p">)</span>
+                <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attr_name</span><span class="p">,</span> <span class="n">attr_value</span><span class="p">)</span>
 
         <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">dt_idx</span><span class="p">,</span> <span class="n">reg_dates</span> <span class="o">=</span> <span class="n">process_smooth_dates_fit_inputs</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">dt_idx</span><span class="p">,</span> <span class="n">reg_dates</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">ensemble_member_to_weights</span> <span class="o">=</span> <span class="n">construct_dt_weights</span><span class="p">(</span><span class="n">dt_idx</span><span class="p">,</span> <span class="n">reg_dates</span><span class="p">,</span> 

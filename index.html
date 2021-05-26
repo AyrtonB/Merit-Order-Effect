@@ -62,7 +62,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#merit-order-effect" class="md-skip">
+        <a href="#moe-py" class="md-skip">
           Skip to content
         </a>
       
@@ -180,8 +180,24 @@
   
   
     <li class="md-tabs__item">
-      <a href="ug-01-quantile/" class="md-tabs__link">
+      <a href="ug-08-lowess-quick-start/" class="md-tabs__link">
         User Guide
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="ug-01-hydro-seasonality/" class="md-tabs__link">
+        Examples
       </a>
     </li>
   
@@ -287,6 +303,34 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#installation" class="md-nav__link">
+    Installation
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    Overview
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#examples" class="md-nav__link">
+    Examples
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#why-moe-py" class="md-nav__link">
+    Why MOE-Py?
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#paper" class="md-nav__link">
     Paper
   </a>
@@ -338,8 +382,8 @@
 
 
   <li class="md-nav__item">
-    <a href="ug-01-quantile/" class="md-nav__link">
-      Quantile Predictions
+    <a href="ug-08-lowess-quick-start/" class="md-nav__link">
+      LOWESS Quick-Start
     </a>
   </li>
 
@@ -351,8 +395,8 @@
 
 
   <li class="md-nav__item">
-    <a href="ug-02-confidence/" class="md-nav__link">
-      Confidence Intervals
+    <a href="ug-05-data-retrieval/" class="md-nav__link">
+      Data Retrieval
     </a>
   </li>
 
@@ -364,8 +408,8 @@
 
 
   <li class="md-nav__item">
-    <a href="ug-03-power-curve/" class="md-nav__link">
-      Power Curve Fitting
+    <a href="ug-06-surface-estimation/" class="md-nav__link">
+      Surface Estimation
     </a>
   </li>
 
@@ -377,8 +421,8 @@
 
 
   <li class="md-nav__item">
-    <a href="ug-04-gb-mcc/" class="md-nav__link">
-      Marginal Cost Curve
+    <a href="ug-07-moe-quantification/" class="md-nav__link">
+      MOE Quantification
     </a>
   </li>
 
@@ -401,11 +445,92 @@
       <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3" >
     
     <label class="md-nav__link" for="nav-3">
+      Examples
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Examples" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        <span class="md-nav__icon md-icon"></span>
+        Examples
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="ug-01-hydro-seasonality/" class="md-nav__link">
+      Hydro Seasonality
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="ug-02-ligo/" class="md-nav__link">
+      LIGO
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="ug-03-power-curve/" class="md-nav__link">
+      Power Curve
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="ug-04-electricity-prices/" class="md-nav__link">
+      Electricity Prices
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+
+  
+  <li class="md-nav__item md-nav__item--nested">
+    
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4" >
+    
+    <label class="md-nav__link" for="nav-4">
       Development
       <span class="md-nav__icon md-icon"></span>
     </label>
     <nav class="md-nav" aria-label="Development" data-md-level="1">
-      <label class="md-nav__title" for="nav-3">
+      <label class="md-nav__title" for="nav-4">
         <span class="md-nav__icon md-icon"></span>
         Development
       </label>
@@ -572,6 +697,34 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#installation" class="md-nav__link">
+    Installation
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    Overview
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#examples" class="md-nav__link">
+    Examples
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#why-moe-py" class="md-nav__link">
+    Why MOE-Py?
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#paper" class="md-nav__link">
     Paper
   </a>
@@ -603,29 +756,83 @@
                 
                 
                 <p><a href="https://zenodo.org/badge/latestdoi/326810654"><img alt="DOI" src="https://zenodo.org/badge/326810654.svg" /></a> <a href="https://badge.fury.io/py/moepy"><img alt="PyPI version" src="https://badge.fury.io/py/moepy.svg" /></a> <a href="https://notebooks.gesis.org/binder/v2/gh/AyrtonB/Merit-Order-Effect/main?urlpath=lab"><img alt="Binder" src="https://notebooks.gesis.org/binder/badge_logo.svg" /></a></p>
-<h1 id="merit-order-effect">Merit-Order-Effect<a class="headerlink" href="#merit-order-effect" title="Permanent link">&para;</a></h1>
-<p>This repository/site outlines the development and usage of code and analysis used in calculating the Merit-Order-Effect (MOE) of renewables on price and carbon intensity of electricity markets. Beyond MOE analysis the <code>moepy</code> library can be used more generally for standard, quantile, and bootstrapped LOWESS estimation. The particular implementation of LOWESS in this software has been extended to significantly reduce the computational resource required.</p>
-<p>You can install the library using:</p>
+<h1 id="moe-py">MOE-Py<a class="headerlink" href="#moe-py" title="Permanent link">&para;</a></h1>
+<h3 id="installation">Installation<a class="headerlink" href="#installation" title="Permanent link">&para;</a></h3>
+<p>To reduce dependency bloat the <code>moepy</code> library can be installed in two ways. If you just wish to use the LOWESS curve fitting aspects of the library then you can install it using:</p>
 <div class="highlight"><pre><span></span><code>pip install moepy
 </code></pre></div>
-<p><code>moepy</code> makes it simple to fit a LOWESS curve, a quick start example to generate the plot below can be found <a href="https://ayrtonb.github.io/Merit-Order-Effect/ug-04-gb-mcc/">here</a>.</p>
+<p>If you wish to reproduce the analysis used for estimation of the Merit Order Effect in <a href="https://github.com/AyrtonB/Merit-Order-Effect/blob/main/paper/Quantifying%20the%20Merit%20Order%20Effect%20of%20Renewables%20on%20Price%20and%20Carbon%20Intensity%20of%20the%20British%20and%20Germany%20Energy%20Systems.pdf">this paper</a> please run :</p>
+<div class="highlight"><pre><span></span><code>pip install moepy<span class="o">[</span>research<span class="o">]</span>
+</code></pre></div>
+<p><br></p>
+<h3 id="overview">Overview<a class="headerlink" href="#overview" title="Permanent link">&para;</a></h3>
+<p>This site outlines the development and usage of code and analysis used in calculating the Merit-Order-Effect (MOE) of renewables on price and carbon intensity of electricity markets. Beyond MOE analysis the <code>moepy</code> library can be used more generally for standard, quantile, and bootstrapped LOWESS estimation. The particular implementation of LOWESS in this software has been extended to significantly reduce the computational resource required. </p>
+<p>The original LOWESS model was developed by W. S. Cleveland in 1979 and the FORTRAN code for it can be found <a href="https://www.netlib.org/go/lowess">here</a>. LOWESS is an acronym for Locally Weighted Scatterplot Smoothing, whereby multiple regressions are fitted over different regions of the data domain and then combined based on weightings linked to the distance between the prediction point and the data used to fit each of the local regressions.</p>
+<p><code>moepy</code> exposes several variants on the traditional LOWESS,  including estimation of confidence and prediction intervals, as well as the robust LOWESS proposed by Cleveland in 1988. Examples  of how to use each of these are shown in the <a href="#">Quick-Start notebook</a>. An example of a LOWESS curve estimated by <code>moepy</code> can be seen below, the code to generate the plot can be found <a href="https://ayrtonb.github.io/Merit-Order-Effect/ug-04-gb-mcc/">here</a>.</p>
 <p><img alt="" src="img/latest_gb_mcc.png" /></p>
 <p><br></p>
-<p>The library also includes the option to ensemble LOWESS models together and smooth them over time, an example is shown below for the marginal cost curve of dispatchable generation in Great Britain.</p>
+<p>The library also includes the option to ensemble LOWESS models together (very meta) and smooth them over time without including time within the regression itself. This is particularly useful when there are many exogenous factors changing over time but you don't have data for them, meaning it is therefore not easy to capture them within the regression. An example fit from the ensembled date-smoothing model is shown below, depicting the marginal price curve of dispatchable generation in Great Britain. For ease of use this model has been made to work directly with Pandas datetime indexes and is again exposed through a standard sklearn model API.</p>
 <p><img alt="" src="img/UK_price_MOE_heatmap.png" /></p>
 <p><br></p>
+<h3 id="examples">Examples<a class="headerlink" href="#examples" title="Permanent link">&para;</a></h3>
+<p>Several notebooks have been created to show examples of how LOWESS estimations can be made using various data sources and for different analysis purposes, these include:</p>
+<ul>
+<li>Quantile estimation of hydro-power production in Portgual</li>
+<li>Confidence interval estimation of gravitational wave observations</li>
+<li>Cleaning of wind power curves</li>
+<li>Estimation of electricity price curves</li>
+</ul>
+<p>Key plots from each of these can be seen below.</p>
+<p><img alt="" src="img/lowess_fit_examples.png" /></p>
+<p>Get involved! If you have used <code>moepy</code> for something cool and want to share it with others please create a pull request containing a notebook with your self-contained example.</p>
+<p><br></p>
+<h3 id="why-moe-py">Why MOE-Py?<a class="headerlink" href="#why-moe-py" title="Permanent link">&para;</a></h3>
+<p>LOWESS implementation in Python is relatively sparse compared to most regression methods. Statsmodels provides a <a href="https://www.statsmodels.org/dev/_modules/statsmodels/nonparametric/smoothers_lowess.html">LOWESS model</a>, however it exposes no predict method, forcing users to add wrappers on top that linearly interpolate between the results Statsmodels does return (e.g. <a href="https://stackoverflow.com/a/37060980/8035710">here</a> and <a href="https://towardsdatascience.com/lowess-regression-in-python-how-to-discover-clear-patterns-in-your-data-f26e523d7a35">here</a>). In contrast the <code>moepy</code> library is made specifically for LOWESS estimation and provides it through an <code>sklearn</code> compatible API, meaning that it works within the broader <code>sklearn</code> eco-system for model ensembling and tuning as well as reducing the learning barrier. </p>
+<p><br></p>
 <h3 id="paper">Paper<a class="headerlink" href="#paper" title="Permanent link">&para;</a></h3>
-<p>The <code>moepy</code> library was developed to enable new research into the Merit-Order-Effect of renewables in the British and German power systems. The full paper can be found <a href="assets/Quantifying the MOE in Britain & Germany.pdf">here</a><sup id="fnref:1"></sup>, the abstract is shown below:</p>
+<p>The <code>moepy</code> library was developed to enable new research into the Merit-Order-Effect of renewables in the British and German power systems. The full paper can be found <a href="https://github.com/AyrtonB/Merit-Order-Effect/blob/main/paper/Quantifying%20the%20Merit%20Order%20Effect%20of%20Renewables%20on%20Price%20and%20Carbon%20Intensity%20of%20the%20British%20and%20Germany%20Energy%20Systems.pdf">here</a>, the abstract is shown below:</p>
 <blockquote>
-<p>This paper presents an empirical analysis of the reduction in day-ahead market prices and CO<span class="arithmatex">\(_{2}\)</span> emissions due to increased renewable generation on both the British and German electricity markets. This research aim is delivered through ex-post analysis of the Merit Order Effect (MOE) using a hybrid statistical/simulation approach.</p>
-<p>Existing research focuses on linear methods for modelling the merit order stack, masking the larger MOE seen in the steeper top/bottom regions. In this work a blended LOWESS model is used to capture the non-linear relationship between electricity price and dispatchable generation, with historical renewable output data then used to simulate the MOE. The stationary nature of many existing methodologies means they struggle to adapt to changes in the system such as the effect of the Covid-19 pandemic, we use a time-adaptive model to effectively address this limitation. Alongside an extension to the standard LOWESS implementation the use of a time-adaptive model significantly reduces the computational resource required. </p>
-<p>Our results indicate that renewables delivered reductions equal to 318M tonnes of CO<span class="arithmatex">\(_{2}\)</span> between 2010 and 2020, and 56B EUR between 2015 and 2020 in Germany. In GB the reductions amounted to a 442M tonnes of CO<span class="arithmatex">\(_{2}\)</span>and £17B saving between 2010 and 2020.</p>
+<p>This paper presents an empirical analysis of the reduction in day-ahead market prices and CO<sub>2</sub> emissions due to increased renewable generation on both the British and German electricity markets. This Merit Order Effect is becoming more important as markets evolve to incorporate greater shares of renewable energy sources, driving renewable capture price cannibilisation and market volatility. However, explicitly determining its magnitude can be challenging due to the confidential nature of the data required. Existing statistical methods for inferring this effect have focused on linear parametric approaches. However, these have a number of disadvantages. In this work we propose a flexible non-parametric blended Locally Weighted Scatterplot Smoothing approach  that captures the non-linear relationship between electricity price and dispatchable generation. This is the first application of this method in this context. We found the accuracy of this approach comparable to methods used in modern price back-casting literature. Our results indicate that the Merit Order Effect has increased dramatically over the time period analysed, with a sharp and continuing increase from 2016 in Britain. We found that renewables delivered total reductions equal to 318M and 442M tonnes of CO<sub>2</sub>  and savings of €56B and £17B in Germany and Britain respectively.</p>
 </blockquote>
-<p>We identified a strong relationship between increasing renewable penetration and the Merit-Order-Effect:</p>
+<p>The key premise behind the analysis is that intermittent renewables with no fuel costs displace high-cost dispatchable generation - this is called the Merit Order Effect (MOE). The effect can be visualised as a rightward shift in the marginal price curve of electricity, which combined with the inelasticity of demand results in a lower market clearing price (shown below).</p>
+<p><img alt="" src="img/MOE_diagram_supply_shift.png" /></p>
+<p>In this work a time-adaptive LOWESS was used to estimate the marginal price curve, then simulate the MOE. We calculated significant CO2 emission and electricity price savings for Britain and Germany. Results for 2019 are shown in the table below.</p>
+<table>
+<thead>
+<tr>
+<th align="left"></th>
+<th align="right">Germany</th>
+<th align="right">Great Britain</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">Price ([EUR,GBP]/MWh)</td>
+<td align="right">20.53</td>
+<td align="right">9.8</td>
+</tr>
+<tr>
+<td align="left">Price Reduction (%)</td>
+<td align="right">36.7</td>
+<td align="right">19.3</td>
+</tr>
+<tr>
+<td align="left">Carbon (Tonnes/h)</td>
+<td align="right">5085</td>
+<td align="right">1637</td>
+</tr>
+<tr>
+<td align="left">Carbon Reduction (%)</td>
+<td align="right">34.88</td>
+<td align="right">33.53</td>
+</tr>
+</tbody>
+</table>
+<p>We identified a strong relationship between increasing renewable penetration and the Merit-Order-Effect. In Britain the MOE has seen a sharp increase since 2016, with an average 0.67% price reduction per percentage point increase in renewable penetration.</p>
 <p><img alt="" src="img/GB_MOE_RES_relationship_95_CI.png" /></p>
 <p><br></p>
 <h3 id="referencing">Referencing<a class="headerlink" href="#referencing" title="Permanent link">&para;</a></h3>
-<p>If you use this software please cite it using the following:</p>
+<p>If you wish to reference a specific version of this software please use the following citation, changing the DOI to reflect the specific version you used (these are available through the Zenodo link at the top of this page):</p>
 <div class="highlight"><pre><span></span><code>@software{bourn_moepy_2021,
     title = {moepy},
     url = {https://ayrtonb.github.io/Merit-Order-Effect/},
@@ -636,7 +843,6 @@
     doi = {10.5281/zenodo.4642896},
 }
 </code></pre></div>
-
                 
               
               
@@ -656,13 +862,13 @@
       <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
         
         
-          <a href="ug-01-quantile/" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="ug-08-lowess-quick-start/" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-footer-nav__title">
               <div class="md-ellipsis">
                 <span class="md-footer-nav__direction">
                   Next
                 </span>
-                Quantile Predictions
+                LOWESS Quick-Start
               </div>
             </div>
             <div class="md-footer-nav__button md-icon">

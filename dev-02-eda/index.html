@@ -178,8 +178,24 @@
   
   
     <li class="md-tabs__item">
-      <a href="../ug-01-quantile/" class="md-tabs__link">
+      <a href="../ug-08-lowess-quick-start/" class="md-tabs__link">
         User Guide
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../ug-01-hydro-seasonality/" class="md-tabs__link">
+        Examples
       </a>
     </li>
   
@@ -293,8 +309,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../ug-01-quantile/" class="md-nav__link">
-      Quantile Predictions
+    <a href="../ug-08-lowess-quick-start/" class="md-nav__link">
+      LOWESS Quick-Start
     </a>
   </li>
 
@@ -306,8 +322,89 @@
 
 
   <li class="md-nav__item">
-    <a href="../ug-02-confidence/" class="md-nav__link">
-      Confidence Intervals
+    <a href="../ug-05-data-retrieval/" class="md-nav__link">
+      Data Retrieval
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="../ug-06-surface-estimation/" class="md-nav__link">
+      Surface Estimation
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="../ug-07-moe-quantification/" class="md-nav__link">
+      MOE Quantification
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+
+  
+  <li class="md-nav__item md-nav__item--nested">
+    
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3" >
+    
+    <label class="md-nav__link" for="nav-3">
+      Examples
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Examples" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        <span class="md-nav__icon md-icon"></span>
+        Examples
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="../ug-01-hydro-seasonality/" class="md-nav__link">
+      Hydro Seasonality
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="../ug-02-ligo/" class="md-nav__link">
+      LIGO
     </a>
   </li>
 
@@ -320,7 +417,7 @@
 
   <li class="md-nav__item">
     <a href="../ug-03-power-curve/" class="md-nav__link">
-      Power Curve Fitting
+      Power Curve
     </a>
   </li>
 
@@ -332,8 +429,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../ug-04-gb-mcc/" class="md-nav__link">
-      Marginal Cost Curve
+    <a href="../ug-04-electricity-prices/" class="md-nav__link">
+      Electricity Prices
     </a>
   </li>
 
@@ -355,14 +452,14 @@
   <li class="md-nav__item md-nav__item--active md-nav__item--nested">
     
     
-      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3" checked>
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4" checked>
     
-    <label class="md-nav__link" for="nav-3">
+    <label class="md-nav__link" for="nav-4">
       Development
       <span class="md-nav__icon md-icon"></span>
     </label>
     <nav class="md-nav" aria-label="Development" data-md-level="1">
-      <label class="md-nav__title" for="nav-3">
+      <label class="md-nav__title" for="nav-4">
         <span class="md-nav__icon md-icon"></span>
         Development
       </label>
@@ -626,9 +723,10 @@
 <div class="highlight"><pre><span></span><code><span class="c1">#exports</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 
-<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="kn">import</span> <span class="nn">matplotlib.transforms</span> <span class="k">as</span> <span class="nn">mtf</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
 </code></pre></div>
 <p><br></p>
 <h3 id="loading-data">Loading Data<a class="headerlink" href="#loading-data" title="Permanent link">&para;</a></h3>
@@ -648,7 +746,7 @@
 
 <span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </code></pre></div>
-<div class="highlight"><pre><span></span><code>Wall time: 7.95 s
+<div class="highlight"><pre><span></span><code>Wall time: 2.29 s
 </code></pre></div>
 <table>
 <thead>
@@ -845,7 +943,7 @@
 <th align="right">Solar</th>
 <th align="right">Uranium</th>
 <th align="right">Wind</th>
-<th align="right">net_balance</th>
+<th align="right">Net Balance</th>
 <th align="right">demand</th>
 <th align="right">price</th>
 </tr>
@@ -947,7 +1045,7 @@
 <h3 id="stacked-fuels-time-series">Stacked-Fuels Time-Series<a class="headerlink" href="#stacked-fuels-time-series" title="Permanent link">&para;</a></h3>
 <p>We'll create a stacked plot of the different generation types over time. We'll begin by cleaning the dataframe and merging columns so that it's ready for plotting, we'll also take the 7-day rolling average to make long-term trends clearer.</p>
 <div class="highlight"><pre><span></span><code><span class="c1">#exports</span>
-<span class="k">def</span> <span class="nf">clean_df_for_plot</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="s1">&#39;7D&#39;</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">clean_EI_df_for_plot</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="s1">&#39;7D&#39;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Cleans the electric insights dataframe for plotting&quot;&quot;&quot;</span>
     <span class="n">fuel_order</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Imports &amp; Storage&#39;</span><span class="p">,</span> <span class="s1">&#39;nuclear&#39;</span><span class="p">,</span> <span class="s1">&#39;biomass&#39;</span><span class="p">,</span> <span class="s1">&#39;gas&#39;</span><span class="p">,</span> <span class="s1">&#39;coal&#39;</span><span class="p">,</span> <span class="s1">&#39;hydro&#39;</span><span class="p">,</span> <span class="s1">&#39;wind&#39;</span><span class="p">,</span> <span class="s1">&#39;solar&#39;</span><span class="p">]</span>
     <span class="n">interconnectors</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;french&#39;</span><span class="p">,</span> <span class="s1">&#39;irish&#39;</span><span class="p">,</span> <span class="s1">&#39;dutch&#39;</span><span class="p">,</span> <span class="s1">&#39;belgian&#39;</span><span class="p">,</span> <span class="s1">&#39;ireland&#39;</span><span class="p">,</span> <span class="s1">&#39;northern_ireland&#39;</span><span class="p">]</span>
@@ -963,7 +1061,7 @@
     <span class="n">df_resampled</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;float&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">resample</span><span class="p">(</span><span class="n">freq</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
     <span class="k">return</span> <span class="n">df_resampled</span>
 </code></pre></div>
-<div class="highlight"><pre><span></span><code><span class="n">df_plot</span> <span class="o">=</span> <span class="n">clean_df_for_plot</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><span class="n">df_plot</span> <span class="o">=</span> <span class="n">clean_EI_df_for_plot</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
 
 <span class="n">df_plot</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </code></pre></div>
@@ -1056,9 +1154,9 @@
 <p><br></p>
 <p>However we need to convert from rgb to matplotlib plotting colours (0-1 not 0-255)</p>
 <div class="highlight"><pre><span></span><code><span class="c1">#exports</span>
-<span class="k">def</span> <span class="nf">rgb_2_plt_tuple</span><span class="p">(</span><span class="n">rgb_tuple</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">rgb_2_plt_tuple</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">g</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;converts a standard rgb set from a 0-255 range to 0-1&quot;&quot;&quot;</span>
-    <span class="n">plt_tuple</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">([</span><span class="n">x</span><span class="o">/</span><span class="mi">255</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">rgb_tuple</span><span class="p">])</span>
+    <span class="n">plt_tuple</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">([</span><span class="n">x</span><span class="o">/</span><span class="mi">255</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">g</span><span class="p">,</span> <span class="n">b</span><span class="p">)])</span>
     <span class="k">return</span> <span class="n">plt_tuple</span>
 
 <span class="k">def</span> <span class="nf">convert_fuel_colour_dict_to_plt_tuple</span><span class="p">(</span><span class="n">fuel_colour_dict_rgb</span><span class="p">):</span>
@@ -1066,18 +1164,18 @@
     <span class="n">fuel_colour_dict_plt</span> <span class="o">=</span> <span class="n">fuel_colour_dict_rgb</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
 
     <span class="n">fuel_colour_dict_plt</span> <span class="o">=</span> <span class="p">{</span>
-        <span class="n">fuel</span><span class="p">:</span> <span class="n">rgb_2_plt_tuple</span><span class="p">(</span><span class="n">rgb_tuple</span><span class="p">)</span> 
+        <span class="n">fuel</span><span class="p">:</span> <span class="n">rgb_2_plt_tuple</span><span class="p">(</span><span class="o">*</span><span class="n">rgb_tuple</span><span class="p">)</span> 
         <span class="k">for</span> <span class="n">fuel</span><span class="p">,</span> <span class="n">rgb_tuple</span> 
         <span class="ow">in</span> <span class="n">fuel_colour_dict_plt</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
     <span class="p">}</span>
 
     <span class="k">return</span> <span class="n">fuel_colour_dict_plt</span>
 </code></pre></div>
-<div class="highlight"><pre><span></span><code><span class="n">fuel_colour_dict_plt</span> <span class="o">=</span> <span class="n">convert_fuel_colour_dict_to_plt_tuple</span><span class="p">(</span><span class="n">fuel_colour_dict_rgb</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><span class="n">fuel_colour_dict</span> <span class="o">=</span> <span class="n">convert_fuel_colour_dict_to_plt_tuple</span><span class="p">(</span><span class="n">fuel_colour_dict_rgb</span><span class="p">)</span>
 
-<span class="n">sns</span><span class="o">.</span><span class="n">palplot</span><span class="p">(</span><span class="n">fuel_colour_dict_plt</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">palplot</span><span class="p">(</span><span class="n">fuel_colour_dict</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
 </code></pre></div>
-<p><img alt="png" src="../img/nbs/output_15_0.png" /></p>
+<p><img alt="png" src="../img/nbs/dev-02-eda_cell_17_output_0.png" /></p>
 <p><br></p>
 <p>Finally we can plot the stacked fuel plot itself</p>
 <div class="highlight"><pre><span></span><code><span class="c1">#exports</span>
@@ -1094,7 +1192,22 @@
     <span class="k">for</span> <span class="n">position</span> <span class="ow">in</span> <span class="n">positions</span><span class="p">:</span>
         <span class="n">ax</span><span class="o">.</span><span class="n">spines</span><span class="p">[</span><span class="n">position</span><span class="p">]</span><span class="o">.</span><span class="n">set_visible</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
 
-<span class="k">def</span> <span class="nf">stacked_fuel_plot</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">fuel_colour_dict</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">save_path</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">150</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">stacked_fuel_plot</span><span class="p">(</span>
+    <span class="n">df</span><span class="p">,</span> 
+    <span class="n">ax</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> 
+    <span class="n">save_path</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> 
+    <span class="n">dpi</span><span class="o">=</span><span class="mi">150</span><span class="p">,</span>
+    <span class="n">fuel_colour_dict</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;Imports &amp; Storage&#39;</span> <span class="p">:</span> <span class="n">rgb_2_plt_tuple</span><span class="p">(</span><span class="mi">121</span><span class="p">,</span><span class="mi">68</span><span class="p">,</span><span class="mi">149</span><span class="p">),</span> 
+    <span class="s1">&#39;nuclear&#39;</span> <span class="p">:</span> <span class="n">rgb_2_plt_tuple</span><span class="p">(</span><span class="mi">77</span><span class="p">,</span><span class="mi">157</span><span class="p">,</span><span class="mi">87</span><span class="p">),</span> 
+    <span class="s1">&#39;biomass&#39;</span> <span class="p">:</span> <span class="n">rgb_2_plt_tuple</span><span class="p">(</span><span class="mi">168</span><span class="p">,</span><span class="mi">125</span><span class="p">,</span><span class="mi">81</span><span class="p">),</span> 
+    <span class="s1">&#39;gas&#39;</span> <span class="p">:</span> <span class="n">rgb_2_plt_tuple</span><span class="p">(</span><span class="mi">254</span><span class="p">,</span><span class="mi">156</span><span class="p">,</span><span class="mi">66</span><span class="p">),</span> 
+    <span class="s1">&#39;coal&#39;</span> <span class="p">:</span> <span class="n">rgb_2_plt_tuple</span><span class="p">(</span><span class="mi">122</span><span class="p">,</span><span class="mi">122</span><span class="p">,</span><span class="mi">122</span><span class="p">),</span> 
+    <span class="s1">&#39;hydro&#39;</span> <span class="p">:</span> <span class="n">rgb_2_plt_tuple</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span><span class="mi">120</span><span class="p">,</span><span class="mi">196</span><span class="p">),</span> 
+    <span class="s1">&#39;wind&#39;</span> <span class="p">:</span> <span class="n">rgb_2_plt_tuple</span><span class="p">(</span><span class="mi">72</span><span class="p">,</span><span class="mi">194</span><span class="p">,</span><span class="mi">227</span><span class="p">),</span> 
+    <span class="s1">&#39;solar&#39;</span> <span class="p">:</span> <span class="n">rgb_2_plt_tuple</span><span class="p">(</span><span class="mi">255</span><span class="p">,</span><span class="mi">219</span><span class="p">,</span><span class="mi">65</span><span class="p">),</span>
+<span class="p">}</span>
+<span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Plots the electric insights fuel data as a stacked area graph&quot;&quot;&quot;</span>
     <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">fuel_colour_dict</span><span class="o">.</span><span class="n">keys</span><span class="p">()]</span>
 
@@ -1117,11 +1230,44 @@
 
     <span class="k">return</span> <span class="n">ax</span>
 </code></pre></div>
-<div class="highlight"><pre><span></span><code><span class="n">stacked_fuel_plot</span><span class="p">(</span><span class="n">df_plot</span><span class="p">,</span> <span class="n">fuel_colour_dict_plt</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">250</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><span class="n">stacked_fuel_plot</span><span class="p">(</span><span class="n">df_plot</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">250</span><span class="p">)</span>
 </code></pre></div>
 <div class="highlight"><pre><span></span><code>&lt;AxesSubplot:ylabel=&#39;Generation (GW)&#39;&gt;
 </code></pre></div>
-<p><img alt="png" src="../img/nbs/output_18_1.png" /></p>
+<p><img alt="png" src="../img/nbs/dev-02-eda_cell_20_output_1.png" /></p>
+<div class="highlight"><pre><span></span><code><span class="c1">#exports</span>
+<span class="k">def</span> <span class="nf">clean_EC_df_for_plot</span><span class="p">(</span>
+    <span class="n">df_EC</span><span class="p">,</span> 
+    <span class="n">freq</span><span class="o">=</span><span class="s1">&#39;7D&#39;</span><span class="p">,</span> 
+    <span class="n">fuel_order</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Imports &amp; Storage&#39;</span><span class="p">,</span> <span class="s1">&#39;nuclear&#39;</span><span class="p">,</span> <span class="s1">&#39;biomass&#39;</span><span class="p">,</span> 
+                <span class="s1">&#39;gas&#39;</span><span class="p">,</span> <span class="s1">&#39;coal&#39;</span><span class="p">,</span> <span class="s1">&#39;hydro&#39;</span><span class="p">,</span> <span class="s1">&#39;wind&#39;</span><span class="p">,</span> <span class="s1">&#39;solar&#39;</span><span class="p">]</span>
+<span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Cleans the electric insights dataframe for plotting&quot;&quot;&quot;</span>
+
+    <span class="n">df_EC_clean</span> <span class="o">=</span> <span class="p">(</span><span class="n">pd</span>
+                   <span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="n">df_EC</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
+                   <span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">nuclear</span><span class="o">=</span><span class="n">df_EC</span><span class="p">[</span><span class="s1">&#39;Uranium&#39;</span><span class="p">])</span>
+                   <span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">biomass</span><span class="o">=</span><span class="n">df_EC</span><span class="p">[</span><span class="s1">&#39;Biomass&#39;</span><span class="p">])</span>
+                   <span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">gas</span><span class="o">=</span><span class="n">df_EC</span><span class="p">[</span><span class="s1">&#39;Gas&#39;</span><span class="p">])</span>
+                   <span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">coal</span><span class="o">=</span><span class="n">df_EC</span><span class="p">[</span><span class="s1">&#39;Brown Coal&#39;</span><span class="p">]</span><span class="o">+</span><span class="n">df_EC</span><span class="p">[</span><span class="s1">&#39;Hard Coal&#39;</span><span class="p">])</span>
+                   <span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">hydro</span><span class="o">=</span><span class="n">df_EC</span><span class="p">[</span><span class="s1">&#39;Hydro Power&#39;</span><span class="p">])</span>
+                   <span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">wind</span><span class="o">=</span><span class="n">df_EC</span><span class="p">[</span><span class="s1">&#39;Wind&#39;</span><span class="p">])</span>
+                   <span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">solar</span><span class="o">=</span><span class="n">df_EC</span><span class="p">[</span><span class="s1">&#39;Solar&#39;</span><span class="p">])</span>
+                  <span class="p">)</span>
+
+    <span class="n">df_EC_clean</span><span class="p">[</span><span class="s1">&#39;Imports &amp; Storage&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_EC</span><span class="p">[</span><span class="s1">&#39;Pumped Storage&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="n">df_EC</span><span class="p">[</span><span class="s1">&#39;Seasonal Storage&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="n">df_EC</span><span class="p">[</span><span class="s1">&#39;Net Balance&#39;</span><span class="p">]</span>
+    <span class="n">df_EC_clean</span> <span class="o">=</span> <span class="n">df_EC_clean</span><span class="p">[</span><span class="n">fuel_order</span><span class="p">]</span><span class="o">.</span><span class="n">interpolate</span><span class="p">()</span>
+
+    <span class="n">df_EC_resampled</span> <span class="o">=</span> <span class="n">df_EC_clean</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;float&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">resample</span><span class="p">(</span><span class="n">freq</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+
+    <span class="k">return</span> <span class="n">df_EC_resampled</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="n">df_DE_plot</span> <span class="o">=</span> <span class="n">clean_EC_df_for_plot</span><span class="p">(</span><span class="n">df_DE</span><span class="p">)</span>
+<span class="n">stacked_fuel_plot</span><span class="p">(</span><span class="n">df_DE_plot</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">250</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>&lt;AxesSubplot:ylabel=&#39;Generation (GW)&#39;&gt;
+</code></pre></div>
+<p><img alt="png" src="../img/nbs/dev-02-eda_cell_22_output_1.png" /></p>
                 
               
               

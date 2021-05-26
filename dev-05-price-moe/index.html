@@ -178,8 +178,24 @@
   
   
     <li class="md-tabs__item">
-      <a href="../ug-01-quantile/" class="md-tabs__link">
+      <a href="../ug-08-lowess-quick-start/" class="md-tabs__link">
         User Guide
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../ug-01-hydro-seasonality/" class="md-tabs__link">
+        Examples
       </a>
     </li>
   
@@ -293,8 +309,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../ug-01-quantile/" class="md-nav__link">
-      Quantile Predictions
+    <a href="../ug-08-lowess-quick-start/" class="md-nav__link">
+      LOWESS Quick-Start
     </a>
   </li>
 
@@ -306,8 +322,89 @@
 
 
   <li class="md-nav__item">
-    <a href="../ug-02-confidence/" class="md-nav__link">
-      Confidence Intervals
+    <a href="../ug-05-data-retrieval/" class="md-nav__link">
+      Data Retrieval
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="../ug-06-surface-estimation/" class="md-nav__link">
+      Surface Estimation
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="../ug-07-moe-quantification/" class="md-nav__link">
+      MOE Quantification
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+
+  
+  <li class="md-nav__item md-nav__item--nested">
+    
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3" >
+    
+    <label class="md-nav__link" for="nav-3">
+      Examples
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Examples" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        <span class="md-nav__icon md-icon"></span>
+        Examples
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="../ug-01-hydro-seasonality/" class="md-nav__link">
+      Hydro Seasonality
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="../ug-02-ligo/" class="md-nav__link">
+      LIGO
     </a>
   </li>
 
@@ -320,7 +417,7 @@
 
   <li class="md-nav__item">
     <a href="../ug-03-power-curve/" class="md-nav__link">
-      Power Curve Fitting
+      Power Curve
     </a>
   </li>
 
@@ -332,8 +429,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../ug-04-gb-mcc/" class="md-nav__link">
-      Marginal Cost Curve
+    <a href="../ug-04-electricity-prices/" class="md-nav__link">
+      Electricity Prices
     </a>
   </li>
 
@@ -355,14 +452,14 @@
   <li class="md-nav__item md-nav__item--active md-nav__item--nested">
     
     
-      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3" checked>
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4" checked>
     
-    <label class="md-nav__link" for="nav-3">
+    <label class="md-nav__link" for="nav-4">
       Development
       <span class="md-nav__icon md-icon"></span>
     </label>
     <nav class="md-nav" aria-label="Development" data-md-level="1">
-      <label class="md-nav__title" for="nav-3">
+      <label class="md-nav__title" for="nav-4">
         <span class="md-nav__icon md-icon"></span>
         Development
       </label>
@@ -737,7 +834,7 @@
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="kn">import</span> <span class="nn">matplotlib.dates</span> <span class="k">as</span> <span class="nn">mdates</span>
 
-<span class="kn">from</span> <span class="nn">ipypb</span> <span class="kn">import</span> <span class="n">track</span>
+<span class="kn">from</span> <span class="nn">tqdm</span> <span class="kn">import</span> <span class="n">tqdm</span>
 <span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">JSON</span>
 
 <span class="kn">from</span> <span class="nn">moepy</span> <span class="kn">import</span> <span class="n">lowess</span><span class="p">,</span> <span class="n">eda</span>
@@ -919,11 +1016,11 @@
 
 <span class="n">eda</span><span class="o">.</span><span class="n">hide_spines</span><span class="p">(</span><span class="n">ax</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Day-Ahead Price</span><span class="se">\n</span><span class="s1">Monthly Average (£/MWh)&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Day-Ahead Price</span><span class="se">\n</span><span class="s1">Monthly Average (Â£/MWh)&#39;</span><span class="p">)</span>
 </code></pre></div>
-<div class="highlight"><pre><span></span><code>Text(0, 0.5, &#39;Day-Ahead Price\nMonthly Average (£/MWh)&#39;)
+<div class="highlight"><pre><span></span><code>Text(0, 0.5, &#39;Day-Ahead Price\nMonthly Average (Â£/MWh)&#39;)
 </code></pre></div>
-<p><img alt="png" src="../img/nbs/output_7_1.png" /></p>
+<p><img alt="png" src="../img/nbs/dev-05-price-moe_cell_8_output_1.png" /></p>
 <p><br></p>
 <p>We'll also visualise individual half-hour periods for two different date ranges in the dataset</p>
 <div class="highlight"><pre><span></span><code><span class="n">df_EI_model</span> <span class="o">=</span> <span class="n">df_EI</span><span class="p">[[</span><span class="s1">&#39;day_ahead_price&#39;</span><span class="p">,</span> <span class="s1">&#39;demand&#39;</span><span class="p">,</span> <span class="s1">&#39;solar&#39;</span><span class="p">,</span> <span class="s1">&#39;wind&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span>
@@ -941,11 +1038,11 @@
 <span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">60</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="o">-</span><span class="mi">25</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Demand - [Wind + Solar] (GW)&#39;</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Price (£/MWh)&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Price (Â£/MWh)&#39;</span><span class="p">)</span>
 </code></pre></div>
-<div class="highlight"><pre><span></span><code>Text(0, 0.5, &#39;Price (£/MWh)&#39;)
+<div class="highlight"><pre><span></span><code>Text(0, 0.5, &#39;Price (Â£/MWh)&#39;)
 </code></pre></div>
-<p><img alt="png" src="../img/nbs/output_9_1.png" /></p>
+<p><img alt="png" src="../img/nbs/dev-05-price-moe_cell_10_output_1.png" /></p>
 <p><br></p>
 <p>Next we'll load in (or fit) one of the models trained in the previous notebook</p>
 <div class="highlight"><pre><span></span><code><span class="o">%%</span><span class="n">time</span>
@@ -1144,14 +1241,14 @@
 
 <span class="n">eda</span><span class="o">.</span><span class="n">hide_spines</span><span class="p">(</span><span class="n">ax</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Demand - [Solar + Wind] (GW)&#39;</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Price (£/MWh)&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Price (Â£/MWh)&#39;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="n">df_pred</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">75</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Day-Ahead Market Average Price Curve&#39;</span><span class="p">)</span>
 </code></pre></div>
 <div class="highlight"><pre><span></span><code>Text(0.5, 1.0, &#39;Day-Ahead Market Average Price Curve&#39;)
 </code></pre></div>
-<p><img alt="png" src="../img/nbs/output_15_1.png" /></p>
+<p><img alt="png" src="../img/nbs/dev-05-price-moe_cell_16_output_1.png" /></p>
 <p><br></p>
 <p>Whilst the previous plot might look quite nice it's rather difficult to interpret, an alternative way to visualise how the price curve evolves over time is using a heatmap</p>
 <div class="highlight"><pre><span></span><code><span class="c1">#exports</span>
@@ -1190,7 +1287,7 @@
 </code></pre></div>
 <div class="highlight"><pre><span></span><code>&lt;AxesSubplot:&gt;
 </code></pre></div>
-<p><img alt="png" src="../img/nbs/output_18_1.png" /></p>
+<p><img alt="png" src="../img/nbs/dev-05-price-moe_cell_19_output_1.png" /></p>
 <p><br></p>
 <p>The default output for <code>seaborn</code> heatmaps never looks great when one of the axis is a datetime, we'll write a custom class and wrapper to handle this</p>
 <div class="highlight"><pre><span></span><code><span class="c1">#exports</span>
@@ -1261,7 +1358,7 @@
 
 <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">dpi</span><span class="o">=</span><span class="mi">150</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
 
-<span class="n">htmp</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">heatmap</span><span class="p">(</span><span class="n">df_pred</span><span class="p">[</span><span class="mi">10</span><span class="p">:</span><span class="mi">60</span><span class="p">]</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">df_pred_mask</span><span class="p">[</span><span class="mi">10</span><span class="p">:</span><span class="mi">60</span><span class="p">],</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">)</span><span class="o">.</span><span class="n">iloc</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">cbar_kws</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;label&#39;</span><span class="p">:</span> <span class="s1">&#39;Price (£/MWh)&#39;</span><span class="p">})</span>
+<span class="n">htmp</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">heatmap</span><span class="p">(</span><span class="n">df_pred</span><span class="p">[</span><span class="mi">10</span><span class="p">:</span><span class="mi">60</span><span class="p">]</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">df_pred_mask</span><span class="p">[</span><span class="mi">10</span><span class="p">:</span><span class="mi">60</span><span class="p">],</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">)</span><span class="o">.</span><span class="n">iloc</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">cbar_kws</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;label&#39;</span><span class="p">:</span> <span class="s1">&#39;Price (Â£/MWh)&#39;</span><span class="p">})</span>
 
 <span class="n">set_ticks</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">70</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="s1">&#39;y&#39;</span><span class="p">)</span>
 <span class="n">set_date_ticks</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="s1">&#39;2009-01-01&#39;</span><span class="p">,</span> <span class="s1">&#39;2021-01-01&#39;</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="s1">&#39;1YS&#39;</span><span class="p">,</span> <span class="n">date_format</span><span class="o">=</span><span class="s1">&#39;%Y&#39;</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
@@ -1284,7 +1381,7 @@ C:\Users\Ayrto\anaconda3\envs\MOE\lib\site-packages\sklearn\utils\validation.py:
 
 Text(144.58333333333331, 0.5, &#39;Demand - [Solar + Wind] (GW)&#39;)
 </code></pre></div>
-<p><img alt="png" src="../img/nbs/output_21_3.png" /></p>
+<p><img alt="png" src="../img/nbs/dev-05-price-moe_cell_22_output_3.png" /></p>
 <p><br></p>
 <p>We also want to visualise specific date ranges, here we'll look towards the end of 2020</p>
 <div class="highlight"><pre><span></span><code><span class="o">%%</span><span class="n">time</span>
@@ -1311,7 +1408,7 @@ Text(144.58333333333331, 0.5, &#39;Demand - [Solar + Wind] (GW)&#39;)
 <span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="o">-</span><span class="mi">20</span><span class="p">,</span> <span class="mi">150</span><span class="p">)</span>
 <span class="n">eda</span><span class="o">.</span><span class="n">hide_spines</span><span class="p">(</span><span class="n">ax</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Demand - [Solar + Wind] (GW)&#39;</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Day-Ahead Price (£/MWh)&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Day-Ahead Price (Â£/MWh)&#39;</span><span class="p">)</span>
 </code></pre></div>
 <div class="highlight"><pre><span></span><code>Wall time: 58.1 ms
 
@@ -1323,9 +1420,9 @@ C:\Users\Ayrto\anaconda3\envs\MOE\lib\site-packages\pandas\core\indexes\base.py:
 
 
 
-Text(0, 0.5, &#39;Day-Ahead Price (£/MWh)&#39;)
+Text(0, 0.5, &#39;Day-Ahead Price (Â£/MWh)&#39;)
 </code></pre></div>
-<p><img alt="png" src="../img/nbs/output_23_3.png" /></p>
+<p><img alt="png" src="../img/nbs/dev-05-price-moe_cell_24_output_3.png" /></p>
 <p><br></p>
 <h3 id="evaluating-the-price-curve-predictions">Evaluating the Price Curve Predictions<a class="headerlink" href="#evaluating-the-price-curve-predictions" title="Permanent link">&para;</a></h3>
 <div class="highlight"><pre><span></span><code><span class="c1">#exports</span>
@@ -1501,7 +1598,7 @@ Text(0, 0.5, &#39;Day-Ahead Price (£/MWh)&#39;)
     <span class="sd">&quot;&quot;&quot;Uses the time-adaptive LOWESS surface to generate time-series prediction&quot;&quot;&quot;</span>
     <span class="n">s_pred_ts</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="n">s</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="s1">&#39;float64&#39;</span><span class="p">)</span>
 
-    <span class="k">for</span> <span class="n">dt_idx</span><span class="p">,</span> <span class="n">val</span> <span class="ow">in</span> <span class="n">track</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">iteritems</span><span class="p">(),</span> <span class="n">total</span><span class="o">=</span><span class="n">s</span><span class="o">.</span><span class="n">size</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">dt_idx</span><span class="p">,</span> <span class="n">val</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">iteritems</span><span class="p">(),</span> <span class="n">total</span><span class="o">=</span><span class="n">s</span><span class="o">.</span><span class="n">size</span><span class="p">):</span>
         <span class="n">s_pred_ts</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">dt_idx</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_pred</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="nb">round</span><span class="p">(</span><span class="n">val</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">dt_idx</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%Y-%m-</span><span class="si">%d</span><span class="s1">&#39;</span><span class="p">)]</span>
 
     <span class="k">return</span> <span class="n">s_pred_ts</span>
@@ -1541,7 +1638,7 @@ dtype: float64
 </code></pre></div>
 <div class="highlight"><pre><span></span><code>6.8625170828105615
 </code></pre></div>
-<p><img alt="png" src="../img/nbs/output_31_1.png" /></p>
+<p><img alt="png" src="../img/nbs/dev-05-price-moe_cell_32_output_1.png" /></p>
 <p><br></p>
 <p>We'll quickly calculate the r2 score for this model, for context the UK day-ahead price multiple linear regression model from the Staffell/Green group achieved an adjusted r2 of <b>0.451</b></p>
 <div class="highlight"><pre><span></span><code><span class="n">r2_score</span><span class="p">(</span><span class="n">s_price</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">s_pred_ts</span><span class="o">.</span><span class="n">index</span><span class="p">],</span> <span class="n">s_pred_ts</span><span class="p">)</span>
@@ -1616,7 +1713,7 @@ dtype: float64
 
 <span class="n">model_outputs</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
 
-<span class="k">for</span> <span class="n">model_name</span><span class="p">,</span> <span class="n">model_kwargs</span> <span class="ow">in</span> <span class="n">track</span><span class="p">(</span><span class="n">model_runs</span><span class="o">.</span><span class="n">items</span><span class="p">()):</span>
+<span class="k">for</span> <span class="n">model_name</span><span class="p">,</span> <span class="n">model_kwargs</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="n">model_runs</span><span class="o">.</span><span class="n">items</span><span class="p">()):</span>
     <span class="n">s_pred_ts</span> <span class="o">=</span> <span class="n">get_model_pred_ts</span><span class="p">(</span><span class="o">**</span><span class="n">model_kwargs</span><span class="p">)</span>
     <span class="n">s_err</span> <span class="o">=</span> <span class="n">s_pred_ts</span> <span class="o">-</span> <span class="n">s_price</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">s_pred_ts</span><span class="o">.</span><span class="n">index</span><span class="p">]</span>
     <span class="n">metrics</span> <span class="o">=</span> <span class="n">calc_error_metrics</span><span class="p">(</span><span class="n">s_err</span><span class="p">)</span>
@@ -1779,7 +1876,7 @@ Length: 209533, dtype: float64
 </code></pre></div>
 <div class="highlight"><pre><span></span><code>&lt;AxesSubplot:xlabel=&#39;local_datetime&#39;&gt;
 </code></pre></div>
-<p><img alt="png" src="../img/nbs/output_49_1.png" /></p>
+<p><img alt="png" src="../img/nbs/dev-05-price-moe_cell_50_output_1.png" /></p>
 <p><br></p>
 <p>We'll quickly calculate the averages for 2010 and 2020</p>
 <div class="highlight"><pre><span></span><code><span class="n">s_GB_MOE</span><span class="p">[</span><span class="s1">&#39;2010&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span> <span class="n">s_GB_MOE</span><span class="p">[</span><span class="s1">&#39;2020&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
@@ -1799,17 +1896,17 @@ Length: 209533, dtype: float64
 
 <span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">frameon</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">ncol</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">bbox_to_anchor</span><span class="o">=</span><span class="p">(</span><span class="mf">1.075</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.15</span><span class="p">))</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Price (£/MWh)&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Price (Â£/MWh)&#39;</span><span class="p">)</span>
 <span class="n">eda</span><span class="o">.</span><span class="n">hide_spines</span><span class="p">(</span><span class="n">ax</span><span class="p">)</span>
 </code></pre></div>
-<p><img alt="png" src="../img/nbs/output_53_0.png" /></p>
+<p><img alt="png" src="../img/nbs/dev-05-price-moe_cell_54_output_0.png" /></p>
 <p><br></p>
 <p>We can see that there is a clear pattern in the bias over the course of the day</p>
 <div class="highlight"><pre><span></span><code><span class="n">s_GB_err</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">s_GB_err</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">hour</span><span class="o">+</span><span class="n">s_GB_err</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">minute</span><span class="o">/</span><span class="mi">60</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">bar</span><span class="p">()</span>
 </code></pre></div>
 <div class="highlight"><pre><span></span><code>&lt;AxesSubplot:xlabel=&#39;local_datetime&#39;&gt;
 </code></pre></div>
-<p><img alt="png" src="../img/nbs/output_55_1.png" /></p>
+<p><img alt="png" src="../img/nbs/dev-05-price-moe_cell_56_output_1.png" /></p>
 <p><br></p>
 <p>We'll now calculate the half-hourly savings due to the merit order effect. The demand is expressed in terms of GW which we'll convert into MWh to be compatible with the units of the merit order effect.</p>
 <div class="highlight"><pre><span></span><code><span class="n">s_GB_saving</span> <span class="o">=</span> <span class="n">s_GB_MOE</span> <span class="o">*</span> <span class="n">s_GB_demand</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">s_GB_MOE</span><span class="o">.</span><span class="n">index</span><span class="p">]</span><span class="o">*</span><span class="mi">1000</span><span class="o">*</span><span class="mf">0.5</span>
@@ -1818,14 +1915,14 @@ Length: 209533, dtype: float64
 </code></pre></div>
 <div class="highlight"><pre><span></span><code>&lt;AxesSubplot:xlabel=&#39;local_datetime&#39;&gt;
 </code></pre></div>
-<p><img alt="png" src="../img/nbs/output_57_1.png" /></p>
+<p><img alt="png" src="../img/nbs/dev-05-price-moe_cell_58_output_1.png" /></p>
 <p><br></p>
 <p>The distribution of the price savings appears to follow a rough Pareto distribution</p>
 <div class="highlight"><pre><span></span><code><span class="n">sns</span><span class="o">.</span><span class="n">histplot</span><span class="p">(</span><span class="n">s_GB_saving</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">750000</span><span class="p">)</span>
 <span class="n">eda</span><span class="o">.</span><span class="n">hide_spines</span><span class="p">(</span><span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">())</span>
 </code></pre></div>
-<p><img alt="png" src="../img/nbs/output_59_0.png" /></p>
+<p><img alt="png" src="../img/nbs/dev-05-price-moe_cell_60_output_0.png" /></p>
 <p><br></p>
 <p>We'll calculate the total savings over the dataset period</p>
 <div class="highlight"><pre><span></span><code><span class="n">start_date</span> <span class="o">=</span> <span class="s1">&#39;2010&#39;</span>
@@ -1833,9 +1930,9 @@ Length: 209533, dtype: float64
 
 <span class="n">total_saving</span> <span class="o">=</span> <span class="n">s_GB_saving</span><span class="p">[</span><span class="n">start_date</span><span class="p">:</span><span class="n">end_date</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The total saving between </span><span class="si">{</span><span class="n">start_date</span><span class="si">}</span><span class="s2"> and </span><span class="si">{</span><span class="n">end_date</span><span class="si">}</span><span class="s2"> was £</span><span class="si">{</span><span class="n">total_saving</span><span class="si">:</span><span class="s2">,.0f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The total saving between </span><span class="si">{</span><span class="n">start_date</span><span class="si">}</span><span class="s2"> and </span><span class="si">{</span><span class="n">end_date</span><span class="si">}</span><span class="s2"> was Â£</span><span class="si">{</span><span class="n">total_saving</span><span class="si">:</span><span class="s2">,.0f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </code></pre></div>
-<div class="highlight"><pre><span></span><code>The total saving between 2010 and 2020 was £17,454,468,143
+<div class="highlight"><pre><span></span><code>The total saving between 2010 and 2020 was Â£17,454,468,143
 </code></pre></div>
 <p><br></p>
 <p>To add some context we'll calculate the average half-hourly market volume (note that the DAM volume will be smaller than demand but it acts as a good proxy to cover all markets)</p>
@@ -1865,7 +1962,7 @@ Length: 209533, dtype: float64
 </code></pre></div>
 <div class="highlight"><pre><span></span><code>&lt;AxesSubplot:xlabel=&#39;local_datetime&#39;&gt;
 </code></pre></div>
-<p><img alt="png" src="../img/nbs/output_67_1.png" /></p>
+<p><img alt="png" src="../img/nbs/dev-05-price-moe_cell_68_output_1.png" /></p>
 <p><br></p>
 <p>We're half-way to creating the metrics required for comparing between markets of different sizes, prices and RES penetration. We'll calculate the renewables penetration percentage and then aggregate it on an annual basis alongside the pct price reduction due to the MOE.</p>
 <div class="highlight"><pre><span></span><code><span class="o">%%</span><span class="n">time</span>
@@ -1894,7 +1991,7 @@ Length: 209533, dtype: float64
 
 Text(0, 0.5, &#39;Average MOE Price Reduction (%)&#39;)
 </code></pre></div>
-<p><img alt="png" src="../img/nbs/output_69_2.png" /></p>
+<p><img alt="png" src="../img/nbs/dev-05-price-moe_cell_70_output_2.png" /></p>
 <p><br></p>
 <p>We'll fit a linear regression that includes 2020</p>
 <div class="highlight"><pre><span></span><code><span class="n">linreg_results</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">linregress</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">s_GB_RES_pct_annual_avg</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">s_GB_MOE_pct_annual_avg</span><span class="p">)</span>
@@ -1923,12 +2020,12 @@ Text(0, 0.5, &#39;Average MOE Price Reduction (%)&#39;)
 <span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">40</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="s1">&#39;2010&#39;</span><span class="p">),</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="s1">&#39;2021&#39;</span><span class="p">))</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Merit Order Effect (£/MWh)&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Merit Order Effect (Â£/MWh)&#39;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">frameon</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 </code></pre></div>
 <div class="highlight"><pre><span></span><code>&lt;matplotlib.legend.Legend at 0x22ccd2776d0&gt;
 </code></pre></div>
-<p><img alt="png" src="../img/nbs/output_75_1.png" /></p>
+<p><img alt="png" src="../img/nbs/dev-05-price-moe_cell_76_output_1.png" /></p>
 <p><br></p>
 <p>We can also attribute specific savings from the MOE to the different RES technologies</p>
 <div class="highlight"><pre><span></span><code><span class="n">wind_weight</span> <span class="o">=</span> <span class="n">df_EI</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">s_GB_MOE</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="s1">&#39;wind&#39;</span><span class="p">]</span><span class="o">/</span><span class="n">df_EI</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">s_GB_MOE</span><span class="o">.</span><span class="n">index</span><span class="p">][[</span><span class="s1">&#39;wind&#39;</span><span class="p">,</span> <span class="s1">&#39;solar&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
@@ -1946,11 +2043,11 @@ Text(0, 0.5, &#39;Average MOE Price Reduction (%)&#39;)
 <span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">40</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="s1">&#39;2010&#39;</span><span class="p">),</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="s1">&#39;2021&#39;</span><span class="p">))</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Merit Order Effect (£/MWh)&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Merit Order Effect (Â£/MWh)&#39;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">frameon</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 <span class="n">eda</span><span class="o">.</span><span class="n">hide_spines</span><span class="p">(</span><span class="n">ax</span><span class="p">)</span>
 </code></pre></div>
-<p><img alt="png" src="../img/nbs/output_77_0.png" /></p>
+<p><img alt="png" src="../img/nbs/dev-05-price-moe_cell_78_output_0.png" /></p>
 <p><br></p>
 <p>To add some context we'll plot the MOE alongside the actual price, we'll also do this for both years at the extremes of the dataset time range</p>
 <div class="highlight"><pre><span></span><code><span class="n">year_1</span> <span class="o">=</span> <span class="s1">&#39;2010&#39;</span>
@@ -1988,11 +2085,11 @@ Text(0, 0.5, &#39;Average MOE Price Reduction (%)&#39;)
 <span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_yticks</span><span class="p">([])</span>
 <span class="n">eda</span><span class="o">.</span><span class="n">hide_spines</span><span class="p">(</span><span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">positions</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;left&#39;</span><span class="p">])</span>
 
-<span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Price (£/MWh)&#39;</span><span class="p">)</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Price (Â£/MWh)&#39;</span><span class="p">)</span>
 </code></pre></div>
-<div class="highlight"><pre><span></span><code>Text(0, 0.5, &#39;Price (£/MWh)&#39;)
+<div class="highlight"><pre><span></span><code>Text(0, 0.5, &#39;Price (Â£/MWh)&#39;)
 </code></pre></div>
-<p><img alt="png" src="../img/nbs/output_79_1.png" /></p>
+<p><img alt="png" src="../img/nbs/dev-05-price-moe_cell_80_output_1.png" /></p>
 <p><br></p>
 <p>We'll create a combined dataframe of the predicted and observed time-series </p>
 <div class="highlight"><pre><span></span><code><span class="n">df_GB_results_ts</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
@@ -2098,7 +2195,7 @@ Text(0, 0.5, &#39;Average MOE Price Reduction (%)&#39;)
 
 &lt;AxesSubplot:&gt;
 </code></pre></div>
-<p><img alt="png" src="../img/nbs/output_88_2.png" /></p>
+<p><img alt="png" src="../img/nbs/dev-05-price-moe_cell_89_output_2.png" /></p>
 <p><br></p>
 <p>We'll look at the distribution of the wind capture value ratio</p>
 <div class="highlight"><pre><span></span><code><span class="n">s_wind_capture_value_ratio</span> <span class="o">=</span> <span class="p">(</span><span class="n">s_wind_capture_prices</span> <span class="o">-</span> <span class="n">s_dam_prices</span><span class="p">)</span><span class="o">/</span><span class="n">s_dam_prices</span>
@@ -2114,7 +2211,7 @@ Text(0, 0.5, &#39;Average MOE Price Reduction (%)&#39;)
 
 &lt;AxesSubplot:ylabel=&#39;Count&#39;&gt;
 </code></pre></div>
-<p><img alt="png" src="../img/nbs/output_90_2.png" /></p>
+<p><img alt="png" src="../img/nbs/dev-05-price-moe_cell_91_output_2.png" /></p>
 <p><br></p>
 <p>We'll look at how this has changed on an annual basis</p>
 <div class="highlight"><pre><span></span><code><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">dpi</span><span class="o">=</span><span class="mi">150</span><span class="p">)</span>
@@ -2126,7 +2223,7 @@ Text(0, 0.5, &#39;Average MOE Price Reduction (%)&#39;)
 </code></pre></div>
 <div class="highlight"><pre><span></span><code>Text(0, 0.5, &#39;Wind Capture Price Suppression (%)&#39;)
 </code></pre></div>
-<p><img alt="png" src="../img/nbs/output_92_1.png" /></p>
+<p><img alt="png" src="../img/nbs/dev-05-price-moe_cell_93_output_1.png" /></p>
 <p><br></p>
 <p>It could be interesting to look at the effect of price suppression on specific wind farms that have CfDs, and then estimate the increased burden on the tax-payer.</p>
 <p><br></p>
@@ -2274,7 +2371,7 @@ Text(0, 0.5, &#39;Average MOE Price Reduction (%)&#39;)
 </code></pre></div>
 <div class="highlight"><pre><span></span><code>Text(0, 0.5, &#39;Price (EUR/MWh)&#39;)
 </code></pre></div>
-<p><img alt="png" src="../img/nbs/output_97_1.png" /></p>
+<p><img alt="png" src="../img/nbs/dev-05-price-moe_cell_98_output_1.png" /></p>
 <p><br></p>
 <p>Let's create a visualisation that highlights the importance of regressing against dispatchable instead of total load</p>
 <div class="highlight"><pre><span></span><code><span class="o">%%</span><span class="n">time</span>
@@ -2304,7 +2401,7 @@ Text(0, 0.5, &#39;Average MOE Price Reduction (%)&#39;)
 <span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x_demand</span><span class="p">,</span> <span class="n">y_demand</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
 <span class="n">eda</span><span class="o">.</span><span class="n">hide_spines</span><span class="p">(</span><span class="n">ax</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Demand (GW)&#39;</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Day-Ahead Price (£/MWh)&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Day-Ahead Price (Â£/MWh)&#39;</span><span class="p">)</span>
 
 <span class="n">ax</span> <span class="o">=</span> <span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_pred_dispatch</span><span class="p">,</span> <span class="n">y_pred_dispatch</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">1.5</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">)</span>
@@ -2321,7 +2418,7 @@ Text(0, 0.5, &#39;Average MOE Price Reduction (%)&#39;)
 </code></pre></div>
 <div class="highlight"><pre><span></span><code>Wall time: 236 ms
 </code></pre></div>
-<p><img alt="png" src="../img/nbs/output_99_1.png" /></p>
+<p><img alt="png" src="../img/nbs/dev-05-price-moe_cell_100_output_1.png" /></p>
 <p><br></p>
 <p>We'll load in our model</p>
 <div class="highlight"><pre><span></span><code><span class="o">%%</span><span class="n">time</span>
@@ -2533,7 +2630,7 @@ Text(0, 0.5, &#39;Average MOE Price Reduction (%)&#39;)
 
 Text(69.58333333333334, 0.5, &#39;Demand - [Solar + Wind] (GW)&#39;)
 </code></pre></div>
-<p><img alt="png" src="../img/nbs/output_105_2.png" /></p>
+<p><img alt="png" src="../img/nbs/dev-05-price-moe_cell_106_output_2.png" /></p>
 <p><br></p>
 <p>We'll calculate some metrics for our model</p>
 <div class="highlight"><pre><span></span><code><span class="n">s_DE_pred_ts_dispatch</span><span class="p">,</span> <span class="n">s_DE_pred_ts_demand</span> <span class="o">=</span> <span class="n">get_model_pred_ts</span><span class="p">(</span><span class="n">s_DE_dispatchable</span><span class="p">,</span> <span class="n">DE_model_fp</span><span class="p">,</span> <span class="n">s_demand</span><span class="o">=</span><span class="n">s_DE_demand</span><span class="p">,</span> <span class="n">x_pred</span><span class="o">=</span><span class="n">x_pred</span><span class="p">,</span> <span class="n">dt_pred</span><span class="o">=</span><span class="n">dt_pred</span><span class="p">)</span>
@@ -2568,9 +2665,9 @@ Text(69.58333333333334, 0.5, &#39;Demand - [Solar + Wind] (GW)&#39;)
 <span class="n">s_DE_saving</span> <span class="o">=</span> <span class="n">s_DE_MOE</span> <span class="o">*</span> <span class="n">df_DE</span><span class="p">[</span><span class="s1">&#39;demand&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">s_DE_MOE</span><span class="o">.</span><span class="n">index</span><span class="p">]</span><span class="o">*</span><span class="mi">1000</span>
 <span class="n">total_saving</span> <span class="o">=</span> <span class="n">s_DE_saving</span><span class="p">[</span><span class="n">start_date</span><span class="p">:</span><span class="n">end_date</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The total saving between </span><span class="si">{</span><span class="n">start_date</span><span class="si">}</span><span class="s2"> and </span><span class="si">{</span><span class="n">end_date</span><span class="si">}</span><span class="s2"> was £</span><span class="si">{</span><span class="n">total_saving</span><span class="si">:</span><span class="s2">,.0f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The total saving between </span><span class="si">{</span><span class="n">start_date</span><span class="si">}</span><span class="s2"> and </span><span class="si">{</span><span class="n">end_date</span><span class="si">}</span><span class="s2"> was Â£</span><span class="si">{</span><span class="n">total_saving</span><span class="si">:</span><span class="s2">,.0f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </code></pre></div>
-<div class="highlight"><pre><span></span><code>The total saving between 2015 and 2020 was £55,856,316,374
+<div class="highlight"><pre><span></span><code>The total saving between 2015 and 2020 was Â£55,856,316,374
 </code></pre></div>
 <p><br></p>
 <p>And get some context for the market average and total volumes over the same period</p>
@@ -2594,7 +2691,7 @@ Text(69.58333333333334, 0.5, &#39;Demand - [Solar + Wind] (GW)&#39;)
 </code></pre></div>
 <div class="highlight"><pre><span></span><code>&lt;AxesSubplot:xlabel=&#39;local_datetime&#39;&gt;
 </code></pre></div>
-<p><img alt="png" src="../img/nbs/output_115_1.png" /></p>
+<p><img alt="png" src="../img/nbs/dev-05-price-moe_cell_116_output_1.png" /></p>
 <p><br></p>
 <p>We'll quickly calculate the average percentage price suppresion</p>
 <div class="highlight"><pre><span></span><code><span class="n">s_DE_MOE</span><span class="p">[</span><span class="n">start_date</span><span class="p">:</span><span class="n">end_date</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">/</span><span class="p">(</span><span class="n">df_DE</span><span class="p">[</span><span class="s1">&#39;price&#39;</span><span class="p">]</span><span class="o">+</span><span class="n">s_DE_MOE</span><span class="p">)[</span><span class="n">start_date</span><span class="p">:</span><span class="n">end_date</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
@@ -2617,7 +2714,7 @@ Text(69.58333333333334, 0.5, &#39;Demand - [Solar + Wind] (GW)&#39;)
 </code></pre></div>
 <div class="highlight"><pre><span></span><code>&lt;matplotlib.legend.Legend at 0x22ccaf82700&gt;
 </code></pre></div>
-<p><img alt="png" src="../img/nbs/output_119_1.png" /></p>
+<p><img alt="png" src="../img/nbs/dev-05-price-moe_cell_120_output_1.png" /></p>
 <p><br></p>
 <p>Interestingly, the forecast made in 2011 by Traber et al as to the German MOE in 2020 was quite close.</p>
 <blockquote>
@@ -2648,7 +2745,7 @@ Text(69.58333333333334, 0.5, &#39;Demand - [Solar + Wind] (GW)&#39;)
 <span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">frameon</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 <span class="n">eda</span><span class="o">.</span><span class="n">hide_spines</span><span class="p">(</span><span class="n">ax</span><span class="p">)</span>
 </code></pre></div>
-<p><img alt="png" src="../img/nbs/output_123_0.png" /></p>
+<p><img alt="png" src="../img/nbs/dev-05-price-moe_cell_124_output_0.png" /></p>
 <p><br></p>
 <p>We'll look at how the MOE has changed over time in terms of the seasonal effect</p>
 <div class="highlight"><pre><span></span><code><span class="n">year_1</span> <span class="o">=</span> <span class="s1">&#39;2015&#39;</span>
@@ -2692,7 +2789,7 @@ Text(69.58333333333334, 0.5, &#39;Demand - [Solar + Wind] (GW)&#39;)
 </code></pre></div>
 <div class="highlight"><pre><span></span><code>Text(0, 0.5, &#39;Price (EUR/MWh)&#39;)
 </code></pre></div>
-<p><img alt="png" src="../img/nbs/output_125_1.png" /></p>
+<p><img alt="png" src="../img/nbs/dev-05-price-moe_cell_126_output_1.png" /></p>
 <p><br></p>
 <p>We'll also inspect the predictions on a sample day</p>
 <div class="highlight"><pre><span></span><code><span class="n">date</span> <span class="o">=</span> <span class="s1">&#39;2020-04-11&#39;</span>
@@ -2709,7 +2806,7 @@ Text(69.58333333333334, 0.5, &#39;Demand - [Solar + Wind] (GW)&#39;)
 <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Price (EUR/MWh)&#39;</span><span class="p">)</span>
 <span class="n">eda</span><span class="o">.</span><span class="n">hide_spines</span><span class="p">(</span><span class="n">ax</span><span class="p">)</span>
 </code></pre></div>
-<p><img alt="png" src="../img/nbs/output_127_0.png" /></p>
+<p><img alt="png" src="../img/nbs/dev-05-price-moe_cell_128_output_0.png" /></p>
 <p><br></p>
 <p>There's clearly a correlation between the annual MOE average and the RES percentage penetration</p>
 <div class="highlight"><pre><span></span><code><span class="o">%%</span><span class="n">time</span>
@@ -2727,7 +2824,7 @@ Text(69.58333333333334, 0.5, &#39;Demand - [Solar + Wind] (GW)&#39;)
 
 &lt;matplotlib.collections.PathCollection at 0x22c405d2dc0&gt;
 </code></pre></div>
-<p><img alt="png" src="../img/nbs/output_129_2.png" /></p>
+<p><img alt="png" src="../img/nbs/dev-05-price-moe_cell_130_output_2.png" /></p>
 <p><br></p>
 <p>We'll quickly calculate the gradient</p>
 <div class="highlight"><pre><span></span><code><span class="n">linreg_results</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">linregress</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">s_DE_RES_pct_annual_avg</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">s_DE_MOE_annual_avg</span><span class="p">)</span>
@@ -2790,7 +2887,7 @@ Text(69.58333333333334, 0.5, &#39;Demand - [Solar + Wind] (GW)&#39;)
 C:\Users\Ayrto\anaconda3\envs\MOE\lib\site-packages\sklearn\utils\validation.py:63: FutureWarning: Arrays of bytes/strings is being converted to decimal numbers if dtype=&#39;numeric&#39;. This behavior is deprecated in 0.24 and will be removed in 1.1 (renaming of 0.26). Please convert your data to numeric values explicitly instead.
   return f(*args, **kwargs)
 </code></pre></div>
-<p><img alt="png" src="../img/nbs/output_135_1.png" /></p>
+<p><img alt="png" src="../img/nbs/dev-05-price-moe_cell_136_output_1.png" /></p>
 <p><br></p>
 <p>We'll also plot the MOE time-series</p>
 <div class="highlight"><pre><span></span><code><span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">dpi</span><span class="o">=</span><span class="mi">150</span><span class="p">,</span> <span class="n">ncols</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">14</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
@@ -2805,7 +2902,7 @@ C:\Users\Ayrto\anaconda3\envs\MOE\lib\site-packages\sklearn\utils\validation.py:
 <span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">40</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="s1">&#39;2010&#39;</span><span class="p">),</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="s1">&#39;2021&#39;</span><span class="p">))</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Merit Order Effect (£/MWh)&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Merit Order Effect (Â£/MWh)&#39;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">frameon</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 
 <span class="c1"># DE</span>
@@ -2823,7 +2920,7 @@ C:\Users\Ayrto\anaconda3\envs\MOE\lib\site-packages\sklearn\utils\validation.py:
 </code></pre></div>
 <div class="highlight"><pre><span></span><code>&lt;matplotlib.legend.Legend at 0x22c22be1040&gt;
 </code></pre></div>
-<p><img alt="png" src="../img/nbs/output_137_1.png" /></p>
+<p><img alt="png" src="../img/nbs/dev-05-price-moe_cell_138_output_1.png" /></p>
 <p><br></p>
 <h3 id="saving-results">Saving Results<a class="headerlink" href="#saving-results" title="Permanent link">&para;</a></h3>
 <p>Additionaly we'll save the time-series predictions and model metrics, starting with the GB time-series</p>
