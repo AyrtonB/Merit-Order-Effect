@@ -23,7 +23,7 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install wheel
-          pip install -e .
+          pip install -e .[cicd]
         
       - name: Get tag version
         id: get_version
