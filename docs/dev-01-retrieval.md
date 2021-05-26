@@ -16,19 +16,18 @@ import json
 import numpy as np
 import pandas as pd
 
-import os
 import requests
 import xmltodict
+from tqdm import tqdm
 from datetime import date
 from warnings import warn
-from itertools import product
 
 from dotenv import load_dotenv
 from entsoe import EntsoePandasClient, EntsoeRawClient
 ```
 
 ```python
-from ipypb import track
+import os
 from IPython.display import JSON
 ```
 
@@ -36,7 +35,7 @@ from IPython.display import JSON
 
 ### Electric Insights
 
-Electric Insights provides a site to "Take a closer look at the supply, demand, price and environmental impact of Britain’s electricity", it also exposes an API that contains the data we require for this analysis
+Electric Insights provides a site to "Take a closer look at the supply, demand, price and environmental impact of Britainâ€™s electricity", it also exposes an API that contains the data we require for this analysis
 
 <br>
 
@@ -77,23 +76,6 @@ def query_API(start_date:str, end_date:str, stream:str, time_group='30m'):
     return r_json
 ```
 
-```python
-start_date = '2019-01-01'
-end_date = '2019-01-31'
-stream = 'generation-mix'
-
-r_json = query_API(start_date, end_date, stream)
-
-JSON([r_json])
-```
-
-
-
-
-    <IPython.core.display.JSON object>
-
-
-
 <br>
 
 We can convert this response to a dataframe, however this doesn't handle the nested columns well
@@ -123,7 +105,7 @@ We can create a function that will take a specified column and extract the neste
 
 ```python
 #exports
-def dict_col_2_cols(df:pd.DataFrame, value_col='value'):
+def dict_col_to_cols(df:pd.DataFrame, value_col='value'):
     """Checks the `value_col`, if it contains dictionaries these are transformed into new columns which then replace it"""
 
     ## Checks the value col is found in the dataframe
@@ -139,7 +121,7 @@ def dict_col_2_cols(df:pd.DataFrame, value_col='value'):
 ```
 
 ```python
-df = dict_col_2_cols(df)
+df = dict_col_to_cols(df)
 
 df.head(3)
 ```
@@ -170,7 +152,7 @@ def clean_nested_dict_cols(df):
     while len(cols_with_dicts) > 0:
         for col_with_dicts in cols_with_dicts:
             # Extracting dataframes from dictionary columns
-            df = dict_col_2_cols(df, col_with_dicts)
+            df = dict_col_to_cols(df, col_with_dicts)
 
             # Recalculating columns that are still dictionaries
             s_types = df.iloc[0].apply(lambda val: type(val))
@@ -314,8 +296,8 @@ def retrieve_stream_df(start_date:str, end_date:str, stream:str, time_group='30m
 ```
 
 ```python
-start_date = '2019-01-01'
-end_date = '2019-01-31'
+start_date = '2009-01-01'
+end_date = '2009-01-02'
 stream = 'generation-mix'
 
 renaming_dict = {
@@ -333,13 +315,13 @@ df.head()
 
 
 
-| local_datetime            |   nuclear |   biomass |   coal |   gas |   hydro |   wind |   solar |   demand |   pumped_storage |   wind_onshore |   wind_offshore |   belgian |   dutch |   french |   ireland |   northern_ireland |   irish |   SP |
-|:--------------------------|----------:|----------:|-------:|------:|--------:|-------:|--------:|---------:|-----------------:|---------------:|----------------:|----------:|--------:|---------:|----------:|-------------------:|--------:|-----:|
-| 2019-01-01 00:00:00+00:00 |     6.924 |     1.116 |      0 | 5.853 |   0.405 | 11.304 |       0 |   27.336 |            0     |        8.05458 |         3.14171 |         0 |   0.182 |    1.552 |         0 |                  0 |  -0.702 |    1 |
-| 2019-01-01 00:30:00+00:00 |     6.838 |     1.103 |      0 | 6.292 |   0.388 | 11.327 |       0 |   27.722 |            0.024 |        7.86049 |         3.25389 |         0 |   0.196 |    1.554 |         0 |                  0 |  -0.696 |    2 |
-| 2019-01-01 01:00:00+00:00 |     6.834 |     1.09  |      0 | 5.719 |   0.372 | 11.335 |       0 |   27.442 |            0     |        7.8792  |         3.34085 |         0 |   0.588 |    1.504 |         0 |                  0 |  -0.722 |    3 |
-| 2019-01-01 01:30:00+00:00 |     6.83  |     1.085 |      0 | 5.02  |   0.368 | 11.063 |       0 |   26.47  |            0     |        7.70887 |         3.2137  |         0 |   0.6   |    1.504 |         0 |                  0 |  -0.77  |    4 |
-| 2019-01-01 02:00:00+00:00 |     6.827 |     1.081 |      0 | 4.964 |   0.355 | 10.786 |       0 |   26.195 |            0     |        7.47943 |         3.12271 |         0 |   0.678 |    1.504 |         0 |                  0 |  -0.91  |    5 |</div>
+| local_datetime            |   nuclear |   biomass |   coal |    gas |   hydro |   wind |   solar |   demand |   pumped_storage | wind_onshore   | wind_offshore   |   belgian |   dutch |   french |   ireland |   northern_ireland |   irish |   SP |
+|:--------------------------|----------:|----------:|-------:|-------:|--------:|-------:|--------:|---------:|-----------------:|:---------------|:----------------|----------:|--------:|---------:|----------:|-------------------:|--------:|-----:|
+| 2009-01-01 00:00:00+00:00 |     6.973 |         0 | 17.65  | 11.9   |   0.246 |  0.148 |       0 |   38.329 |           -0.404 | None           | None            |         0 |       0 |    1.977 |         0 |                  0 |  -0.161 |    1 |
+| 2009-01-01 00:30:00+00:00 |     6.968 |         0 | 17.77  | 12.031 |   0.245 |  0.157 |       0 |   38.461 |           -0.527 | None           | None            |         0 |       0 |    1.977 |         0 |                  0 |  -0.16  |    2 |
+| 2009-01-01 01:00:00+00:00 |     6.97  |         0 | 18.07  | 11.754 |   0.246 |  0.147 |       0 |   37.986 |           -1.018 | None           | None            |         0 |       0 |    1.977 |         0 |                  0 |  -0.16  |    3 |
+| 2009-01-01 01:30:00+00:00 |     6.969 |         0 | 18.022 | 11.162 |   0.246 |  0.148 |       0 |   36.864 |           -1.269 | None           | None            |         0 |       0 |    1.746 |         0 |                  0 |  -0.16  |    4 |
+| 2009-01-01 02:00:00+00:00 |     6.96  |         0 | 17.998 | 10.812 |   0.246 |  0.16  |       0 |   36.18  |           -1.566 | None           | None            |         0 |       0 |    1.73  |         0 |                  0 |  -0.16  |    5 |</div>
 
 
 
@@ -364,8 +346,8 @@ def check_streams(streams='*'):
         if len(unrecognised_streams) == 0:
             return streams 
         else:
-            unrecognised_streams_2_print = ''.join(["'"+stream+"', " for stream in unrecognised_streams])[:-2]
-            raise ValueError(f"Streams {unrecognised_streams_2_print} could not be recognised, must be one of: {', '.join(possible_streams)}")
+            unrecognised_streams_to_print = ''.join(["'"+stream+"', " for stream in unrecognised_streams])[:-2]
+            raise ValueError(f"Streams {unrecognised_streams_to_print} could not be recognised, must be one of: {', '.join(possible_streams)}")
 
     elif streams=='*':
         return possible_streams 
@@ -485,38 +467,76 @@ df.head()
 Now we're ready to retrieve all of the streams in one, which we'll do for all years that data is available, then we'll save the resulting DataFrame.
 
 ```python
-%%time
+#exports
+def get_EI_data(
+    start_date,
+    end_date,
+    streams='*',
+    batch_freq='3M',
+    renaming_dict={
+        'pumpedStorage' : 'pumped_storage',
+        'northernIreland' : 'northern_ireland',
+        'windOnshore': 'wind_onshore',
+        'windOffshore': 'wind_offshore',
+        'prices_ahead' : 'day_ahead_price',
+        'prices' : 'imbalance_price',
+        'temperatures' : 'temperature',
+        'totalInGperkWh' : 'gCO2_per_kWh',
+        'totalInTperh' : 'TCO2_per_h'
+    }
+):
+    # Preparing batch dates
+    *batch_start_dates, post_batch_start_date = pd.date_range(start_date, end_date, freq=f'{batch_freq}S').strftime('%Y-%m-%d')
+    pre_batch_end_date, *batch_end_dates = (pd.date_range(start_date, end_date, freq=batch_freq)+pd.Timedelta(days=1)).strftime('%Y-%m-%d')
 
-streams = '*'
-renaming_dict = {
-    'pumpedStorage' : 'pumped_storage',
-    'northernIreland' : 'northern_ireland',
-    'windOnshore': 'wind_onshore',
-    'windOffshore': 'wind_offshore',
-    'prices_ahead' : 'day_ahead_price',
-    'prices' : 'imbalance_price',
-    'temperatures' : 'temperature',
-    'totalInGperkWh' : 'gCO2_per_kWh',
-    'totalInTperh' : 'TCO2_per_h'
-}
+    batch_date_pairs = list(zip(batch_start_dates, batch_end_dates))
+
+    if start_date != pre_batch_end_date:
+        batch_date_pairs = [(start_date, pre_batch_end_date)] + batch_date_pairs
+
+    if end_date != post_batch_start_date:
+        end_date = (pd.to_datetime(end_date) + pd.Timedelta(days=1)).strftime('%Y-%m-%d')
+        batch_date_pairs = batch_date_pairs + [(post_batch_start_date, end_date)]
+
+    # Retrieving data
+    df = pd.DataFrame()
+
+    for batch_start_date, batch_end_date in tqdm(batch_date_pairs):
+        df_batch = retrieve_streams_df(batch_start_date, batch_end_date, streams, renaming_dict=renaming_dict)
+        df = df.append(df_batch)  
+        
+    return df
+```
+
+```python
+start_date = '2010-01-01'
+end_date = '2020-12-31'
+
+data_dir = '../data/raw'
 
 retrieve_save_EI_data = False
 
 if retrieve_save_EI_data == True:
-    df = pd.DataFrame()
+    df = get_EI_data(start_date, end_date)
+    df.to_csv(f'{data_dir}/electric_insights.csv')
+else:
+    df = pd.read_csv(f'{data_dir}/electric_insights.csv', parse_dates=['local_datetime'], index_col='local_datetime')
 
-    for year in track(range(2010, 2021)):
-        start_date = f'{year}-01-01'
-        end_date = f'{year}-12-31'
-
-        df_year = retrieve_streams_df(start_date, end_date, streams, renaming_dict=renaming_dict)
-        df = df.append(df_year)
-
-    df.to_csv('../data/raw/electric_insights.csv')
+df.head()
 ```
 
-    Wall time: 0 ns
-    
+
+
+
+| local_datetime            |   day_ahead_price |   SP |   imbalance_price |   valueSum |   temperature |   TCO2_per_h |   gCO2_per_kWh |   nuclear |   biomass |   coal | ...   |   demand |   pumped_storage |   wind_onshore |   wind_offshore |   belgian |   dutch |   french |   ireland |   northern_ireland |   irish |
+|:--------------------------|------------------:|-----:|------------------:|-----------:|--------------:|-------------:|---------------:|----------:|----------:|-------:|:------|---------:|-----------------:|---------------:|----------------:|----------:|--------:|---------:|----------:|-------------------:|--------:|
+| 2009-01-01 00:00:00+00:00 |             58.05 |    1 |             74.74 |      74.74 |          -0.6 |        21278 |            555 |     6.973 |         0 | 17.65  | ...   |   38.329 |           -0.404 |            nan |             nan |         0 |       0 |    1.977 |         0 |                  0 |  -0.161 |
+| 2009-01-01 00:30:00+00:00 |             56.33 |    2 |             74.89 |      74.89 |          -0.6 |        21442 |            558 |     6.968 |         0 | 17.77  | ...   |   38.461 |           -0.527 |            nan |             nan |         0 |       0 |    1.977 |         0 |                  0 |  -0.16  |
+| 2009-01-01 01:00:00+00:00 |             52.98 |    3 |             76.41 |      76.41 |          -0.6 |        21614 |            569 |     6.97  |         0 | 18.07  | ...   |   37.986 |           -1.018 |            nan |             nan |         0 |       0 |    1.977 |         0 |                  0 |  -0.16  |
+| 2009-01-01 01:30:00+00:00 |             50.39 |    4 |             37.73 |      37.73 |          -0.6 |        21320 |            578 |     6.969 |         0 | 18.022 | ...   |   36.864 |           -1.269 |            nan |             nan |         0 |       0 |    1.746 |         0 |                  0 |  -0.16  |
+| 2009-01-01 02:00:00+00:00 |             48.7  |    5 |             59    |      59    |          -0.6 |        21160 |            585 |     6.96  |         0 | 17.998 | ...   |   36.18  |           -1.566 |            nan |             nan |         0 |       0 |    1.73  |         0 |                  0 |  -0.16  |</div>
+
+
 
 <br>
 
@@ -527,7 +547,8 @@ if retrieve_save_EI_data == True:
 We'll start by requesting the JSON that is used to populate the fuel-type output chart on the <a href="https://energy-charts.info/">website</a>
 
 ```python
-def year_week_2_prod_url(year, week, data_prefix=''): 
+#exports
+def year_week_to_prod_url(year, week, data_prefix=''): 
     """Given a specified year and week the relevant `production_url` for energy-charts is returned"""
     if year < 2019:
         data_prefix = 'raw_'
@@ -535,11 +556,13 @@ def year_week_2_prod_url(year, week, data_prefix=''):
     production_url = f'https://energy-charts.info/charts/power/{data_prefix}data/de/week_{year}_{str(week).zfill(2)}.json'
     
     return production_url
+```
 
+```python
 year = 2018
 week = 12
 
-production_url = year_week_2_prod_url(year, week)
+production_url = year_week_to_prod_url(year, week)
 
 r = requests.get(production_url)
 
@@ -558,7 +581,8 @@ r
 Next we focus on parsing the only non-uniform column which relates to the balancing required on the system
 
 ```python
-def fuel_json_2_net_balance(r_json):
+#exports
+def fuel_json_to_net_balance(r_json):
     """Extracts the balance time-series"""
     if 'values' in r_json[0].keys(): # pre-2019 format
         df_balance = pd.DataFrame(r_json[0]['values'])
@@ -579,10 +603,12 @@ def fuel_json_2_net_balance(r_json):
     s_balance.index = s_balance.index.tz_convert('Europe/Berlin')
     
     return s_balance
+```
 
+```python
 # Retrieving net balance data
 r_json = r.json()
-s_balance = fuel_json_2_net_balance(r_json)
+s_balance = fuel_json_to_net_balance(r_json)
 
 # Getting comments
 data_src = r_json[0]['datasource']
@@ -619,13 +645,14 @@ s_balance
 
 <br>
 
-We combine this with a parser for the main columns
+We can then combine this with a parser for the main columns
 
 ```python
-def response_2_df(r):
+#exports
+def response_to_df(r):
     """Parses the json response to a DataFrame"""
     r_json = r.json()
-    s_balance = fuel_json_2_net_balance(r_json)
+    s_balance = fuel_json_to_net_balance(r_json)
 
     if 'key' in r_json[1].keys(): # pre-2019
         keys = [x['key'][0]['en'] for x in r_json[1:]]
@@ -634,17 +661,20 @@ def response_2_df(r):
         df_fuels = (pd.DataFrame(dict(zip(keys, values)), index=s_balance.index)
                     .apply(lambda s: s.apply(lambda x: x[-1]))
                     .assign(net_balance=s_balance)
+                    .rename(columns={'net_balance': 'Net Balance'})
                    )
         
     else:
         cols = [x['name'][0]['en'] for x in r_json[1:]]
         data = [x['data'] for x in r_json[1:]]
 
-        df_fuels = pd.DataFrame(np.array(data).T, columns=cols, index=s_balance.index).assign(net_balance=s_balance)
+        df_fuels = pd.DataFrame(np.array(data).T, columns=cols, index=s_balance.index).assign(net_balance=s_balance).rename(columns={'net_balance': 'Net Balance'})
         
     return df_fuels
+```
 
-df_fuels = response_2_df(r)
+```python
+df_fuels = response_to_df(r)
 
 df_fuels.head(2)
 ```
@@ -652,7 +682,7 @@ df_fuels.head(2)
 
 
 
-| datetime                  |   Hydro Power |   Biomass |   Uranium |   Brown Coal |   Hard Coal |   Oil |   Gas |   Others |   Pumped Storage |   Seasonal Storage |   Wind |   Solar |   net_balance |
+| datetime                  |   Hydro Power |   Biomass |   Uranium |   Brown Coal |   Hard Coal |   Oil |   Gas |   Others |   Pumped Storage |   Seasonal Storage |   Wind |   Solar |   Net Balance |
 |:--------------------------|--------------:|----------:|----------:|-------------:|------------:|------:|------:|---------:|-----------------:|-------------------:|-------:|--------:|--------------:|
 | 2018-03-19 00:00:00+01:00 |         2.292 |      5.82 |     7.721 |       14.499 |       8.508 | 0.18  | 3.207 |    0.068 |            0.42  |              0.078 | 20.754 |       0 |        -9.044 |
 | 2018-03-19 01:00:00+01:00 |         2.291 |      5.82 |     7.829 |       14.49  |       8.941 | 0.179 | 3.287 |    0.068 |            0.245 |              0.064 | 19.012 |       0 |        -9.522 |</div>
@@ -664,9 +694,10 @@ df_fuels.head(2)
 And wrap them in a single function which can accept a year and week before returning the parsed dataframe
 
 ```python
-def year_week_2_fuel_df(year, week):
+#exports
+def year_week_to_fuel_df(year, week):
     """Given a specified year and week the relevant `df_fuels` dataset for energy-charts is returned"""
-    production_url = year_week_2_prod_url(year, week)
+    production_url = year_week_to_prod_url(year, week)
 
     r = requests.get(production_url)
     
@@ -675,14 +706,16 @@ def year_week_2_fuel_df(year, week):
     if r.status_code == 404:
         df_fuels = pd.DataFrame()
     else:
-        df_fuels = response_2_df(r)
+        df_fuels = response_to_df(r)
     
     return df_fuels
+```
 
+```python
 year = 2015
 week = 53
 
-df_fuels = year_week_2_fuel_df(year, week)
+df_fuels = year_week_to_fuel_df(year, week)
 
 df_fuels.head(2)
 ```
@@ -702,70 +735,76 @@ df_fuels.head(2)
 Now we can iterate over all year and week pairs to retrieve the full dataset
 
 ```python
-years = list(range(2010, 2021))
-weeks = list(range(1, 54))
+#exports
+def get_EC_data(
+    start_date, 
+    end_date,
+    columns=['Biomass', 'Brown Coal', 'Gas', 'Hard Coal', 'Hydro Power',
+             'Oil', 'Others', 'Pumped Storage', 'Seasonal Storage', 
+             'Solar', 'Uranium', 'Wind', 'Net Balance'],
+    new_api_rename_map={
+        'Fossil Hard Coal': 'Hard Coal', 
+        'Hydro Run-of-River': 'Hydro Power', 
+        'Fossil Gas': 'Gas', 
+        'Hydro Water Reservoir': 'Seasonal Storage', 
+        'Hydro Pumped Storage': 'Pumped Storage', 
+        'Fossil Brown Coal': 'Brown Coal', 
+        'Fossil Oil': 'Oil', 
+        'Nuclear': 'Uranium'
+    }
+):
+    # Preparing batches
+    adj_start_date = pd.to_datetime(start_date) - pd.Timedelta(weeks=1)
+    adj_end_date = pd.to_datetime(end_date) + pd.Timedelta(weeks=1)
 
-df_fuels = pd.DataFrame()
+    dt_rng = pd.date_range(adj_start_date, adj_end_date, freq='W')
+    year_week_pairs = list(zip(dt_rng.year, dt_rng.isocalendar().week))
+    
+    # Retrieving
+    df_fuels = pd.DataFrame()
 
-for year, week in track(product(years, weeks), total=len(years)*len(weeks)):
-    try:
-        df_fuels_yr_wk = year_week_2_fuel_df(year, week)
-        df_fuels = df_fuels.append(df_fuels_yr_wk, sort=True)
-    except:
-        warn(f'Failed to retrieve week {week} in {year}')
-        
-df_fuels.head(3)
+    for year, week in tqdm(year_week_pairs):
+        try:
+            df_fuels_yr_wk = year_week_to_fuel_df(year, week).rename(columns=new_api_rename_map)
+            df_fuels = df_fuels.append(df_fuels_yr_wk, sort=True)
+        except:
+            warn(f'Failed to retrieve week {week} in {year}')
+            
+    # Cleaning
+    df_fuels = (df_fuels
+                [columns]
+                .astype(float)
+                .resample('H')
+                .mean()
+                .dropna(how='all', axis=1)
+               )
+    
+    df_fuels = df_fuels[start_date:end_date]
+    df_fuels.index.name = 'local_datetime'
+            
+    return df_fuels
 ```
-
-
-<div><span class="Text-label" style="display:inline-block; overflow:hidden; white-space:nowrap; text-overflow:ellipsis; min-width:0; max-width:15ex; vertical-align:middle; text-align:right"></span>
-<progress style="width:60ex" max="583" value="583" class="Progress-main"/></progress>
-<span class="Progress-label"><strong>100%</strong></span>
-<span class="Iteration-label">580/583</span>
-<span class="Time-label">[03:16<00:00, 0.34s/it]</span></div>
-
-
-
-
-
-| Unnamed: 0                |   Biomass |   Biomass planned |   Brown Coal |   Brown Coal planned |   Gas |   Gas planned |   Hard Coal |   Hard Coal planned |   Hydro Power |   Hydro Power planned | ...   |   Residual load forecast |   Seasonal Storage |   Seasonal Storage ante |   Solar |   Solar forecast |   Uranium |   Uranium planned |   Wind |   Wind forecast |   net_balance |
-|:--------------------------|----------:|------------------:|-------------:|---------------------:|------:|--------------:|------------:|--------------------:|--------------:|----------------------:|:------|-------------------------:|-------------------:|------------------------:|--------:|-----------------:|----------:|------------------:|-------:|----------------:|--------------:|
-| 2010-01-04 00:00:00+01:00 |     3.637 |               nan |       16.533 |                  nan | 4.726 |           nan |      10.078 |                 nan |         2.331 |                   nan | ...   |                      nan |              0.068 |                     nan |       0 |              nan |    16.826 |               nan |  0.635 |             nan |        -1.229 |
-| 2010-01-04 01:00:00+01:00 |     3.637 |               nan |       16.544 |                  nan | 4.856 |           nan |       8.816 |                 nan |         2.293 |                   nan | ...   |                      nan |              0.003 |                     nan |       0 |              nan |    16.841 |               nan |  0.528 |             nan |        -1.593 |
-| 2010-01-04 02:00:00+01:00 |     3.637 |               nan |       16.368 |                  nan | 5.275 |           nan |       7.954 |                 nan |         2.299 |                   nan | ...   |                      nan |              0     |                     nan |       0 |              nan |    16.846 |               nan |  0.616 |             nan |        -1.378 |</div>
-
-
-
-<br>
-
-We'll remove the null columns and reorder the remaining ones to clean it up a little bit
 
 ```python
-columns = ['Biomass', 'Brown Coal', 'Gas', 'Hard Coal', 'Hydro Power',
-           'Oil', 'Others', 'Pumped Storage', 'Seasonal Storage', #'Import Balance', 
-           'Solar', 'Uranium', 'Wind', 'net_balance']
+start_date = '2021-05-01'
+end_date = '2021-05-25'
 
-df_fuels_clean = (df_fuels
-                  [columns]
-                  .astype(float)
-                  .resample('H')
-                  .mean()
-                  .dropna(how='all', axis=1)
-                 )
-
-df_fuels_clean.head()
+df_EC = get_EC_data(start_date, end_date)
+        
+df_EC.head(3)
 ```
 
+    100%|â–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆ| 6/6 [00:03<00:00,  1.60it/s]
+    
 
 
 
-| Unnamed: 0                |   Biomass |   Brown Coal |   Gas |   Hard Coal |   Hydro Power |   Oil |   Others |   Pumped Storage |   Seasonal Storage |   Solar |   Uranium |   Wind |   net_balance |
-|:--------------------------|----------:|-------------:|------:|------------:|--------------:|------:|---------:|-----------------:|-------------------:|--------:|----------:|-------:|--------------:|
-| 2010-01-04 00:00:00+01:00 |     3.637 |       16.533 | 4.726 |      10.078 |         2.331 | 0     |        0 |            0.052 |              0.068 |       0 |    16.826 |  0.635 |        -1.229 |
-| 2010-01-04 01:00:00+01:00 |     3.637 |       16.544 | 4.856 |       8.816 |         2.293 | 0     |        0 |            0.038 |              0.003 |       0 |    16.841 |  0.528 |        -1.593 |
-| 2010-01-04 02:00:00+01:00 |     3.637 |       16.368 | 5.275 |       7.954 |         2.299 | 0     |        0 |            0.032 |              0     |       0 |    16.846 |  0.616 |        -1.378 |
-| 2010-01-04 03:00:00+01:00 |     3.637 |       15.837 | 5.354 |       7.681 |         2.299 | 0     |        0 |            0.027 |              0     |       0 |    16.699 |  0.63  |        -1.624 |
-| 2010-01-04 04:00:00+01:00 |     3.637 |       15.452 | 5.918 |       7.498 |         2.301 | 0.003 |        0 |            0.02  |              0     |       0 |    16.635 |  0.713 |        -0.731 |</div>
+
+| local_datetime            |   Biomass |   Brown Coal |     Gas |   Hard Coal |   Hydro Power |   Oil |   Others |   Pumped Storage |   Seasonal Storage |   Solar |   Uranium |    Wind |   Net Balance |
+|:--------------------------|----------:|-------------:|--------:|------------:|--------------:|------:|---------:|-----------------:|-------------------:|--------:|----------:|--------:|--------------:|
+| 2021-05-01 00:00:00+02:00 |   5.19675 |      12.5198 | 6.56375 |     4.039   |           nan | 0.148 |  0.35625 |          0.9395  |            0.02075 |       0 |   6.72275 | 2.28525 |       -0.087  |
+| 2021-05-01 01:00:00+02:00 |   5.1945  |      12.4748 | 5.572   |     3.91175 |           nan | 0.148 |  0.34825 |          0.84875 |            0.015   |       0 |   6.71075 | 2.28825 |       -0.093  |
+| 2021-05-01 02:00:00+02:00 |   5.20275 |      11.9185 | 5.102   |     3.75925 |           nan | 0.148 |  0.3515  |          0.6635  |            0.00275 |       0 |   6.7095  | 2.146   |       -0.1435 |</div>
 
 
 
@@ -774,40 +813,57 @@ df_fuels_clean.head()
 We'll quickly confirm that there are no duplicates
 
 ```python
-assert df_fuels_clean.index.duplicated().sum() == 0, 'There are multiple entries for a datetime'
+assert df_EC.index.duplicated().sum() == 0, 'There are multiple entries for a datetime'
 ```
 
 <br>
 
-Next we check for any missing datetimes
+Next we check for any missing datetimes, because there are only a few missing datetimes we'll choose to drop them from the dataset at a later step
 
 ```python
-s_null_vals = df_fuels_clean.isnull().sum(axis=1)==df_fuels_clean.shape[1]
+s_null_vals = df_EC.isnull().sum(axis=1)==df_EC.shape[1]
 
 print(f'{round(100*s_null_vals.mean(), 2)}% of the datetimes are missing data')
 print(f"There are {(s_null_vals.resample('D').sum()>0).sum()} days with missing data, totalling {s_null_vals.sum()} hours of individual missing hours")
 ```
 
-    0.16% of the datetimes are missing data
-    There are 7 days with missing data, totalling 157 hours of individual missing hours
+    0.57% of the datetimes are missing data
+    There are 1 days with missing data, totalling 24 hours of individual missing hours
     
 
 <br>
 
-Because there are only a few missing datetimes we'll choose to drop them from the dataset
+Finally we'll wrap these steps up and save the data
 
 ```python
-df_fuels_clean = df_fuels_clean[~s_null_vals]
+start_date = '2010-01-01'
+end_date = '2020-12-31'
+
+data_dir = '../data/raw'
+
+retrieve_save_EC_data = False
+
+if retrieve_save_EC_data == True:
+    df_EC = get_EC_data(start_date, end_date)
+    df_EC.to_csv(f'{data_dir}/energy_charts.csv')
+else:
+    df_EC = pd.read_csv(f'{data_dir}/energy_charts.csv', parse_dates=['local_datetime'], index_col='local_datetime')
+
+df_EC.head()
 ```
 
-<br>
 
-Finally we'll save the cleaned dataframe
 
-```python
-df_fuels_clean.index.name = 'local_datetime'
-df_fuels_clean.to_csv('../data/raw/energy_charts.csv')
-```
+
+| local_datetime            |   Biomass |   Brown Coal |   Gas |   Hard Coal |   Hydro Power |   Oil |   Others |   Pumped Storage |   Seasonal Storage |   Solar |   Uranium |   Wind |   net_balance |
+|:--------------------------|----------:|-------------:|------:|------------:|--------------:|------:|---------:|-----------------:|-------------------:|--------:|----------:|-------:|--------------:|
+| 2010-01-04 00:00:00+01:00 |     3.637 |       16.533 | 4.726 |      10.078 |         2.331 | 0     |        0 |            0.052 |              0.068 |       0 |    16.826 |  0.635 |        -1.229 |
+| 2010-01-04 01:00:00+01:00 |     3.637 |       16.544 | 4.856 |       8.816 |         2.293 | 0     |        0 |            0.038 |              0.003 |       0 |    16.841 |  0.528 |        -1.593 |
+| 2010-01-04 02:00:00+01:00 |     3.637 |       16.368 | 5.275 |       7.954 |         2.299 | 0     |        0 |            0.032 |              0     |       0 |    16.846 |  0.616 |        -1.378 |
+| 2010-01-04 03:00:00+01:00 |     3.637 |       15.837 | 5.354 |       7.681 |         2.299 | 0     |        0 |            0.027 |              0     |       0 |    16.699 |  0.63  |        -1.624 |
+| 2010-01-04 04:00:00+01:00 |     3.637 |       15.452 | 5.918 |       7.498 |         2.301 | 0.003 |        0 |            0.02  |              0     |       0 |    16.635 |  0.713 |        -0.731 |</div>
+
+
 
 <br>
 
@@ -947,7 +1003,7 @@ def retreive_DAM_prices(dt_pairs, domain='10Y1001A1001A63L'):
 
     s_price = pd.Series(dtype=float)
 
-    for dt_pair in track(dt_pairs):
+    for dt_pair in tqdm(dt_pairs):
         start = pd.Timestamp(dt_pair[0], tz='UTC')
         end = pd.Timestamp(dt_pair[1], tz='UTC')
 
@@ -1042,7 +1098,7 @@ s_price.plot()
 
 
 
-![png](./img/nbs/dev-01-retrieval_cell_68_output_1.png)
+![png](./img/nbs/dev-01-retrieval_cell_69_output_1.png)
 
 
 <br>
@@ -1137,7 +1193,7 @@ def retrieve_production(dt_pairs, domain='10Y1001A1001A63L', warn_on_failure=Fal
 
     df_production = pd.DataFrame(dtype=float)
 
-    for dt_pair in track(dt_pairs):
+    for dt_pair in tqdm(dt_pairs):
         start = pd.Timestamp(dt_pair[0], tz='UTC')
         end = pd.Timestamp(dt_pair[1], tz='UTC')
 

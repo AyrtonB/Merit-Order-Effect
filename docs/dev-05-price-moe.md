@@ -27,7 +27,7 @@ import matplotlib as mpl
 import matplotlib.pyplot as plt
 import matplotlib.dates as mdates
 
-from ipypb import track
+from tqdm import tqdm
 from IPython.display import JSON
 
 from moepy import lowess, eda
@@ -86,13 +86,13 @@ df_EI['day_ahead_price'].resample('4W').mean().plot(ax=ax)
 
 eda.hide_spines(ax)
 ax.set_xlabel('')
-ax.set_ylabel('Day-Ahead Price\nMonthly Average (£/MWh)')
+ax.set_ylabel('Day-Ahead Price\nMonthly Average (Â£/MWh)')
 ```
 
 
 
 
-    Text(0, 0.5, 'Day-Ahead Price\nMonthly Average (£/MWh)')
+    Text(0, 0.5, 'Day-Ahead Price\nMonthly Average (Â£/MWh)')
 
 
 
@@ -120,13 +120,13 @@ eda.hide_spines(ax)
 ax.set_xlim(8, 60)
 ax.set_ylim(-25, 100)
 ax.set_xlabel('Demand - [Wind + Solar] (GW)')
-ax.set_ylabel('Price (£/MWh)')
+ax.set_ylabel('Price (Â£/MWh)')
 ```
 
 
 
 
-    Text(0, 0.5, 'Price (£/MWh)')
+    Text(0, 0.5, 'Price (Â£/MWh)')
 
 
 
@@ -209,7 +209,7 @@ cbar.ax.set_yticklabels([dt_pred[min(int(len(dt_pred)*tick_loc), len(dt_pred)-1)
 
 eda.hide_spines(ax)
 ax.set_xlabel('Demand - [Solar + Wind] (GW)')
-ax.set_ylabel('Price (£/MWh)')
+ax.set_ylabel('Price (Â£/MWh)')
 ax.set_xlim(df_pred.index[0])
 ax.set_ylim(0, 75)
 ax.set_title('Day-Ahead Market Average Price Curve')
@@ -354,7 +354,7 @@ def set_date_ticks(ax, start_date, end_date, axis='y', date_format='%Y-%m-%d', *
 
 fig, ax = plt.subplots(dpi=150, figsize=(10, 6))
 
-htmp = sns.heatmap(df_pred[10:60].where(df_pred_mask[10:60], np.nan).iloc[::-1], ax=ax, cbar_kws={'label': 'Price (£/MWh)'})
+htmp = sns.heatmap(df_pred[10:60].where(df_pred_mask[10:60], np.nan).iloc[::-1], ax=ax, cbar_kws={'label': 'Price (Â£/MWh)'})
 
 set_ticks(ax, np.arange(0, 70, 10), axis='y')
 set_date_ticks(ax, '2009-01-01', '2021-01-01', freq='1YS', date_format='%Y', axis='x')
@@ -413,7 +413,7 @@ ax.set_xlim(11, 40)
 ax.set_ylim(-20, 150)
 eda.hide_spines(ax)
 ax.set_xlabel('Demand - [Solar + Wind] (GW)')
-ax.set_ylabel('Day-Ahead Price (£/MWh)')
+ax.set_ylabel('Day-Ahead Price (Â£/MWh)')
 ```
 
     Wall time: 58.1 ms
@@ -426,7 +426,7 @@ ax.set_ylabel('Day-Ahead Price (£/MWh)')
 
 
 
-    Text(0, 0.5, 'Day-Ahead Price (£/MWh)')
+    Text(0, 0.5, 'Day-Ahead Price (Â£/MWh)')
 
 
 
@@ -482,7 +482,7 @@ def construct_pred_ts(s, df_pred):
     """Uses the time-adaptive LOWESS surface to generate time-series prediction"""
     s_pred_ts = pd.Series(index=s.index, dtype='float64')
 
-    for dt_idx, val in track(s.iteritems(), total=s.size):
+    for dt_idx, val in tqdm(s.iteritems(), total=s.size):
         s_pred_ts.loc[dt_idx] = df_pred.loc[round(val, 1), dt_idx.strftime('%Y-%m-%d')]
         
     return s_pred_ts
@@ -641,7 +641,7 @@ model_runs = {
 
 model_outputs = dict()
 
-for model_name, model_kwargs in track(model_runs.items()):
+for model_name, model_kwargs in tqdm(model_runs.items()):
     s_pred_ts = get_model_pred_ts(**model_kwargs)
     s_err = s_pred_ts - s_price.loc[s_pred_ts.index]
     metrics = calc_error_metrics(s_err)
@@ -861,7 +861,7 @@ s_GB_price[date].plot(label='Observed', ax=ax)
 
 ax.legend(frameon=False, ncol=3, bbox_to_anchor=(1.075, -0.15))
 ax.set_xlabel('')
-ax.set_ylabel('Price (£/MWh)')
+ax.set_ylabel('Price (Â£/MWh)')
 eda.hide_spines(ax)
 ```
 
@@ -933,10 +933,10 @@ end_date = '2020'
 
 total_saving = s_GB_saving[start_date:end_date].sum()
 
-print(f"The total saving between {start_date} and {end_date} was £{total_saving:,.0f}")
+print(f"The total saving between {start_date} and {end_date} was Â£{total_saving:,.0f}")
 ```
 
-    The total saving between 2010 and 2020 was £17,454,468,143
+    The total saving between 2010 and 2020 was Â£17,454,468,143
     
 
 <br>
@@ -1085,7 +1085,7 @@ eda.hide_spines(ax)
 ax.set_ylim(0, 40)
 ax.set_xlim(pd.to_datetime('2010'), pd.to_datetime('2021'))
 ax.set_xlabel('')
-ax.set_ylabel('Merit Order Effect (£/MWh)')
+ax.set_ylabel('Merit Order Effect (Â£/MWh)')
 ax.legend(frameon=False)
 ```
 
@@ -1120,7 +1120,7 @@ s_solar_MOE.rolling(48*28).mean().plot(ax=ax, label='Solar')
 ax.set_ylim(0, 40)
 ax.set_xlim(pd.to_datetime('2010'), pd.to_datetime('2021'))
 ax.set_xlabel('')
-ax.set_ylabel('Merit Order Effect (£/MWh)')
+ax.set_ylabel('Merit Order Effect (Â£/MWh)')
 ax.legend(frameon=False)
 eda.hide_spines(ax)
 ```
@@ -1169,13 +1169,13 @@ axs[1].legend(frameon=False, bbox_to_anchor=(0.125, 1.05))
 axs[1].set_yticks([])
 eda.hide_spines(axs[1], positions=['left'])
 
-axs[0].set_ylabel('Price (£/MWh)')
+axs[0].set_ylabel('Price (Â£/MWh)')
 ```
 
 
 
 
-    Text(0, 0.5, 'Price (£/MWh)')
+    Text(0, 0.5, 'Price (Â£/MWh)')
 
 
 
@@ -1426,7 +1426,7 @@ ax.plot(x_pred_demand, y_pred_demand, linewidth=1.5, color='r')
 ax.scatter(x_demand, y_demand, color='k', s=0.5, alpha=0.5)
 eda.hide_spines(ax)
 ax.set_xlabel('Demand (GW)')
-ax.set_ylabel('Day-Ahead Price (£/MWh)')
+ax.set_ylabel('Day-Ahead Price (Â£/MWh)')
 
 ax = axs[1]
 ax.plot(x_pred_dispatch, y_pred_dispatch, linewidth=1.5, color='r')
@@ -1598,10 +1598,10 @@ s_DE_MOE = s_DE_MOE.dropna()
 s_DE_saving = s_DE_MOE * df_DE['demand'].loc[s_DE_MOE.index]*1000
 total_saving = s_DE_saving[start_date:end_date].sum()
 
-print(f"The total saving between {start_date} and {end_date} was £{total_saving:,.0f}")
+print(f"The total saving between {start_date} and {end_date} was Â£{total_saving:,.0f}")
 ```
 
-    The total saving between 2015 and 2020 was £55,856,316,374
+    The total saving between 2015 and 2020 was Â£55,856,316,374
     
 
 <br>
@@ -1947,7 +1947,7 @@ eda.hide_spines(ax)
 ax.set_ylim(0, 40)
 ax.set_xlim(pd.to_datetime('2010'), pd.to_datetime('2021'))
 ax.set_xlabel('')
-ax.set_ylabel('Merit Order Effect (£/MWh)')
+ax.set_ylabel('Merit Order Effect (Â£/MWh)')
 ax.legend(frameon=False)
 
 # DE

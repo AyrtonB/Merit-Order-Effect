@@ -14,9 +14,12 @@ This notebook includes some visualisation and exploration of the price and fuel 
 #exports
 import pandas as pd
 
-import seaborn as sns
 import matplotlib.pyplot as plt
 import matplotlib.transforms as mtf
+```
+
+```python
+import seaborn as sns
 ```
 
 <br>
@@ -43,7 +46,7 @@ df = load_EI_df('../data/raw/electric_insights.csv')
 df.head()
 ```
 
-    Wall time: 7.95 s
+    Wall time: 2.29 s
     
 
 
@@ -97,7 +100,7 @@ df_DE.head()
 
 
 
-| local_datetime            |   Biomass |   Brown Coal |   Gas |   Hard Coal |   Hydro Power |   Oil |   Others |   Pumped Storage |   Seasonal Storage |   Solar |   Uranium |   Wind |   net_balance |   demand |   price |
+| local_datetime            |   Biomass |   Brown Coal |   Gas |   Hard Coal |   Hydro Power |   Oil |   Others |   Pumped Storage |   Seasonal Storage |   Solar |   Uranium |   Wind |   Net Balance |   demand |   price |
 |:--------------------------|----------:|-------------:|------:|------------:|--------------:|------:|---------:|-----------------:|-------------------:|--------:|----------:|-------:|--------------:|---------:|--------:|
 | 2010-01-03 23:00:00+00:00 |     3.637 |       16.533 | 4.726 |      10.078 |         2.331 | 0     |        0 |            0.052 |              0.068 |       0 |    16.826 |  0.635 |        -1.229 |   53.657 |     nan |
 | 2010-01-04 00:00:00+00:00 |     3.637 |       16.544 | 4.856 |       8.816 |         2.293 | 0     |        0 |            0.038 |              0.003 |       0 |    16.841 |  0.528 |        -1.593 |   51.963 |     nan |
@@ -115,7 +118,7 @@ We'll create a stacked plot of the different generation types over time. We'll b
 
 ```python
 #exports
-def clean_df_for_plot(df, freq='7D'):
+def clean_EI_df_for_plot(df, freq='7D'):
     """Cleans the electric insights dataframe for plotting"""
     fuel_order = ['Imports & Storage', 'nuclear', 'biomass', 'gas', 'coal', 'hydro', 'wind', 'solar']
     interconnectors = ['french', 'irish', 'dutch', 'belgian', 'ireland', 'northern_ireland']
@@ -133,7 +136,7 @@ def clean_df_for_plot(df, freq='7D'):
 ```
 
 ```python
-df_plot = clean_df_for_plot(df)
+df_plot = clean_EI_df_for_plot(df)
 
 df_plot.head()
 ```
@@ -176,9 +179,9 @@ However we need to convert from rgb to matplotlib plotting colours (0-1 not 0-25
 
 ```python
 #exports
-def rgb_2_plt_tuple(rgb_tuple):
+def rgb_2_plt_tuple(r, g, b):
     """converts a standard rgb set from a 0-255 range to 0-1"""
-    plt_tuple = tuple([x/255 for x in rgb_tuple])
+    plt_tuple = tuple([x/255 for x in (r, g, b)])
     return plt_tuple
 
 def convert_fuel_colour_dict_to_plt_tuple(fuel_colour_dict_rgb):
@@ -186,7 +189,7 @@ def convert_fuel_colour_dict_to_plt_tuple(fuel_colour_dict_rgb):
     fuel_colour_dict_plt = fuel_colour_dict_rgb.copy()
     
     fuel_colour_dict_plt = {
-        fuel: rgb_2_plt_tuple(rgb_tuple) 
+        fuel: rgb_2_plt_tuple(*rgb_tuple) 
         for fuel, rgb_tuple 
         in fuel_colour_dict_plt.items()
     }
@@ -195,13 +198,13 @@ def convert_fuel_colour_dict_to_plt_tuple(fuel_colour_dict_rgb):
 ```
 
 ```python
-fuel_colour_dict_plt = convert_fuel_colour_dict_to_plt_tuple(fuel_colour_dict_rgb)
+fuel_colour_dict = convert_fuel_colour_dict_to_plt_tuple(fuel_colour_dict_rgb)
 
-sns.palplot(fuel_colour_dict_plt.values())
+sns.palplot(fuel_colour_dict.values())
 ```
 
 
-![png](./img/nbs/dev-02-eda_cell_16_output_0.png)
+![png](./img/nbs/dev-02-eda_cell_17_output_0.png)
 
 
 <br>
@@ -223,7 +226,22 @@ def hide_spines(ax, positions=["top", "right"]):
     for position in positions:
         ax.spines[position].set_visible(False)
         
-def stacked_fuel_plot(df, fuel_colour_dict, ax=None, save_path=None, dpi=150):
+def stacked_fuel_plot(
+    df, 
+    ax=None, 
+    save_path=None, 
+    dpi=150,
+    fuel_colour_dict = {
+    'Imports & Storage' : rgb_2_plt_tuple(121,68,149), 
+    'nuclear' : rgb_2_plt_tuple(77,157,87), 
+    'biomass' : rgb_2_plt_tuple(168,125,81), 
+    'gas' : rgb_2_plt_tuple(254,156,66), 
+    'coal' : rgb_2_plt_tuple(122,122,122), 
+    'hydro' : rgb_2_plt_tuple(50,120,196), 
+    'wind' : rgb_2_plt_tuple(72,194,227), 
+    'solar' : rgb_2_plt_tuple(255,219,65),
+}
+):
     """Plots the electric insights fuel data as a stacked area graph"""
     df = df[fuel_colour_dict.keys()]
     
@@ -248,7 +266,7 @@ def stacked_fuel_plot(df, fuel_colour_dict, ax=None, save_path=None, dpi=150):
 ```
 
 ```python
-stacked_fuel_plot(df_plot, fuel_colour_dict_plt, dpi=250)
+stacked_fuel_plot(df_plot, dpi=250)
 ```
 
 
@@ -259,5 +277,50 @@ stacked_fuel_plot(df_plot, fuel_colour_dict_plt, dpi=250)
 
 
 
-![png](./img/nbs/dev-02-eda_cell_19_output_1.png)
+![png](./img/nbs/dev-02-eda_cell_20_output_1.png)
+
+
+```python
+#exports
+def clean_EC_df_for_plot(
+    df_EC, 
+    freq='7D', 
+    fuel_order=['Imports & Storage', 'nuclear', 'biomass', 
+                'gas', 'coal', 'hydro', 'wind', 'solar']
+):
+    """Cleans the electric insights dataframe for plotting"""
+
+    df_EC_clean = (pd
+                   .DataFrame(index=df_EC.index)
+                   .assign(nuclear=df_EC['Uranium'])
+                   .assign(biomass=df_EC['Biomass'])
+                   .assign(gas=df_EC['Gas'])
+                   .assign(coal=df_EC['Brown Coal']+df_EC['Hard Coal'])
+                   .assign(hydro=df_EC['Hydro Power'])
+                   .assign(wind=df_EC['Wind'])
+                   .assign(solar=df_EC['Solar'])
+                  )
+
+    df_EC_clean['Imports & Storage'] = df_EC['Pumped Storage'] + df_EC['Seasonal Storage'] + df_EC['Net Balance']
+    df_EC_clean = df_EC_clean[fuel_order].interpolate()
+
+    df_EC_resampled = df_EC_clean.astype('float').resample(freq).mean()
+    
+    return df_EC_resampled
+```
+
+```python
+df_DE_plot = clean_EC_df_for_plot(df_DE)
+stacked_fuel_plot(df_DE_plot, dpi=250)
+```
+
+
+
+
+    <AxesSubplot:ylabel='Generation (GW)'>
+
+
+
+
+![png](./img/nbs/dev-02-eda_cell_22_output_1.png)
 

@@ -1,4 +1,4 @@
-# Power Curves
+# Wind Power Curve Fitting & Cleaning
 
 
 

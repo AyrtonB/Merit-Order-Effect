@@ -173,7 +173,7 @@ df_fuels_GB.head()
 
 We'll source the carbon intensity data from DUKES where possible and Electric Insights where it isn't.
 
-<img src="..\nbs\..\img\docs\GB DUKES carbon intensity.png" width="600" style="max-width: 600px">
+<img src="..\nbs\..\img\docs\GB DUKES carbon intensity.png" width="600">
 
 ```python
 GB_fuel_to_co2_intensity = {

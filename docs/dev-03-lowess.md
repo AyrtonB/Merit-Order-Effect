@@ -17,8 +17,6 @@ The original LOWESS code written by W. S. Cleveland can be found [here](https://
 import pandas as pd
 import numpy as np
 
-import seaborn as sns
-import matplotlib.pyplot as plt
 from collections.abc import Iterable
 from sklearn import linear_model
 
@@ -26,9 +24,15 @@ from sklearn.base import BaseEstimator, RegressorMixin
 from scipy.optimize import minimize
 from scipy import linalg
 
-from timeit import timeit
-from ipypb import track
+from tqdm import tqdm
+```
 
+```python
+import seaborn as sns
+import matplotlib as mpl
+import matplotlib.pyplot as plt
+
+from timeit import timeit
 from moepy import eda
 ```
 
@@ -56,12 +60,12 @@ plt.plot(x, y)
 
 
 
-    [<matplotlib.lines.Line2D at 0x1fd650f86d0>]
+    [<matplotlib.lines.Line2D at 0x2bbf1599b50>]
 
 
 
 
-![png](./img/nbs/dev-03-lowess_cell_6_output_1.png)
+![png](./img/nbs/dev-03-lowess_cell_7_output_1.png)
 
 
 <br>
@@ -159,7 +163,7 @@ plt.ylim(0, 1.1)
 
 
 
-![png](./img/nbs/dev-03-lowess_cell_15_output_1.png)
+![png](./img/nbs/dev-03-lowess_cell_16_output_1.png)
 
 
 <br>
@@ -206,7 +210,7 @@ timeit(lambda: get_weights(x, x[5]), number=10000)
 
 
 
-    0.6126709999999989
+    0.3881793
 
 
 
@@ -277,7 +281,7 @@ ax.set_ylabel('Regression Nodes')
 
 
 
-![png](./img/nbs/dev-03-lowess_cell_26_output_1.png)
+![png](./img/nbs/dev-03-lowess_cell_27_output_1.png)
 
 
 <br>
@@ -290,7 +294,7 @@ This approach brings an order of magnitude speed-up to the operation
 timeit(lambda: [get_dist(x, x[x_idx]) for x_idx in range(len(x))], number=10000)
 ```
 
-    825 ms ± 163 ms per loop (mean ± std. dev. of 7 runs, 1 loop each)
+    885 ms Â± 107 ms per loop (mean Â± std. dev. of 7 runs, 1 loop each)
     
 
 ```python
@@ -299,7 +303,7 @@ timeit(lambda: [get_dist(x, x[x_idx]) for x_idx in range(len(x))], number=10000)
 timeit(lambda: vector_to_dist_matrix(x), number=10000)
 ```
 
-    55.5 ms ± 3.06 ms per loop (mean ± std. dev. of 7 runs, 10 loops each)
+    122 ms Â± 11.6 ms per loop (mean Â± std. dev. of 7 runs, 10 loops each)
     
 
 <br>
@@ -324,7 +328,7 @@ timeit(lambda: gramfort_get_dist_thresholds(x, frac_idx), number=10000)
 
 
 
-    1.7785535999999986
+    2.5025440000000003
 
 
 
@@ -350,7 +354,7 @@ timeit(lambda: get_dist_thresholds(x, frac_idx, dist_matrix), number=10000)
 
 
 
-    0.10906620000000089
+    0.12421600000000055
 
 
 
@@ -386,7 +390,7 @@ timeit(lambda: (1 - inv_linear_weights ** 3) ** 3, number=10000)
 
 
 
-    0.4310475999999994
+    0.5055094999999987
 
 
 
@@ -397,7 +401,7 @@ timeit(lambda: np.power(1 - np.power(inv_linear_weights, 3), 3), number=10000)
 
 
 
-    0.44873660000000015
+    0.6110422
 
 
 
@@ -412,7 +416,7 @@ timeit(lambda: (1 - inv_linear_weights ** 50000) ** 50000, number=10000)
 
 
 
-    0.5387637000000005
+    0.5175592999999985
 
 
 
@@ -423,7 +427,7 @@ timeit(lambda: np.power(1 - np.power(inv_linear_weights, 50000), 50000), number=
 
 
 
-    0.526861499999999
+    0.5056613999999975
 
 
 
@@ -519,7 +523,7 @@ timeit(lambda: get_full_dataset_weights_matrix(x, frac=frac), number=10000)
 
 
 
-    1.4529582999999988
+    1.8022471000000024
 
 
 
@@ -593,7 +597,7 @@ ax.set_ylabel('Regression Nodes')
 
 
 
-![png](./img/nbs/dev-03-lowess_cell_58_output_1.png)
+![png](./img/nbs/dev-03-lowess_cell_59_output_1.png)
 
 
 <br>
@@ -624,7 +628,7 @@ ax.set_ylabel('Regression Nodes')
 
 
 
-![png](./img/nbs/dev-03-lowess_cell_60_output_1.png)
+![png](./img/nbs/dev-03-lowess_cell_61_output_1.png)
 
 
 <br>
@@ -655,7 +659,7 @@ ax.set_ylabel('Regression Nodes')
 
 
 
-![png](./img/nbs/dev-03-lowess_cell_62_output_1.png)
+![png](./img/nbs/dev-03-lowess_cell_63_output_1.png)
 
 
 <br>
@@ -699,7 +703,7 @@ ax.set_ylabel('Regression Nodes')
 
 
 
-![png](./img/nbs/dev-03-lowess_cell_65_output_1.png)
+![png](./img/nbs/dev-03-lowess_cell_66_output_1.png)
 
 
 <br>
@@ -731,7 +735,7 @@ ax.set_ylabel('Regression Nodes')
 
 
 
-![png](./img/nbs/dev-03-lowess_cell_67_output_2.png)
+![png](./img/nbs/dev-03-lowess_cell_68_output_2.png)
 
 
 <br>
@@ -772,7 +776,7 @@ eda.hide_spines(ax)
 ```
 
 
-![png](./img/nbs/dev-03-lowess_cell_70_output_0.png)
+![png](./img/nbs/dev-03-lowess_cell_71_output_0.png)
 
 
 <br>
@@ -805,7 +809,7 @@ fig.savefig('../img/LOWESS_single_regression_example.png', dpi=250)
 ```
 
 
-![png](./img/nbs/dev-03-lowess_cell_72_output_0.png)
+![png](./img/nbs/dev-03-lowess_cell_73_output_0.png)
 
 
 <br>
@@ -837,12 +841,12 @@ plt.legend(frameon=False)
 
 
 
-    <matplotlib.legend.Legend at 0x1a4b3a23310>
+    <matplotlib.legend.Legend at 0x2bbf235e490>
 
 
 
 
-![png](./img/nbs/dev-03-lowess_cell_74_output_1.png)
+![png](./img/nbs/dev-03-lowess_cell_75_output_1.png)
 
 
 <br>
@@ -871,12 +875,12 @@ plt.legend(frameon=False)
 
 
 
-    <matplotlib.legend.Legend at 0x1a4b3a85760>
+    <matplotlib.legend.Legend at 0x2bbf23c6280>
 
 
 
 
-![png](./img/nbs/dev-03-lowess_cell_76_output_1.png)
+![png](./img/nbs/dev-03-lowess_cell_77_output_1.png)
 
 
 <br>
@@ -965,12 +969,12 @@ plt.legend(frameon=False)
 
 
 
-    <matplotlib.legend.Legend at 0x1a4b3aefd30>
+    <matplotlib.legend.Legend at 0x2bbf242ae50>
 
 
 
 
-![png](./img/nbs/dev-03-lowess_cell_82_output_1.png)
+![png](./img/nbs/dev-03-lowess_cell_83_output_1.png)
 
 
 <br>
@@ -989,12 +993,12 @@ plt.legend(frameon=False)
 
 
 
-    <matplotlib.legend.Legend at 0x1a4b3b48e80>
+    <matplotlib.legend.Legend at 0x2bbf24905b0>
 
 
 
 
-![png](./img/nbs/dev-03-lowess_cell_84_output_1.png)
+![png](./img/nbs/dev-03-lowess_cell_85_output_1.png)
 
 
 <br>
@@ -1012,7 +1016,7 @@ y = np.sin(x)
 y_pred = lowess_fit_and_predict(x, y)
 ```
 
-    2.02 ms ± 57.2 µs per loop (mean ± std. dev. of 7 runs, 100 loops each)
+    3.2 ms Â± 398 Âµs per loop (mean Â± std. dev. of 7 runs, 100 loops each)
     
 
 <br>
@@ -1033,7 +1037,7 @@ x_pred = np.linspace(0, 5, 100)[1:] # to avoid divide by zero in MAPE calc
 y_pred = lowess_fit_and_predict(x, y, frac=frac, x_pred=x_pred)
 ```
 
-    989 ms ± 21.6 ms per loop (mean ± std. dev. of 7 runs, 1 loop each)
+    1.39 s Â± 160 ms per loop (mean Â± std. dev. of 7 runs, 1 loop each)
     
 
 <br>
@@ -1064,7 +1068,7 @@ df_EI = eda.load_EI_df('../data/raw/electric_insights.csv')
 df_EI.head()
 ```
 
-    Wall time: 1.86 s
+    Wall time: 3.12 s
     
 
 
@@ -1112,7 +1116,7 @@ x_pred = np.linspace(15, 55, 41)
 y_pred = lowess_fit_and_predict(x, y, frac=0.4, num_fits=25, x_pred=x_pred)
 ```
 
-    Wall time: 63 ms
+    Wall time: 140 ms
     
 
 <br>
@@ -1129,18 +1133,18 @@ ax.set_ylim(0, 100)
 ax.set_xlim(15, 55)
 eda.hide_spines(ax)
 ax.set_xlabel('Demand (GW)')
-ax.set_ylabel('Day-Ahead Price (£/MWh)')
+ax.set_ylabel('Day-Ahead Price (Â£/MWh)')
 ```
 
 
 
 
-    Text(0, 0.5, 'Day-Ahead Price (£/MWh)')
+    Text(0, 0.5, 'Day-Ahead Price (Â£/MWh)')
 
 
 
 
-![png](./img/nbs/dev-03-lowess_cell_100_output_1.png)
+![png](./img/nbs/dev-03-lowess_cell_101_output_1.png)
 
 
 <br>
@@ -1163,12 +1167,12 @@ plt.plot(x_pred, y_pred, '--')
 
 
 
-    [<matplotlib.lines.Line2D at 0x1a4b2f9e160>]
+    [<matplotlib.lines.Line2D at 0x2bb804d4880>]
 
 
 
 
-![png](./img/nbs/dev-03-lowess_cell_102_output_1.png)
+![png](./img/nbs/dev-03-lowess_cell_103_output_1.png)
 
 
 <br>
@@ -1194,12 +1198,12 @@ plt.legend(frameon=False)
 
 
 
-    <matplotlib.legend.Legend at 0x1a4b39dc310>
+    <matplotlib.legend.Legend at 0x2bbf17eda30>
 
 
 
 
-![png](./img/nbs/dev-03-lowess_cell_104_output_1.png)
+![png](./img/nbs/dev-03-lowess_cell_105_output_1.png)
 
 
 <br>
@@ -1218,12 +1222,12 @@ plt.legend(frameon=False)
 
 
 
-    <matplotlib.legend.Legend at 0x1a4b3a630d0>
+    <matplotlib.legend.Legend at 0x2bbf164cd60>
 
 
 
 
-![png](./img/nbs/dev-03-lowess_cell_106_output_1.png)
+![png](./img/nbs/dev-03-lowess_cell_107_output_1.png)
 
 
 <br>
@@ -1244,7 +1248,7 @@ std_dev
 
 
 
-    0.13459575203567298
+    0.11416089877901764
 
 
 
@@ -1274,7 +1278,7 @@ for ax in axs:
 ```
 
 
-![png](./img/nbs/dev-03-lowess_cell_110_output_0.png)
+![png](./img/nbs/dev-03-lowess_cell_111_output_0.png)
 
 
 <br>
@@ -1294,7 +1298,7 @@ eda.hide_spines(ax)
 ```
 
 
-![png](./img/nbs/dev-03-lowess_cell_112_output_0.png)
+![png](./img/nbs/dev-03-lowess_cell_113_output_0.png)
 
 
 <br>
@@ -1370,12 +1374,12 @@ plt.legend(frameon=False)
 
 
 
-    <matplotlib.legend.Legend at 0x1a4b329c7f0>
+    <matplotlib.legend.Legend at 0x2bb8184ca60>
 
 
 
 
-![png](./img/nbs/dev-03-lowess_cell_117_output_1.png)
+![png](./img/nbs/dev-03-lowess_cell_118_output_1.png)
 
 
 <br>
@@ -1543,12 +1547,12 @@ plt.legend(frameon=False)
 
 
 
-    <matplotlib.legend.Legend at 0x1a4b45ad850>
+    <matplotlib.legend.Legend at 0x2bb80607e50>
 
 
 
 
-![png](./img/nbs/dev-03-lowess_cell_120_output_1.png)
+![png](./img/nbs/dev-03-lowess_cell_121_output_1.png)
 
 
 <br>
@@ -1577,12 +1581,12 @@ plt.legend(frameon=False)
 
 
 
-    <matplotlib.legend.Legend at 0x1a4b78d3ac0>
+    <matplotlib.legend.Legend at 0x2bb806c9e80>
 
 
 
 
-![png](./img/nbs/dev-03-lowess_cell_122_output_1.png)
+![png](./img/nbs/dev-03-lowess_cell_123_output_1.png)
 
 
 <br>
@@ -1619,7 +1623,7 @@ ib_idxs, oob_idxs = get_bootstrap_idxs(x)
 print(f'in-bag: {len(ib_idxs)}, out-of-bag: {len(oob_idxs)}')
 ```
 
-    in-bag: 250, out-of-bag: 299
+    in-bag: 250, out-of-bag: 305
     
 
 <br>
@@ -1660,7 +1664,7 @@ get_bootstrap_resid_std_devs(x, y, bag_size=0.5, frac=0.2, num_fits=20)
 
 
 
-    (0.020320708955639148, 0.024223597689702395)
+    (0.006200435566114433, 0.015852790335401688)
 
 
 
@@ -1675,7 +1679,7 @@ num_runs = 1000
 ib_resid_std_devs = []
 oob_resid_std_devs = []
 
-for model_run in track(range(num_runs)):
+for model_run in tqdm(range(num_runs)):
     ib_resid_std_dev, oob_resid_std_dev = get_bootstrap_resid_std_devs(x, y_noisy, bag_size, frac=0.2, num_fits=20)
     
     ib_resid_std_devs += [ib_resid_std_dev]
@@ -1692,13 +1696,8 @@ eda.hide_spines(ax)
 ax.set_xlabel('Residual\'s Standard Deviation')
 ```
 
-
-<div><span class="Text-label" style="display:inline-block; overflow:hidden; white-space:nowrap; text-overflow:ellipsis; min-width:0; max-width:15ex; vertical-align:middle; text-align:right"></span>
-<progress style="width:60ex" max="1000" value="1000" class="Progress-main"/></progress>
-<span class="Progress-label"><strong>100%</strong></span>
-<span class="Iteration-label">1000/1000</span>
-<span class="Time-label">[00:28<00:00, 0.03s/it]</span></div>
-
+    100%|â–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆ| 1000/1000 [00:25<00:00, 39.26it/s]
+    
 
 
 
@@ -1708,7 +1707,7 @@ ax.set_xlabel('Residual\'s Standard Deviation')
 
 
 
-![png](./img/nbs/dev-03-lowess_cell_130_output_2.png)
+![png](./img/nbs/dev-03-lowess_cell_131_output_2.png)
 
 
 <br>
@@ -1739,7 +1738,7 @@ def bootstrap_model(x, y, bag_size=0.5, model=Lowess(), x_pred=None, num_runs=10
     # Creating the ensemble predictions
     preds = []
 
-    for bootstrap_run in track(range(num_runs)):
+    for bootstrap_run in tqdm(range(num_runs)):
         y_pred = run_model(x, y, bag_size, model=model, x_pred=x_pred, **model_kwargs)
         preds += [y_pred]
 
@@ -1758,24 +1757,19 @@ df_bootstrap = bootstrap_model(x, y_noisy, num_runs=1000, frac=0.2, num_fits=20)
 df_bootstrap.head()
 ```
 
-
-<div><span class="Text-label" style="display:inline-block; overflow:hidden; white-space:nowrap; text-overflow:ellipsis; min-width:0; max-width:15ex; vertical-align:middle; text-align:right"></span>
-<progress style="width:60ex" max="1000" value="1000" class="Progress-main"/></progress>
-<span class="Progress-label"><strong>100%</strong></span>
-<span class="Iteration-label">1000/1000</span>
-<span class="Time-label">[00:25<00:00, 0.03s/it]</span></div>
+    100%|â–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆ| 1000/1000 [00:20<00:00, 48.74it/s]
+    
 
 
 
 
-
-|       x |        0 |        1 |        2 |        3 |        4 |        5 |        6 |        7 |        8 |        9 | ...   |      990 |      991 |      992 |      993 |      994 |      995 |      996 |      997 |      998 |      999 |
-|--------:|---------:|---------:|---------:|---------:|---------:|---------:|---------:|---------:|---------:|---------:|:------|---------:|---------:|---------:|---------:|---------:|---------:|---------:|---------:|---------:|---------:|
-| 0       | 0.12324  | 0.100568 | 0.034607 | 0.062935 | 0.037283 | 0.024595 | 0.077896 | 0.071517 | 0.154899 | 0.104609 | ...   | 0.106006 | 0.022008 | 0.117897 | 0.042924 | 0.094948 | 0.095224 | 0.109828 | 0.097625 | 0.096894 | 0.102314 |
-| 0.02004 | 0.135523 | 0.114414 | 0.04894  | 0.077258 | 0.051836 | 0.039222 | 0.091694 | 0.086137 | 0.166246 | 0.116779 | ...   | 0.119922 | 0.037429 | 0.131267 | 0.057019 | 0.109155 | 0.107799 | 0.12283  | 0.111439 | 0.109543 | 0.11558  |
-| 0.04008 | 0.147791 | 0.128252 | 0.063258 | 0.091566 | 0.06638  | 0.053843 | 0.105484 | 0.100748 | 0.177581 | 0.128936 | ...   | 0.133827 | 0.052831 | 0.144617 | 0.071105 | 0.12335  | 0.120364 | 0.135816 | 0.125241 | 0.122177 | 0.128832 |
-| 0.06012 | 0.160044 | 0.142084 | 0.077562 | 0.10586  | 0.080914 | 0.068458 | 0.119268 | 0.115353 | 0.188904 | 0.141083 | ...   | 0.147722 | 0.068217 | 0.157946 | 0.085199 | 0.137534 | 0.132918 | 0.148786 | 0.13903  | 0.134797 | 0.14207  |
-| 0.08016 | 0.172286 | 0.155927 | 0.091852 | 0.120165 | 0.09544  | 0.083068 | 0.133063 | 0.129976 | 0.200216 | 0.153222 | ...   | 0.161608 | 0.083587 | 0.171256 | 0.099382 | 0.151709 | 0.14548  | 0.161742 | 0.15281  | 0.147405 | 0.1553   |</div>
+|       x |        0 |        1 |        2 |        3 |        4 |        5 |        6 |        7 |        8 |        9 | ...   |      990 |      991 |      992 |       993 |      994 |      995 |      996 |      997 |      998 |      999 |
+|--------:|---------:|---------:|---------:|---------:|---------:|---------:|---------:|---------:|---------:|---------:|:------|---------:|---------:|---------:|----------:|---------:|---------:|---------:|---------:|---------:|---------:|
+| 0       | 0.100492 | 0.285576 | 0.168229 | 0.081885 | 0.09317  | 0.126089 | 0.141063 | 0.136327 | 0.106476 | 0.143553 | ...   | 0.192997 | 0.128739 | 0.103581 | -0.007503 | 0.150398 | 0.079978 | 0.091975 | 0.070497 | 0.159256 | 0.165584 |
+| 0.02004 | 0.113847 | 0.294801 | 0.17931  | 0.095949 | 0.107318 | 0.139106 | 0.153485 | 0.147965 | 0.116911 | 0.155677 | ...   | 0.204612 | 0.142545 | 0.117383 |  0.009169 | 0.162007 | 0.095014 | 0.106273 | 0.0849   | 0.170189 | 0.176606 |
+| 0.04008 | 0.12719  | 0.304004 | 0.190375 | 0.110005 | 0.121457 | 0.152109 | 0.165898 | 0.159591 | 0.127338 | 0.167791 | ...   | 0.21621  | 0.156338 | 0.131174 |  0.025814 | 0.173607 | 0.110028 | 0.120561 | 0.099295 | 0.181101 | 0.187611 |
+| 0.06012 | 0.140522 | 0.313186 | 0.201427 | 0.124052 | 0.1356   | 0.165098 | 0.178302 | 0.171205 | 0.137758 | 0.179896 | ...   | 0.227794 | 0.170119 | 0.144954 |  0.042432 | 0.185199 | 0.125022 | 0.13484  | 0.113681 | 0.191995 | 0.198601 |
+| 0.08016 | 0.153863 | 0.322348 | 0.212466 | 0.138132 | 0.149829 | 0.178098 | 0.190696 | 0.182827 | 0.148178 | 0.192006 | ...   | 0.239364 | 0.183889 | 0.158744 |  0.059027 | 0.196799 | 0.139998 | 0.149172 | 0.128065 | 0.202871 | 0.209576 |</div>
 
 
 
@@ -1814,7 +1808,7 @@ eda.hide_spines(ax)
 ```
 
 
-![png](./img/nbs/dev-03-lowess_cell_136_output_0.png)
+![png](./img/nbs/dev-03-lowess_cell_137_output_0.png)
 
 
 <br>
@@ -1866,7 +1860,7 @@ def quantile_model(x, y, model=Lowess(calc_quant_reg_betas),
         
     q_to_preds = dict()
 
-    for q in track(qs):
+    for q in tqdm(qs):
         model.fit(x, y, q=q, **model_kwargs)
         q_to_preds[q] = model.predict(x_pred)
 
@@ -1879,34 +1873,29 @@ def quantile_model(x, y, model=Lowess(calc_quant_reg_betas),
 ```
 
 ```python
-%%time
-
 df_quantiles = quantile_model(x, y_noisy, frac=0.2, num_fits=100, robust_iters=1)
 
 df_quantiles.head()
 ```
 
+    100%|â–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆ| 9/9 [00:09<00:00,  1.11s/it]
 
-<div><span class="Text-label" style="display:inline-block; overflow:hidden; white-space:nowrap; text-overflow:ellipsis; min-width:0; max-width:15ex; vertical-align:middle; text-align:right"></span>
-<progress style="width:60ex" max="9" value="9" class="Progress-main"/></progress>
-<span class="Progress-label"><strong>100%</strong></span>
-<span class="Iteration-label">9/9</span>
-<span class="Time-label">[00:11<00:01, 1.18s/it]</span></div>
+    Wall time: 9.96 s
+    
 
-
-    Wall time: 10.6 s
+    
     
 
 
 
 
-|       x |       0.1 |       0.2 |      0.3 |      0.4 |      0.5 |      0.6 |      0.7 |      0.8 |      0.9 |
-|--------:|----------:|----------:|---------:|---------:|---------:|---------:|---------:|---------:|---------:|
-| 0       | -0.071164 | -0.004352 | 0.011374 | 0.025166 | 0.080732 | 0.091657 | 0.144884 | 0.163482 | 0.192227 |
-| 0.02004 | -0.056877 |  0.009553 | 0.025934 | 0.040718 | 0.095134 | 0.106431 | 0.158797 | 0.178013 | 0.207308 |
-| 0.04008 | -0.042584 |  0.023455 | 0.040493 | 0.056241 | 0.109531 | 0.121194 | 0.172707 | 0.192542 | 0.222345 |
-| 0.06012 | -0.028267 |  0.037368 | 0.055069 | 0.07175  | 0.123931 | 0.135959 | 0.186627 | 0.207077 | 0.237343 |
-| 0.08016 | -0.013915 |  0.0513   | 0.069668 | 0.087256 | 0.138339 | 0.150735 | 0.200564 | 0.221624 | 0.252307 |</div>
+|       x |      0.1 |      0.2 |      0.3 |      0.4 |      0.5 |      0.6 |      0.7 |      0.8 |      0.9 |
+|--------:|---------:|---------:|---------:|---------:|---------:|---------:|---------:|---------:|---------:|
+| 0       | 0.001332 | 0.019899 | 0.040851 | 0.058275 | 0.079923 | 0.107117 | 0.12615  | 0.20098  | 0.198097 |
+| 0.02004 | 0.013525 | 0.033523 | 0.055063 | 0.072684 | 0.094939 | 0.122101 | 0.141805 | 0.215066 | 0.214086 |
+| 0.04008 | 0.025715 | 0.047141 | 0.069255 | 0.087094 | 0.109947 | 0.137091 | 0.157439 | 0.229147 | 0.230071 |
+| 0.06012 | 0.037911 | 0.060761 | 0.083439 | 0.101519 | 0.124962 | 0.152102 | 0.173062 | 0.243235 | 0.246067 |
+| 0.08016 | 0.050118 | 0.074387 | 0.097623 | 0.115969 | 0.139991 | 0.167139 | 0.188679 | 0.257339 | 0.26208  |</div>
 
 
 
@@ -1927,7 +1916,7 @@ eda.hide_spines(ax)
 ```
 
 
-![png](./img/nbs/dev-03-lowess_cell_143_output_0.png)
+![png](./img/nbs/dev-03-lowess_cell_144_output_0.png)
 
 
 <br>
@@ -1954,18 +1943,18 @@ eda.hide_spines(ax)
 ax.set_xlim(8, 60)
 ax.set_ylim(-25, 100)
 ax.set_xlabel('Demand - [Wind + Solar] (MW)')
-ax.set_ylabel('Price (£/MWh)')
+ax.set_ylabel('Price (Â£/MWh)')
 ```
 
 
 
 
-    Text(0, 0.5, 'Price (£/MWh)')
+    Text(0, 0.5, 'Price (Â£/MWh)')
 
 
 
 
-![png](./img/nbs/dev-03-lowess_cell_145_output_1.png)
+![png](./img/nbs/dev-03-lowess_cell_146_output_1.png)
 
 
 <br>
@@ -2010,18 +1999,18 @@ eda.hide_spines(ax)
 ax.set_xlim(8, 60)
 ax.set_ylim(-25, 100)
 ax.set_xlabel('Demand - [Wind + Solar] (MW)')
-ax.set_ylabel('Price (£/MWh)')
+ax.set_ylabel('Price (Â£/MWh)')
 ```
 
 
 
 
-    Text(0, 0.5, 'Price (£/MWh)')
+    Text(0, 0.5, 'Price (Â£/MWh)')
 
 
 
 
-![png](./img/nbs/dev-03-lowess_cell_149_output_1.png)
+![png](./img/nbs/dev-03-lowess_cell_150_output_1.png)
 
 
 <br>
@@ -2050,12 +2039,12 @@ plt.plot(df_EI.index, weights)
 
 
 
-    [<matplotlib.lines.Line2D at 0x1a4b3acd190>]
+    [<matplotlib.lines.Line2D at 0x2bb8061df10>]
 
 
 
 
-![png](./img/nbs/dev-03-lowess_cell_152_output_1.png)
+![png](./img/nbs/dev-03-lowess_cell_153_output_1.png)
 
 
 <br>
@@ -2083,7 +2072,7 @@ dt_to_weights = construct_dt_weights(df_EI_model.index, reg_dates)
 sns.heatmap(pd.DataFrame(dt_to_weights, index=df_EI_model.index))
 ```
 
-    Wall time: 2.86 s
+    Wall time: 1.77 s
     
 
 
@@ -2094,7 +2083,7 @@ sns.heatmap(pd.DataFrame(dt_to_weights, index=df_EI_model.index))
 
 
 
-![png](./img/nbs/dev-03-lowess_cell_155_output_2.png)
+![png](./img/nbs/dev-03-lowess_cell_156_output_2.png)
 
 
 <br>
@@ -2107,7 +2096,7 @@ def fit_external_weighted_ensemble(x, y, ensemble_member_to_weights, lowess_kwar
     """Fits an ensemble of LOWESS models which have varying relevance for each subset of data over time"""
     ensemble_member_to_models = dict()
 
-    for ensemble_member, ensemble_weights in track(ensemble_member_to_weights.items()):
+    for ensemble_member, ensemble_weights in tqdm(ensemble_member_to_weights.items()):
         ensemble_member_to_models[ensemble_member] = Lowess(**lowess_kwargs)
         ensemble_member_to_models[ensemble_member].fit(x, y, external_weights=ensemble_weights, **fit_kwargs)
         
@@ -2196,6 +2185,11 @@ class SmoothDates(BaseEstimator, RegressorMixin):
             robust_iters: Number of robustifying iterations to carry out
         """
         
+        for attr_name in ['threshold_value', 'threshold_units', 'frac']:
+            if attr_name in fit_kwargs.keys():
+                attr_value = fit_kwargs.pop(attr_name)
+                setattr(self, attr_name, attr_value)
+        
         x, y, dt_idx, reg_dates = process_smooth_dates_fit_inputs(x, y, dt_idx, reg_dates)
         self.ensemble_member_to_weights = construct_dt_weights(dt_idx, reg_dates, 
                                                                threshold_value=self.threshold_value, 
@@ -2255,56 +2249,77 @@ reg_dates = pd.date_range('2009-01-01', '2021-01-01', freq='13W')
 smooth_dates = SmoothDates()
 smooth_dates.fit(s_dispatchable.values, s_price.values, dt_idx=s_dispatchable.index, 
                  reg_dates=reg_dates, frac=0.3, num_fits=31, threshold_value=26)
+```
 
-# Prediction
-x_pred = np.linspace(8, 60, 53)
+    100%|â–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆ| 49/49 [05:34<00:00,  6.82s/it]
+    
+
+    Wall time: 5min 36s
+    
+
+
+
+
+|   Unnamed: 0 |   2009-01-04 |   2009-04-05 |   2009-07-05 |   2009-10-04 |   2010-01-03 |   2010-04-04 |   2010-07-04 |   2010-10-03 |   2011-01-02 |   2011-04-03 | ...   |   2018-09-23 |   2018-12-23 |   2019-03-24 |   2019-06-23 |   2019-09-22 |   2019-12-22 |   2020-03-22 |   2020-06-21 |   2020-09-20 |   2020-12-20 |
+|-------------:|-------------:|-------------:|-------------:|-------------:|-------------:|-------------:|-------------:|-------------:|-------------:|-------------:|:------|-------------:|-------------:|-------------:|-------------:|-------------:|-------------:|-------------:|-------------:|-------------:|-------------:|
+|            8 |     -8.94494 |     -9.51974 |    -8.28428  |    -4.07312  |      2.36397 |      9.20304 |      15.5523 |      19.952  |      21.5384 |      21.9928 | ...   |      28.3222 |      26.2734 |      22.3372 |      17.3046 |      12.547  |      8.98005 |      6.83905 |      6.27963 |      6.65813 |      7.26188 |
+|            9 |     -6.99248 |     -7.53971 |    -6.35583  |    -2.32092  |      3.85282 |     10.4279  |      16.5652 |      20.8613 |      22.4654 |      22.9732 | ...   |      29.946  |      27.9123 |      24.0496 |      19.1683 |      14.5875 |     11.1863  |      9.19079 |      8.70926 |      9.10023 |      9.70888 |
+|           10 |     -5.04027 |     -5.56007 |    -4.42799  |    -0.569485 |      5.34086 |     11.652   |      17.5774 |      21.77   |      23.3919 |      23.9533 | ...   |      31.579  |      29.5601 |      25.771  |      21.0399 |      16.6341 |     13.3969  |     11.5457  |     11.1418  |     11.5459  |     12.1605  |
+|           11 |     -3.08905 |     -3.58251 |    -2.50355  |     1.17778  |      6.82498 |     12.8728  |      18.587  |      22.6767 |      24.316  |      24.9304 | ...   |      33.2324 |      31.2281 |      27.5125 |      22.9319 |      18.7011 |     15.628   |     13.922   |     13.5968  |     14.0149  |     14.6364  |
+|           12 |     -1.1388  |     -1.60631 |    -0.581076 |     2.92264  |      8.3066  |     14.0911  |      19.5944 |      23.5817 |      25.239  |      25.907  | ...   |      34.9068 |      32.9172 |      29.2753 |      24.8442 |      20.7861 |     17.8751  |     16.313   |     16.0661  |     16.4993  |     17.1295  |</div>
+
+
+
+```python
+x_pred = np.linspace(8, 60, 521)
 
 df_pred = smooth_dates.predict(x_pred=x_pred)
 
 df_pred.head()
 ```
 
-    Wall time: 206 ms
-    
 
 
 
-
-| Unnamed: 0   |      8.0 |      9.0 |      10.0 |      11.0 |     12.0 |     13.0 |     14.0 |    15.0 |    16.0 |    17.0 | ...   |    51.0 |    52.0 |    53.0 |    54.0 |    55.0 |    56.0 |    57.0 |    58.0 |    59.0 |    60.0 |
-|:-------------|---------:|---------:|----------:|----------:|---------:|---------:|---------:|--------:|--------:|--------:|:------|--------:|--------:|--------:|--------:|--------:|--------:|--------:|--------:|--------:|--------:|
-| 2009-01-04   | -25.1979 | -19.6978 | -14.1985  |  -8.70185 | -3.20799 |  2.27958 |  7.7668  | 13.2571 | 18.7712 | 24.3397 | ...   | 191.52  | 199.994 | 208.405 | 216.829 | 225.204 | 233.6   | 241.959 | 250.322 | 258.639 | 267.002 |
-| 2009-04-05   | -35.8976 | -28.4311 | -20.9662  | -13.5091  | -6.05717 |  1.38257 |  8.82444 | 16.2744 | 23.7693 | 31.3579 | ...   | 241.977 | 251.959 | 261.86  | 271.777 | 281.632 | 291.514 | 301.353 | 311.198 | 320.989 | 330.837 |
-| 2009-07-05   | -36.7886 | -28.2248 | -19.6637  | -11.1177  | -2.58043 |  5.93604 | 14.4576  | 22.9934 | 31.6014 | 40.3522 | ...   | 267.246 | 277.279 | 287.219 | 297.171 | 307.058 | 316.974 | 326.848 | 336.73  | 346.558 | 356.447 |
-| 2009-10-04   | -18.8748 | -10.7551 |  -2.63899 |   5.45781 | 13.5435  | 21.6034  | 29.6715  | 37.7625 | 45.9473 | 54.3142 | ...   | 258.998 | 267.471 | 275.842 | 284.219 | 292.535 | 300.88  | 309.191 | 317.513 | 325.788 | 334.121 |
-| 2010-01-03   |  10.9547 |  17.854  |  24.7496  |  31.627   | 38.4928  | 45.3325  | 52.1798  | 59.0516 | 66.0185 | 73.172  | ...   | 244.872 | 251.738 | 258.495 | 265.25  | 271.951 | 278.678 | 285.379 | 292.095 | 298.771 | 305.502 |</div>
+|   Unnamed: 0 |   2009-01-04 |   2009-04-05 |   2009-07-05 |   2009-10-04 |   2010-01-03 |   2010-04-04 |   2010-07-04 |   2010-10-03 |   2011-01-02 |   2011-04-03 | ...   |   2018-09-23 |   2018-12-23 |   2019-03-24 |   2019-06-23 |   2019-09-22 |   2019-12-22 |   2020-03-22 |   2020-06-21 |   2020-09-20 |   2020-12-20 |
+|-------------:|-------------:|-------------:|-------------:|-------------:|-------------:|-------------:|-------------:|-------------:|-------------:|-------------:|:------|-------------:|-------------:|-------------:|-------------:|-------------:|-------------:|-------------:|-------------:|-------------:|-------------:|
+|          8   |     -8.94622 |     -9.52321 |     -8.29015 |     -4.08021 |      2.35777 |      9.19846 |      15.5493 |      19.9497 |      21.5345 |      21.9869 | ...   |      28.3311 |      26.2815 |      22.345  |      17.3149 |      12.5615 |      8.99827 |      6.8602  |      6.30183 |      6.67918 |      7.2812  |
+|          8.1 |     -8.75097 |     -9.32519 |     -8.09729 |     -3.90497 |      2.50667 |      9.32096 |      15.6506 |      20.0406 |      21.6272 |      22.0849 | ...   |      28.4934 |      26.4453 |      22.5162 |      17.5013 |      12.7656 |      9.219   |      7.09552 |      6.54496 |      6.92356 |      7.52606 |
+|          8.2 |     -8.55572 |     -9.12717 |     -7.90442 |     -3.72972 |      2.65559 |      9.44347 |      15.7519 |      20.1316 |      21.7199 |      22.183  | ...   |      28.6558 |      26.6092 |      22.6874 |      17.6877 |      12.9696 |      9.43967 |      7.33076 |      6.788   |      7.16784 |      7.77083 |
+|          8.3 |     -8.36047 |     -8.92915 |     -7.71153 |     -3.55445 |      2.80452 |      9.56599 |      15.8532 |      20.2225 |      21.8127 |      22.2811 | ...   |      28.8182 |      26.7731 |      22.8587 |      17.874  |      13.1737 |      9.66026 |      7.56589 |      7.03092 |      7.41202 |      8.0155  |
+|          8.4 |     -8.16521 |     -8.73111 |     -7.51863 |     -3.37915 |      2.95346 |      9.68853 |      15.9545 |      20.3134 |      21.9054 |      22.3792 | ...   |      28.9806 |      26.937  |      23.0299 |      18.0604 |      13.3777 |      9.88076 |      7.80091 |      7.2737  |      7.65606 |      8.26006 |</div>
 
 
 
 <br>
 
-We'll visualise our surface estimate as a wire-plot, where the darker colours denote price curve estimates from longer ago.
+We'll now visualise our surface estimate as a wire-plot, showing how the average price of electricity has changed at different levels of residual demand (after RES) over time
 
 ```python
-fig, ax = plt.subplots(dpi=150)
+fig, (ax, cax) = plt.subplots(dpi=150, ncols=2, gridspec_kw={'width_ratios': [15, 1]})
 
 df_pred.T.plot(legend=False, cmap='viridis', linewidth=1, ax=ax)
+mpl.colorbar.ColorbarBase(ax=cax, cmap=mpl.cm.viridis, values=df_pred.index, orientation='vertical')
 
 eda.hide_spines(ax)
-ax.set_xlabel('Demand - [Solar + Wind] (MW)')
-ax.set_ylabel('Price (£/MWh)')
+ax.set_xlabel('')
+ax.set_ylabel('Price (Â£/MWh)')
 ax.set_xlim(df_pred.columns[0])
 ax.set_ylim(0, 400)
+
+cax.get_yaxis().labelpad = 15
+cax.set_ylabel('Demand - [Solar + Wind] (MW)', rotation=270)
 ```
 
 
 
 
-    (0.0, 400.0)
+    Text(0, 0.5, 'Demand - [Solar + Wind] (MW)')
 
 
 
 
-![png](./img/nbs/dev-03-lowess_cell_162_output_1.png)
+![png](./img/nbs/dev-03-lowess_cell_164_output_1.png)
 
 
 <br>
@@ -2319,7 +2334,7 @@ def construct_pred_ts(s, df_pred, rounding_dec=1):
     """Uses the time-adaptive LOWESS surface to generate time-series prediction"""
     vals = []
     
-    for dt_idx, val in track(s.iteritems(), total=s.size):
+    for dt_idx, val in tqdm(s.iteritems(), total=s.size):
         vals += [df_pred.loc[round(val, rounding_dec), dt_idx.strftime('%Y-%m-%d')]]
         
     s_pred_ts = pd.Series(vals, index=s.index)
@@ -2377,6 +2392,11 @@ class LowessDates(BaseEstimator, RegressorMixin):
             robust_weights: Robustifying weights to remove the influence of outliers
             robust_iters: Number of robustifying iterations to carry out
         """
+        
+        for attr_name in ['threshold_value', 'threshold_units', 'frac']:
+            if attr_name in fit_kwargs.keys():
+                attr_value = fit_kwargs.pop(attr_name)
+                setattr(self, attr_name, attr_value)
         
         x, y, dt_idx, reg_dates = process_smooth_dates_fit_inputs(x, y, dt_idx, reg_dates)
         self.ensemble_member_to_weights = construct_dt_weights(dt_idx, reg_dates, 

@@ -96,10 +96,10 @@ dispatchable_gen_idxs = sorted(list(set(s_pred_idx_weight.index).intersection(df
 
 pred_68pct_intvl = np.average(df_pred_68pct_intvl_GB.mean(axis=1).loc[dispatchable_gen_idxs], weights=s_pred_idx_weight.loc[dispatchable_gen_idxs])
 
-print(f'The 68% prediction interval for GB is {round(pred_68pct_intvl, 2)} £/MWh')
+print(f'The 68% prediction interval for GB is {round(pred_68pct_intvl, 2)} Â£/MWh')
 ```
 
-    The 68% prediction interval for GB is 16.32 £/MWh
+    The 68% prediction interval for GB is 16.32 Â£/MWh
     
 
 <br>
@@ -126,10 +126,10 @@ conf_intvl_95pct_GB = np.array(all_conf_intvl_95pct).mean()
 ```
 
 ```python
-print(f'The 95% confidence interval for GB is {round(conf_intvl_95pct_GB, 2)} £/MWh')
+print(f'The 95% confidence interval for GB is {round(conf_intvl_95pct_GB, 2)} Â£/MWh')
 ```
 
-    The 95% confidence interval for GB is 1.03 £/MWh
+    The 95% confidence interval for GB is 1.03 Â£/MWh
     
 
 <br>
