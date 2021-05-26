@@ -91,7 +91,7 @@ modules = ["retrieval.py",
            "moe.py",
            "cicd.py"]
 
-doc_url = "https://AyrtonB.github.io/Merit-Order-Effect/"
+doc_url = "https://AyrtonB.github.iohttps://AyrtonB.github.io/Merit-Order-Effect/"
 
 git_url = "https://github.com/AyrtonB/Merit-Order-Effect"
 

@@ -27,7 +27,7 @@ def query_API(start_date:str, end_date:str, stream:str, time_group='30m'):
     Parameters:
         start_date: Start date for data given as a string in the form '%Y-%m-%d'
         end_date: End date for data given as a string in the form '%Y-%m-%d'
-        stream: One of 'prices_ahead', 'prices_ahead', 'prices', 'temperatures' or 'emissions'
+        stream: One of 'prices_ahead', 'prices', 'temperatures', 'emissions', or 'generation-mix'
         time_group: One of '30m', '1h', '1d' or '7d'. The default is '30m'
     """
 
