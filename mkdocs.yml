@@ -12,6 +12,8 @@ theme:
     - navigation.tabs
     - navigation.instant
     - search.suggest
+  logo: assets/images/logo.svg
+  favicon: assets/images/favicon.png
   palette:
     primary: black
 
