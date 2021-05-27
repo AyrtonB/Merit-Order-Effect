@@ -77,8 +77,7 @@
   <nav class="md-header-nav md-grid" aria-label="Header">
     <a href="." title="Merit-Order-Effect" class="md-header-nav__button md-logo" aria-label="Merit-Order-Effect">
       
-  
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+  <img src="assets/images/logo.svg" alt="logo">
 
     </a>
     <label class="md-header-nav__button md-icon" for="__drawer">
@@ -243,8 +242,7 @@
   <label class="md-nav__title" for="__drawer">
     <a href="." title="Merit-Order-Effect" class="md-nav__button md-logo" aria-label="Merit-Order-Effect">
       
-  
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+  <img src="assets/images/logo.svg" alt="logo">
 
     </a>
     Merit-Order-Effect
@@ -312,6 +310,13 @@
         <li class="md-nav__item">
   <a href="#overview" class="md-nav__link">
     Overview
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#usage" class="md-nav__link">
+    Usage
   </a>
   
 </li>
@@ -711,6 +716,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#usage" class="md-nav__link">
+    Usage
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#examples" class="md-nav__link">
     Examples
   </a>
@@ -774,13 +786,40 @@
 <p>The library also includes the option to ensemble LOWESS models together (very meta) and smooth them over time without including time within the regression itself. This is particularly useful when there are many exogenous factors changing over time but you don't have data for them, meaning it is therefore not easy to capture them within the regression. An example fit from the ensembled date-smoothing model is shown below, depicting the marginal price curve of dispatchable generation in Great Britain. For ease of use this model has been made to work directly with Pandas datetime indexes and is again exposed through a standard sklearn model API.</p>
 <p><img alt="" src="img/UK_price_MOE_heatmap.png" /></p>
 <p><br></p>
+<h3 id="usage">Usage<a class="headerlink" href="#usage" title="Permanent link">&para;</a></h3>
+<p>In this minimalist example we'll create some dummy data for a noisy sin wave, then fit it using the standard LOWESS model.</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Imports</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">moepy</span> <span class="kn">import</span> <span class="n">lowess</span><span class="p">,</span> <span class="n">eda</span>
+
+<span class="c1"># Data generation</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="n">num</span><span class="o">=</span><span class="mi">150</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">)))</span><span class="o">/</span><span class="mi">10</span>
+
+<span class="c1"># Model fitting</span>
+<span class="n">lowess_model</span> <span class="o">=</span> <span class="n">lowess</span><span class="o">.</span><span class="n">Lowess</span><span class="p">()</span>
+<span class="n">lowess_model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+
+<span class="c1"># Model prediction</span>
+<span class="n">x_pred</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">26</span><span class="p">)</span>
+<span class="n">y_pred</span> <span class="o">=</span> <span class="n">lowess_model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">x_pred</span><span class="p">)</span>
+
+<span class="c1"># Plotting</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_pred</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;LOWESS&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Noisy Sin Wave&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;C1&#39;</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">frameon</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</code></pre></div>
+<p><img alt="" src="img/usage-example.png" /></p>
+<p>More complex methods are detailed in the <a href="https://ayrtonb.github.io/Merit-Order-Effect/ug-08-lowess-quick-start/">Quick-Start notebook</a>.</p>
+<p><br></p>
 <h3 id="examples">Examples<a class="headerlink" href="#examples" title="Permanent link">&para;</a></h3>
 <p>Several notebooks have been created to show examples of how LOWESS estimations can be made using various data sources and for different analysis purposes, these include:</p>
 <ul>
-<li>Quantile estimation of hydro-power production in Portgual</li>
-<li>Confidence interval estimation of gravitational wave observations</li>
-<li>Cleaning of wind power curves</li>
-<li>Estimation of electricity price curves</li>
+<li><a href="https://ayrtonb.github.io/Merit-Order-Effect/ug-01-hydro-seasonality/">Quantile estimation of hydro-power production in Portgual</a></li>
+<li><a href="https://ayrtonb.github.io/Merit-Order-Effect/ug-02-ligo/">Confidence interval estimation of gravitational wave observations</a></li>
+<li><a href="https://ayrtonb.github.io/Merit-Order-Effect/ug-03-power-curve/">Cleaning of wind power curves</a></li>
+<li><a href="https://ayrtonb.github.io/Merit-Order-Effect/ug-04-electricity-prices/">Estimation of electricity price curves</a></li>
 </ul>
 <p>Key plots from each of these can be seen below.</p>
 <p><img alt="" src="img/lowess_fit_examples.png" /></p>
