@@ -44,7 +44,7 @@ In this minimalist example we'll create some dummy data for a noisy sin wave, th
 # Imports
 import numpy as np
 import matplotlib.pyplot as plt
-from moepy import lowess, eda
+from moepy import lowess
 
 # Data generation
 x = np.linspace(0, 5, num=150)
